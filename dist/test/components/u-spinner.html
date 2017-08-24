@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="lt-ie9 lt-ie8 lt-ie7 ie6" lang="zh-cmn-Hans"><![endif]-->
+<!--[if IE 7]><html class="lt-ie9 lt-ie8 ie7" lang="zh-cmn-Hans"><![endif]-->
+<!--[if IE 8]><html class="lt-ie9 ie8" lang="zh-cmn-Hans"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html lang="zh-cmn-Hans">
+<!--<![endif]-->
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="google" value="notranslate">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,shrink-to-fit=no,minimal-ui">
+  <meta name="format-detection" content="telephone=no,email=no,address=no,date=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <!--[if lt IE 9]>
+<script src="static/vendors/html5shiv/html5shiv-3.7.3.min.js"></script><![endif]-->
+  <title>check</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link href="../../static/styles/main.css" rel="stylesheet">
+  <style type="text/css">.u-spinner {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  height: 1em;
+  width: 1em;
+}
+
+.u-spinner,
+.u-spinner__svg,
+.u-spinner__circle {
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+.u-spinner__svg {
+  display: block;
+  height: 100%;
+  width: 100%;
+  -webkit-animation-name: rotate;
+  animation-name: rotate;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-duration: 1568.23529412ms;
+  animation-duration: 1568.23529412ms;
+}
+
+@-webkit-keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.u-spinner__circle {
+  fill: none;
+  stroke: currentcolor;
+  height: 100%;
+  width: 100%;
+  stroke-dasharray: 32.39767369;
+  stroke-dashoffset: 32.39767369;
+  stroke-linecap: round;
+  stroke-width: 2.25;
+  stroke-miterlimit: 10;
+  -webkit-animation-name: fillunfill;
+  animation-name: fillunfill;
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-animation-duration: 1333ms;
+  animation-duration: 1333ms;
+}
+
+@-webkit-keyframes fillunfill {
+  0% {
+    stroke-dashoffset: 32.29767369;
+  }
+
+  50% {
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dashoffset: -31.89767369;
+  }
+}
+
+@keyframes fillunfill {
+  0% {
+    stroke-dashoffset: 32.29767369;
+  }
+
+  50% {
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dashoffset: -31.89767369;
+  }
+}
+
+.u-spinner_colors {
+  -webkit-animation-name: colors;
+  animation-name: colors;
+  -webkit-animation-duration: 5332ms;
+  animation-duration: 5332ms;
+  -webkit-animation-timing-function: steps(4);
+  animation-timing-function: steps(4);
+}
+
+@-webkit-keyframes colors {
+  0% {
+    color: #008744;
+  }
+
+  33.33333333% {
+    color: #0057e7;
+  }
+
+  66.66666667% {
+    color: #d62d20;
+  }
+
+  100% {
+    color: #ffa700;
+  }
+}
+
+@keyframes colors {
+  0% {
+    color: #008744;
+  }
+
+  33.33333333% {
+    color: #0057e7;
+  }
+
+  66.66666667% {
+    color: #d62d20;
+  }
+
+  100% {
+    color: #ffa700;
+  }
+}
+
+.demo {
+  padding: 15px;
+}
+
+.u-spinner {
+  font-size: 16px;
+  color: lightseagreen;
+  vertical-align: -0.25em;
+}
+</style>
+</head>
+<body>
+  <div class="container demo">
+    <legend>.u-spinner (css)</legend>
+    <div>
+      <div class="u-spinner">
+        <svg class="u-spinner__svg" viewBox="0 0 16 16">
+          <circle class="u-spinner__circle" cx="8" cy="8" r="6.875" fill="none" />
+        </svg>
+      </div>
+      test
+      <div class="u-spinner u-spinner_colors">
+        <svg class="u-spinner__svg" viewBox="0 0 16 16">
+          <circle class="u-spinner__circle" cx="8" cy="8" r="6.875" fill="none" />
+        </svg>
+      </div>
+      测试
+    </div>
+  </div>
+</body>
+</html>

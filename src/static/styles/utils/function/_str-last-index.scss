@@ -1,0 +1,13 @@
+@function str-last-index($string, $substring) {
+  $index: 0;
+  $length: str-length($string);
+  $substring-length: str-length($substring);
+
+  @for $i from 1 through $length {
+    @if str-slice($string, $i, $i + $substring-length - 1) == $substring {
+      $index: $i;
+    }
+  }
+
+  @return if($index == 0, null, $index);
+}

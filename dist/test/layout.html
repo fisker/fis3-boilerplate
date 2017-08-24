@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="lt-ie9 lt-ie8 lt-ie7 ie6" lang="zh-cmn-Hans"><![endif]-->
+<!--[if IE 7]><html class="lt-ie9 lt-ie8 ie7" lang="zh-cmn-Hans"><![endif]-->
+<!--[if IE 8]><html class="lt-ie9 ie8" lang="zh-cmn-Hans"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html lang="zh-cmn-Hans">
+<!--<![endif]-->
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="google" value="notranslate">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,shrink-to-fit=no,minimal-ui">
+  <meta name="format-detection" content="telephone=no,email=no,address=no,date=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <!--[if lt IE 9]>
+<script src="static/vendors/html5shiv/html5shiv-3.7.3.min.js"></script><![endif]-->
+  <title>page</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link href="../static/styles/main.css" rel="stylesheet">
+  <style type="text/css">.page {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+.page__main {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.page__header {
+  -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 2px 2px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 2px 2px 1px rgba(0, 0, 0, 0.05);
+}
+
+.page__footer {
+  -webkit-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.1), 0 -2px 2px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.1), 0 -2px 2px 1px rgba(0, 0, 0, 0.05);
+}
+
+.page_flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+}
+
+.page_flex__main {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.page_fixed__fix-dummy {
+  position: relative;
+}
+
+.page_fixed__header,
+.page_fixed__footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+
+.page_fixed__header {
+  top: 0;
+}
+
+.page_fixed__footer {
+  bottom: 0;
+}
+
+.demo {
+  background: #eee;
+}
+
+.demo .page__header,
+.demo .page__footer {
+  background: #fff;
+  padding: 10px;
+}
+
+.demo .page__main {
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+  <div class="page demo">
+    <header class="page__header">
+      header
+    </header>
+    <main class="page__main">
+      --1st line--
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> main
+      <br> --eof--
+    </main>
+    <footer class="page__footer">
+      footer
+    </footer>
+  </div>
+  <script src="../static/vendors/jquery/jquery-2.2.4.min.js"></script>
+  <script>  $(function() {
+    $('.page__header, .page__footer')
+      .each(function() {
+        var el = $(this);
+        if (el.css('position') === 'fixed') {
+          el.wrap($('<div class="page__fixed-dummy">').css({
+            height: el.outerHeight(),
+            zIndex: el.css('zIndex')
+          }));
+        }
+      });
+
+  });
+</script>
+</body>
+</html>

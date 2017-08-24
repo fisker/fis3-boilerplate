@@ -1,0 +1,37 @@
+.u-number-input {
+  display: inline-block;
+
+  $element-input: #{&}__input;
+  $element-button: #{&}__button;
+
+  &__input {
+    display: block;
+  }
+
+  &_inited {
+    position: relative;
+    padding: 0 2em;
+
+    #{$element-input} {
+      @include textfield-number();
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  &__button {
+    position: absolute;
+    top: 0;
+    width: 1.5em;
+    box-sizing: content-box;
+
+    &_decrease {
+      left: 0;
+    }
+
+    &_increase {
+      right: 0;
+    }
+  }
+}

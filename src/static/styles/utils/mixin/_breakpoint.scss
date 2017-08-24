@@ -1,0 +1,6 @@
+// Responsive Breakpoints
+@mixin breakpoint($point) {
+  @media (min-width: #{map-get($grid-breakpoints, $point)}) {
+    @content;
+  }
+}

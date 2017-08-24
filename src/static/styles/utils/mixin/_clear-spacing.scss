@@ -1,0 +1,31 @@
+// http://www.zhangxinxu.com/wordpress/2012/04/inline-block-space-remove-%e5%8e%bb%e9%99%a4%e9%97%b4%e8%b7%9d/
+// https://github.com/yahoo/pure/blob/master/src/grids/css/grids-core.css
+// letter-spacing: -0.31em; won't work when child has border
+@mixin clear-spacing($children-selector: "& > *") {
+  display: table; // webkit
+  // display: flex;
+  // flex-flow: row wrap;
+  // align-content: flex-start;
+  word-spacing: -.43em;
+  @if $legacy-ie < 8 {
+    *word-spacing: normal;
+    *font-size: 0;
+    // *letter-spacing: -.31em;
+    // *width: 100%;
+  }
+
+  #{unquote($children-selector)} {
+    word-spacing: normal;
+    vertical-align: top;
+    display: inline-block;
+
+    @if $legacy-ie < 8 {
+      // *letter-spacing: normal;
+      @if unit($base-font-size) == "%" {
+        *font-size: value-of($base-font-size) / 100 * $root-font-size;
+      } @else {
+        *font-size: $base-font-size;
+      }
+    }
+  }
+}

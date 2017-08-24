@@ -1,0 +1,10 @@
+@mixin nest-fixed($position: top) {
+  & > & {
+    position: fixed;
+    #{$position}: 0;
+    left: 0;
+    right: 0;
+
+    @content;
+  }
+}

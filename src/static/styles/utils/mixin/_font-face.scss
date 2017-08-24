@@ -1,0 +1,51 @@
+@mixin font-face(
+  $font-family,
+  $font-file: "",
+  $font-weight: normal,
+  $font-style: normal
+  ) {
+  @if type-of($font-file) == "bool" {
+    $font-file: if($font-file, $inline-mark, "");
+  }
+
+  $font-inline: not not str-index($font-file, $inline-mark);
+  $font-file: str-replace($font-file, $inline-mark, "");
+
+  @if $font-file == "" {
+    $font-file: $font-family;
+    $font-file: to-lower-case($font-file);
+    $font-file: str-replace($font-file, " ", "-");
+    $font-file: str-replace($font-file, "_", "-");
+    $font-file: "../font/" + $font-file;
+  }
+
+  // sass bug
+  // posiable lost url hash
+  $font-src-map: (
+    embedded-opentype: if($legacy-ie <= 8, "#{$font-file}.eot?#iefix", ""),
+    woff: if($font-inline, "", "#{$font-file}.woff"),
+    truetype: if($font-inline, "#{$font-file}.ttf" + $inline-mark, "#{$font-file}.ttf"),
+    svg: "#{$font-file}.svg##{$font-family}",
+    );
+
+  $font-src: (
+    local("#{$font-family}"),
+    );
+  @each $font-format, $font-url in $font-src-map {
+    @if $font-url != "" {
+      $font-src: append($font-src, url("#{$font-url}") format("#{$font-format}"), comma);
+    }
+  }
+
+  @font-face {
+    font-family: quote($font-family);
+    font-weight: $font-weight;
+    font-style: $font-style;
+
+    @if $legacy-ie <= 8 {
+      src: url("#{$font-file}.eot");
+    }
+
+    src: $font-src;
+  }
+}

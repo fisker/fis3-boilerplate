@@ -1,0 +1,24 @@
+.u-tab-panel {
+  @include clearfix();
+
+  $element-panel: #{&}__panel;
+
+  &__tab {
+    display: inline-block;
+
+    &_current {
+      + #{$element-panel} {
+        display: inline;
+      }
+    }
+  }
+
+  &__panel {
+    display: none;
+  }
+
+  &__content {
+    float: left;
+    width: 100%;
+  }
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<link rel="import" href="/snippets/base/_html-start-tag.pug?__inline">
+  <head>
+    <link rel="import" href="/snippets/base/_head.pug?__inline">
+    <title>range input</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="/static/styles/main.scss" rel="stylesheet">
+    <style type="text/x-scss">
+      @import '../../static/styles/global';
+      @import '../../static/styles/component/range-input';
+
+      .demo {
+        padding:  15px;
+      }
+
+      .u-range-input {
+        color:  darkslateblue;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container demo">
+      <legend>.u-range-input (css、js)</legend>
+      <label class="u-range-input">
+        <input class="u-range-input__input" type="range" min="0" max="10" step="1" value="5">
+      </label>
+      <label class="u-range-input">
+        <input class="u-range-input__input" type="range" min="0" max="10" step="1" value="5" disabled>
+      </label>
+      <label class="u-range-input">
+        <input class="u-range-input__input" type="range" min="0" max="10" step="1" value="5" readonly>
+      </label>
+    </div>
+
+    <div class="container demo">
+      <legend>.u-range-input (css、js)</legend>
+      <label class="u-range-input">
+        <input class="u-range-input__input" orient="vertical" type="range" min="0" max="10" step="1" value="5">
+      </label>
+      <label class="u-range-input">
+        <input class="u-range-input__input" orient="vertical" type="range" min="0" max="10" step="1" value="5" disabled>
+      </label>
+      <label class="u-range-input">
+        <input class="u-range-input__input" orient="vertical" type="range" min="0" max="10" step="1" value="5" readonly>
+      </label>
+    </div>
+
+    <script src="../../static/vendors/jquery/jquery-1.12.4.min.js"></script>
+    <script src="../../static/scripts/component/_range-input.js?__inline"></script>
+  </body>
+<link rel="import" href="/snippets/base/_html-end-tag.pug?__inline">

@@ -1,0 +1,114 @@
+@if $device == "pc" {
+  .container {
+    @include center-block();
+    @include clearfix();
+
+    @if $box-sizing == border-box and value-of($container-padding) > 0 {
+      padding-left: $container-padding;
+      padding-right: $container-padding;
+    }
+
+    @if $container-max-width and value-of($container-max-width) > 0 {
+      max-width: $container-max-width * 1px;
+
+      @if $legacy-ie <= 7 {
+        *width: expression(this.offsetWidth > #{$container-max-width} ? "#{$container-max-width * 1px}" : "auto");
+        *overflow: hidden;
+      }
+    }
+  }
+}
+
+.table {
+  width: 100%;
+  border: 1px solid $table-border-color;
+
+  th,
+  td {
+    border: 1px solid $table-border-color;
+    padding: $root-font-size * .5;
+  }
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: $table-strip-color;
+}
+
+.table-hover tbody tr:hover {
+  background-color: $table-hover-color;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+
+  & + & {
+    margin-top: ($root-font-size / 2);
+  }
+}
+
+@mixin btn-color($color, $is-ghost: false) {
+
+
+  $border-color: null;
+  $font-color: null;
+  $background-color: null;
+
+  @if ($is-ghost) {
+    border-color: $color;
+    color: $color;
+
+    &:focus:not(:disabled),
+    &:hover:not(:disabled) {
+      border-color: darken($color, 5%);
+      background-color: darken($color, 5%);
+      color: #fff;
+    }
+  } @else {
+    border-color: transparent;
+    background-color: $color;
+    color: #fff;
+
+    &:focus:not(:disabled),
+    &:hover:not(:disabled) {
+      background-color: darken($color, 5%);
+    }
+  }
+}
+
+// .btn {
+//   padding-left: 1em;
+//   padding-right: 1em;
+//   line-height: 2;
+// }
+
+// .btn--primary {
+//   @include btn-color($color-primary);
+// }
+
+// .btn--ghost {
+//   background-color: transparent;
+
+//   &.btn--primary {
+//     @include btn-color($color-primary, true);
+//   }
+// }
+
+// .btn--rounded {
+//   border-radius: .25em;
+// }
+
+// .btn--pill {
+//   border-radius: 999px;
+// }
+
+// .btn--lg {
+//   padding-top: 5px;
+//   padding-bottom: 5px;
+// }
+
+// .btn--sm {
+//   line-height: 1.15;
+//   padding-left: .25em;
+//   padding-right: .25em;
+// }

@@ -1,0 +1,30 @@
+doctype html
+include snippets/_global
+
+-
+  title = 'title';
+
+  keywords = [
+  ];
+
+  description = '';
+
+  cssFiles = [
+    'static/styles/main.scss',
+  ];
+
++htmlStartTag(env)
+head
+  +head(env)
+  title= title
+  + meta('keywords', keywords)
+  + meta('description', description)
+  each cssFile in cssFiles
+    + css(cssFile)
+body
+  .container hello #{env.userName || 'world'}!
+
+  +polyfill(env)
+  +jquery(env)
+
++htmlEndTag(env)

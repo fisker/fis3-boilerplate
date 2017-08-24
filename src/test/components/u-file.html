@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<link rel="import" href="/snippets/base/_html-start-tag.pug?__inline">
+  <head>
+    <link rel="import" href="/snippets/base/_head.pug?__inline">
+    <title>file</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="/static/styles/main.scss" rel="stylesheet">
+    <style type="text/x-scss">
+      @import '../../static/styles/global';
+      @import '../../static/styles/component/file';
+
+      .demo {
+        padding:  15px;
+      }
+
+      .u-file {
+        display:  block;
+        width:  100px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container demo">
+      <legend>.u-file (css)</legend>
+      <label class="u-file u-file_button">
+        <span class="u-file__input-wrap">
+          <input class="u-file__input" type="file" accept="image/*">
+        </span>
+        选择文件
+      </label>
+      <label class="u-file">
+        <span class="u-file__input-wrap">
+          <input class="u-file__input" type="file" accept="image/*">
+        </span>
+        选择文件
+      </label>
+    </div>
+
+  </body>
+<link rel="import" href="/snippets/base/_html-end-tag.pug?__inline">

@@ -1,0 +1,28 @@
+@mixin justify-box($children-selector: "& > *", $shim-selector: if($legacy-ie <= 7, "& .shim", "&::after")) {
+  text-align: justify;
+  font-size: 0;
+
+  #{unquote($shim-selector)} {
+    @if is-pseudo-element($shim-selector) {
+      content: "";
+    }
+
+    display: inline-block;
+    width: 100%;
+  }
+
+
+  #{unquote($children-selector)} {
+    display: inline-block;
+    vertical-align: top;
+
+    @if unit($base-font-size) == "%" {
+      @if $legacy-ie < 9 {
+        font-size: value-of($base-font-size) / 100 * $root-font-size;
+      }
+      font-size: value-of($base-font-size) / 100 * 1rem;
+    } @else {
+      font-size: $base-font-size;
+    }
+  }
+}

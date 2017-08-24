@@ -1,0 +1,79 @@
+.u-switch {
+  .u-indicator {
+    display: block;
+    width: 3em;
+    height: 1.5em;
+    background: currentcolor;
+    border-radius: 25% / 50%;
+    border: 1px solid;
+    box-sizing: content-box;
+    @if $legacy-ie < 9 {
+      color: #{$input-color-disabled}\9;
+      background: #{$input-color-disabled}\9;
+    }
+    line-height: 1;
+    filter: grayscale(100%);
+    transition: all .2s ease-in-out;
+
+    &::before,
+    &::after {
+      content: "";
+      display: inline-block;
+      background: #fff;
+      border-radius: 50%;
+      width: 1.5em;
+      height: 1.5em;
+      transition: inherit;
+    }
+
+    &::before {
+      transform: translateX(0) scale(1);
+    }
+
+    &::after {
+      transform: translateX(-100%) scale(0);
+      @if $legacy-ie < 9 {
+        visibility: hidden\9;
+      }
+    }
+  }
+
+  @mixin switch-checked() {
+    filter: grayscale(0);
+
+    @if $legacy-ie < 9 {
+      color: inherit\9;
+      background: #{$base-color}\9; // need a color here
+      background: currentcolor\9;
+      *border-color: $base-color;
+    }
+
+    &::before {
+      transform: translateX(100%) scale(0);
+      @if $legacy-ie < 9 {
+        visibility: hidden\9;
+      }
+    }
+
+    &::after {
+      transform: translateX(0) scale(1);
+      @if $legacy-ie < 9 {
+        visibility: visible\9;
+      }
+    }
+  }
+
+  input[type="checkbox"] {
+    @include hide-check();
+
+    &:checked + .u-indicator {
+      @include switch-checked();
+    }
+
+    @if $legacy-ie < 9 {
+      &.pseudo-checked + .u-indicator {
+        @include switch-checked();
+      }
+    }
+  }
+}

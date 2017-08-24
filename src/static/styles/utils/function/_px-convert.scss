@@ -1,0 +1,36 @@
+@function rem-px($values...) {
+  @return px-convert(1, "rem", $values...);
+}
+
+@function design-px($values...) {
+  $scale: 320 / $design-width;
+  @return px-convert($scale, "px", $values...);
+}
+
+@function px-convert($scale:1, $defaut-unit: "px", $values...) {
+  $result: ();
+  $separator: list-separator($values);
+
+  @each $value in $values {
+    $item: $value;
+    @if type-of($value) == "number" {
+      @if unitless($value) {
+        $value: add-unit($value, $defaut-unit);
+      }
+      @if unit($value) == "rem" {
+        $value: $value * $root-font-size / 1rem;
+      }
+      $item: $value * $scale;
+      $item: round($item);
+    } @else if type-of($value) == "list" {
+      $item: px-convert($scale, $value...);
+    }
+    $result: append($result, $item, $separator);
+  }
+
+  @if length($result) == 1 {
+    $result: nth($result, 1);
+  }
+
+  @return $result;
+}

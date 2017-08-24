@@ -1,0 +1,153 @@
+/* Globals
+   ========================================================================== */
+
+// Make viewport responsive
+//
+// @viewport is needed because IE 10+ doesn't honor <meta name="viewport"> in
+// some cases. See http://timkadlec.com/2012/10/ie10-snap-mode-and-responsive-design/.
+// Eventually @viewport will replace <meta name="viewport">.
+//
+// However, `device-width` is broken on IE 10 on Windows (Phone) 8,
+// (see http://timkadlec.com/2013/01/windows-phone-8-and-device-width/ and https://github.com/twbs/bootstrap/issues/10497)
+// and the fix for that involves a snippet of JavaScript to sniff the user agent
+// and apply some conditional CSS.
+//
+// See http://getbootstrap.com/getting-started/#support-ie10-width for the relevant hack.
+//
+// Wrap `@viewport` with `@at-root` for when folks do a nested import (e.g.,
+// `.class-name { @import "bootstrap"; }`).
+@at-root {
+  @-ms-viewport {
+    width: device-width;
+  }
+}
+
+// remove ms-clear (opinionated).
+::-ms-clear {
+  display: none;
+}
+
+// 1. Remove repeating backgrounds in all browsers (opinionated).
+//    see https://github.com/jonathantneal/sanitize.css/blob/master/sanitize.css
+// 2. Add box sizing inheritence in all browsers (opinionated).
+*,
+::before,
+::after {
+  background-repeat: no-repeat; // 1
+
+  @if $box-sizing {
+    box-sizing: inherit; // 2
+  }
+}
+
+// 1. Add text decoration inheritance in all browsers (opinionated).
+// 2. Add vertical alignment inheritence in all browsers (opinionated).
+::before,
+::after {
+  text-decoration: inherit; // 1
+  vertical-align: inherit; // 2
+}
+
+// Remove the text shadow on text selections (opinionated).
+// 1. Restore the coloring undone by defining the text shadow (opinionated).
+@include component(unquote("::selection")) {
+  background-color: #b3d4fc; // 1
+  color: #000000; // 1
+  text-shadow: none;
+}
+
+// Suppress the focus outline on elements that cannot be accessed via keyboard.
+// This prevents an unwanted focus outline from appearing around elements that
+// might still respond to pointer events.
+//
+// Credit: https://github.com/suitcss/base
+[tabindex="-1"]:focus {
+  outline: none !important;
+}
+
+// Avoid 300ms click delay on touch devices that support the `touch-action` CSS property.
+//
+// In particular, unlike most other browsers, IE11+Edge on Windows 10 on touch devices and IE Mobile 10-11
+// DON'T remove the click delay when `<meta name="viewport" content="width=device-width">` is present.
+// However, they DO support removing the click delay via `touch-action: manipulation`.
+// See:
+// * http://v4-alpha.getbootstrap.com/content/reboot/#click-delay-optimization-for-touch
+// * http://caniuse.com/#feat=css-touch-action
+// * http://patrickhlauke.github.io/touch/tests/results/#suppressing-300ms-delay
+
+a,
+area,
+button,
+[role="button"],
+input,
+label,
+select,
+summary,
+textarea  {
+  touch-action: manipulation;
+}
+
+// iOS "clickable elements" fix for role="button"
+//
+// Fixes "clickability" issue (and more generally, the firing of events such as focus as well)
+// for traditionally non-focusable elements with role="button"
+// see https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile
+label,
+button,
+[role="button"],
+[type="button"],
+[type="reset"],
+[type="submit"],
+[type="file"],
+[type="image"] {
+  cursor: pointer;
+}
+
+::-webkit-file-upload-button {
+  // -webkit-appearance: button; // normalize already done this
+  cursor: pointer;
+}
+
+// [orient="vertical"]::-moz-range-thumb {
+//   cursor: ns-resize;
+// }
+
+@include pseudo(range-thumb) {
+  cursor: pointer;
+  // cursor: ew-resize;
+
+  @at-root {
+    // [disabled]#{&}
+    :disabled#{&} {
+      cursor: default;
+    }
+  }
+}
+
+@if $focus-outline {
+  // Work around a Firefox/IE bug where the transparent `button` background
+  // results in a loss of the default `button` focus styles.
+  //
+  // Credit: https://github.com/suitcss/base/
+  button:focus {
+    outline: 1px dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+  }
+
+  // WebKit-specific. Other browsers will keep their default outline style.
+  // (Initially tried to also force default via `outline: initial`,
+  // but that seems to erroneously remove the outline in Firefox altogether.)
+  a:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+} @else {
+  :focus {
+    outline-width: 0;
+  }
+}
+
+@include pseudo(disabled) {
+  cursor: default;
+}

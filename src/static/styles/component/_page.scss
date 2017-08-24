@@ -1,0 +1,66 @@
+@mixin page-flex() {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__main {
+    @include scrollable();
+    flex: 1;
+  }
+}
+
+@mixin page-fixed() {
+  &__fix-dummy {
+    position: relative;
+  }
+
+  &__header,
+  &__footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+  }
+
+  &__header {
+    top: 0;
+  }
+
+  &__footer {
+    bottom: 0;
+  }
+}
+
+.page {
+  @if $env-debug {
+    @include page-fixed();
+  } @else {
+    @at-root {
+      body {
+        height: 100%;
+      }
+    }
+    @include page-flex();
+  }
+
+  &__header {
+    box-shadow:
+      0 1px 1px 0 rgba(#000, .1),
+      0 2px 2px 1px rgba(#000, .05)
+      ;
+    }
+
+  &__footer {
+    box-shadow:
+      0 -1px 1px 0 rgba(#000, .1),
+      0 -2px 2px 1px rgba(#000, .05)
+      ;
+  }
+
+  &_flex {
+    @include page-flex();
+  }
+
+  &_fixed {
+    @include page-fixed();
+  }
+}

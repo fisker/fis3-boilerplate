@@ -1,0 +1,19 @@
+@function get-directions($direction) {
+  $direction: if($direction == up, top, $direction);
+  $direction: if($direction == down, bottom, $direction);
+  $opposite-directions: (
+    top: bottom,
+    bottom: top,
+    left: right,
+    right: left,
+  );
+
+  $ori-direction: $direction;
+  $oppo-direction: map-get($opposite-directions, $direction);
+
+  $directions-rest: map-keys(map-remove($opposite-directions, $ori-direction, $oppo-direction));
+
+  $directions: $ori-direction, nth($directions-rest, 1), nth($directions-rest, 2), $oppo-direction;
+
+  @return $directions;
+}

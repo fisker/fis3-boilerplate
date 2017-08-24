@@ -1,0 +1,3 @@
+@function is-pseudo-selector($selector) {
+  @return not not str-index($selector, ":");
+}

@@ -1,0 +1,44 @@
+@mixin pseudo($selector) {
+  $psedu-selecters: (
+    meter-bar: (
+      ".meter-bar",
+      "&::-webkit-meter-bar",
+    ),
+    progress-bar: (
+      ".progress-bar",
+      "&::-webkit-progress-bar",
+    ),
+    range-thumb: (
+      "&::-webkit-slider-thumb",
+      "&::-moz-range-thumb",
+    ),
+    meter-optimum-value: (
+      ".meter-bar.meter-sub-optimum-value",
+      "&::-webkit-meter-optimum-value",
+      "&:-moz-meter-optimum::-moz-meter-bar",
+    ),
+    meter-sub-optimum-value: (
+      ".meter-bar.meter-sub-optimum-value",
+      "&::-webkit-meter-suboptimum-value",
+      "&:-moz-meter-sub-optimum::-moz-meter-bar",
+    ),
+    meter-sub-sub-optimum-value: (
+      ".meter-bar.meter-sub-sub-optimum-value",
+      "&::-webkit-meter-even-less-good-value",
+      "&:-moz-meter-sub-sub-optimum::-moz-meter-bar",
+    ),
+    disabled: if($legacy-ie <= 8, ("&:disabled", "&[disabled]"), ("&:disabled")),
+    read-only: ("&:read-only", "&[readonly]"),
+  );
+
+  $selector-list: map-get($psedu-selecters, $selector);
+  @if $selector-list == null {
+    @error ("pseudo `#{$selector}` not supported.");
+  }
+
+  @each $selector in $selector-list {
+    #{unquote($selector)} {
+      @content;
+    }
+  }
+}

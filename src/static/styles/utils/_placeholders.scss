@@ -1,0 +1,61 @@
+// placeholders
+
+%clearfix {
+  @if $legacy-ie {
+    @include clearfix-legacy();
+  } @else {
+    @include clearfix-morden();
+  }
+}
+
+%center-block {
+  @include center-block();
+}
+
+%hide-text {
+  @include hide-text();
+}
+
+%sr-only {
+  @include sr-only();
+}
+
+%scrollable {
+  @include scrollable();
+}
+
+%ellipsis {
+  @include ellipsis();
+}
+
+%clear-spacing {
+  @include clear-spacing();
+}
+
+%icon-caret {
+  @include triangle(down, 1em);
+}
+
+%icon-arrow {
+  @include arrow(right, 1em, 1px);
+}
+
+%icon-plus {
+  @include plus(1em, 1px);
+}
+
+%icon-close {
+  @include plus(1rem, 1px);
+
+  &::before {
+    transform: translate(0, .5px) rotate(45deg);
+  }
+
+  &::after {
+    transform:  translate(-0.5px, 0) rotate(45deg);
+  }
+}
+
+%justify-box {
+  @include justify-box();
+}

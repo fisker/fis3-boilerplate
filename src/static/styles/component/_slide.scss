@@ -1,0 +1,29 @@
+$name-space: u;
+
+.#{$name-space}-slide {
+  position: relative;
+  overflow: hidden;
+
+  $selector: &;
+
+  &__wrap {
+    @include clear-spacing("#{$selector}-item");
+    white-space: nowrap;
+    width: 100%;
+    table-layout: fixed;
+    margin-bottom: 0;
+    position: relative;
+  }
+
+  &__item {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__pagination {
+    position: absolute;
+    text-align: center;
+  }
+}

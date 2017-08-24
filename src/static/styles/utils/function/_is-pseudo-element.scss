@@ -1,0 +1,25 @@
+@function is-pseudo-element($selector) {
+  @if not is-pseudo-selector($selector) {
+    @return false;
+  } @else if str-index($selector, "::") {
+    @return true;
+  }
+
+  $last-index: str-last-index($selector, ":");
+  $selector: str-slice($selector, $last-index + 1);
+
+  // list of pseudo-elements pulled from MDN: https://developer.mozilla.org/en/docs/Web/CSS/Pseudo-elements
+  $pseudo-elements: (
+    before,
+    after,
+    first-line,
+    first-letter,
+    selection,
+    backdrop,
+    placeholder,
+    marker,
+    spelling-error,
+    grammar-error,
+  );
+  @return not not index($pseudo-elements, $selector);
+}

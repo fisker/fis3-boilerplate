@@ -1,0 +1,84 @@
+$name-space: u;
+
+.#{$name-space}-spinner {
+  // see: chrome://resources/images/throbber_small.svg
+  $stroke-width: 2.25;
+  $radius: 6.875;
+  $arc-size: 270;
+  $arc-time: 1333ms;
+  $arc-start-rot: 216;
+  $PI: 3.1415926;
+  $colors: (
+    #008744,
+    #0057e7,
+    #d62d20,
+    #ffa700,
+    );
+  $colors-length: length($colors);
+
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+
+  &,
+  &__svg,
+  &__circle {
+    animation-iteration-count: infinite;
+  }
+
+  &__svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+    animation-name: rotate;
+    animation-timing-function: linear;
+    animation-duration: (360 * $arc-time / ($arc-start-rot + (360 - $arc-size) ));
+
+    @keyframes rotate{
+     100% {
+      transform: rotate(360deg);
+     }
+    }
+  }
+
+  &__circle {
+    fill: none;
+    stroke: currentcolor;
+    height: 100%;
+    width: 100%;
+    stroke-dasharray: (2 * $radius * $PI * $arc-size / 360);
+    stroke-dashoffset: (2 * $radius * $PI * $arc-size / 360);
+    stroke-linecap: round;
+    stroke-width: $stroke-width;
+    stroke-miterlimit: 10;
+    animation-name: fillunfill;
+    animation-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+    animation-duration: $arc-time;
+
+    @keyframes fillunfill {
+     0% {
+      stroke-dashoffset: 2 * $radius * $PI * $arc-size / 360 - 0.1;
+     }
+     50% {
+      stroke-dashoffset: 0;
+     }
+     100% {
+      stroke-dashoffset: -(2 * $radius * $PI * $arc-size / 360 - 0.5);
+     }
+    }
+  }
+
+  &_colors {
+    animation-name: colors;
+    animation-duration: (4 * $arc-time);
+    animation-timing-function: steps($colors-length);
+
+    @keyframes colors {
+      @for $index from 1 through $colors-length {
+        #{percentage(($index - 1) / ($colors-length - 1))} {
+          color: nth($colors, $index);
+        }
+      }
+    }
+  }
+}

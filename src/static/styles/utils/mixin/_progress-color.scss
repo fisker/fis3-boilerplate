@@ -1,0 +1,26 @@
+@mixin progress-color(
+  $value-color: null,
+  $bg-color: null
+  ) {
+  // display: inline-block; // already done this in reboot
+  background-color: $bg-color;
+  color: $value-color; // ie 10
+
+  .progress-bar {
+    background-color: $value-color;
+  }
+
+  // for ie
+  // both progress color & ::-ms-fill color works
+  // ::-ms-fill {
+  //   background: $value-color;
+  // }
+
+  &::-webkit-progress-value  {
+    background-color: $value-color;
+  }
+
+  &::-moz-progress-bar {
+    background-color: $value-color;
+  }
+}

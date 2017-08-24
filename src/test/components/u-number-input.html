@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<link rel="import" href="/snippets/base/_html-start-tag.pug?__inline">
+  <head>
+    <link rel="import" href="/snippets/base/_head.pug?__inline">
+    <title>number input</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="/static/styles/main.scss" rel="stylesheet">
+    <style type="text/x-scss">
+      @import '../../static/styles/global';
+      @import '../../static/styles/component/number-input';
+
+      .demo {
+        padding:  15px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container demo">
+      <legend>.u-number-input (css、js)</legend>
+      <label class="u-number-input">
+        <input class="u-number-input__input" type="number" min="1" max="10" step="1" pattern="\d*">
+      </label>
+    </div>
+
+    <script src="../../static/vendors/jquery/jquery-1.12.4.min.js"></script>
+    <script src="../../static/scripts/component/_number-input.js?__inline"></script>
+  </body>
+<link rel="import" href="/snippets/base/_html-end-tag.pug?__inline">

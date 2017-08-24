@@ -1,0 +1,42 @@
+/**
+ * Reboot
+ * @module: reboot
+ * @author: fisker Cheung <lionkay@gmail.com>
+ * @date: {Date}
+ * @version: 3.0
+ * @description
+ * based on
+ * 1. bootstrap v4 reboot https://github.com/twbs/bootstrap
+ * 2. suitcss https://github.com/suitcss/base
+ * 3. sanitize.css https://github.com/jonathantneal/sanitize.css
+ */
+
+@function component-required($mod) {
+  @return map-has-key($reboot-mods, $mod) and map-get($reboot-mods, $mod);
+}
+
+@mixin component($mod) {
+  @if map-has-key($reboot-mods, $mod) and map-get($reboot-mods, $mod) {
+    #{$mod} {
+      @content;
+    }
+  }
+}
+
+%input-disabled {
+  @include input-disabled();
+}
+
+%margin-bottom {
+  margin-top: 0;
+  margin-bottom: $root-font-size;
+}
+
+%margin-bottom-half {
+  margin-top: 0;
+  margin-bottom: $root-font-size * .5;
+}
+
+@import "reboot/global";
+@import "reboot/elements";
+@import "utils";

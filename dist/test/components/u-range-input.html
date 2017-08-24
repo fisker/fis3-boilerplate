@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="lt-ie9 lt-ie8 lt-ie7 ie6" lang="zh-cmn-Hans"><![endif]-->
+<!--[if IE 7]><html class="lt-ie9 lt-ie8 ie7" lang="zh-cmn-Hans"><![endif]-->
+<!--[if IE 8]><html class="lt-ie9 ie8" lang="zh-cmn-Hans"><![endif]-->
+<!--[if gte IE 9]><!-->
+<html lang="zh-cmn-Hans">
+<!--<![endif]-->
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="google" value="notranslate">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,shrink-to-fit=no,minimal-ui">
+  <meta name="format-detection" content="telephone=no,email=no,address=no,date=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <!--[if lt IE 9]>
+<script src="static/vendors/html5shiv/html5shiv-3.7.3.min.js"></script><![endif]-->
+  <title>range input</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link href="../../static/styles/main.css" rel="stylesheet">
+  <style type="text/css">.u-range-input {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  height: 1.5em;
+  width: 12em;
+}
+
+.u-range-input__input {
+  display: block;
+  width: 100%;
+}
+
+.u-range-input__track {
+  position: absolute;
+  left: 0.5em;
+  right: 0.5em;
+  top: 50%;
+  height: 0.2em;
+  margin-top: -0.1em;
+  background: #a9a9a9;
+}
+
+.u-range-input__indicate {
+  display: block;
+  height: 100%;
+  background: currentcolor;
+}
+
+.u-range-input_inited {
+  position: relative;
+}
+
+.u-range-input_inited .u-range-input__input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.u-range-input_inited .u-range-input__input:disabled + span {
+  color: #545454;
+}
+
+.u-range-input_inited .u-range-input__input:readonly + span {
+  color: #545454;
+}
+
+.u-range-input_inited .u-range-input__input[readonly] + span {
+  color: #545454;
+}
+
+.u-range-input_inited ::-moz-range-progress {
+  background: currentcolor;
+}
+
+.u-range-input_inited ::-moz-range-thumb {
+  -moz-appearance: none;
+  appearance: none;
+  background: currentcolor;
+  border-radius: 50%;
+  border: 0;
+}
+
+.u-range-input_inited ::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: currentcolor;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  height: 1em;
+  width: 1em;
+}
+
+.u-range-input_inited ::-ms-fill-lower {
+  background: currentcolor;
+}
+
+.u-range-input_inited ::-ms-fill-upper {
+  display: none;
+}
+
+.u-range-input_inited ::-ms-track {
+  height: 0.2em;
+  border: 0;
+  background: #a9a9a9;
+}
+
+.u-range-input_inited ::-ms-thumb {
+  appearance: none;
+  background: currentcolor;
+  border-radius: 50%;
+  height: 1em;
+  width: 1em;
+  border: 0;
+}
+
+.demo {
+  padding: 15px;
+}
+
+.u-range-input {
+  color: darkslateblue;
+}
+</style>
+</head>
+<body>
+  <div class="container demo">
+    <legend>.u-range-input (css、js)</legend>
+    <label class="u-range-input">
+      <input class="u-range-input__input" type="range" min="0" max="10" step="1" value="5">
+    </label>
+    <label class="u-range-input">
+      <input class="u-range-input__input" type="range" min="0" max="10" step="1" value="5" disabled>
+    </label>
+    <label class="u-range-input">
+      <input class="u-range-input__input" type="range" min="0" max="10" step="1" value="5" readonly>
+    </label>
+  </div>
+  <div class="container demo">
+    <legend>.u-range-input (css、js)</legend>
+    <label class="u-range-input">
+      <input class="u-range-input__input" orient="vertical" type="range" min="0" max="10" step="1" value="5">
+    </label>
+    <label class="u-range-input">
+      <input class="u-range-input__input" orient="vertical" type="range" min="0" max="10" step="1" value="5" disabled>
+    </label>
+    <label class="u-range-input">
+      <input class="u-range-input__input" orient="vertical" type="range" min="0" max="10" step="1" value="5" readonly>
+    </label>
+  </div>
+  <script src="../../static/vendors/jquery/jquery-1.12.4.min.js"></script>
+  <script>  function initRangeInput() {
+    var container = $(this).addClass('u-range-input_inited');
+
+    if (window.navigator.userAgent.indexOf('AppleWebKit') === -1) {
+      return;
+    }
+    var input = $('input', container[0]);
+    var track = $('<span class="u-range-input__track">').appendTo(container);
+    var indicate = $('<span class="u-range-input__indicate" style="width: 0">').appendTo(track);
+    var min = +input.attr('min') || 0;
+    var max = +input.attr('max') || 1;
+    input.on('input', function() {
+      var percentage = (min + input.val()) / (max - min) * 100;
+      indicate.css({
+        width: percentage + '%'
+      });
+    }).trigger('input');
+  }
+
+  $(function() {
+    $('.u-range-input').each(initRangeInput);
+  });
+</script>
+</body>
+</html>

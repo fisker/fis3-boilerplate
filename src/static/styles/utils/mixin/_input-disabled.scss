@@ -1,0 +1,4 @@
+@mixin input-disabled() {
+  color: $input-color-disabled;
+  background: $input-bg-disabled;
+}

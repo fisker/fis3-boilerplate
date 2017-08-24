@@ -1,0 +1,62 @@
+// env
+@import "../../_env/env";
+
+$device: $env-device;
+$legacy-ie: $env-legacy-ie;
+$use-rem: $env-use-rem;
+$color-primary: $env-brand-color;
+
+// variables
+$box-sizing: border-box; // set to null to disable box-sizing
+
+$design-width: 720; // psd width
+
+$base-font-size: 87.5%; // 14px;
+$base-color: #373a3c;
+$base-background-color: #fff;
+
+$link-color: #0275d8;
+$link-decoration: none;
+$link-hover-color: #014c8c;
+$link-hover-decoration: underline;
+$focus-outline: true; //outline on focus
+
+// only if not $mobile-only
+// and only padding if $use-border-box
+$container-min-width: 1000;
+$container-max-width: 1200;
+$container-padding: 15px;
+
+$reboot-mods: (
+  "::selection": true,
+  ul: true,
+  ol: true,
+  dl: true, // also dt dd
+  p: true,
+  table: true, // also caption
+  label: true,
+  hr: true,
+  // output: true,
+  // fieldset: true, // also legend
+  // figure: true,
+  // iframe: true,
+  // blockquote: true,
+  // nav: true,
+  // meter: true,
+  // progress: true,
+  // address: true,
+  // abbr: true,
+  // mark: true,
+  // code: true, // also pre & samp
+  // kbd: true,
+  // dialog: true,
+  );
+
+$z-index: (
+  // nav,
+  // header,
+  dialog,
+  loading,
+  );
+
+@import "utils/utils";

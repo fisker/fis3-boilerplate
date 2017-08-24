@@ -1,0 +1,132 @@
+@mixin range-thumb-style() {
+  appearance: none;
+  background: currentcolor;
+  border-radius: 50%;
+}
+
+.u-range-input {
+  display: inline-block;
+  height: 1.5em;
+  width: 12em;
+
+  $element-input: #{&}__input;
+
+  &__input {
+    display: block;
+    width: 100%;
+  }
+
+
+  &__track {
+    position: absolute;
+    left: .5em;
+    right: .5em;
+    top: 50%;
+    height: .2em;
+    margin-top: -.1em;
+    background: $input-border-color;
+  }
+
+  &__indicate {
+    display: block;
+    height: 100%;
+    background: currentcolor;
+  }
+
+  // &.is-vertical {
+  //   width: 1.5em;
+  //   height: 12em;
+
+  //   input {
+  //     height: 100%;
+  //   }
+
+  //   .u-track {
+  //     left: 50%;
+  //     right: auto;
+  //     top: .5em;
+  //     bottom: .5em;
+  //     margin-top: 0;
+  //     margin-left: -.1em;
+  //     height: auto;
+  //     width: .2em;
+  //   }
+
+  //   .u-indicate {
+  //     height: auto;
+  //     width: 100%;
+  //   }
+  // }
+
+  &_inited {
+    position: relative;
+
+    #{$element-input} {
+      appearance: none;
+      border: 0;
+      position: relative;
+      z-index: 1;
+
+      &:disabled + span {
+        color: $input-color-disabled;
+      }
+
+      &:readonly + span {
+        color: $input-color-disabled;
+      }
+
+      &[readonly] + span {
+        color: $input-color-disabled;
+      }
+    }
+
+    ::-moz-range-progress {
+      background: currentcolor;
+    }
+
+    ::-moz-range-thumb {
+      @include range-thumb-style();
+      border: 0;
+    }
+
+    ::-webkit-slider-runnable-track {
+    }
+
+    ::-webkit-slider-thumb {
+      @include range-thumb-style();
+      height: 1em;
+      width: 1em;
+    }
+
+
+    ::-ms-fill-lower {
+      background: currentcolor;
+    }
+
+    ::-ms-fill-upper {
+      display: none;
+    }
+
+    // ::-ms-ticks-before,
+    // ::-ms-ticks-after {
+    //   color: transparent;
+    // }
+
+    ::-ms-track {
+      height: .2em;
+      border: 0;
+      background: $input-border-color;
+    }
+
+    // ::-ms-tooltip {
+    //   display: none;
+    // }
+
+    ::-ms-thumb {
+      @include range-thumb-style();
+      height: 1em;
+      width: 1em;
+      border: 0;
+    }
+  }
+}

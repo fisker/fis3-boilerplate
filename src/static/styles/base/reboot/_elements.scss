@@ -1,0 +1,649 @@
+/* Document
+   ========================================================================== */
+
+// 1. Add the default cursor in all browsers (opinionated).
+// 2. Sets a specific default `font-size` for user with `rem` type scales.
+// 3. As a side-effect of setting the @viewport above,
+//    IE11 & Edge make the scrollbar overlap the content and automatically hide itself when not in use.
+//    Unfortunately, the auto-showing of the scrollbar is sometimes too sensitive,
+//    thus making it hard to click on stuff near the right edge of the page.
+//    So we add this style to force IE11 & Edge to use a "normal", non-overlapping, non-auto-hiding scrollbar.
+//    See https://github.com/twbs/bootstrap/issues/18543
+// 4. Changes the default tap highlight to be completely transparent in iOS.
+//    For some Androids use `transparent`
+// 5. Add border box sizing in all browsers (opinionated).
+html {
+  cursor: default; // 1
+  font-size: if($root-font-size != 16px, $root-font-size, null); // 2
+  -ms-overflow-style: scrollbar; // 3
+  -webkit-tap-highlight-color: rgba(0,0,0,0); // 4
+  -webkit-tap-highlight-color: transparent; // 4
+  text-rendering: optimizelegibility;
+  box-sizing: $box-sizing; // 5
+  @include center-block();
+  width: 100%;
+  height: 100%;
+
+  @if $device == mobile {
+    max-width: 720px;
+  }
+
+  @if $device == pc {
+    @if value-of($container-min-width) > 0 {
+      min-width: $container-min-width * 1px;
+      @if $legacy-ie <= 7 {
+        *width: expression(this.offsetWidth < #{$container-min-width} ? "#{$container-min-width * 1px}" : "auto");
+        *overflow: hidden;
+      }
+    }
+  } @else {
+    min-width: 320px;
+  }
+
+  @if $legacy-ie <= 6 {
+    & {
+      /* autoprefixer: off */
+      _background-attachment: fixed;
+      _background-image: url(about:blank);
+      _filter: expression(document.execCommand("BackgroundImageCache", false, true));
+    }
+  }
+}
+
+/* Sections
+   ========================================================================== */
+
+// 1. Go easy on the eyes and use something other than `#000` for text
+// 2. By default, `<body>` has no `background-color` so we set one as a best practice.
+body {
+  margin: 0;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  color: $base-color; // 1
+  background-color: $base-background-color; // 2
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  // font-feature-settings: "liga"; // cause UC bug
+  // overflow-wrap: break-word;
+  word-break: break-all;
+  word-wrap: break-word;
+
+  @if $box-sizing == border-box {
+    min-height: 100%;
+  }
+}
+
+// Reset margins on paragraphs
+//
+// Similarly, the top margin on `<p>`s get reset. However, we also reset the
+// bottom margin to use `rem` units instead of `em`.
+p {
+  @if component-required(p) {
+    @extend %margin-bottom;
+  }
+}
+
+/**
+ * 1. Remove the gray background on active links in IE 10.
+ * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
+ */
+
+a {
+  text-decoration: $link-decoration;
+  color: $link-color;
+  background-color: transparent; /* 1 */
+  -webkit-text-decoration-skip: objects; /* 2 */
+
+  @if $legacy-ie <= 7 {
+    *cursor: pointer;
+
+    @if $link-color == "inherit" {
+      *color: expression(this.parentNode.currentStyle.color);
+    }
+  }
+
+  &:focus,
+  &:hover {
+    text-decoration: $link-hover-decoration;
+    color: $link-hover-color;
+    outline-width: 0;
+
+    @if $link-hover-color == "inherit" and $legacy-ie <= 7 {
+      *color: expression(this.parentNode.currentStyle.color);
+    }
+  }
+}
+
+img {
+  // By default, `<img>`s are `inline-block`. This assumes that, and vertically
+  // centers them. This won't apply should you reset them to `block` level.
+  vertical-align: middle;
+  -ms-interpolation-mode: bicubic;
+
+  // Get rid of gap under images by making them display: inline-block; by default
+  // https://github.com/zurb/foundation-sites/blob/develop/scss/_global.scss
+  max-width: 100%;
+  width: auto; // on ie8 appendChild may cause max-width incorrect
+  height: auto;
+  display: inline-block;
+}
+
+button,
+input {
+  padding: 0;
+}
+
+::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+}
+
+::-webkit-file-upload-button {
+  padding: 0 6px;
+  border-width: 1px;
+  background-color: transparent;
+}
+
+input,
+button,
+optgroup,
+select,
+textarea {
+  // https://github.com/10up/sanitize.css/blob/master/dist/sanitize.css
+  background-color: transparent;
+  border: 1px solid $input-border-color;
+  font: inherit;
+  color: inherit;
+  // iOS adds rounded borders by default
+  border-radius: 0;
+
+  @if $legacy-ie <= 7 {
+    // font-style, line-height seems inherited in ie7
+    *font-family: expression(this.parentNode.currentStyle.fontFamily);
+    *font-size: expression(this.parentNode.currentStyle.fontSize);
+    *font-weight: expression(this.parentNode.currentStyle.fontWeight);
+    *color: expression(this.parentNode.currentStyle.color);
+  }
+}
+
+input,
+textarea,
+button,
+select {
+  @include pseudo(disabled) {
+    @include input-disabled();
+  }
+}
+
+input,
+textarea {
+  @include pseudo(read-only) {
+    @include input-disabled();
+  }
+}
+
+[type="checkbox"],
+[type="file"],
+[type="radio"],
+[type="range"] {
+  border-width: 0;
+}
+
+[type="checkbox"],
+[type="file"],
+[type="radio"],
+[type="range"],
+[type="color"] {
+  @include pseudo(disabled) {
+    background-color: transparent;
+  }
+
+  @include pseudo(read-only) {
+    background-color: transparent;
+  }
+}
+
+[type="range"] {
+  height: 1.5em;
+  width: 12em;
+}
+
+// [type="range"][orient="vertical"] {
+//   width: 1.5em;
+//   height: 12em;
+// }
+
+::-moz-range-track {
+  background: $input-border-color;
+}
+
+[type="number"] {
+  width: auto; // Firefox 36+
+}
+
+[type="radio"],
+[type="checkbox"] {
+  // Apply a disabled cursor for radios and checkboxes.
+  //
+  // Note: Neither radios nor checkboxes can be readonly.
+  @include pseudo(disabled) {
+    cursor: not-allowed;
+  }
+}
+
+[type="date"],
+[type="datetime-local"],
+[type="month"],
+[type="time"],
+[type="week"] {
+  // Remove the default appearance of temporal inputs to avoid a Mobile Safari
+  // bug where setting a custom line-height prevents text from being vertically
+  // centered within the input.
+  //
+  // Bug report: https://github.com/twbs/bootstrap/issues/11266
+  -webkit-appearance: listbox;
+
+  // uc
+  text-align: left;
+
+  &::-webkit-inner-spin-button {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+}
+
+textarea {
+  // Textareas should really only resize vertically so they don't break their (horizontal) containers.
+  resize: vertical;
+}
+
+[type="search"] {
+  // This overrides the extra rounded corners on search inputs in iOS so that our
+  // `.form-control` class can properly style them. Note that this cannot simply
+  // be added to `.form-control` as it's not specific enough. For details, see
+  // https://github.com/twbs/bootstrap/issues/11586.
+  // -webkit-appearance: none;
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+
+  @if $box-sizing != border-box {
+    box-sizing: content-box;
+  }
+
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+}
+
+// Remove top margins from headings
+//
+// By default, `<h1>`-`<h6>` all receive top and bottom margins. We nuke the top
+// margin for easier control within type scales as it avoids margin collapsing.
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @extend %margin-bottom-half;
+}
+
+/**
+ * Address font sizes and margins set differently in IE 6/7.
+ * Address font sizes within `section` and `article` in Firefox 4+, Safari 5,
+ * and Chrome.
+ */
+@if $legacy-ie <= 7 {
+  // normalize.css already done this
+  // h1 {
+  //   font-size: 2em;
+  //   margin: 0.67em 0;
+  // }
+
+  h2 {
+    font-size: 1.5em;
+    // margin: 0.83em 0;
+  }
+
+  h3 {
+    font-size: 1.17em;
+    // margin: 1em 0;
+  }
+
+  h4 {
+    font-size: 1em;
+    // margin: 1.33em 0;
+  }
+
+  h5 {
+    font-size: 0.83em;
+    // margin: 1.67em 0;
+  }
+
+  h6 {
+    font-size: 0.67em;
+    // margin: 2.33em 0;
+  }
+}
+
+
+// Horizontal rules
+hr {
+  margin-top: $root-font-size * 1;
+  margin-bottom: $root-font-size * 1;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, .1);
+  height: 0; // Correct the height in Firefox.
+  overflow: visible; // Add visible overflow in Edge and IE.
+}
+
+// list item
+@if component-required(ul) or component-required(ol) {
+  $selector: ();
+  @if component-required(ul) {
+    $selector: append($selector, ul, comma);
+  }
+  @if component-required(ol) {
+    $selector: append($selector, ol, comma);
+  }
+
+  #{$selector} {
+    @extend %margin-bottom;
+
+    #{$selector} {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@include component(ul) {
+  list-style: none;
+  padding-left: 0;
+
+  @if $legacy-ie <= 7 {
+    margin-left: 0;
+  }
+}
+
+@include component(ol) {
+  @if $legacy-ie <= 7 {
+    margin-left: 0;
+    padding-left: 40px;
+  }
+}
+
+@if component-required(dl) {
+  dl {
+    @extend %margin-bottom;
+
+    @if $legacy-ie <= 7 {
+      *margin-left: 0;
+    }
+  }
+
+  dt {
+    font-weight: bold;
+  }
+
+  dd {
+    margin-left: 0; // Undo browser default
+    margin-bottom: $root-font-size * .5;
+  }
+}
+
+
+@include component(address) {
+  margin-bottom: $root-font-size;
+  font-style: normal;
+}
+
+// Abbreviations and acronyms
+// Add data-* attribute to help out our tooltip plugin, per https://github.com/twbs/bootstrap/issues/5257
+@include component(abbr) {
+  &[title] {
+    cursor: help;
+    text-decoration: none; // undo text-decoration in normalize.css
+    border-bottom: 1px dotted #818a91;
+  }
+}
+
+@if component-required(meter) {
+  // remove webkit default color of meter
+  ::-webkit-meter-bar {
+    background-image: none;
+  }
+
+  meter {
+    height: 1em;
+    width: 5em;
+    display: inline-block;
+    vertical-align: baseline;
+    background-color: #ddd;
+    background-image: linear-gradient(#e6e6e6, #e6e6e6, #eeeeee 20%, #cccccc 45%, #cccccc 55%);
+
+    // polyfill
+    .meter-bar {
+      // -moz-meter-bar inline-block;
+      // -webkit-meter-optimum-value block;
+      height: 100%;
+
+      &.meter-optimum-value {
+        background-color: #ad7;
+        background-image: linear-gradient(#ad7, #ad7, #cea 20%, #7a3 45%, #7a3 55%);
+      }
+
+      &.meter-sub-optimum-value {
+        background-color: #fe7;
+        background-image: linear-gradient(#fe7, #fe7, #ffc 20%, #db3 45%, #db3 55%);
+      }
+
+      &.meter-sub-sub-optimum-value {
+        background-color: #f77;
+        background-image: linear-gradient(#f77, #f77, #fcc 20%, #d44 45%, #d44 55%);
+      }
+    }
+  }
+}
+
+@if component-required(progress) {
+  // remove webkit default color of progress
+  ::-webkit-progress-bar {
+    background: none;
+  }
+
+  progress {
+    appearance: none;
+    height: 1em;
+    width: 10em;
+    border: 0; // firefox and ie has a border
+    background-color: gray;
+
+    // -ms-fill also has a border
+    &::-ms-fill {
+      border: 0;
+    }
+
+    // polyfill
+    .progress-bar {
+      height: 100%;
+      background: green;
+    }
+  }
+}
+
+@include component(nav) {
+  ol,
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+}
+
+@include component(blockquote) {
+  margin: 0 0 $root-font-size;
+}
+
+@include component(iframe) {
+  border: 0;
+}
+
+// Normalize adds `margin` to `figure`s as browsers apply it inconsistently.
+// We reset that to create a better flow in-page.
+@include component(figure) {
+  margin: 0 0 $root-font-size;
+}
+
+@if component-required(table) {
+  table {
+    // Reset for nesting within parents with `background-color`.
+    background-color: transparent;
+
+    // No longer part of Normalize since v4
+    // https://github.com/necolas/normalize.css/issues/506
+    border-collapse: collapse;
+    // border-spacing: 0;
+
+    // remove float on table[align=left|right]
+    float: none;
+  }
+
+  caption {
+    padding-top: $root-font-size * .75;
+    padding-bottom: $root-font-size * .75;
+  }
+}
+
+@include component(label) {
+  // Allow labels to use `margin` for spacing.
+  display: inline-block;
+  margin-bottom: $root-font-size * .5;
+}
+
+@if component-required(fieldset) {
+  fieldset {
+    // normalize.css < v6.0.0
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+
+    // Chrome and Firefox set a `min-width: min-content;` on fieldsets,
+    // so we reset that to ensure it behaves more like a standard block element.
+    // See https://github.com/twbs/bootstrap/issues/12359.
+    min-width: 0;
+
+    // Reset the default outline behavior of fieldsets so they don't affect page layout.
+    padding: 0;
+    margin: 0;
+    border: 0;
+  }
+
+  //
+  // https://github.com/necolas/normalize.css/blob/v1/normalize.css
+  // 1. Correct color not being inherited in IE 6/7/8/9.
+  // 2. Correct text not wrapping in Firefox 3.
+  // 3. Correct alignment displayed oddly in IE 6/7.
+
+  legend {
+    // Reset the entire legend element to match the `fieldset`
+    // display: block;
+    // width: 100%;
+    padding: 0;
+    margin-bottom: $root-font-size * .5;
+    font-size: 150%;
+    border: 0; // 1
+    //white-space: normal; // 2
+
+    @if $legacy-ie <= 7 {
+      *margin-left: -7px; // 3
+    }
+  }
+}
+
+@include component(mark) {
+  padding: $root-font-size * .2;
+  background-color: #fcf8e3;
+}
+
+@include component(output) {
+  display: inline-block;
+}
+
+$mono-space-selector: (
+  code,
+  pre,
+  samp,
+  );
+@if component-required(kbd) {
+  $selector: append($mono-space-selector, kbd, comma);
+}
+
+@include component(kbd) {
+  font-size: 90%;
+  padding: ($root-font-size * .2) ($root-font-size * .4);
+  color: #fff;
+  border-radius: $root-font-size * .25;
+  background-color: #333;
+
+  kbd {
+    font-size: 100%;
+    font-weight: bold;
+    padding: 0;
+  }
+}
+
+@if component-required(code) {
+  #{$mono-space-selector} {
+    font-family: $font-family-monospace;
+    tab-size: 2;
+  }
+
+  code {
+    font-size: 90%;
+    padding: ($root-font-size * .2) ($root-font-size * .4);
+    color: #bd4147;
+    border-radius: $root-font-size * .25;
+    background-color: #f7f7f9;
+  }
+
+  //
+  // Code
+  //
+  pre {
+    // Remove browser default top margin
+    // Reset browser default of `1em` to use `rem`s
+    @extend %margin-bottom;
+    overflow: auto;
+
+    // Account for some code outputs that place code tags in pre tags
+    code {
+      padding: 0;
+      border-radius: 0;
+      background-color: transparent;
+    }
+  }
+}
+
+// https://github.com/GoogleChrome/dialog-polyfill
+@include component(dialog) {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: fit-content; // -moz-fit-content -webkit-fit-content
+  height: fit-content; // -moz-fit-content -webkit-fit-content
+  margin: auto;
+  border: solid;
+  padding: 1em;
+  background: white;
+  color: black;
+  display: none;
+
+  &[open] {
+    display: block;
+  }
+}

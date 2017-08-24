@@ -1,0 +1,34 @@
+@function add-unit($value, $unit: "px") {
+  // TODO: more units
+  $units: (
+    "px": 1px,
+    "cm": 1cm,
+    "mm": 1mm,
+    "%": 1%,
+    "ch": 1ch,
+    "pica": 1pica,
+    "in": 1in,
+    "em": 1em,
+    "rem": 1rem,
+    "pt": 1pt,
+    "pc": 1pc,
+    "ex": 1ex,
+    "vw": 1vw,
+    "vh": 1vh,
+    "vmin": 1vmin,
+    "vmax": 1vmax,
+  );
+  $unit-value: map-get($units, $unit);
+
+  @if type-of($value) != "number" {
+    @error "`#{$value}` is not a number";
+    @return null;
+  }
+
+  @if not $unit-value {
+    @warn "Unknown unit `#{$unit}`.";
+    @return null;
+  }
+
+  @return value-of($value) * $unit-value;
+}

@@ -1,0 +1,9 @@
+/node_modules/*
+/bower_components/*
+lib/*
+thirdparty/*
+third-party/*
+third_party/*
+vendors/*
+*.min.js
+*-min.js

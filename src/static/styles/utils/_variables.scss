@@ -1,0 +1,95 @@
+// variables
+$device: multi-device !default; // mobile, pc, multi-device
+$legacy-ie: if($device == "mobile", 9, 6) !default; // ie supoorted version
+
+$box-sizing: null !default;
+
+$root-font-size: 16px !default;
+
+$base-font-size: 87.5% !default;
+$base-color: #373a3c !default;
+$base-background-color: #fff !default;
+$base-line-height: 1.5 !default;
+$base-font-family-system: (
+  -apple-system,
+  BlinkMacSystemFont,
+  ) !default;
+$base-font-family-en: (
+  "Segoe UI",
+  Roboto,
+  Ubuntu,
+  "Helvetica Neue",
+  Helvetica,
+  Arial,
+  ) !default;
+$base-font-family-cn: (
+  "PingFang SC",
+  "Hiragino Sans GB",
+  "Microsoft YaHei",
+  "Lantinghei SC",
+  "WenQuanYi Micro Hei",
+  "Source Han Sans SC",
+  ) !default;
+$base-font-family-emoji: (
+  "Apple Color Emoji", // iOS & OS X 10.7
+  "Segoe UI Emoji", // Windows 7
+  "Noto Color Emoji", // Android & Linux
+  "Android Emoji", // Linux
+  "EmojiOne Mozilla",
+  "Segoe UI Symbol",
+  EmojiSymbols,
+  ) !default;
+$base-font-family-monospace: (
+  "Roboto Mono",
+  "Source Code Pro",
+  Consolas,
+  Menlo,
+  Monaco,
+  "Courier New",
+  ) !default;
+
+$base-font-family: $base-font-family-system, $base-font-family-en, $base-font-family-cn !default;
+$input-border-color: #a9a9a9 !default;
+$input-bg-disabled: #ebebe4 !default;
+$input-color-disabled: #545454 !default;
+$input-placeholder: #a9a9a9 !default;
+
+$link-color: #0275d8 !default;
+$link-decoration: none !default;
+$link-hover-color: #014c8c !default;
+$link-hover-decoration: underline !default;
+
+$table-border-color: #eceeef !default;
+$table-hover-color: #ececec !default;
+$table-strip-color: #eee !default;
+
+$design-width: 720 !default;
+
+$focus-outline: true !default;
+
+$container-min-width: 1000 !default;
+$container-max-width: 1200 !default;
+$container-padding: 15px !default;
+
+// Grid breakpoints
+//
+// Define the minimum and maximum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+  // Extra small screen / phone
+  xs: 0,
+  // Small screen / phone
+  sm: 544px,
+  // Medium screen / tablet
+  md: 768px,
+  // Large screen / desktop
+  lg: 992px,
+  // Extra large screen / wide desktop
+  xl: 1200px,
+  ) !default;
+
+$base-font-family: $base-font-family, sans-serif, $base-font-family-emoji;
+$font-family-monospace: $base-font-family-monospace, monospace;
+$inline-mark: "?__inline";
+$sprite-mark: "?__sprite";

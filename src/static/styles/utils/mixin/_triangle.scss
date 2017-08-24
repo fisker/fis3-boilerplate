@@ -1,0 +1,14 @@
+// triangle
+@mixin triangle($direction: down, $size: 1em) {
+  $directions: get-directions($direction);
+  @if is-pseudo-element(#{&}) {
+    content: "";
+  }
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  height: 0;
+  border-#{nth($directions, 2)}: ($size / 2) solid transparent;
+  border-#{nth($directions, 3)}: ($size / 2) solid transparent;
+  border-#{nth($directions, 4)}: ($size / 2) solid;
+}

@@ -1,0 +1,23 @@
+@mixin meter-color(
+  $optimum-color: null,
+  $sub-optimum-color: null,
+  $sub-sub-optimum-color: null,
+  $bg-color: null
+  ) {
+  background: $bg-color;
+
+  // optimum
+  @include pseudo(meter-optimum-value) {
+    background: $optimum-color;
+  }
+
+  // suboptimum
+  @include pseudo(meter-sub-optimum-value) {
+    background: $optimum-color;
+  }
+
+  // sub-sub-optimum
+  @include pseudo(meter-sub-sub-optimum-value) {
+    background: $optimum-color;
+  }
+}

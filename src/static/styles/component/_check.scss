@@ -1,0 +1,214 @@
+$name-space: u;
+
+.#{$name-space}-check {
+  $focus-shadow:
+    inset 0 1px 1px rgba(0,0,0,.075),
+    0 0 8px rgba(102,175,233,.6);
+
+  $element-indicator: #{&}__indicator;
+  $element-input: #{&}__native-control;
+  $element-label: #{&}__label;
+  $element-radio-check: #{&}--radio-check;
+
+  margin-bottom: 0;
+
+  &__label {}
+
+  &__indicator {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-size: 100%;
+    border: 2px solid $input-border-color;
+    padding: 2px;
+    border-radius: 2px;
+    transition-property: border, box-shadow;
+    vertical-align: -.25em;
+
+    &,
+    &::before,
+    &::after {
+      transition-duration: .28s;
+      transition-timing-function: cubic-bezier(.4,0,.2,1);
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      transition-property: color, transform, background;
+      color: inherit;
+      width: 100%;
+    }
+  }
+
+  &__native-control {
+    @include hide-check();
+
+    &:checked ~ #{$element-indicator} {
+      border-color: currentcolor;
+    }
+
+    &:focus ~ #{$element-indicator} {
+      box-shadow: $focus-shadow;
+    }
+
+    &:disabled {
+      ~ #{$element-indicator} {
+        color: $input-bg-disabled;
+        border-color: currentcolor;
+      }
+
+      ~ #{$element-label} {
+        color: $input-color-disabled;
+      }
+    }
+  }
+
+  &_radio,
+  &_round,
+  &_radio-check {
+    #{$element-indicator} {
+      border-radius: 50%;
+    }
+  }
+
+  &_checkbox,
+  &_radio-check {
+    #{$element-indicator} {
+      transition-property: border, background;
+      padding: 1px;
+
+      &::after {
+        position: relative;
+        height: 50%;
+        border-width: 0 0 .1em .1em;
+        border-style: solid;
+        border-color: transparent;
+        transform: translateY(25%) rotate(-45deg);
+      }
+    }
+
+    #{$element-input}:checked ~ #{$element-indicator} {
+      background: currentcolor;
+
+      &::after {
+        border-color: #fff;
+      }
+    }
+  }
+
+  &_radio {
+    #{$element-indicator} {
+      &::after {
+        border-radius: 50%;
+        height: 100%;
+        background: currentcolor;
+        transform: scale(0);
+      }
+    }
+
+    #{$element-input}:checked ~ #{$element-indicator} {
+      &::after {
+        transform: scale(1);
+      }
+    }
+  }
+
+  &_switch,
+  &_ios-switch {
+    #{$element-indicator} {
+      width: 2em;
+      position: relative;
+      border-width: 0;
+
+      &::before {
+        content: "";
+        border-radius: 1em;
+        background-color: $input-border-color;
+        display: block;
+        width: 100%;
+        height: 100%;
+        transition-property: opacity, background;
+      }
+
+      &::after {
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+        transform: none;
+        background-color: #fff;
+        transition-property: left, background, box-shadow;
+      }
+    }
+
+    #{$element-input}:checked ~ #{$element-indicator} {
+      &::before {
+        background-color: currentcolor;
+      }
+
+      &::after {
+        left: 1em;
+        background-color: currentcolor;
+        border-width: 0;
+      }
+    }
+
+    #{$element-input}:disabled ~ #{$element-indicator} {
+      &::before {
+        background-color: $input-bg-disabled;
+      }
+    }
+  }
+
+  &_switch {
+    #{$element-indicator} {
+      &::after {
+        box-shadow:
+          0 2px 2px 0 rgba(0,0,0,.14),
+          0 3px 1px -2px rgba(0,0,0,.2),
+          0 1px 5px 0 rgba(0,0,0,.12);
+      }
+    }
+
+    #{$element-input}:checked ~ #{$element-indicator} {
+      &::before {
+        opacity: .5;
+      }
+
+      &::after {
+        box-shadow:
+          0 3px 4px 0 rgba(0,0,0,.14),
+          0 3px 3px -2px rgba(0,0,0,.2),
+          0 1px 8px 0 rgba(0,0,0,.12);
+      }
+    }
+
+    #{$element-input}:focus ~ #{$element-indicator} {
+      box-shadow: none;
+
+      &::before {
+        box-shadow: $focus-shadow;
+      }
+    }
+  }
+
+  &_ios-switch {
+    #{$element-indicator} {
+      padding: 0;
+
+      &::after {
+        padding: 1px;
+        background-clip: content-box;
+      }
+    }
+
+    #{$element-input}:checked ~ #{$element-indicator} {
+      &::after {
+        background-color: #fff;
+      }
+    }
+  }
+}
