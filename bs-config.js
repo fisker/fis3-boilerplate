@@ -19,25 +19,34 @@ module.exports = {
     }
   },
   files: false,
-  watchEvents: ['change'],
+  watchEvents: [
+    'change',
+    'add',
+    'addDir',
+    'unlink',
+    'unlinkDir'
+  ],
   watchOptions: {
     ignoreInitial: true
   },
-  server: false, // not working, override by fis3
+  server: {
+    // baseDir: '', // not working, override by fis3
+    directory: true
+  },
   proxy: false,
-  port: 3000, // not working, override by fis3
+  // port: 3000, // not working, override by fis3
   middleware: false,
   serveStatic: [],
   ghostMode: false,
-  // "ghostMode": {
-  //     "clicks": true,
-  //     "scroll": true,
-  //     "location": true,
-  //     "forms": {
-  //         "submit": true,
-  //         "inputs": true,
-  //         "toggles": true
-  //     }
+  // ghostMode: {
+  //   clicks: true,
+  //   scroll: true,
+  //   location: true,
+  //   forms: {
+  //     submit: true,
+  //     inputs: true,
+  //     toggles: true
+  //   }
   // },
   logLevel: 'info',
   logPrefix: 'Browsersync',
@@ -45,7 +54,7 @@ module.exports = {
   logFileChanges: true,
   logSnippet: true,
   rewriteRules: [],
-  open: 'local', // not working, override by fis3
+  // open: 'local', // not working, override by fis3
   browser: 'default',
   cors: false,
   xip: false,
