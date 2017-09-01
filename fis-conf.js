@@ -274,7 +274,7 @@ last update 2017.04.28
       'extra_liners': [],
       'wrap_line_length': 0 // Lines should wrap at next opportunity after this number of characters (0 disables)
     },
-    'fis3-postprocessor-prettier': {}
+    'fis3-postprocessor-prettier': {},
   };
 
   var pluginTypes = [
