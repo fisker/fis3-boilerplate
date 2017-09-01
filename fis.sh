@@ -57,7 +57,7 @@ function release() {
   # release file
   echo "..............................................................................."
   echo "releasing files"
-  fis3 release $NODE_ENV --dest "./$DIST_FOLDER" --root "./$SOURCE_FOLDER" --file "./$CONFIG_FILE" --clean --unique --lint --verbose --no-color > "./$LOG_FILE" || error
+  fis3 release $NODE_ENV --dest "./$DIST_FOLDER" --root "./$SOURCE_FOLDER" --file "./$CONFIG_FILE" --unique --lint --verbose --no-color > "./$LOG_FILE" || error
 
   if [ -d "./$DIST_FOLDER/$TEMP_RESOURCE_FOLDER" ]; then
     rm -r "./$DIST_FOLDER/$TEMP_RESOURCE_FOLDER"
@@ -141,7 +141,7 @@ function debug() {
   # start server
   echo "..............................................................................."
   echo "start server"
-  fis3 server start --type $SERVER_TYPE --port $SERVER_PORT --bs-config "./$SERVER_CONFIG" || pause
+  fis3 server start --type $SERVER_TYPE --port $SERVER_PORT || pause
   echo "..........................................................................done."
   echo -e "\n"
 

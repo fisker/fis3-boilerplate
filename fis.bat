@@ -102,7 +102,7 @@ echo.
 :: release file
 echo ...............................................................................
 echo releasing files
-call fis3 release %NODE_ENV% --dest "./%DIST_FOLDER%" --root "./%SOURCE_FOLDER%" --file "./%CONFIG_FILE%" --clean --unique --lint --verbose --no-color > "./%LOG_FILE%"
+call fis3 release %NODE_ENV% --dest "./%DIST_FOLDER%" --root "./%SOURCE_FOLDER%" --file "./%CONFIG_FILE%" --unique --lint --verbose --no-color > "./%LOG_FILE%"
 if errorlevel 1 ( goto error )
 if exist "./%DIST_FOLDER%/%TEMP_RESOURCE_FOLDER%" rd /S /Q "./%DIST_FOLDER%/%TEMP_RESOURCE_FOLDER%"
 echo ..........................................................................done.
@@ -149,7 +149,7 @@ echo.
 :: start server
 echo ...............................................................................
 echo start server
-call fis3 server start --type %SERVER_TYPE% --port %SERVER_PORT% --bs-config "./%SERVER_CONFIG%"
+call fis3 server start --type %SERVER_TYPE% --port %SERVER_PORT%
 REM start cmd /C "color 37 & fis3 server start --type %SERVER_TYPE% --qrcode & ping -n 60 127.0.0.1 > nul"
 REM call fis3 server start --port %SERVER_PORT% --type %SERVER_TYPE%
 if errorlevel 1 ( pause )
