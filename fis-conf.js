@@ -85,24 +85,25 @@ last update 2017.04.28
         'Thumbs.db',
         'fis-conf.js',
       ],
+      vendors: [
+        'lib/**',
+        'thirdparty/**',
+        'third{_,-}party/**',
+        'vendors/**',
+      ],
       release: [
         '_**',
         '_**/**',
       ],
       lint: [
         '*{.,_,-}min.**',
-        'lib/**',
-        'thirdparty/**',
-        'third{_,-}party/**',
-        'vendors/**',
       ],
       optimizer: [
         '*{.,_,-}min.**',
-        // 'lib/**',
-        // 'thirdparty/**',
-        // 'third{_,-}party/**',
-        // 'vendors/**',
       ],
+      postprocessor: [
+        '*{.,_,-}min.**',
+      ]
     },
   };
 
@@ -273,6 +274,7 @@ last update 2017.04.28
       'extra_liners': [],
       'wrap_line_length': 0 // Lines should wrap at next opportunity after this number of characters (0 disables)
     },
+    'fis3-postprocessor-prettier': {}
   };
 
   var pluginTypes = [
@@ -346,6 +348,7 @@ last update 2017.04.28
       type: 'js',
       lint: CONFIG.LINT.JS ? 'fis3-lint-eslint-noisy' : null,
       optimizer: CONFIG.OPTIMIZER.JS ? 'fis-optimizer-uglify-js' : null,
+      postprocessor: CONFIG.OPTIMIZER.JS ? null : 'fis3-postprocessor-prettier',
     },
     {
       type: 'png',
@@ -684,7 +687,7 @@ last update 2017.04.28
   });
 
 
-  ['optimizer', 'lint'].forEach(function(type) {
+  ['optimizer', 'lint', 'postprocessor'].forEach(function(type) {
     (CONFIG.IGNORE[type] || []).forEach(function(reg) {
       var settings = {};
       settings[type] = null;
@@ -714,6 +717,18 @@ last update 2017.04.28
   }
 
   $.match('::package', pluginToProperties('fis-spriter-csssprites'));
+
+  // do noting to vendors
+  CONFIG.IGNORE.vendors.forEach(function(preg) {
+    $.match(preg, {
+      parser: null,
+      lint: null,
+      preprocessor: null,
+      optimizer: null,
+      postprocessor: null,
+      useSprite: false
+    });
+  });
 
   if (ENV.FIS_MEDIA === 'production') {
     $.match('**', pluginToProperties('fis3-deploy-local-deliver'));
