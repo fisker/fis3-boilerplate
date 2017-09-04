@@ -103,7 +103,7 @@ last update 2017.04.28
       ],
       postprocessor: [
         '*{.,_,-}min.**',
-      ]
+      ],
     },
   };
 
@@ -163,6 +163,7 @@ last update 2017.04.28
     'fis-parser-stylus2': {},
     'fis-parser-less-2.x': {},
     'fis3-postprocessor-autoprefixer-latest': {
+      remove: false,
       browsers: (['ie >= ' + CONFIG.LEGACY_IE]).concat([
         'and_chr >= 1',
         'and_ff >=1',
@@ -268,8 +269,8 @@ last update 2017.04.28
       'max_preserve_newlines': 0, // Maximum number of line breaks to be preserved in one chunk (0 disables)
       'preserve_newlines': true, // Whether existing line breaks before elements should be preserved (only works before elements, not inside tags or for text)
       'unformatted': [
-        'a', 'span', 'img', 'code', 'pre', 'sub', 'sup', 'em', 'strong', 'b', 'i', 'u',
-        'strike', 'big', 'small', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'script', 'style'
+        // 'a', 'span', 'img', 'code', 'pre', 'sub', 'sup', 'em', 'strong', 'b', 'i', 'u',
+        // 'strike', 'big', 'small', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'script', 'style'
         ], // List of tags that should not be reformatted
       'extra_liners': [],
       'wrap_line_length': 0 // Lines should wrap at next opportunity after this number of characters (0 disables)
@@ -338,7 +339,7 @@ last update 2017.04.28
       preprocessor: CONFIG.LEGACY_IE <= 8 ? 'fis-preprocessor-cssgrace' : null,
       optimizer: CONFIG.OPTIMIZER.CSS ? 'fis-optimizer-clean-css-2x' : null,
       postprocessor: ['fis3-postprocessor-autoprefixer-latest'].concat(
-          (CONFIG.OPTIMIZER.CSS || ENV.FIS_MEDIA === 'dev' || ENV.ENGINE < 'v4.0.0') ?
+          (CONFIG.OPTIMIZER.CSS || ENV.ENGINE < 'v4.0.0') ?
           [] :
           ['fis3-postprocessor-stylefmt']
         ),
@@ -736,7 +737,9 @@ last update 2017.04.28
 
   if (ENV.FIS_MEDIA === 'dev') {
     $.match('**', {
-      optimizer: null
+      lint: null,
+      optimizer: null,
+      postprocessor: null,
     });
   }
 

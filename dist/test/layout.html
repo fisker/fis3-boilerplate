@@ -24,105 +24,107 @@
   <meta name="keywords" content="">
   <meta name="description" content="">
   <link href="../static/styles/main.css" rel="stylesheet">
-  <style type="text/css">.page {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -moz-box-orient: vertical;
-  -moz-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  height: 100%;
-}
+  <style type="text/css">
+    .page {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -moz-box-orient: vertical;
+      -moz-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      height: 100%;
+    }
 
-body {
-  height: 100%;
-}
+    body {
+      height: 100%;
+    }
 
-.page__main {
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-  -moz-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
+    .page__main {
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      -moz-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+    }
 
-.page__header {
-  -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 2px 2px 1px rgba(0, 0, 0, 0.05);
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 2px 2px 1px rgba(0, 0, 0, 0.05);
-}
+    .page__header {
+      -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 2px 2px 1px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 2px 2px 1px rgba(0, 0, 0, 0.05);
+    }
 
-.page__footer {
-  -webkit-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.1), 0 -2px 2px 1px rgba(0, 0, 0, 0.05);
-  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.1), 0 -2px 2px 1px rgba(0, 0, 0, 0.05);
-}
+    .page__footer {
+      -webkit-box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.1), 0 -2px 2px 1px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.1), 0 -2px 2px 1px rgba(0, 0, 0, 0.05);
+    }
 
-.page_flex {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -moz-box-orient: vertical;
-  -moz-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  height: 100%;
-}
+    .page_flex {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -moz-box-orient: vertical;
+      -moz-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      height: 100%;
+    }
 
-.page_flex__main {
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-  -moz-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
+    .page_flex__main {
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      -moz-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+    }
 
-.page_fixed__fix-dummy {
-  position: relative;
-}
+    .page_fixed__fix-dummy {
+      position: relative;
+    }
 
-.page_fixed__header,
-.page_fixed__footer {
-  position: fixed;
-  left: 0;
-  right: 0;
-}
+    .page_fixed__header,
+    .page_fixed__footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+    }
 
-.page_fixed__header {
-  top: 0;
-}
+    .page_fixed__header {
+      top: 0;
+    }
 
-.page_fixed__footer {
-  bottom: 0;
-}
+    .page_fixed__footer {
+      bottom: 0;
+    }
 
-.demo {
-  background: #eee;
-}
+    .demo {
+      background: #eee;
+    }
 
-.demo .page__header,
-.demo .page__footer {
-  background: #fff;
-  padding: 10px;
-}
+    .demo .page__header,
+    .demo .page__footer {
+      background: #fff;
+      padding: 10px;
+    }
 
-.demo .page__main {
-  padding: 10px;
-}
-</style>
+    .demo .page__main {
+      padding: 10px;
+    }
+
+  </style>
 </head>
 <body>
   <div class="page demo">
@@ -176,19 +178,21 @@ body {
     </footer>
   </div>
   <script src="../static/vendors/jquery/jquery-2.2.4.min.js"></script>
-  <script>  $(function() {
-    $('.page__header, .page__footer')
-      .each(function() {
-        var el = $(this);
-        if (el.css('position') === 'fixed') {
-          el.wrap($('<div class="page__fixed-dummy">').css({
-            height: el.outerHeight(),
-            zIndex: el.css('zIndex')
-          }));
-        }
-      });
+  <script>
+    $(function() {
+      $('.page__header, .page__footer')
+        .each(function() {
+          var el = $(this);
+          if (el.css('position') === 'fixed') {
+            el.wrap($('<div class="page__fixed-dummy">').css({
+              height: el.outerHeight(),
+              zIndex: el.css('zIndex')
+            }));
+          }
+        });
 
-  });
-</script>
+    });
+
+  </script>
 </body>
 </html>

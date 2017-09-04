@@ -69,8 +69,6 @@ figure {
  */
 
 hr {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
   box-sizing: content-box; /* 1 */
   height: 0; /* 1 */
   overflow: visible; /* 2 */
@@ -196,8 +194,6 @@ sup {
 audio,
 video {
   display: inline-block;
-  *display: inline;
-  *zoom: 1;
 }
 
 /**
@@ -267,7 +263,7 @@ select { /* 1 */
  */
 
 button,
-html [type="button"],
+html [type="button"], /* 1 */
 [type="reset"],
 [type="submit"] {
   -webkit-appearance: button; /* 2 */
@@ -304,8 +300,6 @@ button:-moz-focusring,
  */
 
 legend {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box; /* 1 */
   color: inherit; /* 2 */
   display: table; /* 1 */
@@ -321,8 +315,6 @@ legend {
 
 progress {
   display: inline-block; /* 1 */
-  *display: inline;
-  *zoom: 1;
   vertical-align: baseline; /* 2 */
 }
 
@@ -341,8 +333,6 @@ textarea {
 
 [type="checkbox"],
 [type="radio"] {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box; /* 1 */
   padding: 0; /* 2 */
 }
@@ -393,7 +383,7 @@ textarea {
  * 1. Add the correct display in Edge, IE, and Firefox.
  */
 
-details,
+details, /* 1 */
 menu {
   display: block;
 }
@@ -415,8 +405,6 @@ summary {
 
 canvas {
   display: inline-block;
-  *display: inline;
-  *zoom: 1;
 }
 
 /**

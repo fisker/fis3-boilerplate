@@ -24,53 +24,55 @@
   <meta name="keywords" content="">
   <meta name="description" content="">
   <link href="../../static/styles/main.css" rel="stylesheet">
-  <style type="text/css">.u-number-input {
-  display: inline-block;
-  *display: inline;
-  *zoom: 1;
-}
+  <style type="text/css">
+    .u-number-input {
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+    }
 
-.u-number-input__input {
-  display: block;
-}
+    .u-number-input__input {
+      display: block;
+    }
 
-.u-number-input_inited {
-  position: relative;
-  padding: 0 2em;
-}
+    .u-number-input_inited {
+      position: relative;
+      padding: 0 2em;
+    }
 
-.u-number-input_inited .u-number-input__input {
-  -moz-appearance: textfield;
-  display: block;
-  width: 100%;
-  text-align: center;
-}
+    .u-number-input_inited .u-number-input__input {
+      -moz-appearance: textfield;
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
 
-.u-number-input_inited .u-number-input__input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
+    .u-number-input_inited .u-number-input__input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
 
-.u-number-input__button {
-  position: absolute;
-  top: 0;
-  width: 1.5em;
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-}
+    .u-number-input__button {
+      position: absolute;
+      top: 0;
+      width: 1.5em;
+      -webkit-box-sizing: content-box;
+      -moz-box-sizing: content-box;
+      box-sizing: content-box;
+    }
 
-.u-number-input__button_decrease {
-  left: 0;
-}
+    .u-number-input__button_decrease {
+      left: 0;
+    }
 
-.u-number-input__button_increase {
-  right: 0;
-}
+    .u-number-input__button_increase {
+      right: 0;
+    }
 
-.demo {
-  padding: 15px;
-}
-</style>
+    .demo {
+      padding: 15px;
+    }
+
+  </style>
 </head>
 <body>
   <div class="container demo">
@@ -80,66 +82,68 @@
     </label>
   </div>
   <script src="../../static/vendors/jquery/jquery-1.12.4.min.js"></script>
-  <script>  var NUMBER_INPUT_SELECTOR = '.u-number-input';
+  <script>
+    var NUMBER_INPUT_SELECTOR = '.u-number-input';
 
-  function initNumberInput() {
-    var container = $(this);
-    if (container.hasClass('.u-number-input_inited')) {
-      return;
-    }
-
-    container.addClass('u-number-input_inited');
-
-    var input = $('input', container[0]);
-    var btnDecrease = $('<button class="u-number-input__button u-number-input__button_decrease" type="button">-</button>').appendTo(container);
-    var btnIncrease = $('<button class="u-number-input__button u-number-input__button_increase" type="button">+</button>').appendTo(container);
-
-    function getFloatProperty(prop, defalutValue) {
-      var value = parseFloat(input.attr(prop));
-      return isFinite(value) ? value : defalutValue;
-    }
-
-    var min = getFloatProperty('min', -Infinity);
-    var max = getFloatProperty('max', Infinity);
-    var step = getFloatProperty('step', 1);
-    var isMuted = input.prop('disabled') || input.prop('readonly');
-
-    function increaseValue(valueIncrese) {
-      valueIncrese = valueIncrese || 0;
-      var currentValue = +input.val() || 0;
-      var newValue = currentValue + valueIncrese;
-      if (newValue < min) {
-        newValue = min;
-      } else if (newValue > max) {
-        newValue = max;
+    function initNumberInput() {
+      var container = $(this);
+      if (container.hasClass('.u-number-input_inited')) {
+        return;
       }
 
-      if (newValue !== currentValue) {
-        input.val(newValue);
-        input.trigger('change');
+      container.addClass('u-number-input_inited');
+
+      var input = $('input', container[0]);
+      var btnDecrease = $('<button class="u-number-input__button u-number-input__button_decrease" type="button">-</button>').appendTo(container);
+      var btnIncrease = $('<button class="u-number-input__button u-number-input__button_increase" type="button">+</button>').appendTo(container);
+
+      function getFloatProperty(prop, defalutValue) {
+        var value = parseFloat(input.attr(prop));
+        return isFinite(value) ? value : defalutValue;
       }
+
+      var min = getFloatProperty('min', -Infinity);
+      var max = getFloatProperty('max', Infinity);
+      var step = getFloatProperty('step', 1);
+      var isMuted = input.prop('disabled') || input.prop('readonly');
+
+      function increaseValue(valueIncrese) {
+        valueIncrese = valueIncrese || 0;
+        var currentValue = +input.val() || 0;
+        var newValue = currentValue + valueIncrese;
+        if (newValue < min) {
+          newValue = min;
+        } else if (newValue > max) {
+          newValue = max;
+        }
+
+        if (newValue !== currentValue) {
+          input.val(newValue);
+          input.trigger('change');
+        }
+      }
+
+      btnDecrease.on('click', function() {
+        increaseValue(-step);
+      });
+
+      btnIncrease.on('click', function() {
+        increaseValue(step);
+      });
+
+      input.on('change', function() {
+        var currentValue = +input.val() || 0;
+        btnDecrease.prop('disabled', isMuted || currentValue <= min);
+        btnIncrease.prop('disabled', isMuted || currentValue >= max);
+      }).trigger('change');
+
+      // increaseValue();
     }
 
-    btnDecrease.on('click', function() {
-      increaseValue(- step);
+    $(function() {
+      $(NUMBER_INPUT_SELECTOR).each(initNumberInput);
     });
 
-    btnIncrease.on('click', function() {
-      increaseValue(step);
-    });
-
-    input.on('change', function(){
-      var currentValue = +input.val() || 0;
-      btnDecrease.prop('disabled', isMuted || currentValue <= min);
-      btnIncrease.prop('disabled', isMuted || currentValue >= max);
-    }).trigger('change');
-
-    // increaseValue();
-  }
-
-  $(function() {
-    $(NUMBER_INPUT_SELECTOR).each(initNumberInput);
-  });
-</script>
+  </script>
 </body>
 </html>
