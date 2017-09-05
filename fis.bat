@@ -102,7 +102,7 @@ echo.
 :: release file
 echo ...............................................................................
 echo releasing files
-call fis3 release %NODE_ENV% --dest "./%DIST_FOLDER%" --root "./%SOURCE_FOLDER%" --file "./%CONFIG_FILE%" --unique --lint --verbose --no-color > "./%LOG_FILE%"
+call fis3 release %NODE_ENV% --dest "./%DIST_FOLDER%" --root "./%SOURCE_FOLDER%" --file "./%CONFIG_FILE%" --clean --unique --lint --verbose --no-color > "./%LOG_FILE%"
 if errorlevel 1 ( goto error )
 if exist "./%DIST_FOLDER%/%TEMP_RESOURCE_FOLDER%" rd /S /Q "./%DIST_FOLDER%/%TEMP_RESOURCE_FOLDER%"
 echo ..........................................................................done.
