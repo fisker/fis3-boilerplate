@@ -79,10 +79,13 @@ last update 2017.04.28
     IGNORE: {
       global: [
         '.**',
-        '.{git,svn,hg,CVS,idea,sass-cache,vscode}/**',
+        '.{git,svn,hg,CVS,idea,sass-cache,vscode,devtools,cache,project}/**',
         '{node_modules,bower_components}/**',
+        '$RECYCLE.BIN/**',
         '*.{bat,cmd,sh,tmp,bak}',
         'Thumbs.db',
+        'ehthumbs.db',
+        'Desktop.ini',
         'fis-conf.js',
       ],
       vendors: [
