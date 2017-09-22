@@ -19,13 +19,7 @@ module.exports = {
     }
   },
   files: false,
-  watchEvents: [
-    'change',
-    'add',
-    'addDir',
-    'unlink',
-    'unlinkDir'
-  ],
+  watchEvents: ['change', 'add', 'addDir', 'unlink', 'unlinkDir'],
   watchOptions: {
     ignoreInitial: true
   },
@@ -111,4 +105,4 @@ module.exports = {
     gif: 'img',
     js: 'script'
   }
-};
+}
