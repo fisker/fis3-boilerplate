@@ -220,7 +220,10 @@ last update 2017.04.28
       sourceMaps: ENV.FIS_MEDIA === 'dev'
     },
     'fis-parser-babel-6.x': {
-      presets: 'react',
+      presets: [
+        'env',
+        'react'
+      ],
       sourceMaps: ENV.FIS_MEDIA === 'dev'
     },
     'fis3-parser-pug': {
@@ -734,7 +737,7 @@ last update 2017.04.28
   $.match(
     '_' +
       getExtsReg(
-        ['png', 'jpg', 'gif', 'css', 'js', 'html', 'pug', 'es6', 'ts', 'svg'],
+        ['png', 'jpg', 'gif', 'css', 'js', 'html', 'pug', 'es6', 'es', 'ts', 'tsx', 'svg'],
         false
       ),
     {
