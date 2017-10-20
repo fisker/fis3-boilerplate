@@ -732,7 +732,11 @@ last update 2017.04.28
   // standrad files should release
   // for inline include
   $.match(
-    '_' + getExtsReg(['png', 'jpg', 'gif', 'css', 'js', 'html', 'pug'], false),
+    '_' +
+      getExtsReg(
+        ['png', 'jpg', 'gif', 'css', 'js', 'html', 'pug', 'es6', 'ts', 'svg'],
+        false
+      ),
     {
       release: '/' + ENV.TEMP_RESOURCE_FOLDER + '/$0',
       relative: '/'

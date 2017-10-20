@@ -5,7 +5,7 @@ set SOURCE_FOLDER=src
 set DIST_FOLDER=dist
 set SERVER_TYPE=browsersync
 set SERVER_PORT=3000
-set SERVER_CONFIG=build/bs-config.js
+set BROWSER_SYNC_CONFIG=bs-config.js
 :: java,php,node,jello...
 set ARCHIVE_FOLDER=archive
 set ARCHIVE_FILETYPE=zip
@@ -117,18 +117,6 @@ goto end
 :: debug
 :debug
 cls
-
-:: check java server
-if /i "%SERVER_TYPE%"=="java" (
-  call java -version > nul
-  if errorlevel 1 ( set SERVER_TYPE=node )
-)
-
-:: check php server
-if /i "%SERVER_TYPE%"=="php" (
-  call php -v > nul
-  if errorlevel 1 ( set SERVER_TYPE=node )
-)
 
 :: stop server
 echo ...............................................................................
