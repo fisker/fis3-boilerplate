@@ -16,7 +16,7 @@
     $font-file: to-lower-case($font-file);
     $font-file: str-replace($font-file, " ", "-");
     $font-file: str-replace($font-file, "_", "-");
-    $font-file: "../font/" + $font-file;
+    $font-file: "../fonts/" + $font-file;
   }
 
   // sass bug
