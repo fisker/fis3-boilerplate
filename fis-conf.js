@@ -754,11 +754,11 @@ last update 2017.04.28
   })
 
   // font/*.svg should not be compressed
-  if (CONFIG.OPTIMIZER.SVG) {
-    $.match('{fonts,font}/*.svg', {
-      optimizer: null
-    })
-  }
+  // if (CONFIG.OPTIMIZER.SVG) {
+  //   $.match('{fonts,font}/*.svg', {
+  //     optimizer: null
+  //   })
+  // }
 
   $.match('::package', pluginToProperties('fis-spriter-csssprites'))
 
