@@ -788,4 +788,21 @@ last update 2017.04.28
 
   // a empty config to avoid warning
   $.media(ENV.NODE_ENV).match('fisker', {})
+
+  // fix command-release bug
+  $.require.paths.forEach(function(folder) {
+    var file = path.join(folder, 'fis3-command-release', 'lib', 'watch.js')
+    if (fs.existsSync(file)) {
+      var code = fs.readFileSync(file, 'utf-8')
+      var newCode = code.replace(/(var safePathReg = \/.*\/)/g, 'var safePathReg = /.*/')
+      if (newCode !== code) {
+        try {
+          fs.writeFileSync(file + '-' + (new Date().toISOString().replace(/\D/g, '').slice(0, 8)) + '.bak', code)
+          fs.writeFileSync(file, newCode)
+        } catch (err) {
+          $.log.warn('fis3可能无法监听到路径包含中文的文件的更新.\n你可以手动修改此文件[ %s ]', file)
+        }
+      }
+    }
+  })
 })(global.fis)
