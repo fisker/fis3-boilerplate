@@ -15,17 +15,17 @@ module.exports = {
   ui: {
     port: 3001,
     weinre: {
-      port: 3002
-    }
+      port: 3002,
+    },
   },
   files: false,
   watchEvents: ['change', 'add', 'addDir', 'unlink', 'unlinkDir'],
   watchOptions: {
-    ignoreInitial: true
+    ignoreInitial: true,
   },
   server: {
     // baseDir: '', // not working, override by fis3
-    directory: true
+    directory: true,
   },
   proxy: false,
   // port: 3000, // not working, override by fis3
@@ -78,21 +78,21 @@ module.exports = {
     'input:toggles',
     'form:submit',
     'form:reset',
-    'click'
+    'click',
   ],
   socket: {
     socketIoOptions: {
-      log: false
+      log: false,
     },
     socketIoClientConfig: {
-      reconnectionAttempts: 50
+      reconnectionAttempts: 50,
     },
     path: '/browser-sync/socket.io',
     clientPath: '/browser-sync',
     namespace: '/browser-sync',
     clients: {
-      heartbeatTimeout: 5000
-    }
+      heartbeatTimeout: 5000,
+    },
   },
   tagNames: {
     less: 'link',
@@ -103,6 +103,6 @@ module.exports = {
     png: 'img',
     svg: 'img',
     gif: 'img',
-    js: 'script'
-  }
+    js: 'script',
+  },
 }

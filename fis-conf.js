@@ -23,7 +23,7 @@ last update 2017.04.28
     SOURCE_FOLDER: process.env.SOURCE_FOLDER || 'src',
     DIST_FOLDER: process.env.DIST_FOLDER || 'dist',
     COMPUTER_NAME: process.env.COMPUTERNAME,
-    USER_NAME: process.env.USERNAME
+    USER_NAME: process.env.USERNAME,
   }
 
   var CONFIG = {
@@ -35,33 +35,33 @@ last update 2017.04.28
     LINT: {
       HTML: true, // html 代码检查
       CSS: true, // css 代码检查
-      JS: true // js 代码检查
+      JS: true, // js 代码检查
     },
     FIX: {
       HTML: false, // 暂无插件修复
       CSS: false, // stylelint 时使用 stylefmt 自动修复
-      JS: false // eslint 自动修复
+      JS: false, // eslint 自动修复
     },
     OPTIMIZER: {
       CSS: false, // css 代码压缩
       JS: false, // js 代码压缩
       HTML: false, // html 代码压缩
       PNG: {
-        LOSSY: true // 有损压缩PNG
+        LOSSY: true, // 有损压缩PNG
       },
       JPEG: {
-        PROGRESSIVE: true // 渐进式 JPEG
+        PROGRESSIVE: true, // 渐进式 JPEG
       },
       GIF: true,
-      SVG: false
+      SVG: false,
     },
     HASH: {
       LENGTH: 6, // md5戳长度
       CONNECTOR: '.', // md5戳连接符
       EXCEPT: [
-        '*'
+        '*',
         // '*.{html,htm}',
-      ]
+      ],
     },
     USE_RELATIVE: true, // 使用相对路径
     LIVERELOAD: {
@@ -79,14 +79,14 @@ last update 2017.04.28
         'Thumbs.db',
         'ehthumbs.db',
         'Desktop.ini',
-        'fis-conf.js'
+        'fis-conf.js',
       ],
       vendors: ['lib/**', 'thirdparty/**', 'third{_,-}party/**', 'vendors/**'],
       release: ['_**', '_**/**'],
       lint: ['*{.,_,-}min.**'],
       optimizer: ['*{.,_,-}min.**'],
-      postprocessor: ['*{.,_,-}min.**']
-    }
+      postprocessor: ['*{.,_,-}min.**'],
+    },
   }
 
   if (CONFIG.DEVICE === 'mobile') {
@@ -103,7 +103,7 @@ last update 2017.04.28
     legacyIe: CONFIG.LEGACY_IE,
     useRem: CONFIG.USE_REM,
     brandColor: CONFIG.BRAND_COLOR || null,
-    debug: ENV.FIS_MEDIA === 'dev'
+    debug: ENV.FIS_MEDIA === 'dev',
   }
   if (ENV.FIS_MEDIA === 'dev') {
     cacheEnv.computerName = ENV.COMPUTER_NAME
@@ -124,7 +124,7 @@ last update 2017.04.28
       sourceComments: ENV.FIS_MEDIA === 'dev',
       sourceMap: false,
       sourceMapContents: true,
-      sourceMapEmbed: ENV.FIS_MEDIA === 'dev'
+      sourceMapEmbed: ENV.FIS_MEDIA === 'dev',
       // sourceMapRoot: ''
     },
     'fis3-parser-dart-sass': {
@@ -139,7 +139,7 @@ last update 2017.04.28
       sourceComments: ENV.FIS_MEDIA === 'dev',
       sourceMap: false,
       sourceMapContents: true,
-      sourceMapEmbed: ENV.FIS_MEDIA === 'dev'
+      sourceMapEmbed: ENV.FIS_MEDIA === 'dev',
       // sourceMapRoot: ''
     },
     'fis-parser-stylus2': {},
@@ -165,16 +165,16 @@ last update 2017.04.28
         // >=12.1: strip -o for linear-gradient
         'opera >= 12.1', // default: >= 9
         // >=12.1: strip -o for animation
-        'safari >= 3.1'
-      ])
+        'safari >= 3.1',
+      ]),
     },
     'fis-optimizer-uglify-js': {
       mangle: {
-        except: 'exports, module, require, define'
+        except: 'exports, module, require, define',
       },
       compress: {
-        drop_console: true
-      }
+        drop_console: true,
+      },
     },
     'fis-optimizer-clean-css-2x': {
       advanced: false,
@@ -188,27 +188,27 @@ last update 2017.04.28
               '+properties.iePrefixHack',
               '+properties.ieSuffixHack',
               '-properties.merging',
-              '+selectors.ie7Hack'
+              '+selectors.ie7Hack',
             ]
           : [],
-      keepSpecialComments: 0
+      keepSpecialComments: 0,
     },
     'fis-optimizer-png-compressor': {
       type:
         CONFIG.OPTIMIZER.PNG && CONFIG.OPTIMIZER.PNG.LOSSY
           ? 'pngquant'
           : 'pngcrush',
-      speed: 1
+      speed: 1,
     },
     'fis-optimizer-jpeg-compressor': {
-      progressive: CONFIG.OPTIMIZER.JPEG && CONFIG.OPTIMIZER.JPEG.PROGRESSIVE
+      progressive: CONFIG.OPTIMIZER.JPEG && CONFIG.OPTIMIZER.JPEG.PROGRESSIVE,
     },
     'fis-spriter-csssprites': {
       margin: 10,
-      layout: 'linear' // 'linear/matrix' default linear
+      layout: 'linear', // 'linear/matrix' default linear
     },
     'fis3-deploy-local-deliver': {
-      to: './' + ENV.DIST_FOLDER
+      to: './' + ENV.DIST_FOLDER,
     },
     'fis-parser-coffee-script': {
       // header: true,
@@ -217,38 +217,35 @@ last update 2017.04.28
       blacklist: ['regenerator'],
       optional: ['asyncToGenerator'],
       stage: 3,
-      sourceMaps: ENV.FIS_MEDIA === 'dev'
+      sourceMaps: ENV.FIS_MEDIA === 'dev',
     },
     'fis-parser-babel-6.x': {
-      presets: [
-        'env',
-        'react'
-      ],
-      sourceMaps: ENV.FIS_MEDIA === 'dev'
+      presets: ['env', 'react'],
+      sourceMaps: ENV.FIS_MEDIA === 'dev',
     },
     'fis3-parser-pug': {
       pretty: '  ',
-      doctype: 'html'
+      doctype: 'html',
     },
     'fis3-lint-htmlhint': {},
     'fis3-lint-eslint-noisy': {
       fix: CONFIG.FIX.JS,
-      useEslintrc: true
+      useEslintrc: true,
     },
     'fis3-lint-stylelint': {
-      fix: CONFIG.FIX.CSS
+      fix: CONFIG.FIX.CSS,
     },
     'fis3-optimizer-imagemin': {
       '.png':
         CONFIG.OPTIMIZER.PNG && !CONFIG.OPTIMIZER.PNG.LOSSY
           ? {
-              pngcrush: {}
+              pngcrush: {},
             }
           : {
               upng: {
-                cnum: 256
-              }
-            }
+                cnum: 256,
+              },
+            },
     },
     'fis3-postprocessor-html': {
       brace_style: 'collapse', // [collapse|expand|end-expand|none] Put braces on the same line as control statements (default), or put braces on own line (Allman / ANSI style), or just put end braces on own line, or attempt to keep them where they are
@@ -265,11 +262,11 @@ last update 2017.04.28
         // 'strike', 'big', 'small', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'script', 'style'
       ], // List of tags that should not be reformatted
       extra_liners: [],
-      wrap_line_length: 0 // Lines should wrap at next opportunity after this number of characters (0 disables)
+      wrap_line_length: 0, // Lines should wrap at next opportunity after this number of characters (0 disables)
     },
     'fis3-postprocessor-prettier': {
-      singleQuote: true
-    }
+      singleQuote: true,
+    },
   }
 
   var pluginTypes = [
@@ -283,7 +280,7 @@ last update 2017.04.28
     'spriter',
     'packager',
     'postpackager',
-    'deploy'
+    'deploy',
   ]
 
   var preProcessors = [
@@ -291,39 +288,39 @@ last update 2017.04.28
       ext: 'less',
       type: 'css',
       // lint: CONFIG.LINT.CSS ? 'fis3-lint-stylelint' : null,
-      parser: 'fis-parser-less-2.x'
+      parser: 'fis-parser-less-2.x',
     },
     {
       ext: ['sass', 'scss'],
       type: 'css',
       // lint: CONFIG.LINT.CSS ? 'fis3-lint-stylelint' : null,
-      parser: 'fis-parser-node-sass'
+      parser: 'fis-parser-node-sass',
     },
     {
       ext: 'styl',
       type: 'css',
-      parser: 'fis-parser-stylus2'
+      parser: 'fis-parser-stylus2',
     },
     {
       ext: 'coffee',
       type: 'js',
-      parser: 'fis-parser-coffee-script'
+      parser: 'fis-parser-coffee-script',
     },
     {
       ext: ['es', 'es6', 'jsx'],
       type: 'js',
-      parser: 'fis-parser-babel-5.x'
+      parser: 'fis-parser-babel-5.x',
     },
     {
       ext: ['ts', 'tsx'],
       type: 'js',
-      parser: 'fis3-parser-typescript'
+      parser: 'fis3-parser-typescript',
     },
     {
       ext: 'pug',
       type: 'html',
-      parser: 'fis3-parser-pug'
-    }
+      parser: 'fis3-parser-pug',
+    },
   ]
 
   var standardProcessors = [
@@ -335,15 +332,15 @@ last update 2017.04.28
       postprocessor: ['fis3-postprocessor-autoprefixer-latest'].concat(
         CONFIG.OPTIMIZER.CSS || ENV.ENGINE < 'v4.0.0'
           ? []
-          : ['fis3-postprocessor-stylefmt']
+          : ['fis3-postprocessor-stylefmt'],
       ),
-      useSprite: true
+      useSprite: true,
     },
     {
       type: 'js',
       lint: CONFIG.LINT.JS ? 'fis3-lint-eslint-noisy' : null,
       optimizer: CONFIG.OPTIMIZER.JS ? 'fis-optimizer-uglify-js' : null,
-      postprocessor: CONFIG.OPTIMIZER.JS ? null : 'fis3-postprocessor-prettier'
+      postprocessor: CONFIG.OPTIMIZER.JS ? null : 'fis3-postprocessor-prettier',
     },
     {
       type: 'png',
@@ -351,28 +348,28 @@ last update 2017.04.28
         ? ENV.ENGINE >= 'v4.0.0'
           ? 'fis3-optimizer-imagemin'
           : 'fis-optimizer-png-compressor'
-        : null
+        : null,
     },
     {
       type: 'jpg',
       optimizer:
         CONFIG.OPTIMIZER.JPEG && ENV.ENGINE >= 'v4.0.0'
           ? 'fis3-optimizer-imagemin'
-          : null
+          : null,
     },
     {
       type: 'gif',
       optimizer:
         CONFIG.OPTIMIZER.GIF && ENV.ENGINE >= 'v4.0.0'
           ? 'fis3-optimizer-imagemin'
-          : null
+          : null,
     },
     {
       type: 'svg',
       optimizer:
         CONFIG.OPTIMIZER.SVG && ENV.ENGINE >= 'v4.0.0'
           ? 'fis3-optimizer-imagemin'
-          : null
+          : null,
     },
     {
       type: 'html',
@@ -382,9 +379,9 @@ last update 2017.04.28
         ? null
         : [
             // 'fis3-postprocessor-posthtml-beautify',
-            'fis3-postprocessor-html'
-          ]
-    }
+            'fis3-postprocessor-html',
+          ],
+    },
   ]
 
   var fileExts = {}
@@ -397,7 +394,7 @@ last update 2017.04.28
 
   CONFIG.IGNORE.release.forEach(function(preg) {
     $.match(preg, {
-      release: false
+      release: false,
     })
   })
 
@@ -412,11 +409,11 @@ last update 2017.04.28
     $.set('project.md5Length', CONFIG.HASH.LENGTH)
     $.set('project.md5Connector', CONFIG.HASH.CONNECTOR)
     $.match('*', {
-      useHash: true
+      useHash: true,
     })
     CONFIG.HASH.EXCEPT.forEach(function(reg) {
       $.match(reg, {
-        useHash: false
+        useHash: false,
       })
     })
   }
@@ -424,7 +421,7 @@ last update 2017.04.28
   if (CONFIG.USE_RELATIVE) {
     $.hook('relative-legal-html')
     $.match('*', {
-      relative: CONFIG.USE_RELATIVE
+      relative: CONFIG.USE_RELATIVE,
     })
   }
 
@@ -459,14 +456,14 @@ last update 2017.04.28
           ';' +
           (INSERT_FINAL_NEWLINE ? EOL : '')
         )
-      }
+      },
     }
 
     var changed = true
 
     try {
       var oldConfig = JSON.parse(
-        fs.readFileSync(ENV.SOURCE_FOLDER + '/_env/_env.json', CHARSET)
+        fs.readFileSync(ENV.SOURCE_FOLDER + '/_env/_env.json', CHARSET),
       )
       changed =
         !oldConfig || JSON.stringify(oldConfig) !== JSON.stringify(config)
@@ -590,8 +587,8 @@ last update 2017.04.28
         '(?:fis|fis3)-',
         '(' + pluginTypes.join('|') + ')-',
         '(.*?)',
-        '$'
-      ].join('')
+        '$',
+      ].join(''),
     )
     var match = pluginName.match(reg)
     return (
@@ -599,7 +596,7 @@ last update 2017.04.28
       match[2] && {
         name: match[0],
         type: match[1],
-        short: match[2]
+        short: match[2],
       }
     )
   }
@@ -680,7 +677,7 @@ last update 2017.04.28
   preProcessors.forEach(function(data) {
     var exts = toArray(data.ext)
     var processor = {
-      rExt: '.' + data.type
+      rExt: '.' + data.type,
     }
     // plugins
     var plugins = ['parser', 'lint']
@@ -705,7 +702,7 @@ last update 2017.04.28
     // and we only lint for production
     if (data.lint) {
       $.match(getExtsReg(toArray(data.type)), {
-        lint: getPlugin(data.lint)
+        lint: getPlugin(data.lint),
       })
     }
 
@@ -737,20 +734,33 @@ last update 2017.04.28
   $.match(
     '_' +
       getExtsReg(
-        ['png', 'jpg', 'gif', 'css', 'js', 'html', 'pug', 'es6', 'es', 'ts', 'tsx', 'svg'],
-        false
+        [
+          'png',
+          'jpg',
+          'gif',
+          'css',
+          'js',
+          'html',
+          'pug',
+          'es6',
+          'es',
+          'ts',
+          'tsx',
+          'svg',
+        ],
+        false,
       ),
     {
       release: '/' + ENV.TEMP_RESOURCE_FOLDER + '/$0',
-      relative: '/'
-    }
+      relative: '/',
+    },
   )
 
   // _*.html should not lint
   // _*.js should not lint
   $.match('_*', {
     lint: null,
-    postprocessor: null
+    postprocessor: null,
   })
 
   // font/*.svg should not be compressed
@@ -770,7 +780,7 @@ last update 2017.04.28
       preprocessor: null,
       optimizer: null,
       postprocessor: null,
-      useSprite: false
+      useSprite: false,
     })
   })
 
@@ -782,7 +792,7 @@ last update 2017.04.28
     $.match('**', {
       lint: null,
       optimizer: null,
-      postprocessor: null
+      postprocessor: null,
     })
   }
 
@@ -794,10 +804,22 @@ last update 2017.04.28
     var file = path.join(folder, 'fis3-command-release', 'lib', 'watch.js')
     if (fs.existsSync(file)) {
       var code = fs.readFileSync(file, 'utf-8')
-      var newCode = code.replace(/(var safePathReg = \/.*\/)/g, 'var safePathReg = /.*/')
+      var newCode = code.replace(
+        /(var safePathReg = \/.*\/)/g,
+        'var safePathReg = /.*/',
+      )
       if (newCode !== code) {
         try {
-          fs.writeFileSync(file + '-' + (new Date().toISOString().replace(/\D/g, '').slice(0, 8)) + '.bak', code)
+          fs.writeFileSync(
+            file +
+              '-' +
+              new Date()
+                .toISOString()
+                .replace(/\D/g, '')
+                .slice(0, 8) +
+              '.bak',
+            code,
+          )
           fs.writeFileSync(file, newCode)
         } catch (err) {
           $.log.warn('fis3可能无法监听到路径包含中文的文件的更新.\n你可以手动修改此文件[ %s ]', file)
