@@ -5,7 +5,7 @@ module.exports = {
 
   overrides: [
     {
-      files: '{bs-config.js, .stylelintrc.js, fis-conf.js, prettier.config.js}',
+      files: '{bs-config.js,.stylelintrc.js,fis-conf.js,prettier.config.js}',
       options: {
         trailingComma: 'all'
       }
