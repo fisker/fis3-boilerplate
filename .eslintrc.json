@@ -1,6 +1,6 @@
 {
   "root": true,
-  "parser": "esprima",
+  "parser": "espree",
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "script",
