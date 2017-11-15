@@ -19,7 +19,14 @@ module.exports = {
     },
   },
   files: false,
-  watchEvents: ['change', 'add', 'addDir', 'unlink', 'unlinkDir'],
+  // prettier-ignore
+  watchEvents: [
+    'change',
+    'add',
+    'addDir',
+    'unlink',
+    'unlinkDir',
+  ],
   watchOptions: {
     ignoreInitial: true,
   },

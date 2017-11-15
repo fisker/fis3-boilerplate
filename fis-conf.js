@@ -31,7 +31,15 @@ last update 2017.04.28
     LEGACY_IE: 6, // IE 支持最低版本, 仅非 'mobile' 生效
     USE_REM: false, // REM
     BRAND_COLOR: '', // 主色调，用于浏览器标题栏等
-    ENV_LANG: ['json', 'scss', 'pug', 'js', 'css', 'less'],
+    // prettier-ignore
+    ENV_LANG: [
+      'json',
+      'scss',
+      'pug',
+      'js',
+      'css',
+      'less',
+    ],
     LINT: {
       HTML: true, // html 代码检查
       CSS: true, // css 代码检查
@@ -69,6 +77,7 @@ last update 2017.04.28
       // HOSTNAME: 'localhost', // livereload IP地址，留空自动查找
     },
     // 忽略文件
+    // prettier-ignore
     IGNORE: {
       global: [
         '.**',
@@ -81,11 +90,25 @@ last update 2017.04.28
         'Desktop.ini',
         'fis-conf.js',
       ],
-      vendors: ['lib/**', 'thirdparty/**', 'third{_,-}party/**', 'vendors/**'],
-      release: ['_**', '_**/**'],
-      lint: ['*{.,_,-}min.**'],
-      optimizer: ['*{.,_,-}min.**'],
-      postprocessor: ['*{.,_,-}min.**'],
+      vendors: [
+        'lib/**',
+        'thirdparty/**',
+        'third{_,-}party/**',
+        'vendors/**',
+      ],
+      release: [
+        '_**',
+        '_**/**',
+      ],
+      lint: [
+        '*{.,_,-}min.**',
+      ],
+      optimizer: [
+        '*{.,_,-}min.**',
+      ],
+      postprocessor: [
+        '*{.,_,-}min.**',
+      ],
     },
   }
 
@@ -146,6 +169,7 @@ last update 2017.04.28
     'fis-parser-less-2.x': {},
     'fis3-postprocessor-autoprefixer-latest': {
       remove: false,
+      // prettier-ignore
       browsers: ['ie >= ' + CONFIG.LEGACY_IE].concat([
         'and_chr >= 1',
         'and_ff >=1',
@@ -153,18 +177,18 @@ last update 2017.04.28
         'android >= 2.1',
         'bb >= 7',
         'chrome >= 4', // default: >= 4
-        // >=5: strip -webkit for border-radius
+                       // >=5: strip -webkit for border-radius
         'edge >= 12',
-        'firefox >= 16', // default: >= 2
-        // >=16: strip -moz for linear-gradient
-        // >=16: strip -moz for animation
+        'firefox >= 16',  // default: >= 2
+                          // >=16: strip -moz for linear-gradient
+                          // >=16: strip -moz for animation
         'ie_mob >= 10',
         'ios_saf >= 3.2',
         'op_mini >= 5',
         'op_mob >= 12.1', // default: >= 10
-        // >=12.1: strip -o for linear-gradient
-        'opera >= 12.1', // default: >= 9
-        // >=12.1: strip -o for animation
+                          // >=12.1: strip -o for linear-gradient
+        'opera >= 12.1',  // default: >= 9
+                          // >=12.1: strip -o for animation
         'safari >= 3.1',
       ]),
     },
@@ -181,6 +205,7 @@ last update 2017.04.28
       aggressiveMerging: false,
       shorthandCompacting: false,
       roundingPrecision: 8, // default is 2
+      // prettier-ignore
       compatibility:
         CONFIG.LEGACY_IE <= 8
           ? [
@@ -588,7 +613,7 @@ last update 2017.04.28
         '(' + pluginTypes.join('|') + ')-',
         '(.*?)',
         '$',
-      ].join(''),
+      ].join('')
     )
     var match = pluginName.match(reg)
     return (
