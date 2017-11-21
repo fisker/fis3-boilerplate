@@ -1,38 +1,44 @@
 #!/bin/sh
 
+cd `dirname $0`
+
 # const
-export CONFIG_FILE=fis-conf.js
-export SOURCE_FOLDER=src
-export SERVER_TYPE=browsersync
-export SERVER_PORT=3000
-export SERVER_CONFIG=build/bs-config.js
-export DIST_FOLDER=dist
-export ARCHIVE_FOLDER=archive
-export ARCHIVE_FILETYPE=zip # zip,tar.gz  ; tar.gz do NOT support chinese filename
-export LOG_FILE=release.log
-export TEMP_RESOURCE_FOLDER=.temp
-export NODE_ENV=dev
+CONFIG_FILE="fis-conf.js"
+SOURCE_FOLDER="src"
+SERVER_TYPE="browsersync"
+SERVER_PORT="3000"
+SERVER_CONFIG="build/bs-config.js"
+DIST_FOLDER="dist"
+ARCHIVE_FOLDER="archive"
+ARCHIVE_FILETYPE="zip" # zip,tar.gz  ; tar.gz do NOT support chinese filename
+LOG_FILE="release.log"
+TEMP_RESOURCE_FOLDER=".temp"
 
 function main() {
-  echo "==============================================================================="
+  echo ""
   echo "                       fis3 debug & distribute script"
+  echo ""
   echo "                            see http://fis.baidu.com"
   echo "                      by fisker Cheung lionkay@gmail.com"
+  echo ""
+  echo ""
   echo "==============================================================================="
-  echo -e "\n"
-  echo -e "\n"
+  echo ""
+  echo ""
+  echo ""
   echo "                  1. debug (default)"
-  echo -e "\n"
+  echo ""
   echo "                  2. distribute"
-  echo -e "\n"
+  echo ""
   echo "                  3. distribute & archive"
-  echo -e "\n"
+  echo ""
   echo "                  Q. quit"
-  echo -e "\n"
-  echo -e "\n"
+  echo ""
+  echo ""
+  echo ""
 
   # chose operation
-  read -p "input your choice and press ENTER:" choice
+  read -t 5 -n1 -p "Please choose an option:" choice
   case "$choice" in
     2) release;;
     3) release;;
@@ -42,7 +48,7 @@ function main() {
 }
 
 function release() {
-  export NODE_ENV=production
+  NODE_ENV="production"
   clear
 
   # remove release file and log file
@@ -63,7 +69,7 @@ function release() {
   fi
 
   echo "..........................................................................done."
-  echo -e "\n"
+  echo ""
 
   if [ "$choice" = "3" ]; then
     archive
@@ -74,7 +80,8 @@ function release() {
 
 # archive
 function archive() {
-      echo "archive"
+  echo "archive"
+
   # make distribute folder ready
   if [ ! -d "./$ARCHIVE_FOLDER" ]; then
     mkdir "./$ARCHIVE_FOLDER"
@@ -100,26 +107,9 @@ function archive() {
   end
 }
 
-
 #debug
 function debug() {
-  export NODE_ENV=dev
   clear
-
-  # check java server
-  SERVER_TYPE=$(echo $SERVER_TYPE | tr '[A-Z]' '[a-z]')
-  if [ "$SERVER_TYPE" = "java" ]; then
-    command -v java >/dev/null 2>&1 || {
-      SERVER_TYPE=node
-    }
-  fi
-
-  # check php server
-  if [ "$SERVER_TYPE" = "php" ]; then
-    command -v php >/dev/null 2>&1 || {
-      SERVER_TYPE=node
-    }
-  fi
 
   # stop server
   echo "..............................................................................."
@@ -127,7 +117,7 @@ function debug() {
   fis3 server stop || pause
   # if errorlevel 1 ( pause )
   echo "..........................................................................done."
-  echo -e "\n"
+  echo ""
 
   # clean up
   echo "..............................................................................."
@@ -135,16 +125,16 @@ function debug() {
   fis3 server clean || pause
   # if errorlevel 1 ( pause )
   echo "..........................................................................done."
-  echo -e "\n"
+  echo ""
 
   # start server
   echo "..............................................................................."
   echo "start server"
   fis3 server start --type $SERVER_TYPE --port $SERVER_PORT || pause
   echo "..........................................................................done."
-  echo -e "\n"
+  echo ""
 
-  # start livereload
+  # start watch
   echo "..............................................................................."
   echo "watching files"
   fis3 release $NODE_ENV --root "./$SOURCE_FOLDER" --file "./$CONFIG_FILE" --clean --verbose --watch --verbose
@@ -160,9 +150,8 @@ function error() {
   echo "..............................................................................."
   echo "                                error occurred"
   echo "..............................................................................."
-  echo -e "\n"
+  echo ""
   cat "./$LOG_FILE"
-  # open "./$LOG_FILE"
   pause
   end
 }
