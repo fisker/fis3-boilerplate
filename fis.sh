@@ -1,5 +1,4 @@
 #!/bin/sh
-export PS1="\[\e[37;44m\]"
 
 # const
 export CONFIG_FILE=fis-conf.js
