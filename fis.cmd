@@ -1,1 +1,2 @@
 sh ./fis.sh
+pause

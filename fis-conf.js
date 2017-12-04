@@ -27,7 +27,7 @@ var ENV = {
   SOURCE_FOLDER: process.env.SOURCE_FOLDER || 'src',
   DIST_FOLDER: process.env.DIST_FOLDER || 'dist',
   COMPUTER_NAME: process.env.COMPUTERNAME,
-  USER_NAME: process.env.USERNAME,
+  USER_NAME: process.env.USERNAME
 }
 
 var CONFIG = fixConfig({
@@ -47,33 +47,33 @@ var CONFIG = fixConfig({
   LINT: {
     HTML: true, // html 代码检查
     CSS: true, // css 代码检查
-    JS: true, // js 代码检查
+    JS: true // js 代码检查
   },
   FIX: {
     HTML: false, // 暂无插件修复
     CSS: false, // stylelint 时使用 stylefmt 自动修复
-    JS: false, // eslint 自动修复
+    JS: false // eslint 自动修复
   },
   OPTIMIZER: {
     CSS: false, // css 代码压缩
     JS: false, // js 代码压缩
     HTML: false, // html 代码压缩
     PNG: {
-      LOSSY: true, // 有损压缩PNG
+      LOSSY: true // 有损压缩PNG
     },
     JPEG: {
-      PROGRESSIVE: true, // 渐进式 JPEG
+      PROGRESSIVE: true // 渐进式 JPEG
     },
     GIF: true,
-    SVG: false,
+    SVG: false
   },
   HASH: {
     LENGTH: 6, // md5戳长度
     CONNECTOR: '.', // md5戳连接符
     EXCEPT: [
-      '*',
+      '*'
       // '*.{html,htm}',
-    ],
+    ]
   },
   USE_RELATIVE: true, // 使用相对路径
   LIVERELOAD: {
@@ -113,7 +113,7 @@ var CONFIG = fixConfig({
     postprocessor: [
       '*{.,_,-}min.**',
     ],
-  },
+  }
 })
 
 // output crossLangConfig
@@ -126,39 +126,39 @@ var preProcessors = [
     ext: 'less',
     type: 'css',
     // lint: CONFIG.LINT.CSS ? 'fis3-lint-stylelint' : null,
-    parser: 'fis-parser-less-2.x',
+    parser: 'fis-parser-less-2.x'
   },
   {
     ext: ['sass', 'scss'],
     type: 'css',
     // lint: CONFIG.LINT.CSS ? 'fis3-lint-stylelint' : null,
-    parser: 'fis-parser-node-sass',
+    parser: 'fis-parser-node-sass'
   },
   {
     ext: 'styl',
     type: 'css',
-    parser: 'fis-parser-stylus2',
+    parser: 'fis-parser-stylus2'
   },
   {
     ext: 'coffee',
     type: 'js',
-    parser: 'fis-parser-coffee-script',
+    parser: 'fis-parser-coffee-script'
   },
   {
     ext: ['es', 'es6', 'jsx'],
     type: 'js',
-    parser: 'fis-parser-babel-5.x',
+    parser: 'fis-parser-babel-5.x'
   },
   {
     ext: ['ts', 'tsx'],
     type: 'js',
-    parser: 'fis3-parser-typescript',
+    parser: 'fis3-parser-typescript'
   },
   {
     ext: 'pug',
     type: 'html',
-    parser: 'fis3-parser-pug',
-  },
+    parser: 'fis3-parser-pug'
+  }
 ]
 
 var standardProcessors = [
@@ -170,15 +170,15 @@ var standardProcessors = [
     postprocessor: ['fis3-postprocessor-autoprefixer-latest'].concat(
       CONFIG.OPTIMIZER.CSS || ENV.ENGINE < 'v4.0.0'
         ? []
-        : ['fis3-postprocessor-stylefmt'],
+        : ['fis3-postprocessor-stylefmt']
     ),
-    useSprite: true,
+    useSprite: true
   },
   {
     type: 'js',
     lint: CONFIG.LINT.JS ? 'fis3-lint-eslint-noisy' : null,
     optimizer: CONFIG.OPTIMIZER.JS ? 'fis-optimizer-uglify-js' : null,
-    postprocessor: CONFIG.OPTIMIZER.JS ? null : 'fis3-postprocessor-prettier',
+    postprocessor: CONFIG.OPTIMIZER.JS ? null : 'fis3-postprocessor-prettier'
   },
   {
     type: 'png',
@@ -186,28 +186,28 @@ var standardProcessors = [
       ? ENV.ENGINE >= 'v4.0.0'
         ? 'fis3-optimizer-imagemin'
         : 'fis-optimizer-png-compressor'
-      : null,
+      : null
   },
   {
     type: 'jpg',
     optimizer:
       CONFIG.OPTIMIZER.JPEG && ENV.ENGINE >= 'v4.0.0'
         ? 'fis3-optimizer-imagemin'
-        : null,
+        : null
   },
   {
     type: 'gif',
     optimizer:
       CONFIG.OPTIMIZER.GIF && ENV.ENGINE >= 'v4.0.0'
         ? 'fis3-optimizer-imagemin'
-        : null,
+        : null
   },
   {
     type: 'svg',
     optimizer:
       CONFIG.OPTIMIZER.SVG && ENV.ENGINE >= 'v4.0.0'
         ? 'fis3-optimizer-imagemin'
-        : null,
+        : null
   },
   {
     type: 'html',
@@ -217,9 +217,9 @@ var standardProcessors = [
       ? null
       : [
           // 'fis3-postprocessor-posthtml-beautify',
-          'fis3-postprocessor-html',
-        ],
-  },
+          'fis3-postprocessor-html'
+        ]
+  }
 ]
 
 var fileExts = {}
@@ -232,7 +232,7 @@ if (CONFIG.IGNORE.global) {
 
 _.forEach(CONFIG.IGNORE.release, function(glob) {
   fis.match(glob, {
-    release: false,
+    release: false
   })
 })
 
@@ -247,11 +247,11 @@ if (ENV.IS_PRODUCTION) {
   fis.set('project.md5Length', CONFIG.HASH.LENGTH)
   fis.set('project.md5Connector', CONFIG.HASH.CONNECTOR)
   fis.match('*', {
-    useHash: true,
+    useHash: true
   })
   _.forEach(CONFIG.HASH.EXCEPT, function(glob) {
     fis.match(glob, {
-      useHash: false,
+      useHash: false
     })
   })
 }
@@ -259,7 +259,7 @@ if (ENV.IS_PRODUCTION) {
 if (CONFIG.USE_RELATIVE) {
   fis.hook('relative-legal-html')
   fis.match('*', {
-    relative: CONFIG.USE_RELATIVE,
+    relative: CONFIG.USE_RELATIVE
   })
 }
 
@@ -274,8 +274,8 @@ function parsePlugin(pluginName) {
       '(?:fis|fis3)-',
       '(' + pluginTypes.join('|') + ')-',
       '(.*?)',
-      '$',
-    ].join(''),
+      '$'
+    ].join('')
   )
   var match = pluginName.match(reg)
   return (
@@ -283,7 +283,7 @@ function parsePlugin(pluginName) {
     match[2] && {
       name: match[0],
       type: match[1],
-      short: match[2],
+      short: match[2]
     }
   )
 }
@@ -365,7 +365,7 @@ function getExtsReg(ext, inline) {
 _.forEach(preProcessors, function(data) {
   var exts = toArray(data.ext)
   var processor = {
-    rExt: '.' + data.type,
+    rExt: '.' + data.type
   }
   // plugins
   var plugins = ['parser', 'lint']
@@ -390,7 +390,7 @@ _.forEach(standardProcessors, function(data) {
   // and we only lint for production
   if (data.lint) {
     fis.match(getExtsReg(toArray(data.type)), {
-      lint: getPlugin(data.lint),
+      lint: getPlugin(data.lint)
     })
   }
 
@@ -434,21 +434,21 @@ fis.match(
         'es',
         'ts',
         'tsx',
-        'svg',
+        'svg'
       ],
-      false,
+      false
     ),
   {
     release: '/' + ENV.TEMP_RESOURCE_FOLDER + '/$0',
-    relative: '/',
-  },
+    relative: '/'
+  }
 )
 
 // _*.html should not lint
 // _*.js should not lint
 fis.match('_*', {
   lint: null,
-  postprocessor: null,
+  postprocessor: null
 })
 
 // font/*.svg should not be compressed
@@ -468,7 +468,7 @@ _.forEach(CONFIG.IGNORE.vendors, function(preg) {
     preprocessor: null,
     optimizer: null,
     postprocessor: null,
-    useSprite: false,
+    useSprite: false
   })
 })
 
@@ -480,7 +480,7 @@ if (!ENV.IS_PRODUCTION) {
   fis.match('**', {
     lint: null,
     optimizer: null,
-    postprocessor: null,
+    postprocessor: null
   })
 }
 

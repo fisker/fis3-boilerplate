@@ -6,7 +6,7 @@ var fis = global.fis
 
 function fixPackage(folder) {
   var file = path.join(folder, 'fis3-command-release', 'lib', 'watch.js')
-  var code
+  var code = ''
   try {
     code = fs.readFileSync(file, 'utf-8')
   } catch (err) {
