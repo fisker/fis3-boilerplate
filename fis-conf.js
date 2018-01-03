@@ -483,6 +483,3 @@ if (!ENV.IS_PRODUCTION) {
     postprocessor: null
   })
 }
-
-// fix fis3-command-release bug
-require('./scripts/fix-fis3-command-release.js').fix()
