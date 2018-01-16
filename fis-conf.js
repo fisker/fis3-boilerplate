@@ -31,7 +31,7 @@ var ENV = {
 }
 
 var CONFIG = fixConfig({
-  DEVICE: 'multi-device', // [multi-device, mobile, pc]
+  DEVICE: 'multi-device', // [multi-device, mobile, desktop]
   LEGACY_IE: 6, // IE 支持最低版本, 仅非 'mobile' 生效
   USE_REM: false, // REM
   BRAND_COLOR: '', // 主色调，用于浏览器标题栏等

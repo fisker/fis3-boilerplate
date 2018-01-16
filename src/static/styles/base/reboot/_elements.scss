@@ -28,7 +28,7 @@ html {
     max-width: 720px;
   }
 
-  @if $device == pc {
+  @if $device == desktop {
     @if value-of($container-min-width) > 0 {
       min-width: $container-min-width * 1px;
       @if $legacy-ie <= 7 {

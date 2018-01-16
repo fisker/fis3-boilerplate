@@ -29,7 +29,7 @@ mixin head(config)
     meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
     + meta('renderer', 'webkit')
 
-  if config.device != 'pc'
+  if config.device != 'desktop'
     + meta('mobile-web-app-capable', 'yes')
     + meta('apple-touch-fullscreen', 'yes')
     + meta('apple-mobile-web-app-capable', 'yes')
@@ -39,7 +39,7 @@ mixin head(config)
   meta(http-equiv='Cache-Control', content='no-siteapp')
   + meta('robots', ['index','follow'])
   + meta('viewport', viewport)
-  if config.device != 'pc'
+  if config.device != 'desktop'
     + meta('format-detection', formatDetection)
     + meta('msapplication-tap-highlight', 'no')
   if config.brandColor

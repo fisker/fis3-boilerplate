@@ -1,4 +1,4 @@
-@if $device == "pc" {
+@if $device == "desktop" {
   .container {
     @include center-block();
     @include clearfix();
