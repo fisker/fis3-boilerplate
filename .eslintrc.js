@@ -1,539 +1,539 @@
-{
-  "root": true,
-  "parser": "espree",
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "script",
-    "ecmaFeatures": {
-      "jsx": true
+module.exports = {
+  'root': true,
+  'parser': 'espree',
+  'parserOptions': {
+    'ecmaVersion': 6,
+    'sourceType': 'script',
+    'ecmaFeatures': {
+      'jsx': true
     }
   },
-  "env": {
-    "browser": true,
-    "node": true,
-    "es6": true
+  'env': {
+    'browser': true,
+    'node': true,
+    'es6': true
   },
-  "globals": {
-    "module": true,
-    "require": true,
-    "import": true,
-    "define": true,
-    "__inline": true,
-    "__uri": true
+  'globals': {
+    'module': true,
+    'require': true,
+    'import': true,
+    'define': true,
+    '__inline': true,
+    '__uri': true
   },
   // see https://github.com/prettier/eslint-config-prettier
-  "extends": ["prettier"],
-  "rules": {
-    "no-cond-assign": 1,
+  'extends': ['prettier'],
+  'rules': {
+    'no-cond-assign': 1,
 
     // warn calls to methods of the `console` object
-    "no-console": 1,
+    'no-console': 1,
 
     // no empty block except `catch` block
-    "no-empty": [
+    'no-empty': [
       1,
       {
-        "allowEmptyCatch": true
+        'allowEmptyCatch': true
       }
     ],
 
     // warn assign in `catch` block
-    "no-ex-assign": 1,
+    'no-ex-assign': 1,
 
     // warn extra-boolean-cast
-    "no-extra-boolean-cast": 1,
+    'no-extra-boolean-cast': 1,
 
     //
-    "no-extra-parens": 0,
+    'no-extra-parens': 0,
 
     // warn extra-semi
-    "no-extra-semi": 0,
+    'no-extra-semi': 0,
 
     // skip irregular-whitespace in
-    "no-irregular-whitespace": [
+    'no-irregular-whitespace': [
       2,
       {
-        "skipStrings": true,
-        "skipComments": true,
-        "skipRegExps": true,
-        "skipTemplates": true
+        'skipStrings': true,
+        'skipComments': true,
+        'skipRegExps': true,
+        'skipTemplates': true
       }
     ],
 
     // warn incorrect jsdoc
-    "valid-jsdoc": 1,
+    'valid-jsdoc': 1,
 
     // Enforces getter/setter pairs in objects
-    "accessor-pairs": 2,
+    'accessor-pairs': 2,
 
     // Enforces return statements in callbacks of array’s methods
-    "array-callback-return": 1,
+    'array-callback-return': 1,
 
     // disallow var in block
-    "block-scoped-var": 2,
+    'block-scoped-var': 2,
 
     // Limit Cyclomatic Complexity
-    "complexity": 0,
+    'complexity': 0,
 
     // Require Following Curly Brace Conventions
-    "curly": 2,
+    'curly': 2,
 
     // Require Default Case in Switch Statements
-    "default-case": 2,
+    'default-case': 2,
 
     // Enforce newline before dot
-    "dot-location": [2, "property"],
+    'dot-location': [2, 'property'],
 
     // Require Dot Notation
-    "dot-notation": 2,
+    'dot-notation': 2,
 
     // disallow ==
-    "eqeqeq": 2,
+    'eqeqeq': 2,
 
     // Require Guarding for-in
-    "guard-for-in": 2,
+    'guard-for-in': 2,
 
     // warn Use of Alert
-    "no-alert": 1,
+    'no-alert': 1,
 
     // Disallow Use of caller/callee
-    "no-caller": 2,
+    'no-caller': 2,
 
     // Disallow Regexs That Look Like Division
-    "no-div-regex": 2,
+    'no-div-regex': 2,
 
     // warn return before else
-    "no-else-return": 0,
+    'no-else-return': 0,
 
     // warn empty functions
-    "no-empty-function": 1,
+    'no-empty-function': 1,
 
     // Disallow Null Comparisons
-    "no-eq-null": 2,
+    'no-eq-null': 2,
 
     // Disallow eval()
-    "no-eval": 2,
+    'no-eval': 2,
 
     // warn Extending of Native Objects
-    "no-extend-native": 1,
+    'no-extend-native': 1,
 
     // Disallow unnecessary function binding
-    "no-extra-bind": 2,
+    'no-extra-bind': 2,
 
     // Disallow Unnecessary Labels
-    "no-extra-label": 2,
+    'no-extra-label': 2,
 
     // Disallow Case Statement Fallthrough
-    "no-fallthrough": 1,
+    'no-fallthrough': 1,
 
     // Disallow Floating Decimals
-    "no-floating-decimal": 1,
+    'no-floating-decimal': 1,
 
     // Disallow the type conversion with shorter notations.
-    "no-implicit-coercion": [
+    'no-implicit-coercion': [
       1,
       {
-        "allow": ["!!", "+", "~", "*"]
+        'allow': ['!!', '+', '~', '*']
       }
     ],
 
     // warn `var` and Named Functions in Global Scope
-    "no-implicit-globals": 1,
+    'no-implicit-globals': 1,
 
     // Disallow Implied eval()
-    "no-implied-eval": 2,
+    'no-implied-eval': 2,
 
     // warn this keywords outside of classes or class-like objects.
-    "no-invalid-this": 0,
+    'no-invalid-this': 0,
 
     // Disallow Iterator
-    "no-iterator": 2,
+    'no-iterator': 2,
 
     // Disallow Labeled Statements
-    "no-labels": 1,
+    'no-labels': 1,
 
     // Disallow Unnecessary Nested Blocks
-    "no-lone-blocks": 2,
+    'no-lone-blocks': 2,
 
     // Disallow Functions in Loops
-    "no-loop-func": 1,
+    'no-loop-func': 1,
 
     // warn Magic Numbers
-    "no-magic-numbers": 0,
+    'no-magic-numbers': 0,
 
     // warn multiple spaces
-    "no-multi-spaces": [
+    'no-multi-spaces': [
       1,
       {
-        "exceptions": {
-          "Property": true,
-          "VariableDeclarator": true,
-          "ImportDeclaration": true
+        'exceptions': {
+          'Property': true,
+          'VariableDeclarator': true,
+          'ImportDeclaration': true
         }
       }
     ],
 
     // Disallow Multiline Strings
-    "no-multi-str": 2,
+    'no-multi-str': 2,
 
     // Disallow Reassignment of Native Objects
-    "no-native-reassign": 2,
+    'no-native-reassign': 2,
 
     // warn new For Side Effects
-    "no-new": 1,
+    'no-new': 1,
 
     // Disallow Function Constructor
-    "no-new-func": 1,
+    'no-new-func': 1,
 
     // Disallow Primitive Wrapper Instances
-    "no-new-wrappers": 2,
+    'no-new-wrappers': 2,
 
     // disallow octal escape sequences in string literals
-    "no-octal-escape": 2,
+    'no-octal-escape': 2,
 
     // OFF Disallow Reassignment of Function Parameters
-    "no-param-reassign": 0,
+    'no-param-reassign': 0,
 
     // Disallow Use of __proto__
-    "no-proto": 2,
+    'no-proto': 2,
 
     // Disallow Assignment in return Statement
-    "no-return-assign": 0,
+    'no-return-assign': 0,
 
     // Disallow Script URLs
-    "no-script-url": 2,
+    'no-script-url': 2,
 
     // Disallow Self Compare
-    "no-self-compare": 2,
+    'no-self-compare': 2,
 
     // Disallow Use of the Comma Operator
-    "no-sequences": 2,
+    'no-sequences': 2,
 
     // Restrict what can be thrown as an exception
-    "no-throw-literal": 1,
+    'no-throw-literal': 1,
 
     // Disallow unmodified conditions of loops
-    "no-unmodified-loop-condition": 2,
+    'no-unmodified-loop-condition': 2,
 
     // Disallow Unused Expressions
-    "no-unused-expressions": 1,
+    'no-unused-expressions': 1,
 
     // Disallow unnecessary .call() and .apply().
-    "no-useless-call": 2,
+    'no-useless-call': 2,
 
     // Disallow unnecessary concatenation of strings
-    "no-useless-concat": 1,
+    'no-useless-concat': 1,
 
     // Disallow unnecessary escape usage
-    "no-useless-escape": 1,
+    'no-useless-escape': 1,
 
     // Disallow use of the void operator.
-    "no-void": 1,
+    'no-void': 1,
 
     // Disallow Warning Comments
-    "no-warning-comments": 1,
+    'no-warning-comments': 1,
 
     // disallow with statements
-    "no-with": 2,
+    'no-with': 2,
 
     // Require Radix Parameter
-    "radix": 2,
+    'radix': 2,
 
     // OFF Require Variable Declarations to be at the top of their scope
-    "vars-on-top": 0,
+    'vars-on-top': 0,
 
     // Require IIFEs to be Wrapped
-    "wrap-iife": [2, "any"],
+    'wrap-iife': [2, 'any'],
 
     // OFF Require or disallow Yoda Conditions (yoda)
-    "yoda": 0,
+    'yoda': 0,
 
     // require or disallow strict mode directives (strict)
-    "strict": [2, "function"],
+    'strict': [2, 'function'],
 
     // Enforce/Disallow Variable Initializations
-    "init-declarations": 0,
+    'init-declarations': 0,
 
     // Disallow Shadowing of Variables Inside of catch
-    "no-catch-shadow": 2,
+    'no-catch-shadow': 2,
 
     // Disallow Labels That Are Variables Names
-    "no-label-var": 2,
+    'no-label-var': 2,
 
     // Disallow specific global variables
-    "no-restricted-globals": 2,
+    'no-restricted-globals': 2,
 
     // OFF disallow var declarations from shadowing variables in the outer scope
-    "no-shadow": 0,
+    'no-shadow': 0,
 
     // Disallow Shadowing of Restricted Names
-    "no-shadow-restricted-names": 1,
+    'no-shadow-restricted-names': 1,
 
     // Disallow Undeclared Variables
-    "no-undef": 2,
+    'no-undef': 2,
 
     // Disallow Initializing to undefined
-    "no-undef-init": 2,
+    'no-undef-init': 2,
 
     // Disallow Use of undefined Variable
-    "no-undefined": 1,
+    'no-undefined': 1,
 
     // Disallow Unused Variables
-    "no-unused-vars": 1,
+    'no-unused-vars': 1,
 
     // Disallow Early Use
-    "no-use-before-define": 0,
+    'no-use-before-define': 0,
 
     // TODO: section Node.js and CommonJS is not reviewed
 
     // Disallow or enforce spaces inside of brackets
-    "array-bracket-spacing": 2,
+    'array-bracket-spacing': 2,
 
     // Disallow or enforce spaces inside of single line blocks
-    "block-spacing": 2,
+    'block-spacing': 2,
 
     // Require Brace Style
-    "brace-style": 1,
+    'brace-style': 1,
 
     // Require Camelcase
-    "camelcase": 1,
+    'camelcase': 1,
 
     // require or disallow trailing commas
-    "comma-dangle": 2,
+    'comma-dangle': 2,
 
     // Enforces spacing around commas
-    "comma-spacing": 2,
+    'comma-spacing': 2,
 
     // Comma style
-    "comma-style": 2,
+    'comma-style': 2,
 
     // Disallow or enforce spaces inside of computed properties
-    "computed-property-spacing": 2,
+    'computed-property-spacing': 2,
 
     // Require Consistent This
-    "consistent-this": 0,
+    'consistent-this': 0,
 
     // Require file to end with single newline
-    "eol-last": 2,
+    'eol-last': 2,
 
     // Require or disallow named function expressions
-    "func-names": 0,
+    'func-names': 0,
 
     // enforce the consistent use of either function declarations or expressions
-    "func-style": 0,
+    'func-style': 0,
 
     // disallow specified identifiers
-    "id-blacklist": 0,
+    'id-blacklist': 0,
 
     // enforce minimum and maximum identifier lengths
-    "id-length": 0,
+    'id-length': 0,
 
     // require identifiers to match a specified regular expression
-    "id-match": 0,
+    'id-match': 0,
 
     // enforce consistent indentation
-    "indent": 0,
+    'indent': 0,
 
     // enforce the consistent use of either double or single quotes in JSX attributes
-    "jsx-quotes": [2, "prefer-double"],
+    'jsx-quotes': [2, 'prefer-double'],
 
     // enforce consistent spacing between keys and values in object literal properties
-    "key-spacing": 2,
+    'key-spacing': 2,
 
     // enforce consistent spacing before and after keywords
-    "keyword-spacing": 2,
+    'keyword-spacing': 2,
 
     // enforce consistent linebreak style
-    "linebreak-style": 1,
+    'linebreak-style': 1,
 
     // require empty lines around comments
-    "lines-around-comment": 0,
+    'lines-around-comment': 0,
 
     // enforce a maximum depth that blocks can be nested
-    "max-depth": [1, 5],
+    'max-depth': [1, 5],
 
     // enforce a maximum line length
-    "max-len": [
+    'max-len': [
       1,
       {
-        "code": 100,
-        "comments": 120,
-        "ignoreComments": true,
-        "ignoreTrailingComments": true,
-        "ignoreUrls": true
+        'code': 100,
+        'comments': 120,
+        'ignoreComments': true,
+        'ignoreTrailingComments': true,
+        'ignoreUrls': true
       }
     ],
 
     // enforce a maximum file length
-    "max-lines": 0,
+    'max-lines': 0,
 
     // enforce a maximum depth that callbacks can be nested
-    "max-nested-callbacks": [1, 5],
+    'max-nested-callbacks': [1, 5],
 
     // enforce a maximum number of parameters in function definitions
-    "max-params": [1, 5],
+    'max-params': [1, 5],
 
     // enforce a maximum number of statements allowed in function blocks
-    "max-statements": 0,
+    'max-statements': 0,
 
     // enforce a maximum number of statements allowed per line
-    "max-statements-per-line": 0,
+    'max-statements-per-line': 0,
 
     // require constructor function names to begin with a capital letter
-    "new-cap": 1,
+    'new-cap': 1,
 
     // require parentheses when invoking a constructor with no arguments
-    "new-parens": 2,
+    'new-parens': 2,
 
     // require or disallow an empty line after var declarations
-    "newline-after-var": 0,
+    'newline-after-var': 0,
 
     // require an empty line before return statements
-    "newline-before-return": 0,
+    'newline-before-return': 0,
 
     // require a newline after each call in a method chain
-    "newline-per-chained-call": [
+    'newline-per-chained-call': [
       1,
       {
-        "ignoreChainWithDepth": 5
+        'ignoreChainWithDepth': 5
       }
     ],
 
     // disallow Array constructors
-    "no-array-constructor": 2,
+    'no-array-constructor': 2,
 
     // disallow bitwise operators
-    "no-bitwise": 1,
+    'no-bitwise': 1,
 
     // disallow continue statements
-    "no-continue": 0,
+    'no-continue': 0,
 
     // disallow inline comments after code
-    "no-inline-comments": 0,
+    'no-inline-comments': 0,
 
     // disallow if statements as the only statement in else blocks
-    "no-lonely-if": 0,
+    'no-lonely-if': 0,
 
     // Disallow mixes of different operators
-    "no-mixed-operators": 0,
+    'no-mixed-operators': 0,
 
     // disallow mixed spaces and tabs for indentation
-    "no-mixed-spaces-and-tabs": 2,
+    'no-mixed-spaces-and-tabs': 2,
 
     // disallow multiple empty lines
-    "no-multiple-empty-lines": [
+    'no-multiple-empty-lines': [
       2,
       {
-        "max": 2,
-        "maxEOF": 1,
-        "maxBOF": 0
+        'max': 2,
+        'maxEOF': 1,
+        'maxBOF': 0
       }
     ],
 
     // disallow negated conditions
-    "no-negated-condition": 1,
+    'no-negated-condition': 1,
 
     // disallow nested ternary expressions
-    "no-nested-ternary": 0,
+    'no-nested-ternary': 0,
 
     // disallow Object constructors
-    "no-new-object": 2,
+    'no-new-object': 2,
 
     // disallow the unary operators ++ and --
-    "no-plusplus": 0,
+    'no-plusplus': 0,
 
     // disallow specified syntax
-    "no-restricted-syntax": [2, "WithStatement"],
+    'no-restricted-syntax': [2, 'WithStatement'],
 
     // disallow spacing between function identifiers and their applications
-    "no-spaced-func": 2,
+    'no-spaced-func': 2,
 
     // disallow ternary operators
-    "no-ternary": 0,
+    'no-ternary': 0,
 
     // disallow trailing whitespace at the end of lines
-    "no-trailing-spaces": 2,
+    'no-trailing-spaces': 2,
 
     // disallow dangling underscores in identifiers
-    "no-underscore-dangle": 0,
+    'no-underscore-dangle': 0,
 
     // disallow ternary operators when simpler alternatives exist
-    "no-unneeded-ternary": 2,
+    'no-unneeded-ternary': 2,
 
     // disallow whitespace before properties
-    "no-whitespace-before-property": 2,
+    'no-whitespace-before-property': 2,
 
     // enforce consistent line breaks inside braces
-    "object-curly-newline": 0,
+    'object-curly-newline': 0,
 
     // Disallow or enforce spaces inside of curly braces in objects.
-    "object-curly-spacing": 2,
+    'object-curly-spacing': 2,
 
     // enforce placing object properties on separate lines
-    "object-property-newline": [
+    'object-property-newline': [
       2,
       {
-        "allowMultiplePropertiesPerLine": true
+        'allowMultiplePropertiesPerLine': true
       }
     ],
 
     // Require or Disallow One Variable Declaration per Scope
-    "one-var": [2, "never"],
+    'one-var': [2, 'never'],
 
     // Require or disallow an newline around variable declaration
-    "one-var-declaration-per-line": 2,
+    'one-var-declaration-per-line': 2,
 
     // Operator Assignment Shorthand
-    "operator-assignment": 0,
+    'operator-assignment': 0,
 
     // Operator Linebreak
-    "operator-linebreak": 0,
+    'operator-linebreak': 0,
 
     // Enforce padding within blocks
-    "padded-blocks": 0,
+    'padded-blocks': 0,
 
     // Quoting Style for Property Names
-    "quote-props": 0,
+    'quote-props': 0,
 
     // Enforce Quote Style
-    "quotes": [2, "single"],
+    'quotes': [2, 'single'],
 
     // Enforce or Disallow Semicolons
-    "semi": 0,
+    'semi': 0,
 
     // Require JSDoc comment
-    "require-jsdoc": 0,
+    'require-jsdoc': 0,
 
     // Enforce spacing before and after semicolons
-    "semi-spacing": 2,
+    'semi-spacing': 2,
 
     // Variable Sorting
-    "sort-vars": 0,
+    'sort-vars': 0,
 
     // Require Or Disallow Space Before Blocks
-    "space-before-blocks": 2,
+    'space-before-blocks': 2,
 
     // Require or disallow a space before function parenthesis
-    "space-before-function-paren": [2, "never"],
+    'space-before-function-paren': [2, 'never'],
 
     // Disallow or enforce spaces inside of parentheses
-    "space-in-parens": 2,
+    'space-in-parens': 2,
 
     // Require Spaces Around Infix Operators
-    "space-infix-ops": 2,
+    'space-infix-ops': 2,
 
     // Require or disallow spaces before/after unary operators
-    "space-unary-ops": 1,
+    'space-unary-ops': 1,
 
     // Requires or disallows a whitespace (space or tab) beginning a comment
-    "spaced-comment": 1,
+    'spaced-comment': 1,
 
     // Require or disallow the Unicode Byte Order Mark (BOM)
-    "unicode-bom": 2,
+    'unicode-bom': 2,
 
     // Require Regex Literals to be Wrapped
-    "wrap-regex": 0
+    'wrap-regex': 0
 
-    // TODO: section ECMAScript 6 is not reviewed
+  // TODO: section ECMAScript 6 is not reviewed
   }
 }
