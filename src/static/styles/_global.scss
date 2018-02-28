@@ -50,13 +50,13 @@ $reboot-mods: (
   // code: true, // also pre & samp
   // kbd: true,
   // dialog: true,
-  );
+);
 
 $z-index: (
   // nav,
   // header,
   dialog,
   loading,
-  );
+);
 
 @import "utils/utils";
