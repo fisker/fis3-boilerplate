@@ -132,7 +132,7 @@ var preProcessors = [
     ext: ['sass', 'scss'],
     type: 'css',
     // lint: CONFIG.LINT.CSS ? 'fis3-lint-stylelint' : null,
-    parser: 'fis-parser-node-sass'
+    parser: 'fis3-parser-node-sass-latest'
   },
   {
     ext: 'styl',

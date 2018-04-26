@@ -13,14 +13,15 @@
 //    For some Androids use `transparent`
 // 5. Add border box sizing in all browsers (opinionated).
 html {
+  @include center-block();
+
   cursor: default; // 1
   font-size: if($root-font-size != 16px, $root-font-size, null); // 2
   -ms-overflow-style: scrollbar; // 3
-  -webkit-tap-highlight-color: rgba(0,0,0,0); // 4
+  -ms-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent; // 4
   text-rendering: optimizelegibility;
   box-sizing: $box-sizing; // 5
-  @include center-block();
   width: 100%;
   height: 100%;
 
@@ -72,6 +73,39 @@ body {
   @if $box-sizing == border-box {
     min-height: 100%;
   }
+}
+
+/**
+ * Add the correct display in IE 9-.
+ */
+
+article,
+aside,
+footer,
+header,
+nav,
+section,
+menu {
+  display: block;
+}
+
+/**
+ * Add the correct display in IE 9-.
+ * 1. Add the correct display in IE.
+ */
+
+figcaption,
+figure,
+main { /* 1 */
+  display: block;
+}
+
+/**
+ * Add the correct margin in IE 8.
+ */
+
+figure {
+  margin: 1em 40px;
 }
 
 // Reset margins on paragraphs
@@ -127,6 +161,33 @@ img {
   width: auto; // on ie8 appendChild may cause max-width incorrect
   height: auto;
   display: inline-block;
+}
+
+/**
+ * Add the correct display in IE 9-.
+ */
+
+canvas,
+audio,
+video {
+  display: inline-block;
+}
+
+/**
+ * Add the correct display in iOS 4-7.
+ */
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+ * Hide the overflow in IE.
+ */
+
+svg:not(:root) {
+  overflow: hidden;
 }
 
 button,
@@ -458,6 +519,7 @@ hr {
   }
 
   progress {
+    display: inline-block;
     appearance: none;
     height: 1em;
     width: 10em;

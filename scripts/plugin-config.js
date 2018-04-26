@@ -1,37 +1,26 @@
 /* eslint strict: 0, camelcase: 0 */
 
 function getPluginConfig(env, config) {
+  var sassParserConfig = {
+    includePaths: [],
+    indentType: 'space',
+    indentWidth: 2,
+    linefeed: 'lf',
+    omitSourceMapUrl: false,
+    // outFile: '',
+    outputStyle: 'expanded', // options: nested, expanded, compact, compressed
+    precision: 8, // default: 5
+    sourceComments: !env.IS_PRODUCTION,
+    sourceMap: false,
+    sourceMapContents: true,
+    sourceMapEmbed: !env.IS_PRODUCTION
+    // sourceMapRoot: ''
+  }
+
   return {
-    'fis-parser-node-sass': {
-      includePaths: [],
-      indentType: 'space',
-      indentWidth: 2,
-      linefeed: 'lf',
-      omitSourceMapUrl: false,
-      // outFile: '',
-      outputStyle: 'expanded', // options: nested, expanded, compact, compressed
-      precision: 8, // default: 5
-      sourceComments: !env.IS_PRODUCTION,
-      sourceMap: false,
-      sourceMapContents: true,
-      sourceMapEmbed: !env.IS_PRODUCTION
-      // sourceMapRoot: ''
-    },
-    'fis3-parser-dart-sass': {
-      includePaths: [],
-      indentType: 'space',
-      indentWidth: 2,
-      linefeed: 'lf',
-      omitSourceMapUrl: false,
-      // outFile: '',
-      outputStyle: 'expanded', // options: nested, expanded, compact, compressed
-      precision: 8, // default: 5
-      sourceComments: !env.IS_PRODUCTION,
-      sourceMap: false,
-      sourceMapContents: true,
-      sourceMapEmbed: !env.IS_PRODUCTION
-      // sourceMapRoot: ''
-    },
+    'fis3-parser-node-sass-latest': sassParserConfig,
+    'fis-parser-node-sass': sassParserConfig,
+    'fis3-parser-dart-sass': sassParserConfig,
     'fis-parser-stylus2': {},
     'fis-parser-less-2.x': {},
     'fis3-postprocessor-autoprefixer-latest': {
