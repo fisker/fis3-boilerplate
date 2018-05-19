@@ -17,6 +17,30 @@ function getPluginConfig(env, config) {
     // sourceMapRoot: ''
   }
 
+  // prettier-ignore
+  var browserslist = [
+    'ie >= ' + config.LEGACY_IE,
+    'and_chr >= 1',
+    'and_ff >=1',
+    'and_uc >=1',
+    'android >= 2.1',
+    'bb >= 7',
+    'chrome >= 4', // default: >= 4
+                    // >=5: strip -webkit for border-radius
+    'edge >= 12',
+    'firefox >= 16', // default: >= 2
+                      // >=16: strip -moz for linear-gradient
+                      // >=16: strip -moz for animation
+    'ie_mob >= 10',
+    'ios_saf >= 3.2',
+    'op_mini >= 5',
+    'op_mob >= 12.1', // default: >= 10
+                      // >=12.1: strip -o for linear-gradient
+    'opera >= 12.1', // default: >= 9
+                      // >=12.1: strip -o for animation
+    'safari >= 3.1',
+  ]
+
   return {
     'fis3-parser-node-sass-latest': sassParserConfig,
     'fis-parser-node-sass': sassParserConfig,
@@ -25,28 +49,7 @@ function getPluginConfig(env, config) {
     'fis-parser-less-2.x': {},
     'fis3-postprocessor-autoprefixer-latest': {
       remove: false,
-      // prettier-ignore
-      browsers: ['ie >= ' + config.LEGACY_IE].concat([
-        'and_chr >= 1',
-        'and_ff >=1',
-        'and_uc >=1',
-        'android >= 2.1',
-        'bb >= 7',
-        'chrome >= 4', // default: >= 4
-                       // >=5: strip -webkit for border-radius
-        'edge >= 12',
-        'firefox >= 16',  // default: >= 2
-                          // >=16: strip -moz for linear-gradient
-                          // >=16: strip -moz for animation
-        'ie_mob >= 10',
-        'ios_saf >= 3.2',
-        'op_mini >= 5',
-        'op_mob >= 12.1', // default: >= 10
-                          // >=12.1: strip -o for linear-gradient
-        'opera >= 12.1',  // default: >= 9
-                          // >=12.1: strip -o for animation
-        'safari >= 3.1',
-      ])
+      browsers: browserslist
     },
     'fis-optimizer-uglify-js': {
       mangle: {
@@ -62,23 +65,18 @@ function getPluginConfig(env, config) {
       shorthandCompacting: false,
       roundingPrecision: 8, // default is 2
       // prettier-ignore
-      compatibility:
-        config.LEGACY_IE <= 8
-          ? [
+      compatibility: config.LEGACY_IE <= 8 ? [
               '+properties.ieBangHack',
               '+properties.iePrefixHack',
               '+properties.ieSuffixHack',
               '-properties.merging',
               '+selectors.ie7Hack',
-            ]
-          : [],
+            ] : [],
       keepSpecialComments: 0
     },
     'fis-optimizer-png-compressor': {
-      type:
-        config.OPTIMIZER.PNG && config.OPTIMIZER.PNG.LOSSY
-          ? 'pngquant'
-          : 'pngcrush',
+      type: config.OPTIMIZER.PNG && config.OPTIMIZER.PNG.LOSSY ?
+        'pngquant' : 'pngcrush',
       speed: 1
     },
     'fis-optimizer-jpeg-compressor': {
@@ -117,16 +115,13 @@ function getPluginConfig(env, config) {
       fix: config.FIX.CSS
     },
     'fis3-optimizer-imagemin': {
-      '.png':
-        config.OPTIMIZER.PNG && !config.OPTIMIZER.PNG.LOSSY
-          ? {
-              pngcrush: {}
-            }
-          : {
-              upng: {
-                cnum: 256
-              }
-            }
+      '.png': config.OPTIMIZER.PNG && !config.OPTIMIZER.PNG.LOSSY ? {
+        pngcrush: {}
+      } : {
+        upng: {
+          cnum: 256
+        }
+      }
     },
     'fis3-postprocessor-html': {
       brace_style: 'collapse', // [collapse|expand|end-expand|none] Put braces on the same line as control statements (default), or put braces on own line (Allman / ANSI style), or just put end braces on own line, or attempt to keep them where they are

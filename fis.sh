@@ -2,7 +2,7 @@
 
 cd `dirname $0`
 
-# const
+# consts
 CONFIG_FILE="fis-conf.js"
 SOURCE_FOLDER="src"
 SERVER_TYPE="browsersync"
@@ -15,6 +15,7 @@ LOG_FILE="release.log"
 TEMP_RESOURCE_FOLDER=".temp"
 
 function main() {
+  clear
   echo ""
   echo "                       fis3 debug & distribute script"
   echo ""
