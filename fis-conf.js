@@ -180,30 +180,27 @@ var standardProcessors = [
   },
   {
     type: 'png',
-    optimizer: CONFIG.OPTIMIZER.PNG ?
-      'fis3-optimizer-imagemin' : null
+    optimizer: CONFIG.OPTIMIZER.PNG ? 'fis3-optimizer-imagemin' : null
   },
   {
     type: 'jpg',
-    optimizer: CONFIG.OPTIMIZER.JPEG ?
-      'fis3-optimizer-imagemin' : null
+    optimizer: CONFIG.OPTIMIZER.JPEG ? 'fis3-optimizer-imagemin' : null
   },
   {
     type: 'gif',
-    optimizer: CONFIG.OPTIMIZER.GIF ?
-      'fis3-optimizer-imagemin' : null
+    optimizer: CONFIG.OPTIMIZER.GIF ? 'fis3-optimizer-imagemin' : null
   },
   {
     type: 'svg',
-    optimizer: CONFIG.OPTIMIZER.SVG ?
-      'fis3-optimizer-imagemin' : null
+    optimizer: CONFIG.OPTIMIZER.SVG ? 'fis3-optimizer-imagemin' : null
   },
   {
     type: 'html',
     lint: CONFIG.LINT.HTML ? 'fis3-lint-htmlhint' : null,
     optimizer: CONFIG.OPTIMIZER.HTML ? 'fis-optimizer-htmlmin' : null,
-    postprocessor: CONFIG.OPTIMIZER.HTML ?
-      null : [
+    postprocessor: CONFIG.OPTIMIZER.HTML
+      ? null
+      : [
           // 'fis3-postprocessor-posthtml-beautify',
           'fis3-postprocessor-html'
         ]
@@ -318,8 +315,9 @@ function pluginToProperties(pluginNames) {
     var type = parsePlugin(pluginName).type
     var plugin = getPlugin(pluginName)
     if (properties[type]) {
-      properties[type] = properties[type].push ?
-        properties[type] : [properties[type]]
+      properties[type] = properties[type].push
+        ? properties[type]
+        : [properties[type]]
       properties[type].push(plugin)
     } else {
       properties[type] = plugin
@@ -408,7 +406,7 @@ _.forEach(['optimizer', 'lint', 'postprocessor'], function(type) {
 // for inline include
 fis.match(
   '_' +
-  getExtsReg(
+    getExtsReg(
       [
         'png',
         'jpg',
@@ -423,8 +421,9 @@ fis.match(
         'tsx',
         'svg'
       ],
-    false
-  ), {
+      false
+    ),
+  {
     release: '/' + ENV.TEMP_RESOURCE_FOLDER + '/$0',
     relative: '/'
   }
