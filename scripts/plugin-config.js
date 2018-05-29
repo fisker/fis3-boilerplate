@@ -140,9 +140,7 @@ function getPluginConfig(env, config) {
       extra_liners: [],
       wrap_line_length: 0 // Lines should wrap at next opportunity after this number of characters (0 disables)
     },
-    'fis3-postprocessor-prettier': {
-      singleQuote: true
-    }
+    'fis3-postprocessor-prettier': {}
   }
 }
 

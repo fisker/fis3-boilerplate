@@ -168,9 +168,7 @@ var standardProcessors = [
     preprocessor: CONFIG.LEGACY_IE <= 8 ? 'fis-preprocessor-cssgrace' : null,
     optimizer: CONFIG.OPTIMIZER.CSS ? 'fis-optimizer-clean-css-2x' : null,
     postprocessor: ['fis3-postprocessor-autoprefixer-latest'].concat(
-      CONFIG.OPTIMIZER.CSS || ENV.ENGINE < 'v4.0.0'
-        ? []
-        : ['fis3-postprocessor-stylefmt']
+      CONFIG.OPTIMIZER.CSS ? [] : ['fis3-postprocessor-prettier']
     ),
     useSprite: true
   },
@@ -182,40 +180,30 @@ var standardProcessors = [
   },
   {
     type: 'png',
-    optimizer: CONFIG.OPTIMIZER.PNG
-      ? ENV.ENGINE >= 'v4.0.0'
-        ? 'fis3-optimizer-imagemin'
-        : 'fis-optimizer-png-compressor'
-      : null
+    optimizer: CONFIG.OPTIMIZER.PNG ?
+      'fis3-optimizer-imagemin' : null
   },
   {
     type: 'jpg',
-    optimizer:
-      CONFIG.OPTIMIZER.JPEG && ENV.ENGINE >= 'v4.0.0'
-        ? 'fis3-optimizer-imagemin'
-        : null
+    optimizer: CONFIG.OPTIMIZER.JPEG ?
+      'fis3-optimizer-imagemin' : null
   },
   {
     type: 'gif',
-    optimizer:
-      CONFIG.OPTIMIZER.GIF && ENV.ENGINE >= 'v4.0.0'
-        ? 'fis3-optimizer-imagemin'
-        : null
+    optimizer: CONFIG.OPTIMIZER.GIF ?
+      'fis3-optimizer-imagemin' : null
   },
   {
     type: 'svg',
-    optimizer:
-      CONFIG.OPTIMIZER.SVG && ENV.ENGINE >= 'v4.0.0'
-        ? 'fis3-optimizer-imagemin'
-        : null
+    optimizer: CONFIG.OPTIMIZER.SVG ?
+      'fis3-optimizer-imagemin' : null
   },
   {
     type: 'html',
     lint: CONFIG.LINT.HTML ? 'fis3-lint-htmlhint' : null,
     optimizer: CONFIG.OPTIMIZER.HTML ? 'fis-optimizer-htmlmin' : null,
-    postprocessor: CONFIG.OPTIMIZER.HTML
-      ? null
-      : [
+    postprocessor: CONFIG.OPTIMIZER.HTML ?
+      null : [
           // 'fis3-postprocessor-posthtml-beautify',
           'fis3-postprocessor-html'
         ]
@@ -330,9 +318,8 @@ function pluginToProperties(pluginNames) {
     var type = parsePlugin(pluginName).type
     var plugin = getPlugin(pluginName)
     if (properties[type]) {
-      properties[type] = properties[type].push
-        ? properties[type]
-        : [properties[type]]
+      properties[type] = properties[type].push ?
+        properties[type] : [properties[type]]
       properties[type].push(plugin)
     } else {
       properties[type] = plugin
@@ -421,7 +408,7 @@ _.forEach(['optimizer', 'lint', 'postprocessor'], function(type) {
 // for inline include
 fis.match(
   '_' +
-    getExtsReg(
+  getExtsReg(
       [
         'png',
         'jpg',
@@ -436,9 +423,8 @@ fis.match(
         'tsx',
         'svg'
       ],
-      false
-    ),
-  {
+    false
+  ), {
     release: '/' + ENV.TEMP_RESOURCE_FOLDER + '/$0',
     relative: '/'
   }
