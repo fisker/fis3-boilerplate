@@ -34,7 +34,10 @@ function fixPackage(folder) {
     )
     fs.writeFileSync(file, newCode)
   } catch (err) {
-    fis.log.warn('fis3可能无法监听到路径包含中文的文件的更新.\n你可以手动修改此文件[ %s ]', file)
+    fis.log.warn(
+      'fis3可能无法监听到路径包含中文的文件的更新.\n你可以手动修改此文件[ %s ]',
+      file
+    )
   }
 }
 

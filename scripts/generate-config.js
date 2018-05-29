@@ -24,9 +24,13 @@ var parsers = {
 
 // lodash.map is overwrited by fis
 function lodashMap(collection, iteratee) {
-  return _.reduce(collection, function(acc, current, key, collection) {
-    return acc.concat([iteratee.call(collection, current, key, collection)])
-  }, [])
+  return _.reduce(
+    collection,
+    function(acc, current, key, collection) {
+      return acc.concat([iteratee.call(collection, current, key, collection)])
+    },
+    []
+  )
 }
 
 function addFinalNewLine(parser) {
@@ -80,7 +84,8 @@ function cacheConfig(env, config) {
     var oldConfig = JSON.parse(
       fs.readFileSync(path.join(envFolder, '_env.json'), CHARSET)
     )
-    changed = !oldConfig || JSON.stringify(oldConfig) !== JSON.stringify(cacheEnv)
+    changed =
+      !oldConfig || JSON.stringify(oldConfig) !== JSON.stringify(cacheEnv)
   } catch (err) {}
 
   _.forEach(config.ENV_LANG, function(lang) {
