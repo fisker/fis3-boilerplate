@@ -5,6 +5,15 @@ module.exports = {
 
   overrides: [
     {
+      files: '*.js',
+      options: {
+        parser: 'babylon',
+        semi: false,
+        singleQuote: true,
+        bracketSpacing: false
+      }
+    },
+    {
       files: '*.{css,scss}',
       options: {
         parser: 'css',
