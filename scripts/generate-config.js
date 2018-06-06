@@ -65,7 +65,7 @@ function jsonToLess(obj) {
   }).join(EOL)
 }
 
-function cacheConfig(env, config) {
+function cacheConfig(env, config, projectConfig) {
   var cacheEnv = {
     device: config.DEVICE,
     legacyIe: config.LEGACY_IE,
@@ -73,6 +73,9 @@ function cacheConfig(env, config) {
     brandColor: config.BRAND_COLOR || null,
     debug: !env.IS_PRODUCTION
   }
+
+  cacheEnv = Object.assign(cacheEnv, projectConfig)
+
   if (!env.IS_PRODUCTION) {
     cacheEnv.computerName = env.COMPUTER_NAME
     cacheEnv.userName = env.USER_NAME

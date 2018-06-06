@@ -14,10 +14,11 @@ var _ = fis.util
 var fs = require('fs')
 var path = require('path')
 var CHARSET = 'utf-8'
-var fixConfig = require('./scripts/fix-config')
-var generateConfig = require('./scripts/generate-config').cache
-var pluginTypes = require('./scripts/plugin-types')
-var getPluginConfig = require('./scripts/plugin-config')
+var fixConfig = require('./scripts/fix-config.js')
+var generateConfig = require('./scripts/generate-config.js').cache
+var pluginTypes = require('./scripts/plugin-types.js')
+var getPluginConfig = require('./scripts/plugin-config.js')
+var projectConfig = require('./project-config.js')
 
 var ENV = {
   IS_PRODUCTION:
@@ -117,7 +118,7 @@ var CONFIG = fixConfig({
 })
 
 // output crossLangConfig
-generateConfig(ENV, CONFIG)
+generateConfig(ENV, CONFIG, projectConfig)
 
 var PLUGINS_CONFIG = getPluginConfig(ENV, CONFIG)
 
