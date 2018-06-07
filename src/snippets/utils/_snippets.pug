@@ -48,10 +48,10 @@ mixin head(config)
 
   if config.device != 'mobile' && config.legacyIe < 9
     <!--[if lt IE 9]>
-    + js('/static/vendors/html5shiv/html5shiv-3.7.3.min.js')
+    + js('/assets/vendors/html5shiv/html5shiv-3.7.3.min.js')
     <![endif]-->
   if config.useRem
-    + js('/static/scripts/component/_rem.min.js?__inline')
+    + js('/assets/scripts/component/_rem.min.js?__inline')
 
 mixin htmlStartTag(config)
   if config.device != 'mobile' && config.legacyIe < 9
@@ -70,11 +70,11 @@ mixin htmlEndTag(config)
 
 mixin polyfill(config)
   if config.device != 'mobile' && config.legacyIe <= 6
-    <!--[if IE 6]><script src="/static/vendors/dd_belatedpng/dd_belatedpng_0.0.8a-min.js"></script><script>DD_belatedPNG.fix('*');</script><![endif]-->
+    <!--[if IE 6]><script src="/assets/vendors/dd_belatedpng/dd_belatedpng_0.0.8a-min.js"></script><script>DD_belatedPNG.fix('*');</script><![endif]-->
 
 mixin jquery(config)
   if config.device != 'mobile' && config.legacyIe <= 8
-    <!--[if lt IE 9]><script src="/static/vendors/jquery/jquery-1.12.4.min.js"></script><![endif]-->
-    <!--[if gte IE 9]><!--><script src="/static/vendors/jquery/jquery-2.2.4.min.js"></script><!--<![endif]-->
+    <!--[if lt IE 9]><script src="/assets/vendors/jquery/jquery-1.12.4.min.js"></script><![endif]-->
+    <!--[if gte IE 9]><!--><script src="/assets/vendors/jquery/jquery-2.2.4.min.js"></script><!--<![endif]-->
   else
-    script(src="/static/vendors/jquery/jquery-3.3.1.min.js")
+    script(src="/assets/vendors/jquery/jquery-3.3.1.min.js")

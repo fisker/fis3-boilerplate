@@ -395,13 +395,13 @@ h6 {
 
 ::-moz-selection {
   background-color: #b3d4fc;
-  color: #000;
+  color: #000000;
   text-shadow: none;
 }
 
 ::selection {
   background-color: #b3d4fc;
-  color: #000;
+  color: #000000;
   text-shadow: none;
 }
 
@@ -498,14 +498,21 @@ html {
   /* autoprefixer: off */
   _background-attachment: fixed;
   _background-image: url(about:blank);
-  _filter: expression(document.execCommand("BackgroundImageCache", false, true));
+  _filter: expression(
+    document.execCommand("BackgroundImageCache", false, true)
+  );
 }
 
 /* Sections
    ========================================================================== */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Lantinghei SC", "WenQuanYi Micro Hei", "Source Han Sans SC", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Android Emoji", "EmojiOne Mozilla", "Segoe UI Symbol", EmojiSymbols;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu,
+    "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Lantinghei SC", "WenQuanYi Micro Hei",
+    "Source Han Sans SC", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Noto Color Emoji", "Android Emoji", "EmojiOne Mozilla", "Segoe UI Symbol",
+    EmojiSymbols;
   font-size: 87.5%;
   line-height: 1.5;
   color: #373a3c;
