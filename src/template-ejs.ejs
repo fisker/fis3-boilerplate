@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<%- include('./snippets/ejs/_html-start-tag.ejs', locals) %>
+  <head>
+    <%- include('./snippets/ejs/_head.ejs', locals) %>
+    <title>title</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="assets/styles/main.scss" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">hello <%- env.userName || 'world' %>!</div>
+    <link rel="import" href="snippets/base/_polyfill.pug?__inline">
+    <link rel="import" href="snippets/base/_script-jquery.pug?__inline">
+  </body>
+<%- include('./snippets/ejs/_html-end-tag.ejs', locals) %>

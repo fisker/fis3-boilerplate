@@ -1,6 +1,7 @@
 /* eslint strict: 0, camelcase: 0 */
 
-function getPluginConfig(env, config) {
+function getPluginConfig(env, config, project) {
+
   var sassParserConfig = {
     includePaths: [],
     indentType: 'space',
@@ -64,23 +65,18 @@ function getPluginConfig(env, config) {
       aggressiveMerging: false,
       shorthandCompacting: false,
       roundingPrecision: 8, // default is 2
-      compatibility:
-        config.LEGACY_IE <= 8
-          ? [
+      compatibility: config.LEGACY_IE <= 8 ? [
               '+properties.ieBangHack',
               '+properties.iePrefixHack',
               '+properties.ieSuffixHack',
               '-properties.merging',
               '+selectors.ie7Hack'
-            ]
-          : [],
+            ] : [],
       keepSpecialComments: 0
     },
     'fis-optimizer-png-compressor': {
-      type:
-        config.OPTIMIZER.PNG.LOSSY
-          ? 'pngquant'
-          : 'pngcrush',
+      type: config.OPTIMIZER.PNG.LOSSY ?
+        'pngquant' : 'pngcrush',
       speed: 1
     },
     'fis-optimizer-jpeg-compressor': {
@@ -119,15 +115,13 @@ function getPluginConfig(env, config) {
       fix: config.FIX.CSS
     },
     'fis3-optimizer-imagemin': {
-      '.png': config.OPTIMIZER.PNG.LOSSY
-        ? {
-            upng: {
-              cnum: 256
-            }
-          }
-        : {
-            pngcrush: {}
-          }
+      '.png': config.OPTIMIZER.PNG.LOSSY ? {
+        upng: {
+          cnum: 256
+        }
+      } : {
+        pngcrush: {}
+      }
     },
     'fis3-postprocessor-html': {
       brace_style: 'collapse', // [collapse|expand|end-expand|none] Put braces on the same line as control statements (default), or put braces on own line (Allman / ANSI style), or just put end braces on own line, or attempt to keep them where they are
@@ -146,7 +140,16 @@ function getPluginConfig(env, config) {
       extra_liners: [],
       wrap_line_length: 0 // Lines should wrap at next opportunity after this number of characters (0 disables)
     },
-    'fis3-postprocessor-prettier': {}
+    'fis3-postprocessor-prettier': {},
+    'fis3-parser-ejs': {
+      data: {
+        env: require('./env.js')(env, config, project),
+        project: project
+      },
+      options: {
+        rmWhitespace: true
+      }
+    }
   }
 }
 

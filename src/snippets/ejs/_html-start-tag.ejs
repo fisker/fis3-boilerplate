@@ -1,0 +1,14 @@
+<% if (env.device != 'mobile' && env.legacyIe < 9) { %>
+  <% if (env.legacyIe < 7) { %>
+    <!--[if lt IE 7]><html class="lt-ie9 lt-ie8 lt-ie7 ie6" lang="zh-cmn-Hans"><![endif]-->
+  <% } %>
+  <% if (env.legacyIe < 8) { %>
+    <!--[if IE 7]><html class="lt-ie9 lt-ie8 ie7" lang="zh-cmn-Hans"><![endif]-->
+  <% } %>
+  <% if (env.legacyIe < 9) { %>
+    <!--[if IE 8]><html class="lt-ie9 ie8" lang="zh-cmn-Hans"><![endif]-->
+  <% } %>
+  <!--[if gte IE 9]><!--><html lang="zh-cmn-Hans"><!--<![endif]-->
+<% } else { %>
+  <html lang="zh-cmn-Hans">
+<% } %>

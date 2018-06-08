@@ -9,8 +9,12 @@ var fs = require('fs')
 var path = require('path')
 var mkdirp = _.mkdir
 
+var prettyStringify = function(data) {
+  return JSON.stringify(data, null, 2)
+}
+
 var parsers = {
-  json: JSON.stringify,
+  json: prettyStringify,
   css: addFinalNewLine(jsonToCss),
   scss: addFinalNewLine(jsonToScss),
   less: addFinalNewLine(jsonToLess),
@@ -18,7 +22,7 @@ var parsers = {
     return '-\n' + INDENT + 'env = ' + JSON.stringify(config) + ';'
   }),
   js: addFinalNewLine(function(config) {
-    return 'var env = ' + JSON.stringify(config)
+    return 'var env = ' + prettyStringify(config)
   })
 }
 
@@ -65,44 +69,21 @@ function jsonToLess(obj) {
   }).join(EOL)
 }
 
-function cacheConfig(env, config, projectConfig) {
-  var cacheEnv = {
-    device: config.DEVICE,
-    legacyIe: config.LEGACY_IE,
-    useRem: config.USE_REM,
-    brandColor: config.BRAND_COLOR || null,
-    debug: !env.IS_PRODUCTION
-  }
+function cacheConfig(options) {
+  var envData = options.data
+  var folder = options.folder
+  var lang = options.lang
 
-  cacheEnv = Object.assign(cacheEnv, projectConfig)
-
-  if (!env.IS_PRODUCTION) {
-    cacheEnv.computerName = env.COMPUTER_NAME
-    cacheEnv.userName = env.USER_NAME
-  }
-  var changed = true
-  var envFolder = path.join(process.cwd(), env.SOURCE_FOLDER, '_env')
-
-  try {
-    var oldConfig = JSON.parse(
-      fs.readFileSync(path.join(envFolder, '_env.json'), CHARSET)
-    )
-    changed =
-      !oldConfig || JSON.stringify(oldConfig) !== JSON.stringify(cacheEnv)
-  } catch (err) {}
-
-  _.forEach(config.ENV_LANG, function(lang) {
-    var configFile = path.join(envFolder, '_env.' + lang)
+  _.forEach(lang, function(lang) {
+    var configFile = path.join(folder, '_env.' + lang)
     var parser = parsers[lang] || JSON.stringify
 
-    if (changed || !fs.existsSync(configFile)) {
-      try {
-        mkdirp(path.dirname(configFile))
-        fs.writeFileSync(configFile, parser(cacheEnv), CHARSET)
-      } catch (err) {
-        console.error(err)
-        process.exit(1)
-      }
+    try {
+      mkdirp(path.dirname(configFile))
+      fs.writeFileSync(configFile, parser(envData), CHARSET)
+    } catch (err) {
+      console.error(err)
+      process.exit(1)
     }
   })
 }

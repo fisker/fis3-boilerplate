@@ -118,9 +118,14 @@ var CONFIG = fixConfig({
 })
 
 // output crossLangConfig
-generateConfig(ENV, CONFIG, projectConfig)
+var envData = require('./scripts/env.js')(ENV, CONFIG, projectConfig)
+generateConfig({
+  data: envData,
+  folder: path.join(process.cwd(), ENV.SOURCE_FOLDER, '_env'),
+  lang: CONFIG.ENV_LANG
+})
 
-var PLUGINS_CONFIG = getPluginConfig(ENV, CONFIG)
+var PLUGINS_CONFIG = getPluginConfig(ENV, CONFIG, projectConfig)
 
 var preProcessors = [
   {
@@ -159,6 +164,11 @@ var preProcessors = [
     ext: 'pug',
     type: 'html',
     parser: 'fis3-parser-pug'
+  },
+  {
+    ext: 'ejs',
+    type: 'html',
+    parser: 'fis3-parser-ejs'
   }
 ]
 
@@ -415,6 +425,7 @@ fis.match(
         'css',
         'js',
         'html',
+        'ejs',
         'pug',
         'es6',
         'es',
