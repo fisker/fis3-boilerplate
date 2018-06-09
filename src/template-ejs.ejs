@@ -1,15 +1,28 @@
+<%
+const page = {
+  title: 'title',
+  keywords: [
+    ...(project.keywords || []),
+  ],
+  description: '',
+  styles: [
+    ...(project.styles || []),
+  ],
+  scripts: [
+    ...(project.scripts || []),
+  ]
+}
+%>
 <!DOCTYPE html>
-<%- include('./snippets/ejs/_html-start-tag.ejs', locals) %>
+<%- include('./snippets/ejs/_html-start-tag.ejs') %>
   <head>
-    <%- include('./snippets/ejs/_head.ejs', locals) %>
-    <title>title</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <link href="assets/styles/main.scss" rel="stylesheet">
+    <%- include('./snippets/ejs/_head.ejs', {page}) %>
   </head>
   <body>
     <div class="container">hello <%- env.userName || 'world' %>!</div>
-    <link rel="import" href="snippets/base/_polyfill.pug?__inline">
-    <link rel="import" href="snippets/base/_script-jquery.pug?__inline">
+
+    <%- include('./snippets/ejs/_polyfill.ejs') %>
+    <%- include('./snippets/ejs/_jquery.ejs') %>
+    <%- include('./snippets/ejs/_scripts.ejs', {page}) %>
   </body>
-<%- include('./snippets/ejs/_html-end-tag.ejs', locals) %>
+<%- include('./snippets/ejs/_html-end-tag.ejs') %>

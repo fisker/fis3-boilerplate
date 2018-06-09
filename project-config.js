@@ -1,3 +1,9 @@
 // will write to ./src/_env/
 
-module.exports = {}
+module.exports = {
+  styles: [
+    '/assets/styles/main.scss'
+  ],
+  scripts: [
+  ],
+}

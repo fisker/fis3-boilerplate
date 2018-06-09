@@ -15,15 +15,15 @@
 <meta name="robots" content="index,follow">
 
 <% if (env.brandColor) { %>
-  <meta name="theme-color" content="<%- env.brandColor%>">
-  <meta name="msapplication-navbutton-color" content="<%- env.brandColor%>">
+  <meta name="theme-color" content="<%= env.brandColor%>">
+  <meta name="msapplication-navbutton-color" content="<%= env.brandColor%>">
 <% } %>
 
 
 <% if (env.device != 'desktop') { %>
-  <meta name="viewport" content="width=device-width,initial-scale=1shrink-to-fit=no">
-<% } else { %>
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,shrink-to-fit=no,viewport-fit=cover">
+<% } else { %>
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <% } %>
 
 <% if (env.device != 'desktop') { %>
@@ -38,3 +38,16 @@
 <% if (env.useRem) { %>
   <!--[if lt IE 9]><script src="/assets/scripts/component/_rem.min.js?__inline"></script><![endif]-->
 <% } %>
+
+
+<title><%= page.title %></title>
+<meta name="keywords" content="<%= page.keywords %>">
+<meta name="description" content="<%= page.description %>">
+
+<%
+;(page.styles || []).forEach(function(style) {
+%>
+<link href="<%= style %>" rel="stylesheet">
+<%
+})
+%>

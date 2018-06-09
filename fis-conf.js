@@ -425,7 +425,6 @@ fis.match(
         'css',
         'js',
         'html',
-        'ejs',
         'pug',
         'es6',
         'es',

@@ -147,7 +147,8 @@ function getPluginConfig(env, config, project) {
         project: project
       },
       options: {
-        rmWhitespace: true
+        // rmWhitespace: true,
+        debug: !env.IS_PRODUCTION
       }
     }
   }

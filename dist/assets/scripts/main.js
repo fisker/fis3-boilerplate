@@ -6,7 +6,9 @@
     legacyIe: 6,
     useRem: false,
     brandColor: null,
-    debug: false
+    debug: false,
+    styles: ['/assets/styles/main.scss'],
+    scripts: []
   }
 
   // __inline('component/_pseudo.js')

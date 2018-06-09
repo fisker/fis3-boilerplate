@@ -56,9 +56,25 @@ function jsonToCss(obj) {
 }
 
 function jsonToScss(obj) {
+  function stringify(value) {
+    if (Array.isArray(value) ) {
+      value = [
+        '(',
+        value.map(function(v) {
+          return INDENT + stringify(v)
+        }).join(',' + EOL),
+        ')'
+      ].join(EOL)
+    } else {
+      value = JSON.stringify(value)
+    }
+
+    return value
+  }
+
   return lodashMap(obj, function(value, key) {
-    var lessKey = '$env-' + _.kebabCase(key)
-    return lessKey + ': ' + value + ';'
+    key = '$env-' + _.kebabCase(key)
+    return key + ': ' + stringify(value) + ';'
   }).join(EOL)
 }
 
