@@ -7,7 +7,7 @@ CONFIG_FILE="fis-conf.js"
 SOURCE_FOLDER="src"
 SERVER_TYPE="browsersync"
 SERVER_PORT="3000"
-SERVER_CONFIG="build/bs-config.js"
+SERVER_CONFIG="bs-config.js"
 DIST_FOLDER="dist"
 ARCHIVE_FOLDER="archive"
 ARCHIVE_FILETYPE="zip" # zip,tar.gz  ; tar.gz do NOT support chinese filename
@@ -162,11 +162,6 @@ function end() {
   sleep 5
   exit
 }
-
-# reset config file if another config files exists in sourcefolder
-if [ -f "./$SOURCE_FOLDER/fis-conf.js" ]; then
-  CONFIG_FILE=$SOURCE_FOLDER/fis-conf.js
-fi
 
 main
 
