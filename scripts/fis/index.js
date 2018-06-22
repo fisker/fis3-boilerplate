@@ -1,11 +1,5 @@
 /* eslint comma-dangle: 0, no-console: 0 */
-
-/*
-fis-conf.js
-by fisker Cheung <lionkay@gmail.com>
-verion 2.0
-last update 2018.06.22
-*/
+/* eslint-env node */
 
 'use strict'
 

@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 'use strict'
 
 var ENV = process.env.NODE_ENV || (global.fis && global.fis.project.currentMedia())

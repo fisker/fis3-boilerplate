@@ -1,4 +1,6 @@
 /* eslint comma-dangle: 0 */
+/* eslint-env node */
+
 'use strict'
 
 var editorConfig = {

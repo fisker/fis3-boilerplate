@@ -1,4 +1,7 @@
 /* eslint strict: 0, camelcase: 0 */
+/* eslint-env node */
+
+'use strict'
 
 var fs = require('fs')
 var path = require('path')
