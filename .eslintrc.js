@@ -5,7 +5,7 @@ module.exports = {
   },
   rules: {
     // 必须严格模式
-    strict: ['warn', 'safe'],
+    strict: ['error', 'safe'],
 
     // catch 变量
     'no-catch-shadow': 'error',
