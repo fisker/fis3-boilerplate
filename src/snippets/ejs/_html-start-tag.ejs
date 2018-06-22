@@ -1,14 +1,56 @@
+<%
+locals.renderHTML = function(attrs) {
+  if (typeof attrs === 'string' || Array.isArray(attrs)) {
+    attrs = {
+      class: attrs
+    }
+  }
+
+  attrs = Object.assign({lang: 'zh-cmn-Hans'}, attrs)
+
+  let classNames = attrs.class || []
+  let commonClassNames = locals.attrs.class || []
+
+  if (!Array.isArray(classNames)) {
+    classNames = classNames.split(' ')
+  }
+  if (!Array.isArray(commonClassNames)) {
+    commonClassNames = commonClassNames.split(' ')
+  }
+
+  attrs.class = [...classNames, ...commonClassNames].filter(Boolean).join(' ')
+
+  attrs = {...locals.attrs, ...attrs}
+
+  var attrStr = Object.keys(attrs).sort().map(function(attr) {
+    let value = attrs[attr]
+    if (value) {
+      return attr + '="' + value + '"'
+    }
+  }).filter(Boolean).join(' ')
+  return '<html' + (attrStr ? ' ' + attrStr : '') + '>'
+}
+%>
+
 <% if (project.device != 'mobile' && project.legacyIe < 9) { %>
   <% if (project.legacyIe < 7) { %>
-    <!--[if lt IE 7]><html class="lt-ie9 lt-ie8 lt-ie7 ie6" lang="zh-cmn-Hans"><![endif]-->
+    <!--[if lt IE 7]>
+      <%- renderHTML('lt-ie9 lt-ie8 lt-ie7 ie6')%>
+    <![endif]-->
   <% } %>
   <% if (project.legacyIe < 8) { %>
-    <!--[if IE 7]><html class="lt-ie9 lt-ie8 ie7" lang="zh-cmn-Hans"><![endif]-->
+    <!--[if IE 7]>
+      <%- renderHTML('lt-ie9 lt-ie8 ie7')%>
+    <![endif]-->
   <% } %>
   <% if (project.legacyIe < 9) { %>
-    <!--[if IE 8]><html class="lt-ie9 ie8" lang="zh-cmn-Hans"><![endif]-->
+    <!--[if IE 8]>
+      <%- renderHTML('lt-ie9 ie8')%>
+    <![endif]-->
   <% } %>
-  <!--[if gte IE 9]><!--><html lang="zh-cmn-Hans"><!--<![endif]-->
+  <!--[if gte IE 9]><!-->
+    <%- renderHTML()%>
+  <!--<![endif]-->
 <% } else { %>
-  <html lang="zh-cmn-Hans">
+  <%- renderHTML()%>
 <% } %>

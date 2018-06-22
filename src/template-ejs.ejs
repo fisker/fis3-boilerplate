@@ -14,7 +14,7 @@ const page = {
 }
 %>
 <!DOCTYPE html>
-<%- include('./snippets/ejs/_html-start-tag.ejs') %>
+<%- include('./snippets/ejs/_html-start-tag.ejs', {attrs: {class: ['']}}) %>
   <head>
     <%- include('./snippets/ejs/_head.ejs', {page}) %>
   </head>
