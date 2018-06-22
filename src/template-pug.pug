@@ -10,21 +10,21 @@ include snippets/_global
   description = '';
 
   cssFiles = [
-    'assets/styles/main.scss',
+    './assets/styles/main.scss',
   ];
 
-+htmlStartTag(env)
++htmlStartTag(config)
 head
-  +head(env)
+  +head(config)
   title= title
   + meta('keywords', keywords)
   + meta('description', description)
   each cssFile in cssFiles
     + css(cssFile)
 body
-  .container hello #{env.userName || 'world'}!
+  .container hello #{config.env.user || 'world'}!
 
-  +polyfill(env)
-  +jquery(env)
+  +polyfill(config)
+  +jquery(config)
 
-+htmlEndTag(env)
++htmlEndTag(config)

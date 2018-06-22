@@ -1,7 +1,11 @@
 /* eslint strict: 0, camelcase: 0 */
 
-function getPluginConfig(env, config, project) {
+var config = require('./config.js')
+var env = config.env
+var project = config.project
+var build = config.build
 
+function getPluginConfig() {
   var sassParserConfig = {
     includePaths: [],
     indentType: 'space',
@@ -11,16 +15,16 @@ function getPluginConfig(env, config, project) {
     // outFile: '',
     outputStyle: 'expanded', // options: nested, expanded, compact, compressed
     precision: 8, // default: 5
-    sourceComments: !env.IS_PRODUCTION,
+    sourceComments: !env.production,
     sourceMap: false,
     sourceMapContents: true,
-    sourceMapEmbed: !env.IS_PRODUCTION
+    sourceMapEmbed: !env.production
     // sourceMapRoot: ''
   }
 
   // prettier-ignore
   var browserslist = [
-    'ie >= ' + config.LEGACY_IE,
+    'ie >= ' + project.legacyIe,
     'and_chr >= 1',
     'and_ff >=1',
     'and_uc >=1',
@@ -65,7 +69,7 @@ function getPluginConfig(env, config, project) {
       aggressiveMerging: false,
       shorthandCompacting: false,
       roundingPrecision: 8, // default is 2
-      compatibility: config.LEGACY_IE <= 8 ? [
+      compatibility: project.legacyIe <= 8 ? [
               '+properties.ieBangHack',
               '+properties.iePrefixHack',
               '+properties.ieSuffixHack',
@@ -74,20 +78,12 @@ function getPluginConfig(env, config, project) {
             ] : [],
       keepSpecialComments: 0
     },
-    'fis-optimizer-png-compressor': {
-      type: config.OPTIMIZER.PNG.LOSSY ?
-        'pngquant' : 'pngcrush',
-      speed: 1
-    },
-    'fis-optimizer-jpeg-compressor': {
-      progressive: config.OPTIMIZER.JPEG && config.OPTIMIZER.JPEG.PROGRESSIVE
-    },
     'fis-spriter-csssprites': {
       margin: 10,
       layout: 'linear' // 'linear/matrix' default linear
     },
     'fis3-deploy-local-deliver': {
-      to: './' + env.DIST_FOLDER
+      to: './dist'
     },
     'fis-parser-coffee-script': {
       // header: true,
@@ -96,11 +92,11 @@ function getPluginConfig(env, config, project) {
       blacklist: ['regenerator'],
       optional: ['asyncToGenerator'],
       stage: 3,
-      sourceMaps: !env.IS_PRODUCTION
+      sourceMaps: !env.production
     },
     'fis-parser-babel-6.x': {
       presets: ['env', 'react'],
-      sourceMaps: !env.IS_PRODUCTION
+      sourceMaps: !env.production
     },
     'fis3-parser-pug': {
       pretty: '  ',
@@ -108,14 +104,14 @@ function getPluginConfig(env, config, project) {
     },
     'fis3-lint-htmlhint': {},
     'fis3-lint-eslint-noisy': {
-      fix: config.FIX.JS,
+      fix: build.fix.js,
       useEslintrc: true
     },
     'fis3-lint-stylelint': {
-      fix: config.FIX.CSS
+      fix: build.fix.css
     },
     'fis3-optimizer-imagemin': {
-      '.png': config.OPTIMIZER.PNG.LOSSY ? {
+      '.png': build.optimize.png.lossy ? {
         upng: {
           cnum: 256
         }
@@ -134,6 +130,7 @@ function getPluginConfig(env, config, project) {
       max_preserve_newlines: 0, // Maximum number of line breaks to be preserved in one chunk (0 disables)
       preserve_newlines: true, // Whether existing line breaks before elements should be preserved (only works before elements, not inside tags or for text)
       unformatted: [
+        'script',
         // 'a', 'span', 'img', 'code', 'pre', 'sub', 'sup', 'em', 'strong', 'b', 'i', 'u',
         // 'strike', 'big', 'small', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'script', 'style'
       ], // List of tags that should not be reformatted
@@ -143,15 +140,15 @@ function getPluginConfig(env, config, project) {
     'fis3-postprocessor-prettier': {},
     'fis3-parser-ejs': {
       data: {
-        env: require('./env.js')(env, config, project),
+        env: config,
         project: project
       },
       options: {
         // rmWhitespace: true,
-        debug: !env.IS_PRODUCTION
+        debug: !env.production
       }
     }
   }
 }
 
-module.exports = getPluginConfig
+module.exports = getPluginConfig()

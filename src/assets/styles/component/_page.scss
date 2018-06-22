@@ -31,7 +31,7 @@
 }
 
 .page {
-  @if $env-debug {
+  @if $debug {
     @include page-fixed();
   } @else {
     @at-root {

@@ -181,21 +181,19 @@
     </footer>
   </div>
   <script src="../assets/vendors/jquery/jquery-2.2.4.min.js"></script>
-  <script>
-    $(function() {
-      $('.page__header, .page__footer')
-        .each(function() {
-          var el = $(this);
-          if (el.css('position') === 'fixed') {
-            el.wrap($('<div class="page__fixed-dummy">').css({
-              height: el.outerHeight(),
-              zIndex: el.css('zIndex')
-            }));
-          }
-        });
+  <script>  $(function() {
+    $('.page__header, .page__footer')
+      .each(function() {
+        var el = $(this);
+        if (el.css('position') === 'fixed') {
+          el.wrap($('<div class="page__fixed-dummy">').css({
+            height: el.outerHeight(),
+            zIndex: el.css('zIndex')
+          }));
+        }
+      });
 
-    });
-
-  </script>
+  });
+</script>
 </body>
 </html>

@@ -45,4 +45,4 @@ function fix() {
   fis.util.forEach(fis.require.paths, fixPackage)
 }
 
-module.exports.fix = fix
+fix()

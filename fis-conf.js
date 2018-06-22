@@ -1,1 +1,1 @@
-require('./scripts/fis-config')
+require('./scripts/fis/index.js')

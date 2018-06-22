@@ -19,7 +19,7 @@ const page = {
     <%- include('./snippets/ejs/_head.ejs', {page}) %>
   </head>
   <body>
-    <div class="container">hello <%- env.userName || 'world' %>!</div>
+    <div class="container">hello <%- env.user || 'world' %>!</div>
 
     <%- include('./snippets/ejs/_polyfill.ejs') %>
     <%- include('./snippets/ejs/_jquery.ejs') %>
