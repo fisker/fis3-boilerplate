@@ -82,6 +82,15 @@ function cssPreprossorParser(lang) {
     return reColor.test(String(value))
   }
 
+  function quoteKey(key) {
+    key = String(key)
+    if (/[.-]/.test(key)) {
+      return JSON.stringify(key)
+    }
+
+    return key
+  }
+
   var valueParser = {
     scss: (function() {
       function scssValue(value, indent) {
@@ -128,7 +137,7 @@ function cssPreprossorParser(lang) {
 
       function scssObjectToMap(obj, indent) {
         var values = Object.keys(obj).map(function(key) {
-          return codeStyle.indent + String(key) + ': ' + scssValue(obj[key], indent + 1)
+          return codeStyle.indent + quoteKey(key) + ': ' + scssValue(obj[key], indent + 1)
         })
         return toMapString(values)
       }
@@ -141,7 +150,7 @@ function cssPreprossorParser(lang) {
   var parser = valueParser[lang]
 
   return function(data) {
-    return '$config: ' + parser(data)
+    return '$config: ' + parser(data) + ';'
   }
 }
 
@@ -153,13 +162,16 @@ var parsers = {
   json: prettyJSONStringify,
   js: jsParser,
   scss: cssPreprossorParser('scss'),
-  pug: pugParser,
+  pug: pugParser
 }
 
 function store(config) {
   Object.keys(parsers).forEach(function(lang) {
     var file = path.join(STORE_LOCATION, '_config.' + lang)
-    var parser = addFinalNewLine(parsers[lang] || JSON.stringify)
+    var parser = parsers[lang] || JSON.stringify
+    if (!/json$/.test(lang)) {
+      parser = addFinalNewLine(parser)
+    }
 
     // try {
       fs.writeFileSync(file, parser(config), codeStyle.charset)
@@ -171,6 +183,7 @@ _.mkdir(STORE_LOCATION)
 
 store({
   env: config.env,
-  project: config.project
+  project: config.project,
+  package: config.package
 })
 module.exports = store

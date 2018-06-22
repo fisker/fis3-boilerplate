@@ -138,12 +138,12 @@ if (config.build.relative) {
   })
 }
 
-
 preProcessors.forEach(function(data) {
   var exts = utils.toArray(data.ext)
   var processor = {
     rExt: '.' + data.type
   }
+
   // plugins
   var plugins = ['parser', 'lint']
 
@@ -191,6 +191,13 @@ standardProcessors.forEach(function(data) {
     var settings = {}
     settings[type] = null
     fis.match(reg, settings)
+  })
+})
+
+;['html', 'js'].forEach(function(type) {
+  fis.match('(**.' + type + ').ejs', {
+    rExt: '.' + type,
+    release: '/$1'
   })
 })
 
@@ -251,6 +258,9 @@ config.build.ignore.vendors.forEach(function(preg) {
 
 if (config.env.production) {
   fis.match('**', utils.pluginToProperties('fis3-deploy-local-deliver'))
+  fis.match('{mock,test}/{server.conf,**.js}', {
+    release: false
+  })
 }
 
 if (!config.env.production) {

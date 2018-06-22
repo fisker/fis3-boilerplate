@@ -1,7 +1,7 @@
 ;(function() {
   'use strict'
 
-  __inline('./_config.js.ejs')
+  var env = __inline('../_config/_config.env.json')
 
   // __inline('component/_pseudo.js')
   // __inline('component/_date-placeholder.js')

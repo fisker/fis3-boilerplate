@@ -1,0 +1,8 @@
+<%
+const config = {
+  // ...locals,
+  debug: env.production,
+  // dependencies: package.dependencies
+}
+%>
+window.CONFIG = <%- JSON.stringify(config, null, 2)%>

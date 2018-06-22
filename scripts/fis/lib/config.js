@@ -5,6 +5,7 @@ var project = config.project
 var build = config.build
 var env = require('./env.js')
 var codeStyle = require('../../code-style/index.js')
+var pkg = require('../../../package.json')
 
 if (project.device === 'mobile') {
   project.legacyIe = 9
@@ -24,5 +25,6 @@ module.exports = Object.freeze({
   env: env,
   project: project,
   build: build,
-  codeStyle: codeStyle
+  codeStyle: codeStyle,
+  package: pkg
 })
