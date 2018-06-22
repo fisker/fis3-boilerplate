@@ -1,1 +1,0 @@
- window.CONFIG = { "debug": true }

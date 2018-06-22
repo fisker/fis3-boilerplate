@@ -21,7 +21,7 @@ const page = {
   <body>
     <div class="container">hello <%- env.user || 'world' %>!</div>
 
-    <script src="./project/config.js.ejs"></script>
+    <script src="./project/scripts/config.js.ejs"></script>
     <%- include('./snippets/ejs/_polyfill.ejs') %>
     <%- include('./snippets/ejs/_jquery.ejs') %>
     <%- include('./snippets/ejs/_scripts.ejs', {page}) %>
