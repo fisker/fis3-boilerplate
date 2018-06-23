@@ -3,7 +3,8 @@
 
 'use strict'
 
-var _ = global.fis.util
+var fis = global.fis
+var _ = fis.util
 var pluginConfig = require('./plugin-config.js')
 var pluginTypes = require('./plugin-types.js')
 

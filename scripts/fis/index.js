@@ -252,12 +252,14 @@ config.build.ignore.vendors.forEach(function(preg) {
 
 if (config.env.production) {
   fis.match('**', utils.pluginToProperties('fis3-deploy-local-deliver'))
-  fis.match('{mock,test}/{server.conf,**.js}', {
+  fis.match('{mock,test}/**.js', {
     release: false
   })
-}
 
-if (!config.env.production) {
+  fis.match('server.conf', {
+    release: false
+  })
+} else {
   fis.match('**', {
     lint: null,
     optimizer: null,

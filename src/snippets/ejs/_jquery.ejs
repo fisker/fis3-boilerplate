@@ -1,6 +1,12 @@
+<%
+locals.jquery = function(version) {
+  const file = env.production ? 'jquery.min.js' : 'jquery.js'
+  return `<script src="/assets/vendors/jquery/${version}/dist/${file}"></script>`
+}
+%>
 <% if (project.device != 'mobile' && project.legacyIe <= 8) { %>
-  <!--[if lt IE 9]><script src="/assets/vendors/jquery/jquery-1.12.4.min.js"></script><![endif]-->
-  <!--[if gte IE 9]><!--><script src="/assets/vendors/jquery/jquery-2.2.4.min.js"></script><!--<![endif]-->
+  <!--[if lt IE 9]><%- jquery('1.12.4') %><![endif]-->
+  <!--[if gte IE 9]><!--><%- jquery('2.2.4') %></script><!--<![endif]-->
 <% } else { %>
-  <script src="/assets/vendors/jquery/jquery-3.3.1.min.js"></script>
+  <%- jquery('3.3.1') %>
 <% } %>
