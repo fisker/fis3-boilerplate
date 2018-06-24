@@ -1,7 +1,7 @@
 <%
-locals.jquery = function(version) {
+function jquery(version) {
   const file = env.production ? 'jquery.min.js' : 'jquery.js'
-  return `<script src="/assets/vendors/jquery/${version}/dist/${file}"></script>`
+  return _.script(`/assets/vendors/jquery/${version}/dist/${file}`)
 }
 %>
 <% if (project.device != 'mobile' && project.legacyIe <= 8) { %>

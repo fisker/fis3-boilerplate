@@ -142,8 +142,13 @@ function getPluginConfig() {
     },
     'fis3-postprocessor-prettier': {},
     'fis3-parser-ejs': {
-      data: config,
+      data: {
+        require: require,
+        _: require('../../ejs-helpers.js'),
+        ...config
+      },
       options: {
+        outputFunctionName: 'echo',
         // rmWhitespace: true,
         debug: !env.production
       }
