@@ -31,6 +31,9 @@ module.exports = {
     'unlink',
     'unlinkDir',
   ],
+  watch: false,
+  ignore: [],
+  single: false,
   watchOptions: {
     ignoreInitial: true
   },
@@ -40,8 +43,11 @@ module.exports = {
   },
   proxy: false,
   // port: 3000, // not working, override by fis3
-  middleware: false,
+  middleware: [],
   serveStatic: [],
+  serveStaticOptions: {},
+  https: false,
+  // httpModule: undefined,
   ghostMode: false,
   // ghostMode: {
   //   clicks: true,
@@ -55,21 +61,24 @@ module.exports = {
   // },
   logLevel: 'info',
   logPrefix: 'Browsersync',
-  logConnections: false,
+  logConnections: false, // no useful info
   logFileChanges: true,
   logSnippet: true,
+  snippetOptions: {},
   rewriteRules: [],
+  tunnel: false,
+  online: false,
   // open: 'local', // not working, override by fis3
   browser: 'default',
   cors: false,
   xip: false,
-  hostnameSuffix: false,
+  hostnameSuffix: false, // in default-config.js not in document
   reloadOnRestart: false,
   notify: false,
   scrollProportionally: true,
-  scrollThrottle: 0,
-  scrollRestoreTechnique: 'window.name',
-  scrollElements: [],
+  scrollThrottle: 100,
+  scrollRestoreTechnique: 'cookie',
+  scrollElements: ['.js-scroller'],
   scrollElementMapping: [],
   reloadDelay: 0,
   reloadDebounce: 100,
@@ -77,12 +86,14 @@ module.exports = {
   plugins: [],
   injectChanges: true,
   startPath: null,
-  minify: true,
+  minify: false,
   host: null,
   localOnly: false,
   codeSync: true,
   timestamps: true,
+  // scriptPath: undefined,
   clientEvents: [
+    // in default-config.js not in document
     'scroll',
     'scroll:element',
     'input:text',
@@ -92,6 +103,7 @@ module.exports = {
     'click'
   ],
   socket: {
+    // some option in default-config.js not in document
     socketIoOptions: {
       log: false
     },
@@ -101,6 +113,8 @@ module.exports = {
     path: '/browser-sync/socket.io',
     clientPath: '/browser-sync',
     namespace: '/browser-sync',
+    // domain: undefined,
+    // port: undefined,
     clients: {
       heartbeatTimeout: 5000
     }
@@ -115,5 +129,39 @@ module.exports = {
     svg: 'img',
     gif: 'img',
     js: 'script'
+  },
+  injectFileTypes: ['css', 'png', 'jpg', 'jpeg', 'svg', 'gif', 'webp', 'map'],
+  injectNotification: 'console', // false | console | overlay
+  excludedFileTypes: [
+    'js',
+    'css',
+    'pdf',
+    'map',
+    'svg',
+    'ico',
+    'woff',
+    'json',
+    'eot',
+    'ttf',
+    'png',
+    'jpg',
+    'jpeg',
+    'webp',
+    'gif',
+    'mp4',
+    'mp3',
+    '3gp',
+    'ogg',
+    'ogv',
+    'webm',
+    'm4a',
+    'flv',
+    'wmv',
+    'avi',
+    'swf',
+    'scss'
+  ],
+  script: {
+    // domain: undefined
   }
 }
