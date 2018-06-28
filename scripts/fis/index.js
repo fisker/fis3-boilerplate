@@ -240,13 +240,15 @@ fis.match('::package', utils.pluginToProperties('fis-spriter-csssprites'))
 
 // do noting to vendors
 config.build.ignore.vendors.forEach(function(preg) {
+  // http://fis.baidu.com/fis3/docs/build.html#%E5%8D%95%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E6%B5%81%E7%A8%8B
   fis.match(preg, {
-    parser: null,
     lint: null,
+    parser: null,
     preprocessor: null,
-    optimizer: null,
+    standard: null,
     postprocessor: null,
-    useSprite: false
+    optimizer: null,
+    useSprite: false,
   })
 })
 
