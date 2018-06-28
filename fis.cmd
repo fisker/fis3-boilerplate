@@ -1,4 +1,3 @@
 @echo OFF
 
-sh ./fis.sh
-pause
+bash ./fis.sh

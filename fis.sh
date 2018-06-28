@@ -1,6 +1,4 @@
-#!/bin/sh
-
-cd `dirname $0`
+#!/bin/bash
 
 # consts
 CONFIG_FILE="fis-conf.js"
@@ -138,7 +136,7 @@ function debug() {
   # start watch
   echo "..............................................................................."
   echo "watching files"
-  fis3 release $NODE_ENV --root "./$SOURCE_FOLDER" --file "./$CONFIG_FILE" --clean --verbose --watch --verbose
+  fis3 release $NODE_ENV --root "./$SOURCE_FOLDER" --file "./$CONFIG_FILE" --clean --verbose --watch
   pause
 }
 
