@@ -81,7 +81,10 @@ var build = {
     postprocessor: [
       '*{.,_,-}min.**',
     ],
-  }
+  },
+  minifyInlineScript: [
+    'assets/scripts/component/_rem.js',
+  ],
 }
 
 module.exports = {

@@ -229,6 +229,14 @@ fis.match('_*.{html,js}', {
   // postprocessor: null,
 })
 
+// minify-inline-script
+config.build.minifyInlineScript.forEach(function(re) {
+  fis.match(re, {
+    optimizer: utils.getPlugin('fis-optimizer-uglify-js'),
+    postprocessor: null
+  })
+})
+
 // font/*.svg should not be compressed
 // if (config.build.optimize.SVG) {
 //   fis.match('{fonts,font}/*.svg', {

@@ -11,6 +11,7 @@ module.exports = {
       files: '*.js',
       options: {
         parser: 'babylon',
+        semi: false,
         singleQuote: true,
         bracketSpacing: false
       }

@@ -51,7 +51,7 @@ mixin head(config)
     + js('/assets/vendors/html5shiv/3.7.3-pre/dist/html5shiv.min.js')
     <![endif]-->
   if config.project.flexibleRem
-    + js('/assets/scripts/component/_rem.min.js?__inline')
+    + js('/assets/scripts/component/_rem.js?__inline')
 
 mixin htmlStartTag(config)
   if config.project.device != 'mobile' && config.project.legacyIe < 9
