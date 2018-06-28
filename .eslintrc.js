@@ -68,7 +68,7 @@ module.exports = {
     'quotes': ['error', 'single'],
 
     // 建议省略分号
-    'semi': ['warn', 'never'],
+    'semi': ['warn', 'always'],
 
     // 不检查多余分号
     'no-extra-semi': 'off',
