@@ -224,9 +224,9 @@ fis.match(
 
 // _*.html should not lint
 // _*.js should not lint
-fis.match('_*', {
+fis.match('_*.{html,js}', {
   lint: null,
-  postprocessor: null
+  // postprocessor: null,
 })
 
 // font/*.svg should not be compressed
@@ -248,6 +248,7 @@ config.build.ignore.vendors.forEach(function(preg) {
     standard: null,
     postprocessor: null,
     optimizer: null,
+    useHash: false,
     useSprite: false,
   })
 })

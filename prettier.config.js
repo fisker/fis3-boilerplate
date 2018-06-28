@@ -3,7 +3,6 @@
 'use strict'
 
 module.exports = {
-  semi: false,
   singleQuote: true,
   bracketSpacing: false,
 
@@ -12,7 +11,6 @@ module.exports = {
       files: '*.js',
       options: {
         parser: 'babylon',
-        semi: false,
         singleQuote: true,
         bracketSpacing: false
       }
