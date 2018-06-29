@@ -6,7 +6,7 @@ function jquery(version) {
 %>
 <% if (project.device != 'mobile' && project.legacyIe <= 8) { %>
   <!--[if lt IE 9]><%- jquery('1.12.4') %><![endif]-->
-  <!--[if gte IE 9]><!--><%- jquery('2.2.4') %></script><!--<![endif]-->
+  <!--[if gte IE 9]><!--><%- jquery('2.2.4') %><!--<![endif]-->
 <% } else { %>
   <%- jquery('3.3.1') %>
 <% } %>

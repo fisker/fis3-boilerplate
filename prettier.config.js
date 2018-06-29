@@ -22,6 +22,12 @@ module.exports = {
         parser: 'css',
         singleQuote: false
       }
+    },
+    {
+      files: '*.html',
+      options: {
+        parser: 'parse5'
+      }
     }
   ]
 }
