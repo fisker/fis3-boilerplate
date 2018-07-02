@@ -73,6 +73,7 @@ module.exports = {
   cors: false,
   xip: false,
   hostnameSuffix: false, // in default-config.js not in document
+  // xip.io sslip.io ipna.me nip.io
   reloadOnRestart: false,
   notify: false,
   scrollProportionally: true,
