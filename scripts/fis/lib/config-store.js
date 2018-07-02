@@ -55,7 +55,7 @@ var reColor = (function() {
 
   function getFunctionalStringRe(func, args) {
     return func + '\\(' + args.map(function(arg) {
-      return '\\s*?' + arg + '\\s*?'
+      return '\\s*' + arg + '\\s*'
     }).join(',') + '\\)'
   }
 
