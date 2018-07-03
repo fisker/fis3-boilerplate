@@ -1,4 +1,4 @@
-/* eslint strict: 0, camelcase: 0 */
+/* eslint strict: 0, camelcase: 0, comma-dangle: 0 */
 /* eslint-env node */
 
 'use strict'
@@ -61,7 +61,10 @@ function getPluginConfig() {
   }
 
   var cleanCSSConfig = {
-    compatibility: 'ie' + project.legacyIe,
+    compatibility:
+      project.legacyIe < 7
+        ? 'ie7,+properties.iePrefixHack'
+        : 'ie' + project.legacyIe,
     sourceMap: build.sourceMap || !env.production
   }
 
@@ -76,7 +79,7 @@ function getPluginConfig() {
       browsers: browserslist
     },
     'fis3-optimizer-uglifyjs': uglifyJSConfig,
-    'fis3-optimizer-clean-css': cleanCSSConfig,
+    'fis3-optimizer-cleancss': cleanCSSConfig,
     'fis-spriter-csssprites': {
       margin: 10,
       layout: 'linear' // 'linear/matrix' default linear
@@ -110,13 +113,15 @@ function getPluginConfig() {
       fix: build.fix.css
     },
     'fis3-optimizer-imagemin': {
-      '.png': build.optimize.png.lossy ? {
-        upng: {
-          cnum: 256
-        }
-      } : {
-        pngcrush: {}
-      }
+      '.png': build.optimize.png.lossy
+        ? {
+            upng: {
+              cnum: 256
+            }
+          }
+        : {
+            pngcrush: {}
+          }
     },
     'fis3-postprocessor-html': {
       brace_style: 'collapse', // [collapse|expand|end-expand|none] Put braces on the same line as control statements (default), or put braces on own line (Allman / ANSI style), or just put end braces on own line, or attempt to keep them where they are
@@ -129,7 +134,7 @@ function getPluginConfig() {
       max_preserve_newlines: 0, // Maximum number of line breaks to be preserved in one chunk (0 disables)
       preserve_newlines: true, // Whether existing line breaks before elements should be preserved (only works before elements, not inside tags or for text)
       unformatted: [
-        'script',
+        'script'
         // 'a', 'span', 'img', 'code', 'pre', 'sub', 'sup', 'em', 'strong', 'b', 'i', 'u',
         // 'strike', 'big', 'small', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'script', 'style'
       ], // List of tags that should not be reformatted
@@ -138,11 +143,13 @@ function getPluginConfig() {
     },
     'fis3-postprocessor-prettier': {},
     'fis3-parser-ejs': {
-      data: {
-        require: require,
-        _: require('../../ejs-helpers.js'),
-        ...config,
-      },
+      data: Object.assign(
+        {
+          require: require,
+          _: require('../../ejs-helpers.js')
+        },
+        config
+      ),
       options: {
         outputFunctionName: 'echo',
         // rmWhitespace: true,
