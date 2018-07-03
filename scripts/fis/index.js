@@ -212,7 +212,8 @@ fis.match(
         'es',
         'ts',
         'tsx',
-        'svg'
+        'svg',
+        'map',
       ],
       false
     ),

@@ -49,6 +49,17 @@ function getPluginConfig() {
     'safari >= 3.1',
   ]
 
+  var uglifyJSConfig = {
+    mangle: {
+      reserved: ['exports', 'module', 'require', 'define']
+    },
+    compress: {
+      drop_console: true
+    },
+    ie8: project.legacyIe < 9,
+    sourceMap: !env.production
+  }
+
   return {
     'fis3-parser-node-sass-latest': sassParserConfig,
     'fis-parser-node-sass': sassParserConfig,
@@ -59,14 +70,7 @@ function getPluginConfig() {
       remove: false,
       browsers: browserslist
     },
-    'fis-optimizer-uglify-js': {
-      mangle: {
-        except: 'exports, module, require, define'
-      },
-      compress: {
-        drop_console: true
-      }
-    },
+    'fis3-optimizer-uglify-js-latest': uglifyJSConfig,
     'fis-optimizer-clean-css-2x': {
       advanced: false,
       aggressiveMerging: false,
