@@ -60,6 +60,11 @@ function getPluginConfig() {
     sourceMap: !env.production
   }
 
+  var cleanCSSConfig = {
+    compatibility: 'ie' + project.legacyIe,
+    sourceMap: !env.production
+  }
+
   return {
     'fis3-parser-node-sass-latest': sassParserConfig,
     'fis-parser-node-sass': sassParserConfig,
@@ -71,20 +76,7 @@ function getPluginConfig() {
       browsers: browserslist
     },
     'fis3-optimizer-uglifyjs': uglifyJSConfig,
-    'fis-optimizer-clean-css-2x': {
-      advanced: false,
-      aggressiveMerging: false,
-      shorthandCompacting: false,
-      roundingPrecision: 8, // default is 2
-      compatibility: project.legacyIe <= 8 ? [
-              '+properties.ieBangHack',
-              '+properties.iePrefixHack',
-              '+properties.ieSuffixHack',
-              '-properties.merging',
-              '+selectors.ie7Hack'
-            ] : [],
-      keepSpecialComments: 0
-    },
+    'fis3-optimizer-clean-css': cleanCSSConfig,
     'fis-spriter-csssprites': {
       margin: 10,
       layout: 'linear' // 'linear/matrix' default linear
