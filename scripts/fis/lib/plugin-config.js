@@ -57,12 +57,12 @@ function getPluginConfig() {
       drop_console: env.production
     },
     ie8: project.legacyIe <= 8,
-    sourceMap: !env.production
+    sourceMap: build.sourceMap || !env.production
   }
 
   var cleanCSSConfig = {
     compatibility: 'ie' + project.legacyIe,
-    sourceMap: !env.production
+    sourceMap: build.sourceMap || !env.production
   }
 
   return {
@@ -141,7 +141,7 @@ function getPluginConfig() {
       data: {
         require: require,
         _: require('../../ejs-helpers.js'),
-        ...config
+        ...config,
       },
       options: {
         outputFunctionName: 'echo',

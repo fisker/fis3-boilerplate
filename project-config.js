@@ -18,6 +18,7 @@ var project = {
 }
 
 var build = {
+  sourceMap: false,
   lint: {
     html: true, // html 代码检查
     css: true, // css 代码检查
