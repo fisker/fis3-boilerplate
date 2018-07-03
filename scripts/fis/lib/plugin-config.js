@@ -70,7 +70,7 @@ function getPluginConfig() {
       remove: false,
       browsers: browserslist
     },
-    'fis3-optimizer-uglify-js-latest': uglifyJSConfig,
+    'fis3-optimizer-uglifyjs-latest': uglifyJSConfig,
     'fis-optimizer-clean-css-2x': {
       advanced: false,
       aggressiveMerging: false,
