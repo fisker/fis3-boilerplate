@@ -54,9 +54,9 @@ function getPluginConfig() {
       reserved: ['exports', 'module', 'require', 'define']
     },
     compress: {
-      drop_console: true
+      drop_console: env.production
     },
-    ie8: project.legacyIe < 9,
+    ie8: project.legacyIe <= 8,
     sourceMap: !env.production
   }
 
