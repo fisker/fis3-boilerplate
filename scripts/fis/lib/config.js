@@ -2,7 +2,7 @@
 
 'use strict'
 
-var config = require('../../../project-config')
+var config = require('../../../project.config')
 var project = config.project
 var build = config.build
 var env = require('./env.js')
@@ -10,7 +10,7 @@ var codeStyle = require('../../code-style/index.js')
 var pkg = require('../../../package.json')
 
 if (project.device === 'mobile') {
-  project.legacyIe = 9
+  project.legacyIe = Math.max(9, project.legacyIe)
 }
 
 if (project.legacyIe < 9 && project.flexibleRem) {
