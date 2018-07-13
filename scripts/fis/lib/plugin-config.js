@@ -145,7 +145,6 @@ function getPluginConfig() {
     'fis3-parser-ejs': {
       data: Object.assign(
         {
-          require: require,
           _: require('../../ejs-helpers.js')
         },
         config
@@ -154,6 +153,14 @@ function getPluginConfig() {
         outputFunctionName: 'echo',
         // rmWhitespace: true,
         debug: !env.production
+      }
+    },
+    'fis3-parser-lodash-template': {
+      data: config,
+      options: {
+        imports: {
+          $: require('../../../src/snippets/jst')
+        }
       }
     }
   }

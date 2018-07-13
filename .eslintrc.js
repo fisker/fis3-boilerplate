@@ -7,6 +7,9 @@ module.exports = {
   globals: {
     __inline: true
   },
+  parserOptions: {
+    ecmaVersion: 9
+  },
   rules: {
     // 必须严格模式
     strict: ['error', 'safe'],
@@ -77,7 +80,7 @@ module.exports = {
     'no-unused-vars': 'warn',
 
     //
-    'no-use-before-define': ['error', { variables : true, functions: false }],
+    'no-use-before-define': ['error', { variables: true, functions: false }],
 
     // 只允许 空的 catch 块
     'no-empty': ['error', { allowEmptyCatch: true }],

@@ -14,7 +14,10 @@ var project = {
     '/assets/styles/main.scss',
   ],
   scripts: [
+    'dd_belatedpng',
+    'jquery',
   ],
+  lang: 'zh-CN',
 }
 
 var build = {

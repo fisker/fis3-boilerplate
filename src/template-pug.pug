@@ -24,7 +24,7 @@ head
 body
   .container hello #{config.env.user || 'world'}!
 
-  script(src="/project/scripts/config.js.ejs")
+  script(src="/project/scripts/config.js.jst")
   +polyfill(config)
   +jquery(config)
 

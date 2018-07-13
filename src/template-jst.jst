@@ -15,13 +15,13 @@ const page = {
 }
 %>
 <!DOCTYPE html>
-<%- include('./snippets/ejs/_html-start-tag.ejs', {attrs: {class: ['']}}) %>
+<%= $.htmlStartTag('') %>
   <head>
-    <%- include('./snippets/ejs/_head.ejs', {page}) %>
+    <%= $.head(page) %>
   </head>
   <body>
     <div class="container">hello <%- env.user || 'world' %>!</div>
 
-    <%- include('./snippets/ejs/_scripts.ejs', {page}) %>
+    <%= $.script(page.scripts) %>
   </body>
-<%- include('./snippets/ejs/_html-end-tag.ejs') %>
+<%= $.htmlEndTag() %>

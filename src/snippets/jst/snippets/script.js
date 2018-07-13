@@ -1,4 +1,15 @@
-<%
+/* eslint-env node, es6 */
+/* eslint comma-dangle: 0, no-console: 0 */
+
+'use strict'
+
+const _ = global.fis.util
+const {project, env} = require('../../../../scripts/fis/lib/config.js')
+
+function script(src) {
+  return `<script src="${_.escape(src)}"></script>`
+}
+
 const loader = {
   dd_belatedpng: function() {
     if (project.device != 'mobile' && project.legacyIe <= 6) {
@@ -25,14 +36,13 @@ const loader = {
   },
 }
 
-function script(src) {
-  return `<script src="${src}"></script>`
+function loadModule(scripts) {
+  scripts = Array.isArray(scripts) ? scripts : [scripts]
+
+  return (scripts || []).map(function(mod) {
+    return loader[mod] ? loader[mod]() : script(mod)
+  }).join('\n')
 }
 
-;(page.scripts || []).forEach(function(mod) {
-  const html = loader[mod] ? loader[mod]() : script(mod)
-%>
-<%- html %>
-<%
-})
-%>
+module.exports = loadModule
+

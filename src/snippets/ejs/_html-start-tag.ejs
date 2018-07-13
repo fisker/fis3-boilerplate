@@ -6,7 +6,7 @@ locals.renderHTML = function(attrs) {
     }
   }
 
-  attrs = Object.assign({lang: 'zh-CN'}, attrs)
+  attrs = Object.assign({lang: project.lang}, attrs)
 
   let classNames = attrs.class || []
   let commonClassNames = locals.attrs.class || []
@@ -34,23 +34,15 @@ locals.renderHTML = function(attrs) {
 
 <% if (project.device != 'mobile' && project.legacyIe < 9) { %>
   <% if (project.legacyIe < 7) { %>
-    <!--[if lt IE 7]>
-      <%- renderHTML('lt-ie9 lt-ie8 lt-ie7 ie6')%>
-    <![endif]-->
+    <!--[if lt IE 7]><%- renderHTML('lt-ie9 lt-ie8 lt-ie7 ie6')%><![endif]-->
   <% } %>
   <% if (project.legacyIe < 8) { %>
-    <!--[if IE 7]>
-      <%- renderHTML('lt-ie9 lt-ie8 ie7')%>
-    <![endif]-->
+    <!--[if IE 7]><%- renderHTML('lt-ie9 lt-ie8 ie7')%><![endif]-->
   <% } %>
   <% if (project.legacyIe < 9) { %>
-    <!--[if IE 8]>
-      <%- renderHTML('lt-ie9 ie8')%>
-    <![endif]-->
+    <!--[if IE 8]><%- renderHTML('lt-ie9 ie8')%><![endif]-->
   <% } %>
-  <!--[if gte IE 9]><!-->
-    <%- renderHTML()%>
-  <!--<![endif]-->
+  <!--[if gte IE 9]><!--><%- renderHTML()%><!--<![endif]-->
 <% } else { %>
   <%- renderHTML()%>
 <% } %>

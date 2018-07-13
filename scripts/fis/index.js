@@ -49,6 +49,11 @@ var preProcessors = [
     ext: 'ejs',
     type: 'html',
     parser: 'fis3-parser-ejs'
+  },
+  {
+    ext: 'jst',
+    type: 'html',
+    parser: 'fis3-parser-lodash-template'
   }
 ]
 
@@ -190,6 +195,10 @@ standardProcessors.forEach(function(data) {
 
 ;['html', 'js'].forEach(function(type) {
   fis.match('(**.' + type + ').ejs', {
+    rExt: '.' + type,
+    release: '/$1'
+  })
+  fis.match('(**.' + type + ').jst', {
     rExt: '.' + type,
     release: '/$1'
   })
