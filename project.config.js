@@ -18,6 +18,10 @@ var project = {
     'jquery',
   ],
   lang: 'zh-CN',
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 var build = {

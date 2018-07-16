@@ -157,11 +157,7 @@ function getPluginConfig() {
     },
     'fis3-parser-lodash-template': {
       data: config,
-      options: {
-        imports: {
-          $: require('../../../src/snippets/jst')
-        }
-      }
+      options: {}
     }
   }
 }

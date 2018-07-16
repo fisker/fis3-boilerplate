@@ -3,63 +3,134 @@
 
 'use strict'
 
-const {project, env} = require('../../../../scripts/fis/lib/config.js')
-const _ = global.fis.util
+const {_, project, env} = require('./common')
+
 const script = require('./script.js')
 
-function head(page) {
-  let html = ''
+function meta(name, content) {
+  if (typeof name === 'object') {
+    let data = name
+    return '<meta ' + Object.keys(data).map(function(key) {
+      return `${_.escape(key)}="${_.escape(data[key])}"`
+    }).join(' ') + '>'
+  }
 
-  html += '<meta charset="UTF-8">'
+
+  if (name === 'robots') {
+    if (typeof content === 'object') {
+      content = Object.keys(content).map(
+        key => (content[key] ? key : `no${key}`)
+      )
+    }
+  }
+
+  if (Array.isArray(content)) {
+    content = content.join(',')
+  } else if (typeof content === 'object') {
+    content = Object.keys(content)
+      .map(function(key) {
+        return `${key}=${content[key]}`
+      })
+      .join(',')
+  }
+
+  return `<meta name="${_.escape(name)}" content="${_.escape(content)}">`
+}
+
+function head(page) {
+  let html = []
+
+  html.push(meta({
+    charset: 'UTF-8'
+  }))
 
   if (project.device != 'mobile') {
-    html += '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">'
-    html += '<meta name="renderer" content="webkit">'
+    html.push(meta({
+      'http-equiv': 'X-UA-Compatible',
+      content: 'IE=edge,chrome=1',
+    }))
+    html.push(meta('renderer', 'webkit'))
   }
 
   if (project.device != 'page') {
-    html += '<meta name="mobile-web-app-capable" content="yes">'
-    html += '<meta name="apple-touch-fullscreen" content="yes">'
-    html += '<meta name="apple-mobile-web-app-capable" content="yes">'
+    html.push(meta('mobile-web-app-capable', 'yes'))
+    html.push(meta('apple-touch-fullscreen', 'yes'))
+    html.push(meta('apple-mobile-web-app-capable', 'yes'))
   }
 
-  html += '<meta name="google" value="notranslate">'
-  html += '<meta http-equiv="Cache-Control" content="no-siteapp">'
-  html += '<meta name="robots" content="index,follow">'
+  html.push(meta({
+    name: 'google',
+    value: 'notranslate',
+  }))
+
+  html.push(meta({
+    'http-equiv': 'Cache-Control',
+    content: 'no-siteapp',
+  }))
+
+  html.push(meta('robots', page.robots || project.robots))
 
   if (project.brandColor) {
-    html += `<meta name="theme-color" content="${env.brandColor}">`
-    html += `<meta name="msapplication-navbutton-color" content="${env.brandColor}">`
+    html.push(meta('theme-color', env.brandColor))
+    html.push(meta('msapplication-navbutton-color', env.brandColor))
   }
 
-  if (project.device != 'desktop') {
-    html += '<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,shrink-to-fit=no,viewport-fit=cover">'
-  } else {
-    html += '<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">'
-  }
+  const viewport =
+    project.device != 'desktop'
+      ? {
+          width: 'device-width',
+          'initial-scale': 1,
+          'maximum-scale': 1,
+          'minimum-scale': 1,
+          'user-scalable': 'no',
+          'shrink-to-fit': 'no',
+          'viewport-fit': 'cover'
+        }
+      : {
+          width: 'device-width',
+          'initial-scale': 1,
+          'shrink-to-fit': 'no'
+        }
+
+  html.push(meta('viewport', viewport))
 
   if (project.device != 'desktop') {
-    html += '<meta name="format-detection" content="telephone=no,email=no,address=no,date=no">'
-    html += '<meta name="msapplication-tap-highlight" content="no">'
+    html.push(
+      meta('format-detection', {
+        telephone: 'no',
+        email: 'no',
+        address: 'no',
+        date: 'no'
+      })
+    )
+    html.push(meta('msapplication-tap-highlight', 'no'))
   }
 
   if (project.device != 'mobile' && project.legacyIe < 9) {
-    html += `<!--[if lt IE 9]>${script('/assets/vendors/html5shiv/3.7.3-pre/dist/html5shiv.min.js')}<![endif]-->`
+    html.push(
+      `<!--[if lt IE 9]>${script(
+        '/assets/vendors/html5shiv/3.7.3-pre/dist/html5shiv.min.js'
+      )}<![endif]-->`
+    )
   }
 
   if (project.flexibleRem) {
-    html += script('/assets/scripts/component/_rem.js?__inline')
+    html.push(script('/assets/scripts/component/_rem.js?__inline'))
   }
 
-  html += `<title>${_.escape(page.title)}</title>`
-  html += `<meta name="keywords" content="${_.escape(page.keywords)}">`
-  html += `<meta name="description" content="${_.escape(page.description)}">`
+  html.push(`<title>${_.escape(page.title)}</title>`)
+  html.push(meta('keywords', page.keywords))
+  html.push(meta('description', page.description))
 
-  html += (page.styles || []).map(function(style) {
-    return `<link href="${_.escape(style)}" rel="stylesheet">`
-  }).join('\n')
+  html = html.concat(
+    (page.styles || []).map(function(style) {
+      return `<link href="${style}" rel="stylesheet">`
+    })
+  )
 
-  return html
+  html = html.concat(script(page.scripts || []))
+
+  return html.filter(Boolean).join('\n')
 }
 
 module.exports = head

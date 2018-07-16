@@ -3,14 +3,17 @@
 
 'use strict'
 
-const {project} = require('../../../../scripts/fis/lib/config.js')
+const {
+  _,
+  project,
+} = require('./common')
 
 function renderHTMLTag(attrs) {
   attrs.class = attrs.class.filter(Boolean).join(' ')
   const attrStr = Object.keys(attrs).sort().map(function(attr) {
     let value = attrs[attr]
     if (value) {
-      return attr + '="' + value + '"'
+      return attr + '="' + _.escape(value) + '"'
     }
   }).filter(Boolean).join(' ')
   return `<html${attrStr ? ' ' + attrStr : ''}>`

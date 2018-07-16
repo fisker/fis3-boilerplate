@@ -3,11 +3,14 @@
 
 'use strict'
 
-const _ = global.fis.util
-const {project, env} = require('../../../../scripts/fis/lib/config.js')
+const {
+  _,
+  project,
+  env,
+} = require('./common')
 
 function script(src) {
-  return `<script src="${_.escape(src)}"></script>`
+  return `<script src="${src}"></script>`
 }
 
 const loader = {
@@ -45,4 +48,3 @@ function loadModule(scripts) {
 }
 
 module.exports = loadModule
-

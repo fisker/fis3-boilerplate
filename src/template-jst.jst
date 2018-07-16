@@ -1,27 +1,27 @@
 <%
-const page = {
-  title: 'title',
-  keywords: [
-    ...(project.keywords || []),
-  ],
-  description: '',
-  styles: [
-    ...(project.styles || []),
-  ],
-  scripts: [
-    './project/scripts/config.js.jst',
-    ...(project.scripts || []),
-  ]
-}
+const $ = require('./snippets/jst')
 %>
 <!DOCTYPE html>
 <%= $.htmlStartTag('') %>
   <head>
-    <%= $.head(page) %>
+    <%= $.head({
+      title: 'title',
+      keywords: [
+        ...(project.keywords || []),
+      ],
+      description: '',
+      styles: [
+        ...(project.styles || []),
+      ],
+      scripts: [
+      ],
+    }) %>
   </head>
   <body>
     <div class="container">hello <%- env.user || 'world' %>!</div>
-
-    <%= $.script(page.scripts) %>
+    <%= $.script([
+      './project/scripts/config.js.jst',
+      ...(project.scripts || []),
+    ]) %>
   </body>
 <%= $.htmlEndTag() %>

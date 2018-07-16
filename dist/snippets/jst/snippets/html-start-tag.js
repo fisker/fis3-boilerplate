@@ -3,7 +3,7 @@
 
 'use strict'
 
-const {project} = require('../../../../scripts/fis/lib/config.js')
+const {_, project} = require('./common')
 
 function renderHTMLTag(attrs) {
   attrs.class = attrs.class.filter(Boolean).join(' ')
@@ -12,7 +12,7 @@ function renderHTMLTag(attrs) {
     .map(function(attr) {
       let value = attrs[attr]
       if (value) {
-        return attr + '="' + value + '"'
+        return attr + '="' + _.escape(value) + '"'
       }
     })
     .filter(Boolean)
