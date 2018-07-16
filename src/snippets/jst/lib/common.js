@@ -11,11 +11,16 @@ function createScript(src) {
   return `<script src="${_.escape(src)}"></script>`
 }
 
+function createLink(src) {
+  return `<link href="${_.escape(src)}" rel="stylesheet">`
+}
+
 module.exports = {
   project,
   env,
   build,
   lodash,
   createScript,
+  createLink,
   _,
 }

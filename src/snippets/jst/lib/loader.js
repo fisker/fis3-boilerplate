@@ -7,6 +7,7 @@ const {
   project,
   env,
   createScript,
+  createLink,
 } = require('./common.js')
 
 const loader = {
