@@ -13,6 +13,10 @@ var project = {
   styles: [
     '/assets/styles/main.scss',
   ],
+  headScripts: [
+    'rem',
+    'html5shiv',
+  ],
   scripts: [
     'dd_belatedpng',
     'jquery',
@@ -77,6 +81,7 @@ var build = {
       'vendors/**',
     ],
     release: [
+      '**/snippets/**',
       '_**',
       '_**/**',
     ],

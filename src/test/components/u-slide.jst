@@ -1,0 +1,56 @@
+<%
+const $ = require('../../snippets/jst')
+
+const page = {
+  head: {
+    title: 'slide',
+    keywords: [
+      ...(project.keywords || []),
+    ],
+    description: '',
+    styles: [
+      ...(project.styles || []),
+    ],
+    scripts: [],
+  },
+  header: {},
+  footer: {
+    scripts: [
+      '/project/scripts/config.js.jst',
+      ...(project.scripts || []),
+    ]
+  }
+}
+%>
+<!DOCTYPE html>
+<%= $.htmlStartTag('') %>
+  <head>
+    <%= $.head(page.head) %>
+    <style type="text/x-scss">
+      @import '../../assets/styles/global';
+      @import '../../assets/styles/component/slide';
+
+      .demo {
+        padding:  15px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container demo">
+      <legend>.u-slide (css)</legend>
+
+      <div class="u-slide">
+        <ul class="u-slide__wrap">
+          <li class="u-slide__item"><a href="###"><img src="http://placehold.it/800x400"></a></li>
+          <li class="u-slide__item"><a href="###">123</a></li>
+          <li class="u-slide__item"><a href="###"><img src="http://placehold.it/800x400"></a></li>
+          <li class="u-slide__item"><a href="###">123</a></li>
+          <li class="u-slide__item"><a href="###"><img src="http://placehold.it/800x400"></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <%= $.footer(page.footer) %>
+  </body>
+<%= $.htmlEndTag() %>

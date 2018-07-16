@@ -1,0 +1,9 @@
+<%
+const $ = require('../')
+const page = require('./page.js')
+%>
+<div class="container">
+  <p>hello <%- env.user || 'world' %>!</p>
+  <hr>
+  <address>fis3@<%- global.fis.version%> node@<%- process.version%></address>
+</div>

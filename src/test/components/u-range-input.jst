@@ -1,0 +1,73 @@
+<%
+const $ = require('../../snippets/jst')
+
+const page = {
+  head: {
+    title: 'range-input',
+    keywords: [
+      ...(project.keywords || []),
+    ],
+    description: '',
+    styles: [
+      ...(project.styles || []),
+    ],
+    scripts: [],
+  },
+  header: {},
+  footer: {
+    scripts: [
+      '/project/scripts/config.js.jst',
+      ...(project.scripts || []),
+      '../../assets/scripts/component/_range-input.js?__inline',
+    ]
+  }
+}
+%>
+<!DOCTYPE html>
+<%= $.htmlStartTag('') %>
+  <head>
+    <%= $.head(page.head) %>
+    <style type="text/x-scss">
+      @import '../../assets/styles/global';
+      @import '../../assets/styles/component/range-input';
+
+      .demo {
+        padding:  15px;
+      }
+
+      .u-range-input {
+        color:  darkslateblue;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container demo">
+      <legend>.u-range-input (css、js)</legend>
+      <label class="u-range-input">
+        <input class="u-range-input__input" type="range" min="0" max="10" step="1" value="5">
+      </label>
+      <label class="u-range-input">
+        <input class="u-range-input__input" type="range" min="0" max="10" step="1" value="5" disabled>
+      </label>
+      <label class="u-range-input">
+        <input class="u-range-input__input" type="range" min="0" max="10" step="1" value="5" readonly>
+      </label>
+    </div>
+
+    <div class="container demo">
+      <legend>.u-range-input (css、js)</legend>
+      <label class="u-range-input">
+        <input class="u-range-input__input" orient="vertical" type="range" min="0" max="10" step="1" value="5">
+      </label>
+      <label class="u-range-input">
+        <input class="u-range-input__input" orient="vertical" type="range" min="0" max="10" step="1" value="5" disabled>
+      </label>
+      <label class="u-range-input">
+        <input class="u-range-input__input" orient="vertical" type="range" min="0" max="10" step="1" value="5" readonly>
+      </label>
+    </div>
+
+    <%= $.footer(page.footer) %>
+  </body>
+<%= $.htmlEndTag() %>

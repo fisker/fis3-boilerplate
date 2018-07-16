@@ -1,0 +1,60 @@
+<%
+const $ = require('../../snippets/jst')
+
+const page = {
+  head: {
+    title: 'btn',
+    keywords: [
+      ...(project.keywords || []),
+    ],
+    description: '',
+    styles: [
+      ...(project.styles || []),
+    ],
+    scripts: [],
+  },
+  header: {},
+  footer: {
+    scripts: [
+      '/project/scripts/config.js.jst',
+      ...(project.scripts || []),
+    ]
+  }
+}
+%>
+<!DOCTYPE html>
+<%= $.htmlStartTag('') %>
+  <head>
+    <%= $.head(page.head) %>
+    <style type="text/x-scss">
+
+      .demo {
+        padding:  15px;
+
+        button {
+          margin: 5px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container demo">
+      <legend>.u-btn (css、js)</legend>
+      <div>
+        <button class="btn" type="button">.btn</button>
+        <button class="btn btn--primary" type="button">.btn.btn--primary</button>
+        <button class="btn btn--primary" type="button" disabled>.btn.btn--primary[disabled]</button>
+        <button class="btn btn--ghost" type="button">.btn.btn--ghost</button>
+        <button class="btn btn--ghost btn--primary" type="button">.btn.btn--ghost.btn--primary</button>
+        <button class="btn btn--ghost btn--primary" type="button" disabled>.btn.btn--ghost.btn--primary[disabled]</button>
+        <button class="btn btn--rounded" type="button">.btn.btn--primary.btn--rounded</button>
+        <button class="btn btn--pill" type="button">.btn.btn--primary.btn--pill</button>
+        <button class="btn btn--lg" type="button">.btn--lg</button>
+        <button class="btn btn--sm" type="button">.btn--sm</button>
+      </div>
+    </div>
+
+    <%= $.footer(page.footer) %>
+  </body>
+<%= $.htmlEndTag() %>

@@ -1,9 +1,9 @@
 <%
-const $ = require('./snippets/jst')
+const $ = require('../../snippets/jst')
 
 const page = {
   head: {
-    title: 'title',
+    title: 'loading',
     keywords: [
       ...(project.keywords || []),
     ],
@@ -11,9 +11,7 @@ const page = {
     styles: [
       ...(project.styles || []),
     ],
-    scripts: [
-      ...(project.headScripts || [])
-    ],
+    scripts: [],
   },
   header: {},
   footer: {
@@ -28,14 +26,19 @@ const page = {
 <%= $.htmlStartTag('') %>
   <head>
     <%= $.head(page.head) %>
+    <style type="text/x-scss">
+      @import '../../assets/styles/global';
+      @import '../../assets/styles/component/switch';
+
+      .demo {
+        padding:  15px;
+      }
+    </style>
   </head>
   <body>
-    <link rel="import" href="snippets/jst/snippets/header.jst?__inline">
-    <%= $.header(page.header) %>
-    <div class="container">
-      <p>hello <%- env.user || 'world' %>!</p>
-      <hr>
-      <address>fis3@<%- global.fis.version%> node@<%- process.version%></address>
+
+    <div class="container demo">
+      <legend>.u-loading (css)</legend>
     </div>
 
     <%= $.footer(page.footer) %>

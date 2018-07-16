@@ -1,0 +1,63 @@
+<%
+const $ = require('../../snippets/jst')
+
+const page = {
+  head: {
+    title: 'file',
+    keywords: [
+      ...(project.keywords || []),
+    ],
+    description: '',
+    styles: [
+      ...(project.styles || []),
+    ],
+    scripts: [],
+  },
+  header: {},
+  footer: {
+    scripts: [
+      '/project/scripts/config.js.jst',
+      ...(project.scripts || []),
+    ]
+  }
+}
+%>
+<!DOCTYPE html>
+<%= $.htmlStartTag('') %>
+  <head>
+    <%= $.head(page.head) %>
+    <style type="text/x-scss">
+      @import '../../assets/styles/global';
+      @import '../../assets/styles/component/file';
+
+      .demo {
+        padding:  15px;
+      }
+
+      .u-file {
+        display:  block;
+        width:  100px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container demo">
+      <legend>.u-file (css)</legend>
+      <label class="u-file u-file_button">
+        <span class="u-file__input-wrap">
+          <input class="u-file__input" type="file" accept="image/*">
+        </span>
+        选择文件
+      </label>
+      <label class="u-file">
+        <span class="u-file__input-wrap">
+          <input class="u-file__input" type="file" accept="image/*">
+        </span>
+        选择文件
+      </label>
+    </div>
+
+    <%= $.footer(page.footer) %>
+  </body>
+<%= $.htmlEndTag() %>

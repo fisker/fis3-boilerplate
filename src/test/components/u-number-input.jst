@@ -1,0 +1,50 @@
+<%
+const $ = require('../../snippets/jst')
+
+const page = {
+  head: {
+    title: 'number input',
+    keywords: [
+      ...(project.keywords || []),
+    ],
+    description: '',
+    styles: [
+      ...(project.styles || []),
+    ],
+    scripts: [],
+  },
+  header: {},
+  footer: {
+    scripts: [
+      '/project/scripts/config.js.jst',
+      ...(project.scripts || []),
+      '../../assets/scripts/component/_number-input.js?__inline',
+    ]
+  }
+}
+%>
+<!DOCTYPE html>
+<%= $.htmlStartTag('') %>
+  <head>
+    <%= $.head(page.head) %>
+    <style type="text/x-scss">
+      @import '../../assets/styles/global';
+      @import '../../assets/styles/component/number-input';
+
+      .demo {
+        padding:  15px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container demo">
+      <legend>.u-number-input (css、js)</legend>
+      <label class="u-number-input">
+        <input class="u-number-input__input" type="number" min="1" max="10" step="1" pattern="\d*">
+      </label>
+    </div>
+
+    <%= $.footer(page.footer) %>
+  </body>
+<%= $.htmlEndTag() %>

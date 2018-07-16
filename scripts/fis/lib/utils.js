@@ -88,6 +88,12 @@ function parsePlugin(pluginName) {
   )
 }
 
+var htmlLikeExt = ['html']
+
+function setHtmlLikeExt(arr) {
+  htmlLikeExt = htmlLikeExt.concat(arr || {})
+}
+
 function getExtsReg(ext, inline) {
   var exts = []
   var prefix = ''
@@ -100,11 +106,11 @@ function getExtsReg(ext, inline) {
   }
   exts = exts.length === 1 ? exts : '{' + exts.join(',') + '}'
   if (inline === true) {
-    prefix = '*.html:'
+    prefix = '*.{' + htmlLikeExt.join(',') + '}:'
   } else if (inline === false) {
     prefix = '*.'
   } else {
-    prefix = '{*.html:,*.}'
+    prefix = '{*.{' + htmlLikeExt.join(',') + '}:,*.}'
   }
   return prefix + exts
 }
@@ -118,4 +124,5 @@ module.exports = {
   getPluginOptions: getPluginOptions,
   parsePlugin: parsePlugin,
   getExtsReg: getExtsReg,
+  setHtmlLikeExt: setHtmlLikeExt,
 }

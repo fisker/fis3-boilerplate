@@ -57,6 +57,8 @@ var preProcessors = [
   }
 ]
 
+utils.setHtmlLikeExt(preProcessors.filter(config => config.type === 'html').map(config => config.ext))
+
 var standardProcessors = [
   {
     type: 'css',
@@ -156,6 +158,7 @@ preProcessors.forEach(function(data) {
       processor[pluginType] = utils.getPlugin(data[pluginType])
     }
   })
+
   fis.match(utils.getExtsReg(exts), processor)
 })
 
@@ -185,6 +188,7 @@ standardProcessors.forEach(function(data) {
 
   fis.match(utils.getExtsReg(data.type), processor)
 })
+
 ;['optimizer', 'lint', 'postprocessor'].forEach(function(type) {
   ;(config.build.ignore[type] || []).forEach(function(reg) {
     var settings = {}
@@ -231,6 +235,16 @@ fis.match(
     relative: '/'
   }
 )
+
+// snippets should not release
+fis.match(
+  '**/snippets/**',
+  {
+    release: '/.temp/$0',
+    relative: '/'
+  }
+)
+
 
 // _*.html should not lint
 // _*.js should not lint

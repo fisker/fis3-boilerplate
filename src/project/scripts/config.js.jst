@@ -1,7 +1,7 @@
 <%
 const config = {
   // ...locals,
-  debug: env.production,
+  debug: env.debug || !env.production,
   // dependencies: package.dependencies
 }
 %>
