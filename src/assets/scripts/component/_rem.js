@@ -1,20 +1,30 @@
-(function(win, docEl) {
-  'use strict';
-  var timer;
+/* globals window: true, document: true */
+;(function(win, root) {
+  'use strict'
+  var timer
+  var clearTimeout = win.clearTimeout
+  var setTimeout = win.setTimeout
+
   function calcRem() {
-    docEl.style.fontSize = Math.min(docEl.getBoundingClientRect().width, 640) / 320 * 16 + 'px';
+    root.style.fontSize =
+      (Math.min(root.getBoundingClientRect().width, 640) / 320) * 16 + 'px'
   }
+
   function delay() {
     if (timer) {
-      win.clearTimeout(timer);
+      clearTimeout(timer)
     }
-    timer = win.setTimeout(calcRem, 300);
+    timer = setTimeout(calcRem, 300)
   }
-  calcRem();
-  win.addEventListener('resize', delay, false);
-  win.addEventListener('pageshow', function(e) {
-    if (e.persisted) {
-      delay();
-    }
-  }, false);
-})(window, document.documentElement);
+  calcRem()
+  win.addEventListener('resize', delay, false)
+  win.addEventListener(
+    'pageshow',
+    function(e) {
+      if (e.persisted) {
+        delay()
+      }
+    },
+    false
+  )
+})(window, document.documentElement)
