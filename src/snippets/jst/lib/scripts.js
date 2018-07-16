@@ -8,7 +8,7 @@ const {
   createScript,
 } = require('./common.js')
 
-const loader = require('./script-loader.js')
+const loader = require('./loader.js')
 
 function loadScripts(scripts) {
   scripts = Array.isArray(scripts) ? scripts : [scripts]

@@ -12,7 +12,9 @@ const {
 const loader = {
   dd_belatedpng: function() {
     if (project.device != 'mobile' && project.legacyIe <= 6) {
-      return `<!--[if IE 6]>${createScript('/assets/vendors/dd_belatedpng/0.0.8a/dist/DD_belatedPNG_0.0.8a.min.js')}<script>DD_belatedPNG.fix('*')</script><![endif]-->`
+      const file = env.production ? 'DD_belatedPNG_0.0.8a.min.js' : 'DD_belatedPNG_0.0.8a.js'
+      const src = `/assets/vendors/dd_belatedpng/0.0.8a/dist/${file}`
+      return `<!--[if IE 6]>${createScript(src)}<script>DD_belatedPNG.fix('*')</script><![endif]-->`
     }
   },
   jquery: function() {
@@ -35,7 +37,9 @@ const loader = {
   },
   html5shiv: function() {
     if (project.device != 'mobile' && project.legacyIe < 9) {
-      return `<!--[if lt IE 9]>${createScript('/assets/vendors/html5shiv/3.7.3-pre/dist/html5shiv.min.js')}<![endif]-->`
+      const file = env.production ? 'html5shiv.min.js' : 'html5shiv.js'
+      const src = `/assets/vendors/html5shiv/3.7.3-pre/dist/${file}`
+      return `<!--[if lt IE 9]>${createScript(src)}<![endif]-->`
     }
   },
   rem: function() {
