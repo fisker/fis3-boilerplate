@@ -11,7 +11,8 @@ ARCHIVE_FOLDER="archive"
 ARCHIVE_FILETYPE="zip" # zip,tar.gz  ; tar.gz do NOT support chinese filename
 LOG_FILE="release.log"
 TEMP_RESOURCE_FOLDER=".temp"
-export NODE_PATH=`npm -g root`
+ENV_PATH_SEP=`node -e "console.log(process.platform === 'win32' ? ';' : ':')"`
+export NODE_PATH=$NODE_PATH$ENV_PATH_SEP`npm -g root`
 
 function main() {
   clear
