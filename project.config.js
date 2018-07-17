@@ -18,6 +18,7 @@ var project = {
     'html5shiv',
   ],
   scripts: [
+    '/project/scripts/config.js.jst',
     'dd_belatedpng',
     'jquery',
   ],

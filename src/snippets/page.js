@@ -5,22 +5,21 @@
 
 const {
   project,
-} = require('../lib/common.js')
+} = require('./lib/common.js')
 
 const page = {
   head: {
     styles: [
-      ...(project.styles || []),
+      ...project.styles,
     ],
     scripts: [
-      ...(project.headScripts || []),
+      ...project.headScripts,
     ],
   },
   header: {},
   footer: {
     scripts: [
-      '/project/scripts/config.js.jst',
-      ...(project.scripts || []),
+      ...project.scripts,
     ]
   }
 }

@@ -3,7 +3,7 @@
 
 'use strict'
 
-const {project, env, build} = require('../../../../scripts/fis/lib/config.js')
+const {project, env, build} = require('../../../scripts/fis/lib/config.js')
 const {lodash} = global.fis.require('parser', 'lodash-template')
 const _ = lodash
 

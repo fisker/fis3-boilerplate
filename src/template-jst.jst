@@ -1,25 +1,24 @@
 <%
-const $ = require('./snippets/jst')
+const $ = require('./snippets')
 
 const page = {
   head: {
     title: 'title',
     keywords: [
-      ...(project.keywords || []),
+      ...project.keywords,
     ],
     description: '',
     styles: [
-      ...(project.styles || []),
+      ...project.styles,
     ],
     scripts: [
-      ...(project.headScripts || [])
+      ...project.headScripts
     ],
   },
   header: {},
   footer: {
     scripts: [
-      '/project/scripts/config.js.jst',
-      ...(project.scripts || []),
+      ...project.scripts,
     ]
   }
 }
@@ -30,7 +29,7 @@ const page = {
     <%= $.head(page.head) %>
   </head>
   <body>
-    <link rel="import" href="snippets/jst/snippets/header.jst?__inline">
+    <link rel="import" href="snippets/html/header.jst?__inline">
     <%= $.header(page.header) %>
     <div class="container">
       <p>hello <%- env.user || 'world' %>!</p>

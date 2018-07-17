@@ -19,6 +19,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,shrink-to-fit=no,viewport-fit=cover">
   <meta name="format-detection" content="telephone=no,email=no,address=no,date=no">
   <meta name="msapplication-tap-highlight" content="no">
+  <!--[if lt IE 9]><script src="../../assets/vendors/html5shiv/3.7.3-pre/dist/html5shiv.min.js"></script><![endif]-->
   <title>tab panel</title>
   <meta name="keywords" content="">
   <meta name="description" content="">
@@ -101,27 +102,31 @@
   <!--[if lt IE 9]><script src="../../assets/vendors/jquery/1.12.4/dist/jquery.min.js"></script><![endif]-->
   <!--[if gte IE 9]><!--><script src="../../assets/vendors/jquery/2.2.4/dist/jquery.min.js"></script>
   <!--<![endif]-->
-  <script>var TAB_PANEL_SELECTOR = '.u-tab-panel'
-var TAB_PANEL_CURRENT_CLASS = 'u-tab-panel__tab_current'
-var TAB_PANEL_TAB_SELECTOR = '.u-tab-panel__tab'
+  <script>function initRangeInput() {
+  var container = $(this).addClass('u-range-input_inited')
 
-function initTabPanel() {
-  var container = $(this)
-  container.on('click', TAB_PANEL_TAB_SELECTOR, function() {
-    $(this)
-      .addClass(TAB_PANEL_CURRENT_CLASS)
-      .siblings()
-      .removeClass(TAB_PANEL_CURRENT_CLASS)
-  })
-  var tabs = $(TAB_PANEL_TAB_SELECTOR, this)
-  var initialTab = tabs.filter('.' + TAB_PANEL_CURRENT_CLASS)
-  if (!initialTab.length) {
-    tabs.eq(0).addClass(TAB_PANEL_CURRENT_CLASS)
+  if (window.navigator.userAgent.indexOf('AppleWebKit') === -1) {
+    return
   }
+  var input = $('input', container[0])
+  var track = $('<span class="u-range-input__track">').appendTo(container)
+  var indicate = $(
+    '<span class="u-range-input__indicate" style="width: 0">'
+  ).appendTo(track)
+  var min = +input.attr('min') || 0
+  var max = +input.attr('max') || 1
+  input
+    .on('input', function() {
+      var percentage = ((min + input.val()) / (max - min)) * 100
+      indicate.css({
+        width: percentage + '%'
+      })
+    })
+    .trigger('input')
 }
 
 $(function() {
-  $(TAB_PANEL_SELECTOR).each(initTabPanel)
+  $('.u-range-input').each(initRangeInput)
 })
 </script>
 </body>

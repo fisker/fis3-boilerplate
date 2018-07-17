@@ -10,6 +10,11 @@ const {
   createLink,
 } = require('./common.js')
 
+function loadNodeModules(mod) {
+  console.log(require.resolve(mod))
+}
+
+
 const loader = {
   dd_belatedpng: function() {
     if (project.device != 'mobile' && project.legacyIe <= 6) {

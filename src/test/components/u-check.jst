@@ -1,23 +1,24 @@
 <%
-const $ = require('../../snippets/jst')
+const $ = require('../../snippets')
 
 const page = {
   head: {
     title: 'btn',
     keywords: [
-      ...(project.keywords || []),
+      ...project.keywords,
     ],
     description: '',
     styles: [
-      ...(project.styles || []),
+      ...project.styles,
     ],
-    scripts: [],
+    scripts: [
+      ...project.headScripts
+    ],
   },
   header: {},
   footer: {
     scripts: [
-      '/project/scripts/config.js.jst',
-      ...(project.scripts || []),
+      ...project.scripts,
     ]
   }
 }

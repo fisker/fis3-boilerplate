@@ -11,6 +11,7 @@ ARCHIVE_FOLDER="archive"
 ARCHIVE_FILETYPE="zip" # zip,tar.gz  ; tar.gz do NOT support chinese filename
 LOG_FILE="release.log"
 TEMP_RESOURCE_FOLDER=".temp"
+export NODE_PATH=`npm -g root`
 
 function main() {
   clear
@@ -47,7 +48,7 @@ function main() {
 }
 
 function release() {
-  NODE_ENV="production"
+  export NODE_ENV="production"
   clear
 
   # remove release file and log file
@@ -108,6 +109,7 @@ function archive() {
 
 #debug
 function debug() {
+  export NODE_ENV="development"
   clear
 
   # stop server
