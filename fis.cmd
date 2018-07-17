@@ -1,3 +1,3 @@
 @echo OFF
 
-start ./fis.sh
+bash ./fis.sh
