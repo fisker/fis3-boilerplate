@@ -110,10 +110,15 @@ if (config.build.ignore.global) {
   fis.set('project.ignore', config.build.ignore.global)
 }
 
+// release ignored file
 config.build.ignore.release.forEach(function(glob) {
   fis.match(glob, {
-    release: false
+    release: '/.temp/$0',
+    relative: '/'
   })
+})
+fis.match('_**.{scss,sass}', {
+  release: false
 })
 
 
@@ -207,34 +212,6 @@ standardProcessors.forEach(function(data) {
     release: '/$1'
   })
 })
-
-// standrad files should release
-// for inline include
-fis.match(
-  '_' +
-    utils.getExtsReg(
-      [
-        'png',
-        'jpg',
-        'gif',
-        'css',
-        'js',
-        'html',
-        'pug',
-        'es6',
-        'es',
-        'ts',
-        'tsx',
-        'svg',
-        'map',
-      ],
-      false
-    ),
-  {
-    release: '/.temp/$0',
-    relative: '/'
-  }
-)
 
 // snippets should not release
 fis.match(
