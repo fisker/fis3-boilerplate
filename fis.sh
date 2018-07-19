@@ -12,7 +12,10 @@ ARCHIVE_FILETYPE="zip" # zip,tar.gz  ; tar.gz do NOT support chinese filename
 LOG_FILE=`node -e "console.log(require('./project.config.js').build.log)"`
 TEMP_RESOURCE_FOLDER=`node -e "console.log(require('./project.config.js').build.temp)"`
 PLATFORM=`node -e "console.log(process.platform)"`
-ENV_PATH_SEP=`node -e "console.log(process.platform === 'win32' ? ';' : ':')"`
+ENV_PATH_SEP=":"
+if [ "$PLATFORM" = "win32" ]; then
+  ENV_PATH_SEP=";"
+fi
 PROJECT_NAME=`node -e "console.log(require('./project.config.js').project.name)"`
 PWD=`pwd`
 
@@ -45,10 +48,14 @@ function main() {
   read -t 5 -n1 -p "Please choose an option:" choice
   case "$choice" in
     2)
+      export NODE_ENV="production"
+      clear
       release
       end
       ;;
     3)
+      export NODE_ENV="production"
+      clear
       release
       archive
       end
@@ -57,6 +64,8 @@ function main() {
       quit
       ;;
     *)
+      export NODE_ENV="development"
+      clear
       debug
       pause
       ;;
@@ -64,9 +73,6 @@ function main() {
 }
 
 function release() {
-  export NODE_ENV="production"
-  clear
-
   # remove release file and log file
   if [ -d "./$DIST_FOLDER" ]; then
     rm -r "./$DIST_FOLDER"
@@ -111,7 +117,7 @@ function archive() {
   fi
 
   if [ "$PLATFORM" = "win32" ]; then
-    explorer "./$DIST_FOLDER"
+    explorer "$ARCHIVE_FOLDER"
   fi
 
   echo "..........................................................................done."
@@ -119,9 +125,6 @@ function archive() {
 
 #debug
 function debug() {
-  export NODE_ENV="development"
-  clear
-
   # stop server
   echo "..............................................................................."
   echo "stop server"
@@ -168,7 +171,7 @@ function error() {
 
 function end() {
   echo "exit in 5 seconds"
-  sleep 5
+  sleep 115
   exit
 }
 
