@@ -82,7 +82,8 @@ var build = {
       'vendors/**',
     ],
     release: [
-      '**/snippets/**',
+      'normalize.css/**',
+      'snippets/**',
       '_**',
       '_**/**',
     ],
