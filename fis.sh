@@ -9,9 +9,14 @@ SERVER_CONFIG="bs-config.js"
 DIST_FOLDER="dist"
 ARCHIVE_FOLDER="archive"
 ARCHIVE_FILETYPE="zip" # zip,tar.gz  ; tar.gz do NOT support chinese filename
-LOG_FILE="release.log"
-TEMP_RESOURCE_FOLDER=".temp"
+LOG_FILE=`node -e "console.log(require('./project.config.js').build.log)"`
+TEMP_RESOURCE_FOLDER=`node -e "console.log(require('./project.config.js').build.temp)"`
+PLATFORM=`node -e "console.log(process.platform)"`
 ENV_PATH_SEP=`node -e "console.log(process.platform === 'win32' ? ';' : ':')"`
+PROJECT_NAME=`node -e "console.log(require('./project.config.js').project.name)"`
+PWD=`pwd`
+
+# env
 export NODE_PATH=$NODE_PATH$ENV_PATH_SEP`npm -g root`
 
 function main() {
@@ -26,7 +31,6 @@ function main() {
   echo "==============================================================================="
   echo ""
   echo ""
-  echo ""
   echo "                  1. debug (default)"
   echo ""
   echo "                  2. distribute"
@@ -36,15 +40,26 @@ function main() {
   echo "                  Q. quit"
   echo ""
   echo ""
-  echo ""
 
   # chose operation
   read -t 5 -n1 -p "Please choose an option:" choice
   case "$choice" in
-    2) release;;
-    3) release;;
-    q|Q) quit;;
-    *) debug;;
+    2)
+      release
+      end
+      ;;
+    3)
+      release
+      archive
+      end
+      ;;
+    q|Q)
+      quit
+      ;;
+    *)
+      debug
+      pause
+      ;;
   esac
 }
 
@@ -71,12 +86,6 @@ function release() {
 
   echo "..........................................................................done."
   echo ""
-
-  if [ "$choice" = "3" ]; then
-    archive
-  fi
-
-  end
 }
 
 # archive
@@ -90,8 +99,7 @@ function archive() {
 
   # set distribute file name
   DATE=`date "+%y%m%d-%H%M%S"`
-  FOLDER=`basename ~+`
-  DIST_FILENAME="$FOLDER.$DATE"
+  DIST_FILENAME="$PROJECT_NAME.$DATE"
 
   # archive files to distribute folder
   echo "..............................................................................."
@@ -102,10 +110,11 @@ function archive() {
     winzip zip "./$DIST_FOLDER" "./$ARCHIVE_FOLDER/$DIST_FILENAME" || pause
   fi
 
-  echo "..........................................................................done."
-  echo.
+  if [ "$PLATFORM" = "win32" ]; then
+    explorer "./$DIST_FOLDER"
+  fi
 
-  end
+  echo "..........................................................................done."
 }
 
 #debug
@@ -140,7 +149,6 @@ function debug() {
   echo "..............................................................................."
   echo "watching files"
   fis3 release $NODE_ENV --root "./$SOURCE_FOLDER" --file "./$CONFIG_FILE" --clean --verbose --watch
-  pause
 }
 
 function pause() {

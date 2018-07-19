@@ -30,6 +30,8 @@ var project = {
 }
 
 var build = {
+  log: 'build.log',
+  temp: '.temp',
   sourceMap: false,
   lint: {
     html: true, // html 代码检查
