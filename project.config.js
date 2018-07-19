@@ -85,7 +85,6 @@ var build = {
       'normalize.css/**',
       'snippets/**',
       '_**',
-      '_**/**',
     ],
     lint: [
       '*{.,_,-}min.**',
