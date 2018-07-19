@@ -4,7 +4,7 @@
 'use strict'
 
 var project = {
-  name: 'xwtec-project',
+  name: projectName(),
   author: 'xwtec',
   device: 'multi-device', // [multi-device, mobile, desktop]
   legacyIe: 6, // IE 支持最低版本, 仅非 'mobile' 生效
@@ -101,6 +101,15 @@ var build = {
   minifyInlineScript: [
     'assets/scripts/component/_rem.js',
   ],
+}
+
+function projectName() {
+  let projectName
+  try {
+    projectName = require('./package.json').name
+  } catch (err) {}
+
+  return projectName || __dirname.split(/[\\/]/).pop()
 }
 
 module.exports = {
