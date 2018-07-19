@@ -134,7 +134,8 @@ function getPluginConfig() {
       max_preserve_newlines: 0, // Maximum number of line breaks to be preserved in one chunk (0 disables)
       preserve_newlines: true, // Whether existing line breaks before elements should be preserved (only works before elements, not inside tags or for text)
       unformatted: [
-        'script'
+        'script',
+        'style',
         // 'a', 'span', 'img', 'code', 'pre', 'sub', 'sup', 'em', 'strong', 'b', 'i', 'u',
         // 'strike', 'big', 'small', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'script', 'style'
       ], // List of tags that should not be reformatted

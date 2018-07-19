@@ -25,116 +25,115 @@
   <meta name="description" content="">
   <link href="../../assets/styles/main.css" rel="stylesheet">
   <style type="text/css">
-    .u-switch .u-indicator {
-      display: block;
-      width: 3em;
-      height: 1.5em;
-      background: currentcolor;
-      -webkit-border-radius: 25% / 50%;
-      border-radius: 25% / 50%;
-      border: 1px solid;
-      -webkit-box-sizing: content-box;
-      -moz-box-sizing: content-box;
-      box-sizing: content-box;
-      color: #545454\9;
-      background: #545454\9;
-      line-height: 1;
-      -webkit-filter: grayscale(100%);
-      filter: grayscale(100%);
-      -webkit-transition: all 0.2s ease-in-out;
-      transition: all 0.2s ease-in-out;
-    }
+.u-switch .u-indicator {
+  display: block;
+  width: 3em;
+  height: 1.5em;
+  background: currentcolor;
+  -webkit-border-radius: 25% / 50%;
+  border-radius: 25% / 50%;
+  border: 1px solid;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  color: #545454\9;
+  background: #545454\9;
+  line-height: 1;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
 
-    .u-switch .u-indicator:before,
-    .u-switch .u-indicator:after {
-      content: "";
-      display: inline-block;
-      *display: inline;
-      *zoom: 1;
-      background: #fff;
-      -webkit-border-radius: 50%;
-      border-radius: 50%;
-      width: 1.5em;
-      height: 1.5em;
-      -webkit-transition: inherit;
-      transition: inherit;
-    }
+.u-switch .u-indicator:before,
+.u-switch .u-indicator:after {
+  content: "";
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  background: #fff;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+  -webkit-transition: inherit;
+  transition: inherit;
+}
 
-    .u-switch .u-indicator:before {
-      -webkit-transform: translateX(0) scale(1);
-      -ms-transform: translateX(0) scale(1);
-      transform: translateX(0) scale(1);
-    }
+.u-switch .u-indicator:before {
+  -webkit-transform: translateX(0) scale(1);
+  -ms-transform: translateX(0) scale(1);
+  transform: translateX(0) scale(1);
+}
 
-    .u-switch .u-indicator:after {
-      -webkit-transform: translateX(-100%) scale(0);
-      -ms-transform: translateX(-100%) scale(0);
-      transform: translateX(-100%) scale(0);
-      visibility: hidden\9;
-    }
+.u-switch .u-indicator:after {
+  -webkit-transform: translateX(-100%) scale(0);
+  -ms-transform: translateX(-100%) scale(0);
+  transform: translateX(-100%) scale(0);
+  visibility: hidden\9;
+}
 
-    .u-switch input[type="checkbox"] {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      border: 0;
-    }
+.u-switch input[type="checkbox"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
 
-    .u-switch input[type="checkbox"]:checked+.u-indicator {
-      -webkit-filter: grayscale(0);
-      filter: grayscale(0);
-      color: inherit\9;
-      background: #373a3c\9;
-      background: currentcolor\9;
-      *border-color: #373a3c;
-    }
+.u-switch input[type="checkbox"]:checked + .u-indicator {
+  -webkit-filter: grayscale(0);
+  filter: grayscale(0);
+  color: inherit\9;
+  background: #373a3c\9;
+  background: currentcolor\9;
+  *border-color: #373a3c;
+}
 
-    .u-switch input[type="checkbox"]:checked+.u-indicator:before {
-      -webkit-transform: translateX(100%) scale(0);
-      -ms-transform: translateX(100%) scale(0);
-      transform: translateX(100%) scale(0);
-      visibility: hidden\9;
-    }
+.u-switch input[type="checkbox"]:checked + .u-indicator:before {
+  -webkit-transform: translateX(100%) scale(0);
+  -ms-transform: translateX(100%) scale(0);
+  transform: translateX(100%) scale(0);
+  visibility: hidden\9;
+}
 
-    .u-switch input[type="checkbox"]:checked+.u-indicator:after {
-      -webkit-transform: translateX(0) scale(1);
-      -ms-transform: translateX(0) scale(1);
-      transform: translateX(0) scale(1);
-      visibility: visible\9;
-    }
+.u-switch input[type="checkbox"]:checked + .u-indicator:after {
+  -webkit-transform: translateX(0) scale(1);
+  -ms-transform: translateX(0) scale(1);
+  transform: translateX(0) scale(1);
+  visibility: visible\9;
+}
 
-    .u-switch input[type="checkbox"].pseudo-checked+.u-indicator {
-      -webkit-filter: grayscale(0);
-      filter: grayscale(0);
-      color: inherit\9;
-      background: #373a3c\9;
-      background: currentcolor\9;
-      *border-color: #373a3c;
-    }
+.u-switch input[type="checkbox"].pseudo-checked + .u-indicator {
+  -webkit-filter: grayscale(0);
+  filter: grayscale(0);
+  color: inherit\9;
+  background: #373a3c\9;
+  background: currentcolor\9;
+  *border-color: #373a3c;
+}
 
-    .u-switch input[type="checkbox"].pseudo-checked+.u-indicator:before {
-      -webkit-transform: translateX(100%) scale(0);
-      -ms-transform: translateX(100%) scale(0);
-      transform: translateX(100%) scale(0);
-      visibility: hidden\9;
-    }
+.u-switch input[type="checkbox"].pseudo-checked + .u-indicator:before {
+  -webkit-transform: translateX(100%) scale(0);
+  -ms-transform: translateX(100%) scale(0);
+  transform: translateX(100%) scale(0);
+  visibility: hidden\9;
+}
 
-    .u-switch input[type="checkbox"].pseudo-checked+.u-indicator:after {
-      -webkit-transform: translateX(0) scale(1);
-      -ms-transform: translateX(0) scale(1);
-      transform: translateX(0) scale(1);
-      visibility: visible\9;
-    }
+.u-switch input[type="checkbox"].pseudo-checked + .u-indicator:after {
+  -webkit-transform: translateX(0) scale(1);
+  -ms-transform: translateX(0) scale(1);
+  transform: translateX(0) scale(1);
+  visibility: visible\9;
+}
 
-    .demo {
-      padding: 15px;
-    }
-
-  </style>
+.demo {
+  padding: 15px;
+}
+</style>
 </head>
 <body>
   <div class="container demo">

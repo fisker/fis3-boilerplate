@@ -25,139 +25,138 @@
   <meta name="description" content="">
   <link href="../../assets/styles/main.css" rel="stylesheet">
   <style type="text/css">
-    .u-spinner {
-      display: inline-block;
-      *display: inline;
-      *zoom: 1;
-      height: 1em;
-      width: 1em;
-    }
+.u-spinner {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  height: 1em;
+  width: 1em;
+}
 
-    .u-spinner,
-    .u-spinner__svg,
-    .u-spinner__circle {
-      -webkit-animation-iteration-count: infinite;
-      animation-iteration-count: infinite;
-    }
+.u-spinner,
+.u-spinner__svg,
+.u-spinner__circle {
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
 
-    .u-spinner__svg {
-      display: block;
-      height: 100%;
-      width: 100%;
-      -webkit-animation-name: rotate;
-      animation-name: rotate;
-      -webkit-animation-timing-function: linear;
-      animation-timing-function: linear;
-      -webkit-animation-duration: 1568.23529412ms;
-      animation-duration: 1568.23529412ms;
-    }
+.u-spinner__svg {
+  display: block;
+  height: 100%;
+  width: 100%;
+  -webkit-animation-name: rotate;
+  animation-name: rotate;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-duration: 1568.23529412ms;
+  animation-duration: 1568.23529412ms;
+}
 
-    @-webkit-keyframes rotate {
-      100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
-      }
-    }
+@-webkit-keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
 
-    @keyframes rotate {
-      100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
-      }
-    }
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
 
-    .u-spinner__circle {
-      fill: none;
-      stroke: currentcolor;
-      height: 100%;
-      width: 100%;
-      stroke-dasharray: 32.39767369;
-      stroke-dashoffset: 32.39767369;
-      stroke-linecap: round;
-      stroke-width: 2.25;
-      stroke-miterlimit: 10;
-      -webkit-animation-name: fillunfill;
-      animation-name: fillunfill;
-      -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-      animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-      -webkit-animation-duration: 1333ms;
-      animation-duration: 1333ms;
-    }
+.u-spinner__circle {
+  fill: none;
+  stroke: currentcolor;
+  height: 100%;
+  width: 100%;
+  stroke-dasharray: 32.39767369;
+  stroke-dashoffset: 32.39767369;
+  stroke-linecap: round;
+  stroke-width: 2.25;
+  stroke-miterlimit: 10;
+  -webkit-animation-name: fillunfill;
+  animation-name: fillunfill;
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-animation-duration: 1333ms;
+  animation-duration: 1333ms;
+}
 
-    @-webkit-keyframes fillunfill {
-      0% {
-        stroke-dashoffset: 32.29767369;
-      }
-      50% {
-        stroke-dashoffset: 0;
-      }
-      100% {
-        stroke-dashoffset: -31.89767369;
-      }
-    }
+@-webkit-keyframes fillunfill {
+  0% {
+    stroke-dashoffset: 32.29767369;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -31.89767369;
+  }
+}
 
-    @keyframes fillunfill {
-      0% {
-        stroke-dashoffset: 32.29767369;
-      }
-      50% {
-        stroke-dashoffset: 0;
-      }
-      100% {
-        stroke-dashoffset: -31.89767369;
-      }
-    }
+@keyframes fillunfill {
+  0% {
+    stroke-dashoffset: 32.29767369;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -31.89767369;
+  }
+}
 
-    .u-spinner_colors {
-      -webkit-animation-name: colors;
-      animation-name: colors;
-      -webkit-animation-duration: 5332ms;
-      animation-duration: 5332ms;
-      -webkit-animation-timing-function: steps(4);
-      animation-timing-function: steps(4);
-    }
+.u-spinner_colors {
+  -webkit-animation-name: colors;
+  animation-name: colors;
+  -webkit-animation-duration: 5332ms;
+  animation-duration: 5332ms;
+  -webkit-animation-timing-function: steps(4);
+  animation-timing-function: steps(4);
+}
 
-    @-webkit-keyframes colors {
-      0% {
-        color: #008744;
-      }
-      33.33333333% {
-        color: #0057e7;
-      }
-      66.66666667% {
-        color: #d62d20;
-      }
-      100% {
-        color: #ffa700;
-      }
-    }
+@-webkit-keyframes colors {
+  0% {
+    color: #008744;
+  }
+  33.33333333% {
+    color: #0057e7;
+  }
+  66.66666667% {
+    color: #d62d20;
+  }
+  100% {
+    color: #ffa700;
+  }
+}
 
-    @keyframes colors {
-      0% {
-        color: #008744;
-      }
-      33.33333333% {
-        color: #0057e7;
-      }
-      66.66666667% {
-        color: #d62d20;
-      }
-      100% {
-        color: #ffa700;
-      }
-    }
+@keyframes colors {
+  0% {
+    color: #008744;
+  }
+  33.33333333% {
+    color: #0057e7;
+  }
+  66.66666667% {
+    color: #d62d20;
+  }
+  100% {
+    color: #ffa700;
+  }
+}
 
-    .demo {
-      padding: 15px;
-    }
+.demo {
+  padding: 15px;
+}
 
-    .u-spinner {
-      font-size: 16px;
-      color: lightseagreen;
-      vertical-align: -0.25em;
-    }
-
-  </style>
+.u-spinner {
+  font-size: 16px;
+  color: lightseagreen;
+  vertical-align: -0.25em;
+}
+</style>
 </head>
 <body>
   <div class="container demo">
