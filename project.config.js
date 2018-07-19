@@ -6,7 +6,7 @@
 var project = {
   name: projectName(),
   author: 'xwtec',
-  device: 'multi-device', // [multi-device, mobile, desktop]
+  device: 'multi-device', // multi-device, mobile, desktop
   legacyIe: 6, // IE 支持最低版本, 仅非 'mobile' 生效
   flexibleRem: false, // REM
   brandColor: '', // 主色调，用于浏览器标题栏、css --config-primary-color等
