@@ -87,9 +87,11 @@ var build = {
       '_**',
     ],
     lint: [
+      'snippets/**',
       '*{.,_,-}min.**',
     ],
     optimizer: [
+      'snippets/**',
       '*{.,_,-}min.**',
     ],
     postprocessor: [
