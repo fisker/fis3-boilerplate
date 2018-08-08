@@ -10,12 +10,18 @@ const {
   createLink,
 } = require('./common.js')
 
-const path = require('path')
-function getPackageInfo(pkgName) {
-  let arr = require.resolve(pkgName).replace(/\\/g, '/').split('/')
-  let dir = arr.slice(0, arr.lastIndexOf('node_modules') + 2).join('/')
-  return require(path.join(path.normalize(dir), 'package.json'))
-}
+const getPackageInfo = (function(path, cache) {
+  return function getPackageInfo(pkgName) {
+    if (cache[pkgName]) {
+      return cache[pkgName]
+    }
+    let arr = require.resolve(pkgName).replace(/\\/g, '/').split('/')
+    let dir = arr.slice(0, arr.lastIndexOf('node_modules') + 2).join('/')
+    let pkg = require(path.join(path.normalize(dir), 'package.json'))
+    cache[pkgName] = pkg
+    return pkg
+  }
+})(require('path'), {})
 
 
 const loader = {
