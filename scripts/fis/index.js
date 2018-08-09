@@ -203,14 +203,18 @@ standardProcessors.forEach(function(data) {
 })
 
 ;['html', 'js'].forEach(function(type) {
-  fis.match('(**.' + type + ').ejs', {
+  const standardProcessor = standardProcessors.find(processor => processor.type === type)
+  let config = {
     rExt: '.' + type,
     release: '/$1'
+  }
+  // plugins
+  ;['preprocessor', 'optimizer', 'postprocessor'].forEach(function(type) {
+    config[type] = standardProcessor[type] ? utils.getPlugin(standardProcessor[type]) : null
   })
-  fis.match('(**.' + type + ').jst', {
-    rExt: '.' + type,
-    release: '/$1'
-  })
+
+  // process.exit(1)
+  fis.match('(*.' + type + ').{ejs,jst}', config)
 })
 
 // snippets should not release
