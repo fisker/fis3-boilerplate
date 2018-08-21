@@ -214,7 +214,7 @@ standardProcessors.forEach(function(data) {
   })
 
   // process.exit(1)
-  fis.match('(*.' + type + ').{ejs,jst}', config)
+  fis.match('(**.' + type + ').{ejs,jst}', config)
 })
 
 // snippets should not release
