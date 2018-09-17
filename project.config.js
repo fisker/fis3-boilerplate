@@ -9,6 +9,7 @@ var project = {
   device: 'multi-device', // multi-device, mobile, desktop
   legacyIe: 6, // IE 支持最低版本, 仅非 'mobile' 生效
   flexibleRem: false, // REM
+  designWidth: 750, // 设计稿尺寸
   brandColor: '', // 主色调，用于浏览器标题栏、css --config-primary-color等
   styles: [
     '/assets/styles/main.scss',
@@ -101,7 +102,7 @@ var build = {
     ],
   },
   minifyInlineScript: [
-    'assets/scripts/component/_rem.js',
+    'assets/scripts/component/_rem.js.jst',
   ],
 }
 

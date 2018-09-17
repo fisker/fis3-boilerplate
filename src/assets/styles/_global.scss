@@ -9,11 +9,10 @@ $legacy-ie: map-get($project, legacyIe);
 $use-rem: map-get($project, flexibleRem);
 $color-primary: map-get($project, brandColor);
 $debug: not map-get($env, production);
+$design-width: map-get($project, designWidth);
 
 // variables
 $box-sizing: border-box; // set to null to disable box-sizing
-
-$design-width: 720; // psd width
 
 $base-font-size: 87.5%; // 14px;
 $base-color: #373a3c;

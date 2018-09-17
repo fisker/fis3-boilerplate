@@ -7,7 +7,7 @@
 
   function calcRem() {
     root.style.fontSize =
-      (Math.min(root.getBoundingClientRect().width, 640) / 320) * 16 + 'px'
+      (Math.min(root.getBoundingClientRect().width, <%=project.designWidth%>) / 320) * 16 + 'px'
   }
 
   function delay() {

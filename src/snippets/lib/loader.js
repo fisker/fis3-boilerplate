@@ -61,7 +61,7 @@ const loader = {
   },
   rem() {
     if (project.flexibleRem) {
-      return createScript('/assets/scripts/component/_rem.js?__inline')
+      return createScript('/assets/scripts/component/_rem.js.jst?__inline')
     }
   },
   vue() {

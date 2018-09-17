@@ -1,0 +1,21 @@
+@mixin hide-date {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+
+  &::-webkit-datetime-edit,
+  &::-webkit-clear-button,
+  &::-webkit-inner-spin-button {
+    display: none;
+  }
+
+  &::-webkit-calendar-picker-indicator {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}

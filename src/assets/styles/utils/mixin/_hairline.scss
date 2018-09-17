@@ -1,0 +1,120 @@
+$default-hairline-color: null !default;
+$default-hairline-style: solid !default;
+
+%_hailine-common-style {
+  border-image-slice: 2;
+  border-image-repeat: stretch;
+}
+
+$_cache: ();
+@function _placeholder-exists($name) {
+  @if index($_cache, $name) == null {
+    @return false;
+  }
+
+  @return true;
+}
+
+@function _register-placeholder($name) {
+  @if _placeholder-exists($name) {
+    @error 'The key `#{$name}` has already been registered.';
+  }
+
+  $_cache: append($_cache, $name) !global;
+
+  @return $name;
+}
+
+@mixin _define-placeholder($name) {
+  @if (not _placeholder-exists($name)) {
+    $name: _register-placeholder($name);
+
+    @at-root {
+      %#{$name} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin _hairline-border-img($color) {
+  $svg: '';
+  $svg: '#{$svg}<svg width="5" height="5" xmlns="http://www.w3.org/2000/svg">';
+  $svg: '#{$svg}<rect width="5" height="5" stroke="#{$color}" stroke-width="2" fill="none"/>';
+  $svg: '#{$svg}</svg>';
+
+  $placeholder-name: _hailine-border-img-#{$color};
+
+  @include _define-placeholder($placeholder-name) {
+    border-image-source: svg-url($svg);
+  };
+
+  @at-root :root:not(.is-ios) & {
+    @extend %#{$placeholder-name};
+  }
+}
+
+@mixin _hairline-position(
+  $position,
+  $border-color: $default-hairline-color,
+  $border-style: $default-hairline-style
+  ) {
+  @include _hairline-border-img($border-color);
+  @extend %_hailine-common-style;
+
+  $prefix: if($position == all, border, border-#{$position});
+  #{$prefix}: 1px solid $border-color;
+
+  @at-root {
+    .is-ios.is-support-subpixel-border & {
+      #{$prefix}: .5px solid $border-color;
+    }
+  }
+}
+
+@mixin hairline(
+  $border-width: 1px,
+  $border-color: $default-hairline-color,
+  $border-style: $default-hairline-style
+  ) {
+  @include _hairline-border-img($border-color);
+  @extend %_hailine-common-style;
+
+  border-width: $border-width;
+  border-style: $border-style;
+  border-color: $border-color;
+
+  @at-root {
+    .is-ios.is-support-subpixel-border & {
+      border-width: .5px;
+    }
+  }
+}
+
+@mixin hairline-top(
+  $border-color: $default-hairline-color,
+  $border-style: $default-hairline-style
+  ) {
+  @include _hairline-position(top, $border-color, $border-style)
+}
+
+@mixin hairline-right(
+  $border-color: $default-hairline-color,
+  $border-style: $default-hairline-style
+  ) {
+  @include _hairline-position(right, $border-color, $border-style)
+}
+
+@mixin hairline-bottom(
+  $border-color: $default-hairline-color,
+  $border-style: $default-hairline-style
+  ) {
+  @include _hairline-position(bottom, $border-color, $border-style)
+}
+
+@mixin hairline-left(
+  $border-color: $default-hairline-color,
+  $border-style: $default-hairline-style
+  ) {
+  @include _hairline-position(left, $border-color, $border-style)
+}
