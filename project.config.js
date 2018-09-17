@@ -106,7 +106,7 @@ var build = {
   ],
 }
 
-function projectName() {
+function projectName () {
   let projectName
   try {
     projectName = require('./package.json').name
