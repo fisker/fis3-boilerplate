@@ -1,1 +1,3 @@
- window.CONFIG = { "debug": false }
+window.CONFIG = {
+  debug: false
+}

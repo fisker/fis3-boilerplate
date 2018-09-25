@@ -86,15 +86,15 @@ var build = {
     ],
     release: [
       'normalize.css/**',
-      'snippets/**',
+      '/snippets/**',
       '_**',
     ],
     lint: [
-      'snippets/**',
+      '/snippets/**',
       '*{.,_,-}min.**',
     ],
     optimizer: [
-      'snippets/**',
+      '/snippets/**',
       '*{.,_,-}min.**',
     ],
     postprocessor: [

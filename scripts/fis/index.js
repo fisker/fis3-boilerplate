@@ -219,7 +219,7 @@ standardProcessors.forEach(function(data) {
 
 // snippets should not release
 fis.match(
-  '**/snippets/**',
+  '/snippets/**',
   {
     release: '/.temp/$0',
     relative: '/'
