@@ -1,13 +1,57 @@
-@mixin aspect-ratio($ratio: 1) {
+@function calcSize($args) {
+  $len: length($args);
+  $width: 1;
+  $height: 1;
+
+  @if ($len == 1) {
+    $width: nth($args, 1);
+  } @else if ($len == 2) {
+    $width: nth($args, 1);
+    $height: nth($args, 2);
+  }
+
+  $width: value-of($width);
+  $height: value-of($height);
+
+  @return (
+    width: $width,
+    height: $height,
+    ratio: ($height / $width),
+  );
+}
+
+@mixin aspect-ratio($args...) {
+  $ratio: map-get(calcSize($args), ratio);
+
   &::before {
     content: '';
-    padding-top: $ratio * 100%;
+    padding-top: ($ratio * 100%);
     float: left;
   }
 
   &::after {
     content: '';
     display: block;
-    clear: both;
+    clear: left;
+  }
+}
+
+@mixin aspect-ratio-padding($args...) {
+  $ratio: map-get(calcSize($args), ratio);
+
+  &::before {
+    content: "";
+    display: block;
+    padding-top: ($ratio * 100%);
+  }
+}
+
+@mixin aspect-ratio-svg($args...) {
+  $size: calcSize($args);
+  $width: map-get($size, width);
+  $height: map-get($size, height);
+
+  &::before {
+    content: svg-url('<svg viewBox="0 0 #{$width} #{$height}" xmlns="http://www.w3.org/2000/svg"></svg>');
   }
 }
