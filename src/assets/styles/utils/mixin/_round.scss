@@ -1,0 +1,9 @@
+@mixin round($args...) {
+  @if length($args) == 1 {
+    @include size(nth($args, 1));
+  } @else {
+    @include aspect-ratio(1);
+  }
+
+  border-radius: 50%;
+}

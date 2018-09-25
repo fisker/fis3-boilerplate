@@ -1,0 +1,7 @@
+@mixin square($args...) {
+  @if length($args) == 1 {
+    @include size(nth($args, 1));
+  } @else {
+    @include aspect-ratio(1);
+  }
+}
