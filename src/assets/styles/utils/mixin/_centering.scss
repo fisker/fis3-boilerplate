@@ -13,10 +13,10 @@
 @mixin transform-center($directions: all) {
   position: absolute;
 
-  @if $directions == horizontal {
+  @if ($directions == horizontal) {
     left: 50%;
     transform: translateX(-50%);
-  } @else if $directions == vertical {
+  } @else if ($directions == vertical) {
     top: 50%;
     transform: translateY(-50%);
   } @else {
