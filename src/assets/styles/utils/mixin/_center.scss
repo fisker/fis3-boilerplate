@@ -1,0 +1,128 @@
+@mixin center-block($need-block: false) {
+  @if $need-block {
+    display: block;
+  }
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin transform-center($directions: all) {
+  position: absolute;
+
+  @if $directions == horizontal {
+    left: 50%;
+    transform: translateX(-50%);
+  } @else if $directions == vertical {
+    top: 50%;
+    transform: translateY(-50%);
+  } @else {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@mixin transform-center-vertical() {
+  @include transform-center(vertical);
+}
+
+@mixin transform-center-horizontal() {
+  @include transform-center(horizontal);
+}
+
+@mixin flex-center($directions: all) {
+  $vertical: true;
+  $horizontal: true;
+
+  @if ($directions == vertical) {
+    $horizontal: false;
+  }
+
+  @if ($directions == horizontal) {
+    $vertical: false;
+  }
+
+  display: flex;
+  @if $horizontal {
+    justify-content: center;
+  }
+
+  @if $vertical {
+    align-items: center;
+  }
+}
+
+@mixin flex-center-vertical() {
+  @include flex-center(vertical);
+}
+
+@mixin flex-center-horizontal() {
+  @include flex-center(horizontal);
+}
+
+@mixin inline-block-center($directions: all) {
+  $vertical: true;
+  $horizontal: true;
+
+  @if ($directions == vertical) {
+    $horizontal: false;
+  }
+
+  @if ($directions == horizontal) {
+    $vertical: false;
+  }
+
+  @if $horizontal {
+    @include inline-block-center-horizontal();
+  }
+
+  @if $vertical {
+    @include inline-block-center-vertical();
+  }
+}
+
+@mixin inline-block-center-horizontal() {
+  text-align: center;
+}
+
+@mixin inline-block-center-vertical() {
+  &::after {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+@mixin absolute-center($directions: all, $width: null, $height: null) {
+  $vertical: true;
+  $horizontal: true;
+
+  @if ($directions == vertical) {
+    $horizontal: false;
+  }
+
+  @if ($directions == horizontal) {
+    $vertical: false;
+  }
+
+  width: $width;
+  height: $width;
+  position: absolute;
+  @if $horizontal {
+    left: 0;
+    right: 0;
+  }
+
+  @if $vertical {
+    top: 0;
+    bottom: 0;
+  }
+}
+
+@mixin absolute-center-vertical($width: null, $height: null) {
+  @include absolute-cente(vertical, $width, $height);
+}
+
+@mixin absolute-center-horizontal($width: null, $height: null) {
+  @include absolute-cente(horizontal, $width, $height);
+}
