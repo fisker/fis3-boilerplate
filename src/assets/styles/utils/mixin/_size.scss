@@ -1,4 +1,12 @@
 @mixin size($width, $height: $width) {
-  width: if(unitless($width), 1px * $width, $width);
-  height: if(unitless($height), 1px * $height, $height);
+  @if unitless($width) {
+    $width: 1px * $width
+  }
+
+  @if unitless($height) {
+    $height: 1px * $height
+  }
+
+  width: $width;
+  height: $height;
 }

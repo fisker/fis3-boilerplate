@@ -33,7 +33,7 @@
 }
 
 %icon-caret {
-  @include triangle(down, 1em);
+  @include caret(down);
 }
 
 %icon-arrow {

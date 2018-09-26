@@ -1,0 +1,66 @@
+// caret
+// https://github.com/twbs/bootstrap/blob/v4-dev/scss/mixins/_caret.scss
+
+$caret-default-size: 0.3em !default;
+
+@mixin caret($direction: down, $size: $caret-default-size) {
+  $pseudo-element: after;
+  @if ($direction == left) {
+    $pseudo-element: before;
+  }
+
+  &::#{$pseudo-element} {
+    @include _caret($direction, $size);
+    display: inline-block;
+    width: 0;
+    height: 0;
+
+    @if ($pseudo-element == before) {
+      margin-right: 0.25em;
+    } @else {
+      margin-left: 0.25em;
+    }
+
+    @if ($direction == left or $direction == right) {
+      vertical-align: $size * .35;
+    } @else {
+      vertical-align: $size * .85;
+    }
+  }
+}
+
+@mixin _caret($direction: down, $size: 0.5em) {
+  $directions: get-directions($direction);
+
+  @if is-pseudo-element(#{&}) {
+    content: "";
+  }
+
+  border-#{nth($directions, 2)}: $size solid transparent;
+  border-#{nth($directions, 3)}: $size solid transparent;
+  border-#{nth($directions, 4)}: $size solid;
+}
+
+@mixin caret-down($size: $caret-default-size) {
+  @include _caret(down, $size);
+}
+
+@mixin caret-up($size: $caret-default-size) {
+  @include _caret(up, $size);
+}
+
+@mixin caret-top($size: $caret-default-size) {
+  @include _caret(down, $size);
+}
+
+@mixin caret-bottom($size: $caret-default-size) {
+  @include _caret(up, $size);
+}
+
+@mixin caret-left($size: $caret-default-size) {
+  @include _caret(left, $size);
+}
+
+@mixin caret-right($size: $caret-default-size) {
+  @include _caret(right, $size);
+}

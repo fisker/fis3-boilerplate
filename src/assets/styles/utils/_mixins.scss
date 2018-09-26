@@ -4,7 +4,7 @@
 @import "mixin/size";
 @import "mixin/center-block";
 @import "mixin/hide-text";
-@import "mixin/sr-only";
+@import "mixin/screen-reader";
 @import "mixin/scrollable";
 @import "mixin/ellipsis";
 @import "mixin/clear-spacing";
@@ -19,7 +19,7 @@
 @import "mixin/meter-color";
 @import "mixin/tab-control";
 @import "mixin/breakpoint";
-@import "mixin/triangle";
+@import "mixin/caret";
 @import "mixin/plus";
 @import "mixin/arrow";
 @import "mixin/bem";
@@ -32,3 +32,5 @@
 @import "mixin/aspect-ratio";
 @import "mixin/square";
 @import "mixin/round";
+@import "mixin/hover";
+@import "mixin/center-image";

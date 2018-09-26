@@ -1,5 +1,28 @@
 // arrow
-@mixin arrow($direction: right, $size: 1em, $border-width: 1px) {
+
+$arrow-default-size: .5em !default;
+
+@mixin arrow($direction: right, $size: $arrow-default-size, $border-width: 1px) {
+  $direction: nth(get-directions($direction), 1);
+  $pseudo-element: after;
+  @if ($direction == left) {
+    $pseudo-element: before;
+  }
+
+  &::#{$pseudo-element} {
+    @include _arrow($direction, $size);
+
+    @if ($direction == left) {
+      margin-right: 0.125em;
+    } @else if ($direction == right) {
+      margin-left: 0.125em;
+    } @else {
+      margin-left: 0.25em;
+    }
+  }
+}
+
+@mixin _arrow($direction: right, $size: $arrow-default-size, $border-width: 1px) {
   $direction: nth(get-directions($direction), 1);
   $degs: (
     right: 45deg,
@@ -20,11 +43,27 @@
     content: "";
   }
   display: inline-block;
-  vertical-align: middle;
-  width: $size / 2 * 1.414;
-  height: $size / 2 * 1.414;
+  vertical-align: $size * .325;
+  width: $size;
+  height: $size;
   border: $border-width solid;
   border-left-color: transparent;
   border-bottom-color: transparent;
   transform: translate($translate) rotate($deg);
+}
+
+@mixin arrow-down($size: $arrow-default-size, $border-width: 1px) {
+  @include _arrow(down, $size, $border-width);
+}
+
+@mixin arrow-up($size: $arrow-default-size, $border-width: 1px) {
+  @include _arrow(up, $size, $border-width);
+}
+
+@mixin arrow-left($size: $arrow-default-size, $border-width: 1px) {
+  @include _arrow(left, $size, $border-width);
+}
+
+@mixin arrow-right($size: $arrow-default-size, $border-width: 1px) {
+  @include _arrow(right, $size, $border-width);
 }

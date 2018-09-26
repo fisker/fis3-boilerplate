@@ -1,4 +1,0 @@
-@mixin sr-only() {
-  @include hide-visually();
-  white-space: nowrap;
-}
