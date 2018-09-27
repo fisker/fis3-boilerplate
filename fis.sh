@@ -171,7 +171,7 @@ function error() {
 
 function end() {
   echo "exit in 5 seconds"
-  sleep 115
+  sleep 5
   exit
 }
 
