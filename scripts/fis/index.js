@@ -237,6 +237,8 @@ fis.match('_*.{html,js}', {
 // minify-inline-script
 config.build.minifyInlineScript.forEach(function(re) {
   fis.match(re, {
+    release: '/.temp/$0',
+    relative: '/',
     optimizer: utils.getPlugin('fis3-optimizer-uglifyjs'),
     postprocessor: null
   })
