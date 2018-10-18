@@ -7,7 +7,7 @@ $name-space: u;
   $selector: &;
 
   &__wrap {
-    @include clear-spacing("#{$selector}-item");
+    @include clear-spacing("#{$selector}__item");
     white-space: nowrap;
     width: 100%;
     table-layout: fixed;
