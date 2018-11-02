@@ -234,6 +234,11 @@ fis.match('_*.{html,js}', {
   // postprocessor: null,
 })
 
+// _*.html no postprocessor
+fis.match('_*.html', {
+  postprocessor: null,
+})
+
 // minify-inline-script
 config.build.minifyInlineScript.forEach(function(re) {
   fis.match(re, {
