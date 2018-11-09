@@ -8,6 +8,7 @@ const {
   env,
   createScript,
   createLink,
+  conditionHTML,
 } = require('./common.js')
 
 const getPackageInfo = (function(path, cache) {
@@ -28,9 +29,9 @@ const loader = {
   dd_belatedpng() {
     if (project.device != 'mobile' && project.legacyIe <= 6) {
       const version = getPackageInfo('dd_belatedpng').version
-      const file = env.production ? 'DD_belatedPNG_${version}.min.js' : 'DD_belatedPNG_${version}.js'
+      const file = env.production ? `DD_belatedPNG_${version}.min.js` : `DD_belatedPNG_${version}.js`
       const src = `/assets/vendors/dd_belatedpng/${version}/dist/${file}`
-      return `<!--[if IE 6]>${createScript(src)}<script>DD_belatedPNG.fix('*')</script><![endif]-->`
+      return conditionHTML(`${createScript(src)}\n<script>DD_belatedPNG.fix('*')</script>`, 6, 80 - 6)
     }
   },
   jquery() {
@@ -43,8 +44,8 @@ const loader = {
     let html = []
 
     if (project.device != 'mobile' && project.legacyIe <= 8) {
-      html.push(`<!--[if lt IE 9]>${jquery('1.12.4')}<![endif]-->`)
-      html.push(`<!--[if gte IE 9]><!-->${jquery('2.2.4')}<!--<![endif]-->`)
+      html.push(conditionHTML(jquery('1.12.4'), '< 9', 80 - 6))
+      html.push(conditionHTML(jquery('2.2.4'), '>= 9', 80 - 6))
     } else {
       html.push(jquery('3.3.1'))
     }
@@ -56,12 +57,12 @@ const loader = {
       const version = getPackageInfo('html5shiv').version
       const file = env.production ? 'html5shiv.min.js' : 'html5shiv.js'
       const src = `/assets/vendors/html5shiv/${version}/dist/${file}`
-      return `<!--[if lt IE 9]>${createScript(src)}<![endif]-->`
+      return conditionHTML(createScript(src), '< 9', 80 - 6)
     }
   },
   rem() {
     if (project.flexibleRem) {
-      return createScript('/assets/scripts/component/_rem.js.jst?__inline')
+      return '<!-- prettier-ignore -->\n' + createScript('/assets/scripts/component/_rem.js.jst?__inline')
     }
   },
   vue() {

@@ -6,22 +6,41 @@
 const {
   _,
   project,
+  conditionHTML,
 } = require('./common.js')
-
-function renderHTMLTag(attrs) {
-  attrs.class = attrs.class.filter(Boolean).join(' ')
-  const attrStr = Object.keys(attrs).sort().map(function(attr) {
-    let value = attrs[attr]
-    if (value) {
-      return attr + '="' + _.escape(value) + '"'
-    }
-  }).filter(Boolean).join(' ')
-  return `<html${attrStr ? ' ' + attrStr : ''}>`
-}
 
 const commonAttrs = {
   lang: project.lang
 }
+
+function renderHTMLTag(attrs, version) {
+  let classNames = attrs.class.slice()
+
+  if (version) {
+    for (let ver = 9; ver > version; ver--) {
+      classNames.push(`lt-ie${ver}`)
+    }
+    classNames.push(`ie${version}`)
+  }
+
+  classNames = classNames.filter(Boolean)
+
+  const attrStr = Object.keys(attrs)
+    .sort()
+    .map(function(attr) {
+      let value = attr === 'class' ? classNames.join(' ') : attrs[attr]
+      if (value) {
+        return attr + '="' + _.escape(value) + '"'
+      }
+    })
+    .filter(Boolean)
+    .join(' ')
+
+  const html = `<html${attrStr ? ' ' + attrStr : ''}>`
+
+  return conditionHTML(html, version)
+}
+
 
 function htmlStartTag(attrs) {
   attrs = attrs || {}
@@ -43,19 +62,16 @@ function htmlStartTag(attrs) {
 
   if (project.device != 'mobile' && project.legacyIe < 9) {
     if (project.legacyIe < 7) {
-      let classNames = 'lt-ie9 lt-ie8 lt-ie7 ie6'.split(' ')
-      html.push(`<!--[if lt IE 7]>${renderHTMLTag({...attrs, class: [...attrs.class, ...classNames]})}<![endif]-->`)
+      html.push(renderHTMLTag(attrs, 6))
     }
     if (project.legacyIe < 8) {
-      let classNames = 'lt-ie9 lt-ie8 ie7'.split(' ')
-      html.push(`<!--[if IE 7]>${renderHTMLTag({...attrs, class: [...attrs.class, ...classNames]})}<![endif]-->`)
+      html.push(renderHTMLTag(attrs, 7))
     }
     if (project.legacyIe < 9) {
-      let classNames = 'lt-ie9 ie8'.split(' ')
-      html.push(`<!--[if IE 8]>${renderHTMLTag({...attrs, class: [...attrs.class, ...classNames]})}<![endif]-->`)
+      html.push(renderHTMLTag(attrs, 8))
     }
 
-    html.push(`<!--[if gte IE 9]><!-->${renderHTMLTag(attrs)}<!--<![endif]-->`)
+    html.push(conditionHTML(renderHTMLTag(attrs), '>=9'))
   } else {
     html.push(renderHTMLTag(attrs))
   }

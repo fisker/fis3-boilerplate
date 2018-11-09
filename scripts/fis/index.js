@@ -96,12 +96,7 @@ var standardProcessors = [
     type: 'html',
     lint: config.build.lint.html ? 'fis3-lint-htmlhint' : null,
     optimizer: config.build.optimize.html ? 'fis-optimizer-htmlmin' : null,
-    postprocessor: config.build.optimize.html
-      ? null
-      : [
-          // 'fis3-postprocessor-posthtml-beautify',
-          'fis3-postprocessor-html'
-        ]
+    postprocessor: config.build.optimize.html ? null : 'fis3-postprocessor-html'
   }
 ]
 
@@ -222,7 +217,8 @@ fis.match(
   '/snippets/**',
   {
     release: '/.temp/$0',
-    relative: '/'
+    relative: '/',
+    postprocessor: null,
   }
 )
 

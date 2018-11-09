@@ -3,13 +3,11 @@
 'use strict'
 
 module.exports = {
-  singleQuote: true,
-  bracketSpacing: false,
-
   overrides: [
     {
       files: '*.js',
       options: {
+        trailingComma: 'none',
         parser: 'babylon',
         semi: false,
         singleQuote: true,
@@ -17,16 +15,58 @@ module.exports = {
       }
     },
     {
-      files: '*.{css,scss}',
+      files: '*.css',
       options: {
         parser: 'css',
         singleQuote: false
       }
     },
     {
-      files: '*.html',
+      files: '*.scss',
       options: {
-        parser: 'parse5'
+        parser: 'scss',
+        singleQuote: false
+      }
+    },
+    {
+      files: '*.less',
+      options: {
+        parser: 'scss',
+        singleQuote: false
+      }
+    },
+    {
+      files: '*.json',
+      options: {
+        parser: 'json'
+      }
+    },
+    {
+      files: '*.json5',
+      options: {
+        parser: 'json5'
+      }
+    },
+    {
+      files: '*.md',
+      options: {
+        parser: 'markdown'
+      }
+    },
+    {
+      files: '*.yaml',
+      options: {
+        parser: 'yaml'
+      }
+    },
+    {
+      files: '*.{html,htm}',
+      options: {
+        parser: 'html',
+        trailingComma: 'none',
+        semi: false,
+        singleQuote: true,
+        bracketSpacing: false
       }
     }
   ]
