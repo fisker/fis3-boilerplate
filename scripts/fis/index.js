@@ -96,7 +96,7 @@ var standardProcessors = [
     type: 'html',
     lint: config.build.lint.html ? 'fis3-lint-htmlhint' : null,
     optimizer: config.build.optimize.html ? 'fis-optimizer-htmlmin' : null,
-    postprocessor: config.build.optimize.html ? null : 'fis3-postprocessor-html'
+    postprocessor: config.build.optimize.html ? null : 'fis3-postprocessor-prettier'
   }
 ]
 
@@ -108,7 +108,7 @@ if (config.build.ignore.global) {
 // release ignored file
 config.build.ignore.release.forEach(function(glob) {
   fis.match(glob, {
-    release: '/.temp/$0',
+    release: `/${config.build.temp}/$0`,
     relative: '/'
   })
 })
@@ -216,7 +216,7 @@ standardProcessors.forEach(function(data) {
 fis.match(
   '/snippets/**',
   {
-    release: '/.temp/$0',
+    release: `/${config.build.temp}/$0`,
     relative: '/',
     postprocessor: null,
   }
@@ -238,7 +238,7 @@ fis.match('_*.html', {
 // minify-inline-script
 config.build.minifyInlineScript.forEach(function(re) {
   fis.match(re, {
-    release: '/.temp/$0',
+    release: `/${config.build.temp}/$0`,
     relative: '/',
     optimizer: utils.getPlugin('fis3-optimizer-uglifyjs'),
     postprocessor: null

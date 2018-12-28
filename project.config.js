@@ -3,8 +3,11 @@
 
 'use strict'
 
+var path = require('path')
+var projectName = projectName()
+
 var project = {
-  name: projectName(),
+  name: projectName,
   author: 'xwtec',
   device: 'multi-device', // multi-device, mobile, desktop
   legacyIe: 6, // IE 支持最低版本, 仅非 'mobile' 生效
@@ -31,8 +34,16 @@ var project = {
 }
 
 var build = {
-  log: 'build.log',
+  log: resolvePath('./build.log'),
+  src: resolvePath('./src'),
   temp: '.temp',
+  config: resolvePath('./scripts/fis/index.js'),
+  dist: resolvePath('./dist'),
+  archive: resolvePath('./archive/'),
+  archiveType: 'zip', // `zip` OR `tar.gz` , tar.gz do NOT support chinese filename
+  archiveFile: projectName +
+    '.' +
+    new Date().toJSON().replace(/[-:]/g, '').replace('T', '-').slice(2, 15),
   sourceMap: false,
   lint: {
     html: true, // html 代码检查
@@ -106,6 +117,12 @@ var build = {
   ],
 }
 
+var server = {
+  type: 'browsersync',
+  configFile: resolvePath('./bs-config.js'),
+  config: require('./bs-config.js'),
+}
+
 function projectName () {
   let projectName
   try {
@@ -115,7 +132,12 @@ function projectName () {
   return projectName || __dirname.split(/[\\/]/).pop()
 }
 
+function resolvePath(file) {
+  return path.join(__dirname, file)
+}
+
 module.exports = {
-  build: build,
-  project: project,
+  build,
+  project,
+  server,
 }

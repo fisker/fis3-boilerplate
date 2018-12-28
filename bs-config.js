@@ -42,7 +42,7 @@ module.exports = {
     directory: true
   },
   proxy: false,
-  // port: 3000, // not working, override by fis3
+  port: 3000,
   middleware: [],
   serveStatic: [],
   serveStaticOptions: {},

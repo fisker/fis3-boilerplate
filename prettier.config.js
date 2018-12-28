@@ -66,7 +66,8 @@ module.exports = {
         trailingComma: 'none',
         semi: false,
         singleQuote: true,
-        bracketSpacing: false
+        bracketSpacing: false,
+        htmlWhitespaceSensitivity: 'ignore'
       }
     }
   ]

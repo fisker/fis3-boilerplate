@@ -1,22 +1,19 @@
 #!/bin/bash
 
 # consts
-CONFIG_FILE="fis-conf.js"
-SOURCE_FOLDER="src"
-SERVER_TYPE="browsersync"
-SERVER_PORT="3000"
-SERVER_CONFIG="bs-config.js"
-DIST_FOLDER="dist"
-ARCHIVE_FOLDER="archive"
-ARCHIVE_FILETYPE="zip" # zip,tar.gz  ; tar.gz do NOT support chinese filename
-LOG_FILE=`node -e "console.log(require('./project.config.js').build.log)"`
-TEMP_RESOURCE_FOLDER=`node -e "console.log(require('./project.config.js').build.temp)"`
-PLATFORM=`node -e "console.log(process.platform)"`
+PROJECT_CONFIG_FILE=./project.config.js
+FIS_CONFIG_FILE=`node -p "require('$PROJECT_CONFIG_FILE').build.config"`
+SOURCE_FOLDER=`node -p "require('$PROJECT_CONFIG_FILE').build.src"`
+LOG_FILE=`node -p "require('$PROJECT_CONFIG_FILE').build.log"`
+SERVER_TYPE=`node -p "require('$PROJECT_CONFIG_FILE').server.type"`
+SERVER_PORT=`node -p "require('$PROJECT_CONFIG_FILE').server.config.port"`
+DIST_FOLDER=`node -p "require('$PROJECT_CONFIG_FILE').build.dist"`
+TEMP_RESOURCE_FOLDER=$DIST_FOLDER/`node -p "require('$PROJECT_CONFIG_FILE').build.temp"`
+PLATFORM=`node -p "process.platform"`
 ENV_PATH_SEP=":"
 if [ "$PLATFORM" = "win32" ]; then
   ENV_PATH_SEP=";"
 fi
-PROJECT_NAME=`node -e "console.log(require('./project.config.js').project.name)"`
 PWD=`pwd`
 
 # env
@@ -50,12 +47,14 @@ function main() {
     2)
       export NODE_ENV="production"
       clear
+      checkDependencies
       release
       end
       ;;
     3)
       export NODE_ENV="production"
       clear
+      checkDependencies || error
       release
       archive
       end
@@ -66,28 +65,33 @@ function main() {
     *)
       export NODE_ENV="development"
       clear
+      checkDependencies || error
       debug
       pause
       ;;
   esac
 }
 
+function checkDependencies() {
+  fis3 inspect $NODE_ENV --root "$SOURCE_FOLDER" --file "$FIS_CONFIG_FILE" --lint --verbose --no-color | node "./scripts/check-dependencies.js"
+}
+
 function release() {
   # remove release file and log file
-  if [ -d "./$DIST_FOLDER" ]; then
-    rm -r "./$DIST_FOLDER"
+  if [ -d "$DIST_FOLDER" ]; then
+    rm -r "$DIST_FOLDER"
   fi
-  if [ -f "./$LOG_FILE" ]; then
-    rm "./$LOG_FILE"
+  if [ -f "$LOG_FILE" ]; then
+    rm "$LOG_FILE"
   fi
 
   # release file
   echo "..............................................................................."
   echo "releasing files"
-  fis3 release $NODE_ENV --dest "./$DIST_FOLDER" --root "./$SOURCE_FOLDER" --file "./$CONFIG_FILE" --clean --unique --lint --verbose --no-color > "./$LOG_FILE" || error
+  fis3 release $NODE_ENV --dest "$DIST_FOLDER" --root "$SOURCE_FOLDER" --file "$FIS_CONFIG_FILE" --clean --unique --lint --verbose --no-color > "$LOG_FILE" || error
 
-  if [ -d "./$DIST_FOLDER/$TEMP_RESOURCE_FOLDER" ]; then
-    rm -r "./$DIST_FOLDER/$TEMP_RESOURCE_FOLDER"
+  if [ -d "$TEMP_RESOURCE_FOLDER" ]; then
+    rm -r "$TEMP_RESOURCE_FOLDER"
   fi
 
   echo "..........................................................................done."
@@ -98,27 +102,26 @@ function release() {
 function archive() {
   echo "archive"
 
-  # make distribute folder ready
-  if [ ! -d "./$ARCHIVE_FOLDER" ]; then
-    mkdir "./$ARCHIVE_FOLDER"
-  fi
+  ARCHIVE_FOLDER=`node -p "require('$PROJECT_CONFIG_FILE').build.archive"`
+  ARCHIVE_TYPE=`node -p "require('$PROJECT_CONFIG_FILE').build.archiveType"`
+  ARCHIVE_FILE=`node -p "require('$PROJECT_CONFIG_FILE').build.archiveFile"`
 
-  # set distribute file name
-  DATE=`date "+%y%m%d-%H%M%S"`
-  DIST_FILENAME="$PROJECT_NAME.$DATE"
+  # make distribute folder ready
+  if [ ! -d "$ARCHIVE_FOLDER" ]; then
+    mkdir "$ARCHIVE_FOLDER"
+  fi
 
   # archive files to distribute folder
   echo "..............................................................................."
   echo "packing files"
-  if [ "$ARCHIVE_FILETYPE" = "tar.gz" ]; then
-    targz -l 9 -m 9 -c "./$DIST_FOLDER" "./$ARCHIVE_FOLDER/$DIST_FILENAME.tar.gz" || pause
+
+  if [ "$ARCHIVE_TYPE" = "tar.gz" ]; then
+    targz -l 9 -m 9 -c "$DIST_FOLDER" "$ARCHIVE_FOLDER/$ARCHIVE_FILE.tar.gz" || pause
   else
-    winzip zip "./$DIST_FOLDER" "./$ARCHIVE_FOLDER/$DIST_FILENAME" || pause
+    winzip zip "$DIST_FOLDER" "$ARCHIVE_FOLDER/$ARCHIVE_FILE" || pause
   fi
 
-  if [ "$PLATFORM" = "win32" ]; then
-    explorer "$ARCHIVE_FOLDER"
-  fi
+  start "$ARCHIVE_FOLDER"
 
   echo "..........................................................................done."
 }
@@ -151,7 +154,7 @@ function debug() {
   # start watch
   echo "..............................................................................."
   echo "watching files"
-  fis3 release $NODE_ENV --root "./$SOURCE_FOLDER" --file "./$CONFIG_FILE" --clean --verbose --watch
+  fis3 release $NODE_ENV --root "$SOURCE_FOLDER" --file "$FIS_CONFIG_FILE" --clean --verbose --watch
 }
 
 function pause() {
@@ -164,7 +167,7 @@ function error() {
   echo "                                error occurred"
   echo "..............................................................................."
   echo ""
-  cat "./$LOG_FILE"
+  cat "$LOG_FILE"
   pause
   end
 }
