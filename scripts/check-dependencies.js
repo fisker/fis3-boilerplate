@@ -3,6 +3,7 @@
 
 const fis = require('fis3')
 fis.project.setProjectRoot(require('../project.config.js').build.src)
+fis.log.throw = true
 
 function getStdin() {
   const stdin = process.stdin
@@ -91,7 +92,8 @@ function getStdin() {
 
     if (confirmedPlugins.length) {
       console.log(`缺少插件,安装脚本:
-   npm install -global ${confirmedPlugins.join(' ')}
+
+npm install -global ${confirmedPlugins.join(' ')}
 `)
     }
 
@@ -103,5 +105,7 @@ function getStdin() {
 `)
       })
     }
+
+    process.exit(1)
   }
 })()

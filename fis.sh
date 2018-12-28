@@ -54,7 +54,7 @@ function main() {
     3)
       export NODE_ENV="production"
       clear
-      checkDependencies || error
+      checkDependencies
       release
       archive
       end
@@ -65,7 +65,7 @@ function main() {
     *)
       export NODE_ENV="development"
       clear
-      checkDependencies || error
+      checkDependencies
       debug
       pause
       ;;
@@ -73,7 +73,7 @@ function main() {
 }
 
 function checkDependencies() {
-  fis3 inspect $NODE_ENV --root "$SOURCE_FOLDER" --file "$FIS_CONFIG_FILE" --lint --verbose --no-color | node "./scripts/check-dependencies.js"
+  fis3 inspect $NODE_ENV --root "$SOURCE_FOLDER" --file "$FIS_CONFIG_FILE" --lint --verbose --no-color | node "./scripts/check-dependencies.js" > "$LOG_FILE" || error
 }
 
 function release() {
