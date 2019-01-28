@@ -69,13 +69,7 @@ function getPluginOptions(pluginName) {
 
 function parsePlugin(pluginName) {
   var reg = new RegExp(
-    [
-      '^',
-      '(?:fis|fis3)-',
-      '(' + pluginTypes.join('|') + ')-',
-      '(.*?)',
-      '$',
-    ].join('')
+    ['^', '(?:fis|fis3)-', `(${pluginTypes.join('|')})-`, '(.*?)', '$'].join('')
   )
   var match = pluginName.match(reg)
   return (
@@ -104,13 +98,13 @@ function getExtsReg(ext, inline) {
   } else {
     exts = toArray(ext)
   }
-  exts = exts.length === 1 ? exts : '{' + exts.join(',') + '}'
+  exts = exts.length === 1 ? exts : `{${exts.join(',')}}`
   if (inline === true) {
-    prefix = '*.{' + htmlLikeExt.join(',') + '}:'
+    prefix = `*.{${htmlLikeExt.join(',')}}:`
   } else if (inline === false) {
     prefix = '*.'
   } else {
-    prefix = '{*.{' + htmlLikeExt.join(',') + '}:,*.}'
+    prefix = `{*.{${htmlLikeExt.join(',')}}:,*.}`
   }
   return prefix + exts
 }

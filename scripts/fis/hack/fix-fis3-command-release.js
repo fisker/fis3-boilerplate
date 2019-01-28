@@ -26,13 +26,10 @@ function fixPackage(folder) {
 
   try {
     fs.writeFileSync(
-      file +
-        '-' +
-        new Date()
-          .toISOString()
-          .replace(/\D/g, '')
-          .slice(0, 8) +
-        '.bak',
+      `${file}-${new Date()
+        .toISOString()
+        .replace(/\D/g, '')
+        .slice(0, 8)}.bak`,
       code
     )
     fs.writeFileSync(file, newCode)

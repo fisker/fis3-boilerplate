@@ -145,7 +145,7 @@ if (config.build.relative) {
 preProcessors.forEach(function(data) {
   var exts = utils.toArray(data.ext)
   var processor = {
-    rExt: '.' + data.type,
+    rExt: `.${data.type}`,
   }
 
   // plugins
@@ -202,8 +202,8 @@ standardProcessors.forEach(function(data) {
   const standardProcessor = standardProcessors.find(
     processor => processor.type === type
   )
-  let config = {
-    rExt: '.' + type,
+  const config = {
+    rExt: `.${type}`,
     release: '/$1',
   }
   // plugins
@@ -214,7 +214,7 @@ standardProcessors.forEach(function(data) {
   })
 
   // process.exit(1)
-  fis.match('(**.' + type + ').{ejs,jst}', config)
+  fis.match(`(**.${type}).{ejs,jst}`, config)
 })
 
 // snippets should not release

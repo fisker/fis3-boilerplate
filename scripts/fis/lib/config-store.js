@@ -32,7 +32,7 @@ function addFinalNewLine(parser) {
 
 function jsParser(data) {
   var semi = codeStyle.js.semi ? ';' : ''
-  return 'var config = ' + prettyJSONStringify(data) + semi
+  return `var config = ${prettyJSONStringify(data)}${semi}`
 }
 
 function increseIndent(str, level) {
@@ -57,16 +57,11 @@ function type(x) {
 
 var reColor = (function() {
   function getFunctionalStringRe(func, args) {
-    return (
-      func +
-      '\\(' +
-      args
-        .map(function(arg) {
-          return '\\s*' + arg + '\\s*'
-        })
-        .join(',') +
-      '\\)'
-    )
+    return `${func}\\(${args
+      .map(function(arg) {
+        return `\\s*${arg}\\s*`
+      })
+      .join(',')}\\)`
   }
 
   // var keywords = 'black|silver|gray|white|maroon|red|purple|fuchsia|green|lime|olive|yellow|navy|blue|teal|aqua|orange|aliceblue|antiquewhite|aquamarine|azure|beige|bisque|blanchedalmond|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|gainsboro|ghostwhite|gold|goldenrod|greenyellow|grey|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|limegreen|linen|magenta|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|oldlace|olivedrab|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|thistle|tomato|turquoise|violet|wheat|whitesmoke|yellowgreen|rebeccapurple|transparent|currentColor'
@@ -82,18 +77,14 @@ var reColor = (function() {
   ])
 
   return new RegExp(
-    '^' +
-      '(?:' +
-      [
-        // keywords,
-        hex,
-        rgb,
-        rgba,
-        hsl,
-        hsla,
-      ].join('|') +
-      ')' +
-      '$',
+    `^(?:${[
+      // keywords,
+      hex,
+      rgb,
+      rgba,
+      hsl,
+      hsla,
+    ].join('|')})$`,
     'i'
   )
 })()
@@ -147,26 +138,22 @@ function cssPreprossorParser(lang) {
           return '()'
         }
 
-        return ['(', values.join(',' + codeStyle.endOfLine) + ',', ')'].join(
+        return ['(', `${values.join(`,${codeStyle.endOfLine}`)},`, ')'].join(
           '\n'
         )
       }
 
       function scssArrayToMap(arr, indent) {
         var values = arr.map(function(value) {
-          return codeStyle.indent + scssValue(value, indent + 1) + ''
+          return `${codeStyle.indent + scssValue(value, indent + 1)}`
         })
         return toMapString(values)
       }
 
       function scssObjectToMap(obj, indent) {
         var values = Object.keys(obj).map(function(key) {
-          return (
-            codeStyle.indent +
-            quoteKey(key) +
-            ': ' +
-            scssValue(obj[key], indent + 1)
-          )
+          return `${codeStyle.indent +
+            quoteKey(key)}: ${scssValue(obj[key], indent + 1)}`
         })
         return toMapString(values)
       }
@@ -179,12 +166,12 @@ function cssPreprossorParser(lang) {
   var parser = valueParser[lang]
 
   return function(data) {
-    return '$config: ' + parser(data) + ';'
+    return `$config: ${parser(data)};`
   }
 }
 
 function pugParser(data) {
-  return '-\n' + codeStyle.indent + 'config = ' + JSON.stringify(data) + ';'
+  return `-\n${codeStyle.indent}config = ${JSON.stringify(data)};`
 }
 
 var parsers = {
@@ -196,7 +183,7 @@ var parsers = {
 
 function store(config) {
   Object.keys(parsers).forEach(function(lang) {
-    var file = path.join(STORE_LOCATION, '_config.' + lang)
+    var file = path.join(STORE_LOCATION, `_config.${lang}`)
     var parser = parsers[lang] || JSON.stringify
     if (!/json$/.test(lang)) {
       parser = addFinalNewLine(parser)

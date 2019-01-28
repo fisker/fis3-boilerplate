@@ -32,14 +32,11 @@ var build = {
   dist: resolvePath('./dist'),
   archive: resolvePath('./archive/'),
   archiveType: 'zip', // `zip` OR `tar.gz` , tar.gz do NOT support chinese filename
-  archiveFile:
-    projectName +
-    '.' +
-    new Date()
-      .toJSON()
-      .replace(/[-:]/g, '')
-      .replace('T', '-')
-      .slice(2, 15),
+  archiveFile: `${projectName}.${new Date()
+    .toJSON()
+    .replace(/[-:]/g, '')
+    .replace('T', '-')
+    .slice(2, 15)}`,
   sourceMap: false,
   lint: {
     html: true, // html 代码检查

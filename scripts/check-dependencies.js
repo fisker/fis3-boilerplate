@@ -74,10 +74,10 @@ function getStdin() {
       .replace('"', "'")
 
     plugins = plugins.map(name => {
-      if (source.includes("'fis3-" + name + "'")) {
+      if (source.includes(`'fis3-${name}'`)) {
         return `fis3-${name}`
       }
-      if (source.includes("'fis-" + name + "'")) {
+      if (source.includes(`'fis-${name}'`)) {
         return `fis-${name}`
       }
 

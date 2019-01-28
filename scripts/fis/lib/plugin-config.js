@@ -27,7 +27,7 @@ function getPluginConfig() {
 
   // prettier-ignore
   var browserslist = [
-    'ie >= ' + project.legacyIe,
+    `ie >= ${  project.legacyIe}`,
     'and_chr >= 1',
     'and_ff >=1',
     'and_uc >=1',
@@ -64,7 +64,7 @@ function getPluginConfig() {
     compatibility:
       project.legacyIe < 7
         ? 'ie7,+properties.iePrefixHack'
-        : 'ie' + project.legacyIe,
+        : `ie${project.legacyIe}`,
     sourceMap: build.sourceMap || !env.production,
   }
 

@@ -10,16 +10,12 @@ const styles = require('./styles.js')
 
 function meta(name, content) {
   if (typeof name === 'object') {
-    let data = name
-    return (
-      '<meta ' +
-      Object.keys(data)
-        .map(function(key) {
-          return `${_.escape(key)}="${_.escape(data[key])}"`
-        })
-        .join(' ') +
-      '>'
-    )
+    const data = name
+    return `<meta ${Object.keys(data)
+      .map(function(key) {
+        return `${_.escape(key)}="${_.escape(data[key])}"`
+      })
+      .join(' ')}>`
   }
 
   if (name === 'robots') {

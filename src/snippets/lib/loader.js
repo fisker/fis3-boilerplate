@@ -16,12 +16,12 @@ const getPackageInfo = (function(path, cache) {
     if (cache[pkgName]) {
       return cache[pkgName]
     }
-    let arr = require
+    const arr = require
       .resolve(pkgName)
       .replace(/\\/g, '/')
       .split('/')
-    let dir = arr.slice(0, arr.lastIndexOf('node_modules') + 2).join('/')
-    let pkg = require(path.join(path.normalize(dir), 'package.json'))
+    const dir = arr.slice(0, arr.lastIndexOf('node_modules') + 2).join('/')
+    const pkg = require(path.join(path.normalize(dir), 'package.json'))
     cache[pkgName] = pkg
     return pkg
   }
@@ -49,7 +49,7 @@ const loader = {
       return createScript(`/assets/vendors/jquery/${version}/dist/${file}`)
     }
 
-    let html = []
+    const html = []
 
     if (project.device !== 'mobile' && project.legacyIe <= 8) {
       html.push(conditionHTML(jquery('1.12.4'), '< 9', 80 - 6))
@@ -70,10 +70,9 @@ const loader = {
   },
   rem() {
     if (project.flexibleRem) {
-      return (
-        '<!-- prettier-ignore -->\n' +
-        createScript('/assets/scripts/component/_rem.js.jst?__inline')
-      )
+      return `<!-- prettier-ignore -->\n${createScript(
+        '/assets/scripts/component/_rem.js.jst?__inline'
+      )}`
     }
   },
   vue() {

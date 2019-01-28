@@ -8,7 +8,7 @@ const {_, project, env} = require('./common.js')
 const scripts = require('./scripts.js')
 
 function header(config = {}) {
-  let html = []
+  const html = []
 
   return html.join('\n')
 }

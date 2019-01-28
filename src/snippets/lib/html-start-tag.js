@@ -21,15 +21,15 @@ function renderHTMLTag(attrs, version) {
   const attrStr = Object.keys(attrs)
     .sort()
     .map(function(attr) {
-      let value = attr === 'class' ? classNames.join(' ') : attrs[attr]
+      const value = attr === 'class' ? classNames.join(' ') : attrs[attr]
       if (value) {
-        return attr + '="' + _.escape(value) + '"'
+        return `${attr}="${_.escape(value)}"`
       }
     })
     .filter(Boolean)
     .join(' ')
 
-  const html = `<html${attrStr ? ' ' + attrStr : ''}>`
+  const html = `<html${attrStr ? ` ${attrStr}` : ''}>`
 
   return conditionHTML(html, version)
 }
