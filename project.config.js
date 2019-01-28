@@ -4,7 +4,7 @@
 'use strict'
 
 var path = require('path')
-var projectName = projectName()
+var projectName = getProjectName()
 
 var project = {
   name: projectName,
@@ -123,7 +123,7 @@ var server = {
   config: require('./bs-config.js'),
 }
 
-function projectName () {
+function getProjectName () {
   let projectName
   try {
     projectName = require('./package.json').name

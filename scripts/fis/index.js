@@ -1,8 +1,3 @@
-/* eslint comma-dangle: 0, no-console: 0 */
-/* eslint-env node */
-
-'use strict'
-
 var fis = global.fis
 var config = require('./lib/config.js')
 var utils = require('./lib/utils.js')

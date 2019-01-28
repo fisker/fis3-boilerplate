@@ -1,8 +1,3 @@
-/* eslint comma-dangle: 0 */
-/* eslint-env node */
-
-'use strict'
-
 var editorConfig = {
   charset: 'utf-8',
   endOfLine: '\n',
@@ -34,8 +29,10 @@ function codeStyleGetter(lang) {
   return codeStyle
 }
 
+var hasOwn = Object.prototype.hasOwnProperty
+
 for (var key in editorConfig) {
-  if (editorConfig.hasOwnProperty(key)) {
+  if (hasOwn.call(editorConfig, key)) {
     Object.defineProperty(codeStyleGetter, key, {
       value: editorConfig[key]
     })
@@ -43,7 +40,7 @@ for (var key in editorConfig) {
 }
 
 for (var lang in codeStyleForLang) {
-  if (codeStyleForLang.hasOwnProperty(lang)) {
+  if (hasOwn.call(codeStyleForLang, lang)) {
     Object.defineProperty(codeStyleGetter, lang, {
       value: codeStyleGetter(lang)
     })

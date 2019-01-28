@@ -1,6 +1,3 @@
-/* eslint-env node, es6 */
-/* eslint comma-dangle: 0, no-console: 0 */
-
 'use strict'
 
 const {
@@ -60,7 +57,7 @@ function htmlStartTag(attrs) {
 
   var html = []
 
-  if (project.device != 'mobile' && project.legacyIe < 9) {
+  if (project.device !== 'mobile' && project.legacyIe < 9) {
     if (project.legacyIe < 7) {
       html.push(renderHTMLTag(attrs, 6))
     }

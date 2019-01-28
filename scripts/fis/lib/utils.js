@@ -7,6 +7,7 @@ var fis = global.fis
 var _ = fis.util
 var pluginConfig = require('./plugin-config.js')
 var pluginTypes = require('./plugin-types.js')
+const PLUGIN_PROP = '__plugin'
 
 var fileExts = {}
 
@@ -17,7 +18,7 @@ function toArray(s) {
 function getPlugin(pluginNames) {
   var plugins = []
 
-  if (pluginNames.__plugin) {
+  if (pluginNames[PLUGIN_PROP]) {
     return pluginNames
   }
   if (!pluginNames) {
@@ -31,7 +32,7 @@ function getPlugin(pluginNames) {
     if (!pluginName) {
       return null
     }
-    if (pluginName.__plugin) {
+    if (pluginName[PLUGIN_PROP]) {
       plugin = pluginName
     } else {
       shortPluginName = parsePlugin(pluginName).short

@@ -91,7 +91,7 @@ function head(config = {}) {
   }
 
   const viewport =
-    project.device != 'desktop'
+    project.device !== 'desktop'
       ? {
           width: 'device-width',
           'initial-scale': 1,
@@ -109,7 +109,7 @@ function head(config = {}) {
 
   html.push(meta('viewport', viewport))
 
-  if (project.device != 'desktop') {
+  if (project.device !== 'desktop') {
     html.push(
       meta('format-detection', {
         telephone: 'no',

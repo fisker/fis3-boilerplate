@@ -1,12 +1,9 @@
-/* eslint-env node, es6 */
-'use strict'
-
 const fis = require('fis3')
 fis.project.setProjectRoot(require('../project.config.js').build.src)
 fis.log.throw = true
 
 function getStdin() {
-  const stdin = process.stdin
+  const {stdin} = process
   return new Promise(resolve => {
     let ret = ''
     if (stdin.isTTY) {
@@ -51,7 +48,7 @@ function getStdin() {
         return
       }
 
-      return plugins.map(name => type + '-' + name)
+      return plugins.map(name => `${type}-${name}`)
     })
     .filter(Boolean)
 
@@ -78,10 +75,10 @@ function getStdin() {
 
     plugins = plugins.map(name => {
       if (source.includes("'fis3-" + name + "'")) {
-        return 'fis3-' + name
+        return `fis3-${name}`
       }
       if (source.includes("'fis-" + name + "'")) {
-        return 'fis-' + name
+        return `fis-${name}`
       }
 
       return name

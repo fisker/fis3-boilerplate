@@ -27,7 +27,7 @@ const getPackageInfo = (function(path, cache) {
 
 const loader = {
   dd_belatedpng() {
-    if (project.device != 'mobile' && project.legacyIe <= 6) {
+    if (project.device !== 'mobile' && project.legacyIe <= 6) {
       const version = getPackageInfo('dd_belatedpng').version
       const file = env.production ? `DD_belatedPNG_${version}.min.js` : `DD_belatedPNG_${version}.js`
       const src = `/assets/vendors/dd_belatedpng/${version}/dist/${file}`
@@ -43,7 +43,7 @@ const loader = {
 
     let html = []
 
-    if (project.device != 'mobile' && project.legacyIe <= 8) {
+    if (project.device !== 'mobile' && project.legacyIe <= 8) {
       html.push(conditionHTML(jquery('1.12.4'), '< 9', 80 - 6))
       html.push(conditionHTML(jquery('2.2.4'), '>= 9', 80 - 6))
     } else {
@@ -53,7 +53,7 @@ const loader = {
     return html.join('\n')
   },
   html5shiv() {
-    if (project.device != 'mobile' && project.legacyIe < 9) {
+    if (project.device !== 'mobile' && project.legacyIe < 9) {
       const version = getPackageInfo('html5shiv').version
       const file = env.production ? 'html5shiv.min.js' : 'html5shiv.js'
       const src = `/assets/vendors/html5shiv/${version}/dist/${file}`

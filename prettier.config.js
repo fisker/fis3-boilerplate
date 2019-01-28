@@ -1,7 +1,7 @@
 // https://prettier.io/docs/en/options.html
 
 module.exports = {
-  trailingComma: 'none',
+  trailingComma: 'es5',
   semi: false,
   singleQuote: true,
   bracketSpacing: false,
@@ -11,6 +11,12 @@ module.exports = {
       files: '*.js',
       options: {
         parser: 'babel'
+      },
+    },
+    {
+      files: 'src/**/*.js',
+      options: {
+        trailingComma: 'es5',
       },
     },
     {

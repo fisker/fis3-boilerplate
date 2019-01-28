@@ -1,37 +1,40 @@
-  var supportProgress = document.createElement('progress').max === 1;
+/* eslint-disable strict */
+/* global $: true */
 
-  function initProgress() {
-    if (supportProgress) {
-      return;
-    }
-    var progress = $(this);
-    var progressBar = progress.find('.progress-bar');
-    if (!progressBar.length) {
-      $('<div class="progress-bar">').appendTo(progress);
-    }
-    var value = +progress.val() || +progress.attr('value');
-    setProgressValue(progress, value);
+var supportProgress = document.createElement('progress').max === 1
+
+function initProgress() {
+  if (supportProgress) {
+    return
   }
-
-  function setProgressValue(progress, value) {
-    progress = $(progress).val(value);
-    if (supportMeter) {
-      return;
-    }
-    var max = +progress.attr('max') || 1;
-    var progressBar = progress.find('.progress-bar');
-    if (value > max) {
-      value = max;
-    }
-    progressBar.css('width', value / max * 100 + '%');
+  var progress = $(this)
+  var progressBar = progress.find('.progress-bar')
+  if (!progressBar.length) {
+    $('<div class="progress-bar">').appendTo(progress)
   }
+  var value = +progress.val() || +progress.attr('value')
+  setProgressValue(progress, value)
+}
 
-  $.fn.progressValue = $.fn.progressVal = function(value) {
-    return $(this).each(function() {
-      setProgressValue(this, value);
-    });
-  };
+function setProgressValue(progress, value) {
+  progress = $(progress).val(value)
+  if (supportProgress) {
+    return
+  }
+  var max = +progress.attr('max') || 1
+  var progressBar = progress.find('.progress-bar')
+  if (value > max) {
+    value = max
+  }
+  progressBar.css('width', (value / max) * 100 + '%')
+}
 
-  $(function() {
-    $('progress').each(initProgress);
-  });
+$.fn.progressValue = $.fn.progressVal = function(value) {
+  return $(this).each(function() {
+    setProgressValue(this, value)
+  })
+}
+
+$(function() {
+  $('progress').each(initProgress)
+})

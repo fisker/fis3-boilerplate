@@ -1,7 +1,3 @@
-/* eslint-env node */
-
-'use strict'
-
 var config = require('../../../project.config')
 var project = config.project
 var build = config.build

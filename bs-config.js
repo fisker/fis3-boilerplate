@@ -1,7 +1,3 @@
-/* eslint-env node */
-
-'use strict'
-
 /*
  |--------------------------------------------------------------------------
  | Browser-sync config file
@@ -19,8 +15,8 @@ module.exports = {
   ui: {
     port: 3001,
     weinre: {
-      port: 3002
-    }
+      port: 3002,
+    },
   },
   files: false,
   // prettier-ignore
@@ -35,11 +31,11 @@ module.exports = {
   ignore: [],
   single: false,
   watchOptions: {
-    ignoreInitial: true
+    ignoreInitial: true,
   },
   server: {
     // baseDir: '', // not working, override by fis3
-    directory: true
+    directory: true,
   },
   proxy: false,
   port: 3000,
@@ -101,15 +97,15 @@ module.exports = {
     'input:toggles',
     'form:submit',
     'form:reset',
-    'click'
+    'click',
   ],
   socket: {
     // some option in default-config.js not in document
     socketIoOptions: {
-      log: false
+      log: false,
     },
     socketIoClientConfig: {
-      reconnectionAttempts: 50
+      reconnectionAttempts: 50,
     },
     path: '/browser-sync/socket.io',
     clientPath: '/browser-sync',
@@ -117,8 +113,8 @@ module.exports = {
     // domain: undefined,
     // port: undefined,
     clients: {
-      heartbeatTimeout: 5000
-    }
+      heartbeatTimeout: 5000,
+    },
   },
   tagNames: {
     less: 'link',
@@ -129,7 +125,7 @@ module.exports = {
     png: 'img',
     svg: 'img',
     gif: 'img',
-    js: 'script'
+    js: 'script',
   },
   injectFileTypes: ['css', 'png', 'jpg', 'jpeg', 'svg', 'gif', 'webp', 'map'],
   injectNotification: 'console', // false | console | overlay
@@ -160,9 +156,9 @@ module.exports = {
     'wmv',
     'avi',
     'swf',
-    'scss'
+    'scss',
   ],
   script: {
     // domain: undefined
-  }
+  },
 }
