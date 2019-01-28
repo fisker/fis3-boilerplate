@@ -1,4 +1,3 @@
-
 var path = require('path')
 var fs = require('fs')
 var STORE_LOCATION = path.join(process.cwd(), 'src/_config/')
@@ -13,7 +12,8 @@ function map(collection, iteratee) {
     collection,
     function(acc, current, key, collection) {
       return acc.concat([iteratee.call(collection, current, key, collection)])
-    }, []
+    },
+    []
   )
 }
 
@@ -23,7 +23,10 @@ function prettyJSONStringify(data) {
 
 function addFinalNewLine(parser) {
   return function addFinalNewLine() {
-    return parser.apply(this, arguments) + (codeStyle.insertFinalNewline ? codeStyle.endOfLine : '')
+    return (
+      parser.apply(this, arguments) +
+      (codeStyle.insertFinalNewline ? codeStyle.endOfLine : '')
+    )
   }
 }
 
@@ -35,22 +38,35 @@ function jsParser(data) {
 function increseIndent(str, level) {
   level = level || 1
   var indentStr = codeStyle.indent.repeat(level)
-  return str.split('\n').map(function(s, line) {
-    return line && s ? indentStr + s : s
-  }).join('\n')
+  return str
+    .split('\n')
+    .map(function(s, line) {
+      return line && s ? indentStr + s : s
+    })
+    .join('\n')
 }
 
 var toString = Object.prototype.toString
 
 function type(x) {
-  return toString.call(x).slice(8, -1).toLowerCase()
+  return toString
+    .call(x)
+    .slice(8, -1)
+    .toLowerCase()
 }
 
 var reColor = (function() {
   function getFunctionalStringRe(func, args) {
-    return func + '\\(' + args.map(function(arg) {
-      return '\\s*' + arg + '\\s*'
-    }).join(',') + '\\)'
+    return (
+      func +
+      '\\(' +
+      args
+        .map(function(arg) {
+          return '\\s*' + arg + '\\s*'
+        })
+        .join(',') +
+      '\\)'
+    )
   }
 
   // var keywords = 'black|silver|gray|white|maroon|red|purple|fuchsia|green|lime|olive|yellow|navy|blue|teal|aqua|orange|aliceblue|antiquewhite|aquamarine|azure|beige|bisque|blanchedalmond|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|gainsboro|ghostwhite|gold|goldenrod|greenyellow|grey|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|limegreen|linen|magenta|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|oldlace|olivedrab|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|thistle|tomato|turquoise|violet|wheat|whitesmoke|yellowgreen|rebeccapurple|transparent|currentColor'
@@ -58,18 +74,28 @@ var reColor = (function() {
   var rgb = getFunctionalStringRe('rgb', ['\\d+', '\\d+', '\\d+'])
   var rgba = getFunctionalStringRe('rgba', ['\\d+', '\\d+', '\\d+', '[.\\d]+'])
   var hsl = getFunctionalStringRe('hsl', ['\\d+', '[\\d]+%', '[.\\d]+%'])
-  var hsla = getFunctionalStringRe('hsla', ['\\d+', '[.\\d]+%', '[.\\d]+%', '[.\\d]+'])
+  var hsla = getFunctionalStringRe('hsla', [
+    '\\d+',
+    '[.\\d]+%',
+    '[.\\d]+%',
+    '[.\\d]+',
+  ])
 
-  return new RegExp('^' +
-    '(?:' + [
-      // keywords,
-      hex,
-      rgb,
-      rgba,
-      hsl,
-      hsla
-      ].join('|') + ')' +
-    '$', 'i')
+  return new RegExp(
+    '^' +
+      '(?:' +
+      [
+        // keywords,
+        hex,
+        rgb,
+        rgba,
+        hsl,
+        hsla,
+      ].join('|') +
+      ')' +
+      '$',
+    'i'
+  )
 })()
 
 function cssPreprossorParser(lang) {
@@ -121,11 +147,9 @@ function cssPreprossorParser(lang) {
           return '()'
         }
 
-        return [
-          '(',
-          values.join(',' + codeStyle.endOfLine) + ',',
-          ')'
-        ].join('\n')
+        return ['(', values.join(',' + codeStyle.endOfLine) + ',', ')'].join(
+          '\n'
+        )
       }
 
       function scssArrayToMap(arr, indent) {
@@ -137,13 +161,18 @@ function cssPreprossorParser(lang) {
 
       function scssObjectToMap(obj, indent) {
         var values = Object.keys(obj).map(function(key) {
-          return codeStyle.indent + quoteKey(key) + ': ' + scssValue(obj[key], indent + 1)
+          return (
+            codeStyle.indent +
+            quoteKey(key) +
+            ': ' +
+            scssValue(obj[key], indent + 1)
+          )
         })
         return toMapString(values)
       }
 
       return scssValue
-    })()
+    })(),
   }
 
   var prefix = VAR_PREFIX[lang]
@@ -162,7 +191,7 @@ var parsers = {
   json: prettyJSONStringify,
   js: jsParser,
   scss: cssPreprossorParser('scss'),
-  pug: pugParser
+  pug: pugParser,
 }
 
 function store(config) {
@@ -184,6 +213,6 @@ _.mkdir(STORE_LOCATION)
 store({
   env: config.env,
   project: config.project,
-  package: config.package
+  package: config.package,
 })
 module.exports = store

@@ -21,7 +21,7 @@ function getPluginConfig() {
     sourceComments: !env.production,
     sourceMap: false,
     sourceMapContents: true,
-    sourceMapEmbed: !env.production
+    sourceMapEmbed: !env.production,
     // sourceMapRoot: ''
   }
 
@@ -51,13 +51,13 @@ function getPluginConfig() {
 
   var uglifyJSConfig = {
     mangle: {
-      reserved: ['exports', 'module', 'require', 'define']
+      reserved: ['exports', 'module', 'require', 'define'],
     },
     compress: {
-      drop_console: env.production
+      drop_console: env.production,
     },
     ie8: project.legacyIe <= 8,
-    sourceMap: build.sourceMap || !env.production
+    sourceMap: build.sourceMap || !env.production,
   }
 
   var cleanCSSConfig = {
@@ -65,7 +65,7 @@ function getPluginConfig() {
       project.legacyIe < 7
         ? 'ie7,+properties.iePrefixHack'
         : 'ie' + project.legacyIe,
-    sourceMap: build.sourceMap || !env.production
+    sourceMap: build.sourceMap || !env.production,
   }
 
   return {
@@ -76,16 +76,16 @@ function getPluginConfig() {
     'fis-parser-less-2.x': {},
     'fis3-postprocessor-autoprefixer-latest': {
       remove: false,
-      browsers: browserslist
+      browsers: browserslist,
     },
     'fis3-optimizer-uglifyjs': uglifyJSConfig,
     'fis3-optimizer-cleancss': cleanCSSConfig,
     'fis-spriter-csssprites': {
       margin: 10,
-      layout: 'linear' // 'linear/matrix' default linear
+      layout: 'linear', // 'linear/matrix' default linear
     },
     'fis3-deploy-local-deliver': {
-      to: './dist'
+      to: './dist',
     },
     'fis-parser-coffee-script': {
       // header: true,
@@ -94,34 +94,34 @@ function getPluginConfig() {
       blacklist: ['regenerator'],
       optional: ['asyncToGenerator'],
       stage: 3,
-      sourceMaps: !env.production
+      sourceMaps: !env.production,
     },
     'fis-parser-babel-6.x': {
       presets: ['env', 'react'],
-      sourceMaps: !env.production
+      sourceMaps: !env.production,
     },
     'fis3-parser-pug': {
       pretty: '  ',
-      doctype: 'html'
+      doctype: 'html',
     },
     'fis3-lint-htmlhint': {},
     'fis3-lint-eslint-noisy': {
       fix: build.fix.js,
-      useEslintrc: true
+      useEslintrc: true,
     },
     'fis3-lint-stylelint': {
-      fix: build.fix.css
+      fix: build.fix.css,
     },
     'fis3-optimizer-imagemin': {
       '.png': build.optimize.png.lossy
         ? {
             upng: {
-              cnum: 256
-            }
+              cnum: 256,
+            },
           }
         : {
-            pngcrush: {}
-          }
+            pngcrush: {},
+          },
     },
     'fis3-postprocessor-html': {
       brace_style: 'collapse', // [collapse|expand|end-expand|none] Put braces on the same line as control statements (default), or put braces on own line (Allman / ANSI style), or just put end braces on own line, or attempt to keep them where they are
@@ -140,26 +140,26 @@ function getPluginConfig() {
         // 'strike', 'big', 'small', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'script', 'style'
       ], // List of tags that should not be reformatted
       extra_liners: [],
-      wrap_line_length: 0 // Lines should wrap at next opportunity after this number of characters (0 disables)
+      wrap_line_length: 0, // Lines should wrap at next opportunity after this number of characters (0 disables)
     },
     'fis3-postprocessor-prettier': {},
     'fis3-parser-ejs': {
       data: Object.assign(
         {
-          _: require('../../ejs-helpers.js')
+          _: require('../../ejs-helpers.js'),
         },
         config
       ),
       options: {
         outputFunctionName: 'echo',
         // rmWhitespace: true,
-        debug: !env.production
-      }
+        debug: !env.production,
+      },
     },
     'fis3-parser-lodash-template': {
       data: config,
-      options: {}
-    }
+      options: {},
+    },
   }
 }
 

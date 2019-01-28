@@ -29,11 +29,8 @@ const conditionHTML = (CONDITION_OP => {
       let version = Number(match[2])
       // TODO: remove space after prettier fix bug
       // https://github.com/prettier/prettier/issues/5421
-      conditionStart = '<!--[if ' +
-        (op ? op + ' ' : '') +
-        'IE ' +
-        version +
-        ']>'
+      conditionStart =
+        '<!--[if ' + (op ? op + ' ' : '') + 'IE ' + version + ']>'
       conditionEnd = '<![endif]-->'
 
       if (version >= 9 && op !== 'lt') {
@@ -42,11 +39,7 @@ const conditionHTML = (CONDITION_OP => {
       }
     }
 
-    let arr = [
-      conditionStart,
-      html,
-      conditionEnd,
-    ].filter(Boolean)
+    let arr = [conditionStart, html, conditionEnd].filter(Boolean)
 
     let totalLength = arr.reduce((acc, current) => acc + current.length, 0)
 
@@ -58,7 +51,7 @@ const conditionHTML = (CONDITION_OP => {
   '<': 'lt',
   '<=': 'lte',
   '>=': 'gte',
-  '>': 'gt',
+  '>': 'gt'
 })
 
 module.exports = {
@@ -69,5 +62,5 @@ module.exports = {
   createScript,
   createLink,
   conditionHTML,
-  _,
+  _
 }

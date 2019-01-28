@@ -8,7 +8,7 @@ var editorConfig = {
 
 var codeStyleForLang = {
   js: {
-    quote: '\'',
+    quote: "'",
     semi: false,
   },
   css: {
@@ -18,13 +18,16 @@ var codeStyleForLang = {
   },
 }
 
-
 var cache = {}
 function codeStyleGetter(lang) {
   lang = lang || '_'
   var codeStyle = cache[lang]
   if (!codeStyle) {
-    codeStyle = cache[lang] = Object.assign({}, codeStyleForLang[lang], editorConfig)
+    codeStyle = cache[lang] = Object.assign(
+      {},
+      codeStyleForLang[lang],
+      editorConfig
+    )
   }
   return codeStyle
 }
@@ -34,7 +37,7 @@ var hasOwn = Object.prototype.hasOwnProperty
 for (var key in editorConfig) {
   if (hasOwn.call(editorConfig, key)) {
     Object.defineProperty(codeStyleGetter, key, {
-      value: editorConfig[key]
+      value: editorConfig[key],
     })
   }
 }
@@ -42,7 +45,7 @@ for (var key in editorConfig) {
 for (var lang in codeStyleForLang) {
   if (hasOwn.call(codeStyleForLang, lang)) {
     Object.defineProperty(codeStyleGetter, lang, {
-      value: codeStyleGetter(lang)
+      value: codeStyleGetter(lang),
     })
   }
 }

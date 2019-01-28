@@ -10,13 +10,13 @@ module.exports = {
     {
       files: '*.js',
       options: {
-        parser: 'babel'
+        parser: 'babel',
       },
     },
     {
-      files: 'src/**/*.js',
+      files: 'src/**/*.{js,html,htm}',
       options: {
-        trailingComma: 'es5',
+        trailingComma: 'none',
       },
     },
     {

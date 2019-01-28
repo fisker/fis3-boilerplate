@@ -37,5 +37,5 @@ module.exports = Object.freeze({
   project: project,
   build: build,
   codeStyle: codeStyle,
-  package: pkg
+  package: pkg,
 })

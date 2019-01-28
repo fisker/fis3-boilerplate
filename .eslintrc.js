@@ -2,15 +2,6 @@ module.exports = {
   root: true,
   extends: ['@xwtec/eslint-config/legacy'],
   rules: {
-    // 必须严格模式
-    strict: ['error', 'function'],
-
-
-    // disallow assignment in conditional expressions
-    'no-cond-assign': ['error', "except-parens"],
-
-    // prettier takes care of quotes
-    'quotes': ['warn'],
   },
   overrides: [
     {

@@ -122,6 +122,6 @@ module.exports = {
     'at-rule-name-case': null,
 
     // prettier removes extra semicolons
-    'no-extra-semicolons': null
-  }
+    'no-extra-semicolons': null,
+  },
 }

@@ -24,8 +24,8 @@ function meta(name, content) {
 
   if (name === 'robots') {
     if (typeof content === 'object') {
-      content = Object.keys(content).map(
-        key => (content[key] ? key : `no${key}`)
+      content = Object.keys(content).map(key =>
+        content[key] ? key : `no${key}`
       )
     }
   }

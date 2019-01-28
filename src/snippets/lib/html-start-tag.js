@@ -1,10 +1,6 @@
 'use strict'
 
-const {
-  _,
-  project,
-  conditionHTML,
-} = require('./common.js')
+const {_, project, conditionHTML} = require('./common.js')
 
 const commonAttrs = {
   lang: project.lang
@@ -37,7 +33,6 @@ function renderHTMLTag(attrs, version) {
 
   return conditionHTML(html, version)
 }
-
 
 function htmlStartTag(attrs) {
   attrs = attrs || {}

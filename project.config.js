@@ -14,18 +14,9 @@ var project = {
   flexibleRem: false, // REM
   designWidth: 750, // 设计稿尺寸
   brandColor: '', // 主色调，用于浏览器标题栏、css --config-primary-color等
-  styles: [
-    '/assets/styles/main.scss',
-  ],
-  headScripts: [
-    'rem',
-    'html5shiv',
-  ],
-  scripts: [
-    '/project/scripts/config.js.jst',
-    'dd_belatedpng',
-    'jquery',
-  ],
+  styles: ['/assets/styles/main.scss'],
+  headScripts: ['rem', 'html5shiv'],
+  scripts: ['/project/scripts/config.js.jst', 'dd_belatedpng', 'jquery'],
   lang: 'zh-CN',
   robots: {
     index: true,
@@ -41,32 +32,37 @@ var build = {
   dist: resolvePath('./dist'),
   archive: resolvePath('./archive/'),
   archiveType: 'zip', // `zip` OR `tar.gz` , tar.gz do NOT support chinese filename
-  archiveFile: projectName +
+  archiveFile:
+    projectName +
     '.' +
-    new Date().toJSON().replace(/[-:]/g, '').replace('T', '-').slice(2, 15),
+    new Date()
+      .toJSON()
+      .replace(/[-:]/g, '')
+      .replace('T', '-')
+      .slice(2, 15),
   sourceMap: false,
   lint: {
     html: true, // html 代码检查
     css: true, // css 代码检查
-    js: true // js 代码检查
+    js: true, // js 代码检查
   },
   fix: {
     html: false, // 暂无插件修复
     css: false, // stylelint 时使用 stylefmt 自动修复
-    js: false // eslint 自动修复
+    js: false, // eslint 自动修复
   },
   optimize: {
     css: false, // css 代码压缩
     js: false, // js 代码压缩
     html: false, // html 代码压缩
     png: {
-      lossy: true // 有损压缩png
+      lossy: true, // 有损压缩png
     },
     jpeg: {
-      progressive: true // 渐进式 jpeg
+      progressive: true, // 渐进式 jpeg
     },
     gif: true,
-    svg: false
+    svg: false,
   },
   hash: {
     length: 6, // md5戳长度
@@ -74,7 +70,7 @@ var build = {
     except: [
       '*',
       // '*.{html,htm}',
-    ]
+    ],
   },
   relative: true, // 使用相对路径
   ignore: {
@@ -89,32 +85,13 @@ var build = {
       'Desktop.ini',
       'fis-conf.js',
     ],
-    vendors: [
-      'lib/**',
-      'thirdparty/**',
-      'third{_,-}party/**',
-      'vendors/**',
-    ],
-    release: [
-      'normalize.css/**',
-      '/snippets/**',
-      '_**',
-    ],
-    lint: [
-      '/snippets/**',
-      '*{.,_,-}min.**',
-    ],
-    optimizer: [
-      '/snippets/**',
-      '*{.,_,-}min.**',
-    ],
-    postprocessor: [
-      '*{.,_,-}min.**',
-    ],
+    vendors: ['lib/**', 'thirdparty/**', 'third{_,-}party/**', 'vendors/**'],
+    release: ['normalize.css/**', '/snippets/**', '_**'],
+    lint: ['/snippets/**', '*{.,_,-}min.**'],
+    optimizer: ['/snippets/**', '*{.,_,-}min.**'],
+    postprocessor: ['*{.,_,-}min.**'],
   },
-  minifyInlineScript: [
-    'assets/scripts/component/_rem.js.jst',
-  ],
+  minifyInlineScript: ['assets/scripts/component/_rem.js.jst'],
 }
 
 var server = {
@@ -123,7 +100,7 @@ var server = {
   config: require('./bs-config.js'),
 }
 
-function getProjectName () {
+function getProjectName() {
   let projectName
   try {
     projectName = require('./package.json').name

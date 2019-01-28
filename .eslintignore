@@ -2,3 +2,4 @@
 **/vendors/**/*.js
 src/**/_*.js
 node_modules/**
+dist/**

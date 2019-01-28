@@ -63,8 +63,7 @@ function pluginToProperties(pluginNames) {
 
 function getPluginOptions(pluginName) {
   var shortPluginName = parsePlugin(pluginName).short
-  var options =
-    pluginConfig[pluginName] || pluginConfig[shortPluginName] || {}
+  var options = pluginConfig[pluginName] || pluginConfig[shortPluginName] || {}
   return options
 }
 
@@ -75,7 +74,7 @@ function parsePlugin(pluginName) {
       '(?:fis|fis3)-',
       '(' + pluginTypes.join('|') + ')-',
       '(.*?)',
-      '$'
+      '$',
     ].join('')
   )
   var match = pluginName.match(reg)
@@ -84,7 +83,7 @@ function parsePlugin(pluginName) {
     match[2] && {
       name: match[0],
       type: match[1],
-      short: match[2]
+      short: match[2],
     }
   )
 }
@@ -115,7 +114,6 @@ function getExtsReg(ext, inline) {
   }
   return prefix + exts
 }
-
 
 module.exports = {
   fileExts: fileExts,

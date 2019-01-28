@@ -13,5 +13,5 @@ module.exports = [
   'spriter',
   'packager',
   'postpackager',
-  'deploy'
+  'deploy',
 ]

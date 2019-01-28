@@ -8,7 +8,7 @@ const {
   env,
   createScript,
   createLink,
-  conditionHTML,
+  conditionHTML
 } = require('./common.js')
 
 const getPackageInfo = (function(path, cache) {
@@ -16,7 +16,10 @@ const getPackageInfo = (function(path, cache) {
     if (cache[pkgName]) {
       return cache[pkgName]
     }
-    let arr = require.resolve(pkgName).replace(/\\/g, '/').split('/')
+    let arr = require
+      .resolve(pkgName)
+      .replace(/\\/g, '/')
+      .split('/')
     let dir = arr.slice(0, arr.lastIndexOf('node_modules') + 2).join('/')
     let pkg = require(path.join(path.normalize(dir), 'package.json'))
     cache[pkgName] = pkg
@@ -24,14 +27,19 @@ const getPackageInfo = (function(path, cache) {
   }
 })(require('path'), {})
 
-
 const loader = {
   dd_belatedpng() {
     if (project.device !== 'mobile' && project.legacyIe <= 6) {
       const version = getPackageInfo('dd_belatedpng').version
-      const file = env.production ? `DD_belatedPNG_${version}.min.js` : `DD_belatedPNG_${version}.js`
+      const file = env.production
+        ? `DD_belatedPNG_${version}.min.js`
+        : `DD_belatedPNG_${version}.js`
       const src = `/assets/vendors/dd_belatedpng/${version}/dist/${file}`
-      return conditionHTML(`${createScript(src)}\n<script>DD_belatedPNG.fix('*')</script>`, 6, 80 - 6)
+      return conditionHTML(
+        `${createScript(src)}\n<script>DD_belatedPNG.fix('*')</script>`,
+        6,
+        80 - 6
+      )
     }
   },
   jquery() {
@@ -62,7 +70,10 @@ const loader = {
   },
   rem() {
     if (project.flexibleRem) {
-      return '<!-- prettier-ignore -->\n' + createScript('/assets/scripts/component/_rem.js.jst?__inline')
+      return (
+        '<!-- prettier-ignore -->\n' +
+        createScript('/assets/scripts/component/_rem.js.jst?__inline')
+      )
     }
   },
   vue() {
@@ -77,7 +88,9 @@ const loader = {
   },
   'element-ui.css': function() {
     const version = getPackageInfo('element-ui').version
-    return createLink(`/assets/vendors/element-ui/${version}/lib/theme-chalk/index.css`)
+    return createLink(
+      `/assets/vendors/element-ui/${version}/lib/theme-chalk/index.css`
+    )
   },
   dom4() {
     const version = getPackageInfo('dom4').version
