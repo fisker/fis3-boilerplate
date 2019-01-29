@@ -23,11 +23,13 @@ function codeStyleGetter(lang) {
   lang = lang || '_'
   var codeStyle = cache[lang]
   if (!codeStyle) {
-    codeStyle = cache[lang] = Object.assign(
+    codeStyle = Object.assign(
       {},
       codeStyleForLang[lang],
       editorConfig
     )
+
+    cache[lang] = codeStyle
   }
   return codeStyle
 }
