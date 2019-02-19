@@ -1,3 +1,6 @@
+const path = require('path')
+const fs = require('fs')
+// eslint-disable-next-line import/no-unresolved
 const fis = require('fis3')
 fis.project.setProjectRoot(require('../project.config.js').build.src)
 fis.log.throw = true
@@ -28,24 +31,24 @@ function getStdin() {
 }
 
 ;(async function() {
-  var input = await getStdin()
-  var plugins = input
+  const input = await getStdin()
+  let plugins = input
     .split('\n')
     .map(text => {
-      var match = text.match(/--\s*(.*?)\s+/)
+      const match = text.match(/--\s*(.*?)\s+/)
       if (!match) {
-        return
+        return null
       }
-      var type = match[1]
-      var re = /\[plugin `(.*?)`\]/g
-      var plugins = []
-      var result
+      const type = match[1]
+      const re = /\[plugin `(.*?)`\]/g
+      const plugins = []
+      let result
       while ((result = re.exec(text))) {
         plugins.push(result[1])
       }
 
       if (!plugins.length) {
-        return
+        return null
       }
 
       return plugins.map(name => `${type}-${name}`)
@@ -68,10 +71,8 @@ function getStdin() {
   })
 
   if (plugins.length) {
-    var configFile = require('path').join(__dirname, 'fis/index.js')
-    var source = require('fs')
-      .readFileSync(configFile, 'utf-8')
-      .replace('"', "'")
+    const configFile = path.join(__dirname, 'fis/index.js')
+    const source = fs.readFileSync(configFile, 'utf-8').replace('"', "'")
 
     plugins = plugins.map(name => {
       if (source.includes(`'fis3-${name}'`)) {
@@ -84,8 +85,8 @@ function getStdin() {
       return name
     })
 
-    var confirmedPlugins = plugins.filter(name => name.startsWith('fis'))
-    var unConfirmedPlugins = plugins.filter(name => !name.startsWith('fis'))
+    const confirmedPlugins = plugins.filter(name => name.startsWith('fis'))
+    const unConfirmedPlugins = plugins.filter(name => !name.startsWith('fis'))
 
     if (confirmedPlugins.length) {
       console.log(`缺少插件,安装脚本:

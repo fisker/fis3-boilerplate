@@ -1,8 +1,8 @@
-var fis = global.fis
-var config = require('./lib/config.js')
-var utils = require('./lib/utils.js')
+const {fis} = global
+const config = require('./lib/config.js')
+const utils = require('./lib/utils.js')
 
-var preProcessors = [
+const preProcessors = [
   {
     ext: 'less',
     type: 'css',
@@ -58,7 +58,7 @@ utils.setHtmlLikeExt(
     .map(config => config.ext)
 )
 
-var standardProcessors = [
+const standardProcessors = [
   {
     type: 'css',
     lint: config.build.lint.css ? 'fis3-lint-stylelint' : null,
@@ -143,13 +143,13 @@ if (config.build.relative) {
 }
 
 preProcessors.forEach(function(data) {
-  var exts = utils.toArray(data.ext)
-  var processor = {
+  const exts = utils.toArray(data.ext)
+  let processor = {
     rExt: `.${data.type}`,
   }
 
   // plugins
-  var plugins = ['parser', 'lint']
+  const plugins = ['parser', 'lint']
 
   utils.fileExts[data.type] = utils.fileExts[data.type] || []
   utils.fileExts[data.type] = utils.fileExts[data.type].concat(exts)
@@ -166,7 +166,7 @@ preProcessors.forEach(function(data) {
 })
 
 standardProcessors.forEach(function(data) {
-  var processor = {}
+  const processor = {}
 
   // lint can't used on preProcessor
   // and we only lint for production
@@ -193,7 +193,7 @@ standardProcessors.forEach(function(data) {
 })
 ;['optimizer', 'lint', 'postprocessor'].forEach(function(type) {
   ;(config.build.ignore[type] || []).forEach(function(reg) {
-    var settings = {}
+    const settings = {}
     settings[type] = null
     fis.match(reg, settings)
   })

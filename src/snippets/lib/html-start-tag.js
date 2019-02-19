@@ -1,5 +1,3 @@
-'use strict'
-
 const {_, project, conditionHTML} = require('./common.js')
 
 const commonAttrs = {
@@ -50,7 +48,7 @@ function htmlStartTag(attrs) {
 
   attrs = {...commonAttrs, ...attrs}
 
-  var html = []
+  const html = []
 
   if (project.device !== 'mobile' && project.legacyIe < 9) {
     if (project.legacyIe < 7) {

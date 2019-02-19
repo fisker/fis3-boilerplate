@@ -1,15 +1,11 @@
-/* eslint strict: 0, camelcase: 0, comma-dangle: 0 */
-/* eslint-env node */
-
-'use strict'
-
-var config = require('./config.js')
-var env = config.env
-var project = config.project
-var build = config.build
+const config = require('./config.js')
+const ejsHelpers = require('../../ejs-helpers.js')
+const {env} = config
+const {project} = config
+const {build} = config
 
 function getPluginConfig() {
-  var sassParserConfig = {
+  const sassParserConfig = {
     includePaths: [],
     indentType: 'space',
     indentWidth: 2,
@@ -26,7 +22,7 @@ function getPluginConfig() {
   }
 
   // prettier-ignore
-  var browserslist = [
+  const browserslist = [
     `ie >= ${  project.legacyIe}`,
     'and_chr >= 1',
     'and_ff >=1',
@@ -49,7 +45,7 @@ function getPluginConfig() {
     'safari >= 3.1',
   ]
 
-  var uglifyJSConfig = {
+  const uglifyJSConfig = {
     mangle: {
       reserved: ['exports', 'module', 'require', 'define'],
     },
@@ -60,7 +56,7 @@ function getPluginConfig() {
     sourceMap: build.sourceMap || !env.production,
   }
 
-  var cleanCSSConfig = {
+  const cleanCSSConfig = {
     compatibility:
       project.legacyIe < 7
         ? 'ie7,+properties.iePrefixHack'
@@ -147,7 +143,7 @@ function getPluginConfig() {
     'fis3-parser-ejs': {
       data: Object.assign(
         {
-          _: require('../../ejs-helpers.js'),
+          _: ejsHelpers,
         },
         config
       ),

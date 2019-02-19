@@ -1,24 +1,19 @@
-/* eslint strict: 0, camelcase: 0 */
-/* eslint-env node */
-
-'use strict'
-
-var fs = require('fs')
-var path = require('path')
-var fis = global.fis
+const fs = require('fs')
+const path = require('path')
+const {fis} = global
 
 function fixPackage(folder) {
-  var file = path.join(folder, 'fis3-command-release', 'lib', 'watch.js')
-  var code = ''
+  const file = path.join(folder, 'fis3-command-release', 'lib', 'watch.js')
+  let code = ''
   try {
     code = fs.readFileSync(file, 'utf-8')
   } catch (err) {
     return
   }
 
-  var newCode = code.replace(
-    /(var safePathReg = \/.*\/)/g,
-    'var safePathReg = /.*/'
+  const newCode = code.replace(
+    /(let safePathReg = \/.*\/)/g,
+    'let safePathReg = /.*/'
   )
   if (newCode === code) {
     return

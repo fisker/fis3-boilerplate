@@ -1,22 +1,17 @@
-/* eslint comma-dangle: 0 */
-/* eslint-env node */
-
-'use strict'
-
-var fis = global.fis
-var _ = fis.util
-var pluginConfig = require('./plugin-config.js')
-var pluginTypes = require('./plugin-types.js')
+const {fis} = global
+const _ = fis.util
+const pluginConfig = require('./plugin-config.js')
+const pluginTypes = require('./plugin-types.js')
 const PLUGIN_PROP = '__plugin'
 
-var fileExts = {}
+const fileExts = {}
 
 function toArray(s) {
   return s.split ? s.split(',') : Array.from(s)
 }
 
 function getPlugin(pluginNames) {
-  var plugins = []
+  const plugins = []
 
   if (pluginNames[PLUGIN_PROP]) {
     return pluginNames
@@ -26,11 +21,11 @@ function getPlugin(pluginNames) {
   }
 
   _.forEach(toArray(pluginNames), function(pluginName) {
-    var plugin
-    var shortPluginName
+    let plugin
+    let shortPluginName
 
     if (!pluginName) {
-      return null
+      return
     }
     if (pluginName[PLUGIN_PROP]) {
       plugin = pluginName
@@ -45,10 +40,10 @@ function getPlugin(pluginNames) {
 }
 
 function pluginToProperties(pluginNames) {
-  var properties = {}
+  const properties = {}
   _.forEach(toArray(pluginNames), function(pluginName) {
-    var type = parsePlugin(pluginName).type
-    var plugin = getPlugin(pluginName)
+    const {type} = parsePlugin(pluginName)
+    const plugin = getPlugin(pluginName)
     if (properties[type]) {
       properties[type] = properties[type].push
         ? properties[type]
@@ -62,16 +57,17 @@ function pluginToProperties(pluginNames) {
 }
 
 function getPluginOptions(pluginName) {
-  var shortPluginName = parsePlugin(pluginName).short
-  var options = pluginConfig[pluginName] || pluginConfig[shortPluginName] || {}
+  const shortPluginName = parsePlugin(pluginName).short
+  const options =
+    pluginConfig[pluginName] || pluginConfig[shortPluginName] || {}
   return options
 }
 
 function parsePlugin(pluginName) {
-  var reg = new RegExp(
+  const reg = new RegExp(
     ['^', '(?:fis|fis3)-', `(${pluginTypes.join('|')})-`, '(.*?)', '$'].join('')
   )
-  var match = pluginName.match(reg)
+  const match = pluginName.match(reg)
   return (
     match &&
     match[2] && {
@@ -82,15 +78,15 @@ function parsePlugin(pluginName) {
   )
 }
 
-var htmlLikeExt = ['html']
+let htmlLikeExt = ['html']
 
 function setHtmlLikeExt(arr) {
   htmlLikeExt = htmlLikeExt.concat(arr || {})
 }
 
 function getExtsReg(ext, inline) {
-  var exts = []
-  var prefix = ''
+  let exts = []
+  let prefix = ''
 
   if (ext.split && fileExts[ext]) {
     exts = toArray(fileExts[ext])
@@ -110,12 +106,12 @@ function getExtsReg(ext, inline) {
 }
 
 module.exports = {
-  fileExts: fileExts,
-  toArray: toArray,
-  getPlugin: getPlugin,
-  pluginToProperties: pluginToProperties,
-  getPluginOptions: getPluginOptions,
-  parsePlugin: parsePlugin,
-  getExtsReg: getExtsReg,
-  setHtmlLikeExt: setHtmlLikeExt,
+  fileExts,
+  toArray,
+  getPlugin,
+  pluginToProperties,
+  getPluginOptions,
+  parsePlugin,
+  getExtsReg,
+  setHtmlLikeExt,
 }

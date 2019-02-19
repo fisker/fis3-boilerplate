@@ -1,9 +1,9 @@
-var config = require('../../../project.config')
-var project = config.project
-var build = config.build
-var env = require('./env.js')
-var codeStyle = require('../../code-style/index.js')
-var pkg = require('../../../package.json')
+const config = require('../../../project.config')
+const {project} = config
+const {build} = config
+const env = require('./env.js')
+const codeStyle = require('../../code-style/index.js')
+const pkg = require('../../../package.json')
 
 function toArray(data) {
   data = data || []
@@ -33,9 +33,9 @@ if (env.production) {
 }
 
 module.exports = Object.freeze({
-  env: env,
-  project: project,
-  build: build,
-  codeStyle: codeStyle,
+  env,
+  project,
+  build,
+  codeStyle,
   package: pkg,
 })

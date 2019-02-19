@@ -1,8 +1,3 @@
-/* eslint-env node, es6 */
-/* eslint comma-dangle: 0, no-console: 0 */
-
-'use strict'
-
 const {_, createScript} = require('./common.js')
 
 const loader = require('./loader.js')

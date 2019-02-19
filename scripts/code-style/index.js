@@ -1,4 +1,4 @@
-var editorConfig = {
+const editorConfig = {
   charset: 'utf-8',
   endOfLine: '\n',
   indent: '  ',
@@ -6,7 +6,7 @@ var editorConfig = {
   insertFinalNewline: true,
 }
 
-var codeStyleForLang = {
+const codeStyleForLang = {
   js: {
     quote: "'",
     semi: false,
@@ -18,25 +18,21 @@ var codeStyleForLang = {
   },
 }
 
-var cache = {}
+const cache = {}
 function codeStyleGetter(lang) {
   lang = lang || '_'
-  var codeStyle = cache[lang]
+  let codeStyle = cache[lang]
   if (!codeStyle) {
-    codeStyle = Object.assign(
-      {},
-      codeStyleForLang[lang],
-      editorConfig
-    )
+    codeStyle = Object.assign({}, codeStyleForLang[lang], editorConfig)
 
     cache[lang] = codeStyle
   }
   return codeStyle
 }
 
-var hasOwn = Object.prototype.hasOwnProperty
+const hasOwn = Object.prototype.hasOwnProperty
 
-for (var key in editorConfig) {
+for (const key in editorConfig) {
   if (hasOwn.call(editorConfig, key)) {
     Object.defineProperty(codeStyleGetter, key, {
       value: editorConfig[key],
@@ -44,7 +40,7 @@ for (var key in editorConfig) {
   }
 }
 
-for (var lang in codeStyleForLang) {
+for (const lang in codeStyleForLang) {
   if (hasOwn.call(codeStyleForLang, lang)) {
     Object.defineProperty(codeStyleGetter, lang, {
       value: codeStyleGetter(lang),

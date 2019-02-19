@@ -1,7 +1,3 @@
-/* eslint-env node */
-
-'use strict'
-
 module.exports = [
   'lint',
   'parser',

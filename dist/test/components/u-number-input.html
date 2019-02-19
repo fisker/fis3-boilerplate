@@ -111,6 +111,8 @@
     <script src="../../assets/vendors/jquery/2.2.4/dist/jquery.min.js"></script>
     <!--<![endif]-->
     <script>
+      /* eslint-disable strict */
+      /* global $: true */
       var NUMBER_INPUT_SELECTOR = '.u-number-input'
 
       function initNumberInput() {
@@ -139,39 +141,60 @@
         var step = getFloatProperty('step', 1)
         var isMuted = input.prop('disabled') || input.prop('readonly')
 
-        function increaseValue(valueIncrese) {
+        function increaseValue(valueIncrese, noTrigger) {
           valueIncrese = valueIncrese || 0
-          var currentValue = +input.val() || 0
-          var newValue = currentValue + valueIncrese
-          if (newValue < min) {
-            newValue = min
-          } else if (newValue > max) {
-            newValue = max
+          var textValue = input.val()
+          var currentValue = parseFloat(textValue)
+
+          if (isNaN(currentValue)) {
+            currentValue = ''
+          } else {
+            currentValue += valueIncrese
+
+            if (currentValue % step) {
+              currentValue = Math.floor(currentValue / step) * step
+            }
+
+            if (currentValue < min) {
+              currentValue = min
+            }
+            if (currentValue > max) {
+              currentValue = max
+            }
           }
 
-          if (newValue !== currentValue) {
-            input.val(newValue)
-            input.trigger('change')
+          var changed = String(currentValue) !== textValue
+
+          if (changed) {
+            input.val(currentValue)
           }
+
+          setButton(currentValue)
+          return changed
+        }
+
+        function setButton(currentValue) {
+          btnDecrease.prop('disabled', isMuted || currentValue <= min)
+          btnIncrease.prop('disabled', isMuted || currentValue >= max)
         }
 
         btnDecrease.on('click', function() {
-          increaseValue(-step)
+          if (increaseValue(-step)) {
+            input.trigger('change')
+          }
         })
 
         btnIncrease.on('click', function() {
-          increaseValue(step)
+          if (increaseValue(step)) {
+            input.trigger('change')
+          }
         })
 
         input
           .on('change', function() {
-            var currentValue = +input.val() || 0
-            btnDecrease.prop('disabled', isMuted || currentValue <= min)
-            btnIncrease.prop('disabled', isMuted || currentValue >= max)
+            increaseValue()
           })
           .trigger('change')
-
-        // increaseValue();
       }
 
       $(function() {
