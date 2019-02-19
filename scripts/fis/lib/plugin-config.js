@@ -79,6 +79,7 @@ function getPluginConfig() {
       browsers: browserslist,
     },
     'fis3-optimizer-uglifyjs': uglifyJSConfig,
+    'fis3-optimizer-terser': uglifyJSConfig,
     'fis3-optimizer-cleancss': cleanCSSConfig,
     'fis-spriter-csssprites': {
       margin: 10,

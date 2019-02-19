@@ -73,7 +73,7 @@ var standardProcessors = [
   {
     type: 'js',
     lint: config.build.lint.js ? 'fis3-lint-eslint-noisy' : null,
-    optimizer: config.build.optimize.js ? 'fis3-optimizer-uglifyjs' : null,
+    optimizer: config.build.optimize.js ? 'fis3-optimizer-terser' : null,
     postprocessor: config.build.optimize.js
       ? null
       : 'fis3-postprocessor-prettier',
@@ -241,7 +241,7 @@ config.build.minifyInlineScript.forEach(function(re) {
   fis.match(re, {
     release: `/${config.build.temp}/$0`,
     relative: '/',
-    optimizer: utils.getPlugin('fis3-optimizer-uglifyjs'),
+    optimizer: utils.getPlugin('fis3-optimizer-terser'),
     postprocessor: null,
   })
 })
