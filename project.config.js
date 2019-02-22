@@ -24,7 +24,7 @@ const PROJECT_NAME = (() => {
  */
 
 // 项目选项
-var project = {
+const project = {
   // 项目名称
   // name: PROJECT_NAME,
   name: PROJECT_NAME,
@@ -39,7 +39,7 @@ var project = {
   // CONSTANTS.DEVICE_MOBILE, 仅移动设备
   // CONSTANTS.DEVICE_DESKTOP, 仅桌面版
   // device: CONSTANTS.DEVICE_MULTI,
-  device: CONSTANTS.DEVICE_MOBILE,
+  device: CONSTANTS.DEVICE_MULTI,
 
   // IE 支持最低版本
   // 仅非 DEVICE_MOBILE 生效
@@ -49,7 +49,7 @@ var project = {
   // 使用 自适应的 REM 单位
   // 页面会自动引入一个 rem 计算的 js
   // flexibleRem: false,
-  flexibleRem: true,
+  flexibleRem: false,
 
   // 设计稿的宽度
   // designWidth: 750,
@@ -99,7 +99,7 @@ var project = {
 }
 
 // 构建选项
-var build = {
+const build = {
   // 编译日志保存路径
   // log: resolvePath('./build.log'),
   log: resolvePath('./build.log'),
@@ -285,7 +285,7 @@ var build = {
 }
 
 // 开发服务器配置, 一般不需要修改
-var server = {
+const server = {
   type: 'browsersync',
   configFile: resolvePath('./bs-config.js'),
   config: require('./bs-config.js'),
