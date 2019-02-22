@@ -1,6 +1,22 @@
 const path = require('path')
 const CONSTANTS = require('./scripts/constants')
-const PROJECT_NAME = getProjectName()
+const resolvePath = path.join.bind(path, __dirname)
+
+// 项目名称
+// const PROJECT_NAME = (() => {
+//   try {
+//     return require('./package.json').name
+//   } catch {
+//     return __dirname.split(/[\\/]/).pop()
+//   }
+// })()
+const PROJECT_NAME = (() => {
+  try {
+    return require('./package.json').name
+  } catch {
+    return __dirname.split(/[\\/]/).pop()
+  }
+})()
 
 /*!
  * 新项目必须检查的选项
@@ -23,7 +39,7 @@ var project = {
   // CONSTANTS.DEVICE_MOBILE, 仅移动设备
   // CONSTANTS.DEVICE_DESKTOP, 仅桌面版
   // device: CONSTANTS.DEVICE_MULTI,
-  device: CONSTANTS.DEVICE_MULTI,
+  device: CONSTANTS.DEVICE_MOBILE,
 
   // IE 支持最低版本
   // 仅非 DEVICE_MOBILE 生效
@@ -33,7 +49,7 @@ var project = {
   // 使用 自适应的 REM 单位
   // 页面会自动引入一个 rem 计算的 js
   // flexibleRem: false,
-  flexibleRem: false,
+  flexibleRem: true,
 
   // 设计稿的宽度
   // designWidth: 750,
@@ -212,9 +228,21 @@ var build = {
   //     CONSTANTS.GLOB_FIS_CONFIG,
   //   ],
   //   vendors: [CONSTANTS.GLOB_THIRD_PARTY],
-  //   release: ['normalize.css/**', CONSTANTS.GLOB_SNIPPETS, CONSTANTS.GLOB_PRIVATE],
+
+  //   // 发布忽略
+  //   release: [
+  //     'normalize.css/**',
+  //     CONSTANTS.GLOB_SNIPPETS,
+  //     CONSTANTS.GLOB_PRIVATE,
+  //   ],
+
+  //   // 代码检查忽略
   //   lint: [CONSTANTS.GLOB_SNIPPETS, CONSTANTS.GLOB_MIN],
+
+  //   // 代码压缩忽略
   //   optimizer: [CONSTANTS.GLOB_SNIPPETS, CONSTANTS.GLOB_MIN],
+
+  //   // 后处理程序忽略
   //   postprocessor: [CONSTANTS.GLOB_MIN],
   // },
   ignore: {
@@ -230,10 +258,24 @@ var build = {
       CONSTANTS.GLOB_DESKTOP,
       CONSTANTS.GLOB_FIS_CONFIG,
     ],
+
+    // 第三方忽略
     vendors: [CONSTANTS.GLOB_THIRD_PARTY],
-    release: ['normalize.css/**', CONSTANTS.GLOB_SNIPPETS, CONSTANTS.GLOB_PRIVATE],
+
+    // 发布忽略
+    release: [
+      'normalize.css/**',
+      CONSTANTS.GLOB_SNIPPETS,
+      CONSTANTS.GLOB_PRIVATE,
+    ],
+
+    // 代码检查忽略
     lint: [CONSTANTS.GLOB_SNIPPETS, CONSTANTS.GLOB_MIN],
+
+    // 代码压缩忽略
     optimizer: [CONSTANTS.GLOB_SNIPPETS, CONSTANTS.GLOB_MIN],
+
+    // 后处理程序忽略
     postprocessor: [CONSTANTS.GLOB_MIN],
   },
 
@@ -247,19 +289,6 @@ var server = {
   type: 'browsersync',
   configFile: resolvePath('./bs-config.js'),
   config: require('./bs-config.js'),
-}
-
-function getProjectName() {
-  let projectName
-  try {
-    projectName = require('./package.json').name
-  } catch (err) {}
-
-  return projectName || __dirname.split(/[\\/]/).pop()
-}
-
-function resolvePath(file) {
-  return path.join(__dirname, file)
 }
 
 module.exports = {
