@@ -1,22 +1,32 @@
-// https://prettier.io/docs/en/options.html
+/*!
+ * config file for prettier
+ * project https://github.com/xwtec/dotfiles
+ * primary link https://raw.githubusercontent.com/xwtec/dotfiles/master/prettier/prettier.config.js
+ *
+ * options https://prettier.io/docs/en/options.html
+ *
+ */
 
 module.exports = {
+  // options for all files
   trailingComma: 'es5',
   semi: false,
   singleQuote: true,
   bracketSpacing: false,
   htmlWhitespaceSensitivity: 'ignore',
+
+  // overrides
   overrides: [
     {
-      files: '*.js',
+      files: '*.{js,mjs}',
       options: {
         parser: 'babel',
       },
     },
     {
-      files: 'src/**/*.{js,html,htm}',
+      files: '.ts',
       options: {
-        trailingComma: 'none',
+        parser: 'typescript',
       },
     },
     {
@@ -24,6 +34,38 @@ module.exports = {
       options: {
         parser: 'css',
         singleQuote: false,
+      },
+    },
+    {
+      files: '*.scss',
+      options: {
+        parser: 'scss',
+        singleQuote: false,
+      },
+    },
+    {
+      files: '*.less',
+      options: {
+        parser: 'less',
+        singleQuote: false,
+      },
+    },
+    {
+      files: '*.css',
+      options: {
+        parser: 'css',
+      },
+    },
+    {
+      files: '*.vue',
+      options: {
+        parser: 'vue',
+      },
+    },
+    {
+      files: '*.{html,htm}',
+      options: {
+        parser: 'html',
       },
     },
     {
@@ -39,28 +81,37 @@ module.exports = {
       },
     },
     {
-      files: '*.md',
+      files: '*.{md,markdown}',
       options: {
         parser: 'markdown',
+        singleQuote: false,
       },
     },
     {
-      files: '*.yaml',
+      files: '*.{yaml,yml}',
       options: {
         parser: 'yaml',
+        singleQuote: false,
       },
     },
     {
-      files: '*.vue',
+      files: '*.{graphql,gql}',
       options: {
-        parser: 'vue',
+        parser: 'graphql',
+      },
+    },
+    // for this project
+    {
+      files: '{src,dist}/**/*.{js,html,htm}',
+      options: {
+        trailingComma: 'none',
       },
     },
     {
-      files: '*.{html,htm}',
+      files: '.jsbeautifyrc',
       options: {
-        parser: 'html',
+        parser: 'json5',
       },
-    },
+    }
   ],
 }

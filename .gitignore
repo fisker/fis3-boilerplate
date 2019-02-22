@@ -3,3 +3,4 @@ _config
 /node_modules
 /build.log
 /archive
+/dist

@@ -1,3 +1,0 @@
-window.CONFIG = {
-  debug: false
-}

@@ -1,5 +1,1 @@
-/* eslint-env node */
-
-'use strict'
-
-require('./scripts/fis/index.js')
+module.exports = require('./scripts/fis')

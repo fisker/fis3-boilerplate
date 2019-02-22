@@ -1,8 +1,5 @@
 // https://github.com/shannonmoeller/stylelint-config-prettier/blob/master/src/index.js
 // can't extends global `stylelint-config-prettier`
-/* eslint-env node */
-
-'use strict'
 
 module.exports = {
   rules: {
