@@ -4,23 +4,28 @@ const flatDeep = require('../utils/flat-deep')
 const getFiles = require('../utils/get-files')
 
 function getPackageFiles({pkg, dir}, relative = false) {
-  let {files = []} = pkg
+  // let {files = []} = pkg
 
-  if (files.length === 0) {
-    files = getFiles(dir)
-  } else {
-    files = files.map(file => {
-      file = path.join(dir, file)
+  // const isGlob = files.join('').includes('*')
 
-      if (!file.startsWith(dir) || !fs.existsSync(file)) {
-        return []
-      }
+  // // TODO: add glob support
+  // if (files.length === 0 || isGlob) {
+  //   files = getFiles(dir)
+  // } else {
+  //   files = files.map(file => {
+  //     file = path.join(dir, file)
 
-      return getFiles(file)
-    })
+  //     if (!file.startsWith(dir) || !fs.existsSync(file)) {
+  //       return []
+  //     }
 
-    files = flatDeep(files)
-  }
+  //     return getFiles(file)
+  //   })
+
+  //   files = flatDeep(files)
+  // }
+
+  let files = getFiles(dir)
 
   if (relative) {
     files = files.map(file => path.relative(dir, file))

@@ -1,5 +1,5 @@
 const {project, env, build} = require('../../../scripts/fis/lib/config.js')
-const {lodash} = global.fis.require('parser', 'lodash-template')
+const {lodash = {}} = (global.fis && global.fis.require('parser', 'lodash-template')) || {}
 const _ = lodash
 
 function createScript(src) {
@@ -47,6 +47,23 @@ const conditionHTML = (CONDITION_OP =>
   '>': 'gt'
 })
 
+function parsePackage(file) {
+  if (file[0] === '.' || file[0] === '/') {
+    return {
+      type: 'file',
+      file,
+    }
+  }
+
+  const pieces = file.split('/')
+  const nameLength = file[0] === '@' ? 2 : 1
+
+  return {
+    name: pieces.slice(0, nameLength).join('/'),
+    file: pieces.slice(nameLength).join('/')
+  }
+}
+
 module.exports = {
   project,
   env,
@@ -55,5 +72,6 @@ module.exports = {
   createScript,
   createLink,
   conditionHTML,
+  parsePackage,
   _
 }

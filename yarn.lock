@@ -6,13 +6,10 @@ dd_belatedpng@^1.0.2:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/dd_belatedpng/download/dd_belatedpng-1.0.2.tgz#913779f1591f1d1a352d37802341b1a01f38ffe7"
 
-dialog-polyfill@^0.4.10:
-  version "0.4.10"
-  resolved "http://registry.npm.taobao.org/dialog-polyfill/download/dialog-polyfill-0.4.10.tgz#c4ea68a0deed4abb59a6a2a025c548b278cd532e"
-
 html5shiv@^3.7.3:
   version "3.7.3"
   resolved "http://registry.npm.taobao.org/html5shiv/download/html5shiv-3.7.3.tgz#d78a84a367bcb9a710100d57802c387b084631d2"
+  integrity sha1-14qEo2e8uacQEA1XgCw4ewhGMdI=
 
 "jquery-v1@npm:jquery@1":
   version "1.12.4"
@@ -31,7 +28,3 @@ jquery@^3.3.1:
 normalize.css@^8.0.0:
   version "8.0.0"
   resolved "http://registry.npm.taobao.org/normalize.css/download/normalize.css-8.0.0.tgz#14ac5e461612538a4ce9be90a7da23f86e718493"
-
-requirejs@^2.3.5:
-  version "2.3.5"
-  resolved "http://registry.npm.taobao.org/requirejs/download/requirejs-2.3.5.tgz#617b9acbbcb336540ef4914d790323a8d4b861b0"

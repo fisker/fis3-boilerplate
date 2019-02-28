@@ -2,17 +2,15 @@
   "name": "fis3-boilerplate",
   "private": true,
   "scripts": {
-    "install-dependencies": "node ./scripts/install-dependencies"
+    "install-deps": "yarn && node ./scripts/install-dependencies.js"
   },
   "dependencies": {
     "dd_belatedpng": "^1.0.2",
-    "dialog-polyfill": "^0.4.10",
     "html5shiv": "^3.7.3",
     "jquery": "^3.3.1",
     "jquery-v1": "npm:jquery@1",
     "jquery-v2": "npm:jquery@2",
-    "normalize.css": "^8.0.0",
-    "requirejs": "^2.3.5"
+    "normalize.css": "^8.0.0"
   },
   "devDependencies": {}
 }

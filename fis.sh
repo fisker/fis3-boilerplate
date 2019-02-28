@@ -31,11 +31,11 @@ function main() {
   echo "==============================================================================="
   echo ""
   echo ""
-  echo "                  1. debug (default)"
+  echo "                  1. dev (default)"
   echo ""
-  echo "                  2. distribute"
+  echo "                  2. build"
   echo ""
-  echo "                  3. distribute & archive"
+  echo "                  3. build & archive"
   echo ""
   echo "                  Q. quit"
   echo ""
@@ -45,41 +45,51 @@ function main() {
   read -t 5 -n1 -p "Please choose an option:" choice
   case "$choice" in
     2)
-      export NODE_ENV="production"
-      clear
-      installDependencies
-      checkFis3Dependencies
-      release
-      end
+      build
       ;;
     3)
-      export NODE_ENV="production"
-      clear
-      installDependencies
-      checkFis3Dependencies
-      release
       archive
-      end
       ;;
     q|Q)
       quit
       ;;
     *)
-      export NODE_ENV="development"
-      clear
-      installDependencies
-      checkFis3Dependencies
-      debug
-      pause
+      dev
       ;;
   esac
+}
+
+function archive() {
+  export NODE_ENV="production"
+  clear
+  checkFis3Dependencies
+  release
+  archive
+  end
+}
+
+function build() {
+  export NODE_ENV="production"
+  clear
+  checkFis3Dependencies
+  release
+  end
+}
+
+
+function dev() {
+  export NODE_ENV="development"
+  clear
+  checkFis3Dependencies
+  debug
+  pause
 }
 
 function installDependencies() {
   echo "..............................................................................."
   echo "install package dependencies"
-  yarn
-  yarn run install-dependencies
+  yarn > "$LOG_FILE" || error
+  yarn run install-dependencies > "$LOG_FILE" || error
 }
 
 function checkFis3Dependencies() {
@@ -190,5 +200,12 @@ function end() {
   exit
 }
 
-main
-
+if [ "$1" = "dev" ]; then
+  dev
+elif [ "$1" = "build" ]; then
+  buid
+elif [ "$1" = "archive" ]; then
+  archive
+else
+  main
+fi

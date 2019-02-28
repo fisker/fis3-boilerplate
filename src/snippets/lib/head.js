@@ -112,7 +112,7 @@ function head(config = {}) {
     html.push(meta('msapplication-tap-highlight', 'no'))
   }
 
-  html = html.concat(scripts(config.scripts || []))
+  html = html.concat(scripts(config.scripts))
 
   if ('title' in config) {
     html.push(`<title>${_.escape(config.title || '')}</title>`)
@@ -120,7 +120,7 @@ function head(config = {}) {
     html.push(meta('description', config.description || ''))
   }
 
-  html = html.concat(styles(config.styles || []))
+  html = html.concat(styles(config.styles))
 
   return html.filter(Boolean).join('\n')
 }

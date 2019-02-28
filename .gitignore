@@ -4,3 +4,4 @@ _config
 /build.log
 /archive
 /dist
+/src/assets/vendors
