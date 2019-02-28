@@ -1,21 +1,22 @@
 const path = require('path')
 const dependencies = require('../../_config/dependencies.json')
 const projectConfig = require('../../../project.config.js')
-const VENDOR_DIR = path.relative(projectConfig.build.src, projectConfig.build.vendors).replace(/\\/g, '/')
+const VENDOR_DIR = path
+  .relative(projectConfig.build.src, projectConfig.build.vendors)
+  .replace(/\\/g, '/')
 
 const {
   project,
   env,
   createScript,
   createLink,
-  conditionHTML
+  conditionHTML,
 } = require('./common.js')
-
 
 function getPackageEntry(options = {}, ...rest) {
   if (typeof options === 'string') {
     options = {
-      name: options
+      name: options,
     }
   }
 
@@ -52,7 +53,7 @@ const loader = {
 
     const script = getPackageEntry({
       ...pkg,
-      min: env.production
+      min: env.production,
     })
 
     return conditionHTML(
@@ -63,13 +64,13 @@ const loader = {
   },
   jquery(pkg) {
     const opt = {
-      min: env.production
+      min: env.production,
     }
 
     if (project.device !== 'mobile' && project.legacyIe <= 8) {
       return [
         conditionHTML(getPackageEntry('jquery-v1', opt), '< 9', 80 - 6),
-        conditionHTML(getPackageEntry('jquery-v2', opt), '>= 9', 80 - 6)
+        conditionHTML(getPackageEntry('jquery-v2', opt), '>= 9', 80 - 6),
       ].join('\n')
     }
 
@@ -81,7 +82,7 @@ const loader = {
     }
     const script = getPackageEntry({
       ...pkg,
-      min: env.production
+      min: env.production,
     })
     return conditionHTML(script, '< 9', 80 - 6)
   },
@@ -93,7 +94,7 @@ const loader = {
     return `<!-- prettier-ignore -->\n${createScript(
       '/assets/scripts/component/_rem.js.jst?__inline'
     )}`
-  }
+  },
 }
 
 module.exports = loader

@@ -6,5 +6,5 @@ module.exports = {
   header: require('./lib/header.js'),
   footer: require('./lib/footer.js'),
   scripts: require('./lib/scripts.js'),
-  styles: require('./lib/styles.js')
+  styles: require('./lib/styles.js'),
 }

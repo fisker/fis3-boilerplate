@@ -17,7 +17,7 @@ function loadStyles(styles) {
 
       return modLoader({
         ...mod,
-        type: 'style'
+        type: 'style',
       })
     })
     .filter(Boolean)

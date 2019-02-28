@@ -1,7 +1,7 @@
 const {_, project, conditionHTML} = require('./common.js')
 
 const commonAttrs = {
-  lang: project.lang
+  lang: project.lang,
 }
 
 function renderHTMLTag(attrs, version) {
@@ -36,7 +36,7 @@ function htmlStartTag(attrs) {
   attrs = attrs || {}
   if (typeof attrs === 'string' || Array.isArray(attrs)) {
     attrs = {
-      class: attrs
+      class: attrs,
     }
   }
 

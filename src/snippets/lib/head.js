@@ -39,7 +39,7 @@ function head(config = {}) {
 
   html.push(
     meta({
-      charset: 'UTF-8'
+      charset: 'UTF-8',
     })
   )
 
@@ -47,7 +47,7 @@ function head(config = {}) {
     html.push(
       meta({
         'http-equiv': 'X-UA-Compatible',
-        content: 'IE=edge,chrome=1'
+        content: 'IE=edge,chrome=1',
       })
     )
     html.push(meta('renderer', 'webkit'))
@@ -63,14 +63,14 @@ function head(config = {}) {
   html.push(
     meta({
       name: 'google',
-      value: 'notranslate'
+      value: 'notranslate',
     })
   )
 
   html.push(
     meta({
       'http-equiv': 'Cache-Control',
-      content: 'no-siteapp'
+      content: 'no-siteapp',
     })
   )
 
@@ -90,12 +90,12 @@ function head(config = {}) {
           'minimum-scale': 1,
           'user-scalable': 'no',
           'shrink-to-fit': 'no',
-          'viewport-fit': 'cover'
+          'viewport-fit': 'cover',
         }
       : {
           width: 'device-width',
           'initial-scale': 1,
-          'shrink-to-fit': 'no'
+          'shrink-to-fit': 'no',
         }
 
   html.push(meta('viewport', viewport))
@@ -106,7 +106,7 @@ function head(config = {}) {
         telephone: 'no',
         email: 'no',
         address: 'no',
-        date: 'no'
+        date: 'no',
       })
     )
     html.push(meta('msapplication-tap-highlight', 'no'))

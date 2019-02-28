@@ -17,7 +17,7 @@ function loadScripts(scripts) {
 
       return modLoader({
         ...mod,
-        type: 'script'
+        type: 'script',
       })
     })
     .filter(Boolean)
