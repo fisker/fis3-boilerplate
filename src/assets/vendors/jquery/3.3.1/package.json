@@ -30,7 +30,7 @@
     "commitplease": "2.7.10",
     "core-js": "2.4.1",
     "eslint-config-jquery": "1.0.1",
-    "grunt": "1.0.1",
+    "grunt": "1.0.3",
     "grunt-babel": "7.0.0",
     "grunt-cli": "1.2.0",
     "grunt-compare-size": "0.4.2",
