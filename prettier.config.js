@@ -108,10 +108,16 @@ module.exports = {
       },
     },
     {
+      files: 'src/{snippets,mock}/**/*.{js,html,htm}',
+      options: {
+        trailingComma: 'es5',
+      },
+    },
+    {
       files: '.jsbeautifyrc',
       options: {
         parser: 'json5',
       },
-    }
+    },
   ],
 }

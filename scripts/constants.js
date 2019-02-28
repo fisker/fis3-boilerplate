@@ -6,7 +6,7 @@ module.exports = {
   // 代码片段, 仅 src 根目录下的 snippets
   GLOB_SNIPPETS: '/snippets/**',
   // _ 开头的文件名
-  GLOB_PRIVATE: '**/_**',
+  GLOB_PRIVATE: '**/_{*/**,*}',
   // 脚本文件
   GLOB_SCRIPTS: '**/*.{bat,cmd,sh,command}',
   // 临时文件
@@ -24,7 +24,7 @@ module.exports = {
   // 包管理器
   GLOB_PACKAGE: '{node_modules,bower_components}/**',
   // 隐藏文件
-  GLOB_HIDDEN: '**/.**',
+  GLOB_HIDDEN: '**/.{*/**,*}',
 
   ARCHIVE_TYPE_ZIP: 'zip',
   ARCHIVE_TYPE_GZ: 'tar.gz',

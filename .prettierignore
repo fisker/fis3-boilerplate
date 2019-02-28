@@ -1,4 +1,4 @@
 !.*
-**/vendors/**/*.js
+**/vendors/**
 node_modules/**
 dist/**
