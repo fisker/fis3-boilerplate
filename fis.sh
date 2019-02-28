@@ -47,14 +47,16 @@ function main() {
     2)
       export NODE_ENV="production"
       clear
-      checkDependencies
+      installDependencies
+      checkFis3Dependencies
       release
       end
       ;;
     3)
       export NODE_ENV="production"
       clear
-      checkDependencies
+      installDependencies
+      checkFis3Dependencies
       release
       archive
       end
@@ -65,17 +67,25 @@ function main() {
     *)
       export NODE_ENV="development"
       clear
-      checkDependencies
+      installDependencies
+      checkFis3Dependencies
       debug
       pause
       ;;
   esac
 }
 
-function checkDependencies() {
+function installDependencies() {
   echo "..............................................................................."
-  echo "check dependencies"
-  fis3 inspect $NODE_ENV --root "$SOURCE_FOLDER" --file "$FIS_CONFIG_FILE" --lint --verbose --no-color | node "./scripts/check-dependencies.js" > "$LOG_FILE" || error
+  echo "install package dependencies"
+  yarn
+  yarn run install-dependencies
+}
+
+function checkFis3Dependencies() {
+  echo "..............................................................................."
+  echo "check fis3 dependencies"
+  fis3 inspect $NODE_ENV --root "$SOURCE_FOLDER" --file "$FIS_CONFIG_FILE" --lint --verbose --no-color | node "./scripts/check-fis3-dependencies.js" > "$LOG_FILE" || error
 }
 
 function release() {

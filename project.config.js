@@ -112,6 +112,9 @@ const build = {
   // temp: '.temp',
   temp: '.temp',
 
+  // 依赖保存路径
+  vendors: resolvePath('./src/assets/vendors'),
+
   // fis-config 路径
   // config: resolvePath('./scripts/fis/index.js'),
   config: resolvePath('./scripts/fis/index.js'),

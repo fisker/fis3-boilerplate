@@ -14,6 +14,16 @@ html5shiv@^3.7.3:
   version "3.7.3"
   resolved "http://registry.npm.taobao.org/html5shiv/download/html5shiv-3.7.3.tgz#d78a84a367bcb9a710100d57802c387b084631d2"
 
+"jquery-v1@npm:jquery@1":
+  version "1.12.4"
+  resolved "http://registry.npm.taobao.org/jquery/download/jquery-1.12.4.tgz#01e1dfba290fe73deba77ceeacb0f9ba2fec9e0c"
+  integrity sha1-AeHfuikP5z3rp3zurLD5ui/sngw=
+
+"jquery-v2@npm:jquery@2":
+  version "2.2.4"
+  resolved "http://registry.npm.taobao.org/jquery/download/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
+  integrity sha1-LInWiJterFIqfuoywUUhVZxsvwI=
+
 jquery@^3.3.1:
   version "3.3.1"
   resolved "http://registry.npm.taobao.org/jquery/download/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
