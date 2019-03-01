@@ -92,6 +92,7 @@ menu {
 /**
  * Add the correct display in IE 9-.
  * 1. Add the correct display in IE.
+ * 1. normalize.css@8.0.1 include `main`
  */
 
 figcaption,
@@ -424,12 +425,13 @@ hr {
 }
 
 @include component(ul) {
-  list-style: none;
-  padding-left: 0;
-
   @if $legacy-ie <= 7 {
     margin-left: 0;
+    padding-left: 40px;
   }
+
+  // list-style: none;
+  // padding-left: 0;
 }
 
 @include component(ol) {
