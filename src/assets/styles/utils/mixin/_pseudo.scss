@@ -38,7 +38,7 @@
 
   @each $selector in $selector-list {
     @if & == null {
-      $selector: str-replace("&", "");
+      $selector: str-replace($selector, "&", "");
     }
 
     #{unquote($selector)} {

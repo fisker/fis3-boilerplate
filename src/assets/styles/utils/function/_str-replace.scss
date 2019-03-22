@@ -1,10 +1,15 @@
-/// Replace `$search` with `$replace` in `$string`
-/// @author Hugo Giraudel
-/// @param {String} $string - Initial string
-/// @param {String} $search - Substring to replace
-/// @param {String} $replace ('') - New value
-/// @return {String} - Updated string
+// ! Replace `$search` with `$replace` in `$string`
+// ! @author Hugo Giraudel
+// ! @param {String} $string - Initial string
+// ! @param {String} $search - Substring to replace
+// ! @param {String} $replace ('') - New value
+// ! @return {String} - Updated string
+
 @function str-replace($string, $search, $replace: '') {
+  @if $search == $replace {
+    @error "$search can't be equal to $replace";
+  }
+
   $index: str-index($string, $search);
 
   @if $index {
