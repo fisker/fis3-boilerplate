@@ -63,7 +63,7 @@ const standardProcessors = [
     type: 'css',
     lint: config.build.lint.css ? 'fis3-lint-stylelint' : null,
     preprocessor:
-      config.project.legacyIe <= 8 ? 'fis-preprocessor-cssgrace' : null,
+      config.project.legacyIe <= 8 ? 'fis3-preprocessor-cssgrace' : null,
     optimizer: config.build.optimize.css ? 'fis3-optimizer-cleancss' : null,
     postprocessor: ['fis3-postprocessor-autoprefixer-latest'].concat(
       config.build.optimize.css ? [] : ['fis3-postprocessor-prettier']
