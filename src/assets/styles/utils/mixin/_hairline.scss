@@ -43,7 +43,7 @@ $_cache: ();
   $svg: '#{$svg}<rect width="5" height="5" stroke="#{$color}" stroke-width="2" fill="none"/>';
   $svg: '#{$svg}</svg>';
 
-  $placeholder-name: _hailine-border-img-#{red($color)}-#{green($color)}-#{blue($color)}-#{alpha($color)};
+  $placeholder-name: _hailine-border-img-#{red($color)}-#{green($color)}-#{blue($color)}-#{alpha($color) * 100};
 
   @include _define-placeholder($placeholder-name) {
     border-image-source: svg-url($svg);

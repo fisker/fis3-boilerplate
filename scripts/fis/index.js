@@ -13,7 +13,7 @@ const preProcessors = [
     ext: ['sass', 'scss'],
     type: 'css',
     // lint: CONFIG.LINT.CSS ? 'fis3-lint-stylelint' : null,
-    parser: 'fis3-parser-node-sass-latest',
+    parser: 'fis3-parser-dart-sass',
   },
   {
     ext: 'styl',
