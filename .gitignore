@@ -5,3 +5,4 @@ _config
 /archive
 /dist
 /src/assets/vendors
+/.browserslistrc

@@ -65,7 +65,7 @@ const standardProcessors = [
     preprocessor:
       config.project.legacyIe <= 8 ? 'fis3-preprocessor-cssgrace' : null,
     optimizer: config.build.optimize.css ? 'fis3-optimizer-cleancss' : null,
-    postprocessor: ['fis3-postprocessor-autoprefixer-latest'].concat(
+    postprocessor: ['fis3-postprocessor-postcss-with-rc'].concat(
       config.build.optimize.css ? [] : ['fis3-postprocessor-prettier']
     ),
     useSprite: true,
@@ -286,6 +286,9 @@ if (config.env.production) {
     postprocessor: null,
   })
 }
+
+// store browserslist
+require('../build-browserlist.js')
 
 // store config
 require('./lib/config-store.js')
