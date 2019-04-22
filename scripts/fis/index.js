@@ -288,7 +288,7 @@ if (config.env.production) {
 }
 
 // store browserslist
-require('../build-browserlist.js')
+require('../get-browserlist.js')
 
 // store config
 require('./lib/config-store.js')
