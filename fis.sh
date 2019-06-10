@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # consts
+CHECK_FIS3_DEPENDENCIES=true
 PROJECT_CONFIG_FILE=./project.config.js
 FIS_CONFIG_FILE=`node -p "require('$PROJECT_CONFIG_FILE').build.config"`
 SOURCE_FOLDER=`node -p "require('$PROJECT_CONFIG_FILE').build.src"`
@@ -93,9 +94,11 @@ function installDependencies() {
 }
 
 function checkFis3Dependencies() {
-  echo "..............................................................................."
-  echo "check fis3 dependencies"
-  fis3 inspect $NODE_ENV --root "$SOURCE_FOLDER" --file "$FIS_CONFIG_FILE" --lint --verbose --no-color | node "./scripts/check-fis3-dependencies.js" > "$LOG_FILE" || error
+  if [ "$CHECK_FIS3_DEPENDENCIES" = "true" ]; then
+    echo "..............................................................................."
+    echo "check fis3 dependencies"
+    fis3 inspect $NODE_ENV --root "$SOURCE_FOLDER" --file "$FIS_CONFIG_FILE" --lint --verbose --no-color | node "./scripts/check-fis3-dependencies.js" > "$LOG_FILE" || error
+  fi
 }
 
 function release() {
