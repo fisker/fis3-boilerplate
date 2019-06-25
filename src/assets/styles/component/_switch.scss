@@ -11,9 +11,10 @@
       color: #{$input-color-disabled}\9;
       background: #{$input-color-disabled}\9;
     }
+
     line-height: 1;
     filter: grayscale(100%);
-    transition: all .2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 
     &::before,
     &::after {

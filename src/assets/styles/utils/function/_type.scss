@@ -8,10 +8,7 @@
 }
 
 @function is-time($value) {
-  $time-units: (
-    "s",
-    "ms",
-  );
+  $time-units: ("s", "ms");
   $unit: unit($value);
   @return is-number($value) and index($time-units, $unit) != null;
 }
@@ -22,21 +19,13 @@
 }
 
 @function is-angle($value) {
-  $angle-units: (
-    "deg",
-    "rad",
-    "grad",
-    "turn",
-  );
+  $angle-units: ("deg", "rad", "grad", "turn");
   $unit: unit($value);
   @return is-number($value) and index($angle-units, $unit) != null;
 }
 
 @function is-frequency($value) {
-  $frequency-units: (
-    "Hz",
-    "kHz",
-  );
+  $frequency-units: ("Hz", "kHz");
   $unit: unit($value);
   @return is-number($value) and index($frequency-units, $unit) != null;
 }
@@ -46,27 +35,13 @@
 }
 
 @function is-relative-length($value) {
-  $relative-length-units: (
-    "em",
-    "ex",
-    "ch",
-    "rem",
-    "vw",
-    "vh",
-  );
+  $relative-length-units: ("em", "ex", "ch", "rem", "vw", "vh");
   $unit: unit($value);
   @return is-number($value) and index($relative-length-units, $unit) != null;
 }
 
 @function is-absolute-length($value) {
-  $absolute-length-units: (
-    "cm",
-    "mm",
-    "in",
-    "px",
-    "pt",
-    "pc",
-  );
+  $absolute-length-units: ("cm", "mm", "in", "px", "pt", "pc");
   $unit: unit($value);
   @return is-number($value) and index($absolute-length-units, $unit) != null;
 }
@@ -80,22 +55,13 @@
 }
 
 @function is-resolution($value) {
-  $resolution-units: (
-    "dpi",
-    "dpcm",
-    "dppx",
-  );
+  $resolution-units: ("dpi", "dpcm", "dppx");
   $unit: unit($value);
   @return is-number($value) and index($resolution-units, $unit) != null;
 }
 
 @function is-position($value) {
-  $positions: (
-    "top",
-    "right",
-    "bottom",
-    "left",
-    "center",
-  );
-  @return is-length($value) or is-percentage($value) or index($positions, $value) != null;
+  $positions: ("top", "right", "bottom", "left", "center");
+  @return is-length($value) or is-percentage($value) or
+    index($positions, $value) != null;
 }

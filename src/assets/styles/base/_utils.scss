@@ -12,7 +12,13 @@
       max-width: $container-max-width * 1px;
 
       @if $legacy-ie <= 7 {
-        *width: expression(this.offsetWidth > #{$container-max-width} ? "#{$container-max-width * 1px}" : "auto");
+        *width: expression(
+          this.offsetWidth >
+            #{$container-max-width}
+            ?
+            "#{$container-max-width * 1px}":
+            "auto"
+        );
         *overflow: hidden;
       }
     }
@@ -26,7 +32,7 @@
   th,
   td {
     border: 1px solid $table-border-color;
-    padding: $root-font-size * .5;
+    padding: $root-font-size * 0.5;
   }
 }
 
@@ -48,8 +54,6 @@
 }
 
 @mixin btn-color($color, $is-ghost: false) {
-
-
   $border-color: null;
   $font-color: null;
   $background-color: null;

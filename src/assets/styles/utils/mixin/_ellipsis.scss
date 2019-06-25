@@ -20,11 +20,11 @@
     @if unitless($line-height) or unit($line-height) == "%" {
       $line-height: value-of($line-height) * 1em;
     }
+
     max-height: $line-height * $lines;
 
     // &:after {
     //   content: " ...";
     // }
-
   }
 }

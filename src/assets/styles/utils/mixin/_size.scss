@@ -1,10 +1,10 @@
 @mixin size($width, $height: $width) {
   @if unitless($width) {
-    $width: 1px * $width
+    $width: 1px * $width;
   }
 
   @if unitless($height) {
-    $height: 1px * $height
+    $height: 1px * $height;
   }
 
   width: $width;

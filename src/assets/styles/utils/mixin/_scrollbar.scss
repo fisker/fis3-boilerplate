@@ -6,10 +6,14 @@
 /// @param {Color} $background-color [mix($foreground-color, white, 50%)] - Scrollbar's color
 /// @example scss - Scrollbar styling
 ///   @include scrollbars(.5em, slategray);
-@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
+@mixin scrollbars(
+  $size,
+  $foreground-color,
+  $background-color: mix($foreground-color, white, 50%)
+) {
   // For Google Chrome
   ::-webkit-scrollbar {
-    width:  $size;
+    width: $size;
     height: $size;
   }
 
@@ -29,6 +33,14 @@
 }
 
 /// alias
-@mixin scrollbar($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
-  @include scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%));
+@mixin scrollbar(
+  $size,
+  $foreground-color,
+  $background-color: mix($foreground-color, white, 50%)
+) {
+  @include scrollbars(
+    $size,
+    $foreground-color,
+    $background-color: mix($foreground-color, white, 50%)
+  );
 }

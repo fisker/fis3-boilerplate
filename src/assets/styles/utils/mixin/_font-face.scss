@@ -3,7 +3,7 @@
   $font-file: "",
   $font-weight: normal,
   $font-style: normal
-  ) {
+) {
   @if type-of($font-file) == "bool" {
     $font-file: if($font-file, $inline-mark, "");
   }
@@ -24,16 +24,19 @@
   $font-src-map: (
     embedded-opentype: if($legacy-ie <= 8, "#{$font-file}.eot?#iefix", ""),
     woff: if($font-inline, "", "#{$font-file}.woff"),
-    truetype: if($font-inline, "#{$font-file}.ttf" + $inline-mark, "#{$font-file}.ttf"),
+    truetype:
+      if($font-inline, "#{$font-file}.ttf"+$inline-mark, "#{$font-file}.ttf"),
     svg: "#{$font-file}.svg##{$font-family}",
-    );
+  );
 
-  $font-src: (
-    local("#{$font-family}"),
-    );
+  $font-src: (local("#{$font-family}"));
   @each $font-format, $font-url in $font-src-map {
     @if $font-url != "" {
-      $font-src: append($font-src, url("#{$font-url}") format("#{$font-format}"), comma);
+      $font-src: append(
+        $font-src,
+        url("#{$font-url}") format("#{$font-format}"),
+        comma
+      );
     }
   }
 

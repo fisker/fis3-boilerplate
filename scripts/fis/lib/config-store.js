@@ -106,7 +106,7 @@ function cssPreprossorParser(lang) {
 
   function quoteKey(key) {
     key = String(key)
-    if (/[.-]/.test(key)) {
+    if (/[.\-:]/.test(key)) {
       return JSON.stringify(key)
     }
 

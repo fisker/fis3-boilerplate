@@ -1,10 +1,10 @@
 @function get-directions($orignal-direction) {
   @if $orignal-direction == up {
-    $orignal-direction: top
+    $orignal-direction: top;
   }
 
   @if $orignal-direction == down {
-    $orignal-direction: bottom
+    $orignal-direction: bottom;
   }
 
   $opposite-directions: (
@@ -24,7 +24,7 @@
     $orignal-direction,
     nth($directions-rest, 1),
     nth($directions-rest, 2),
-    $opposite-direction,
+    $opposite-direction
   );
 
   @return $directions;

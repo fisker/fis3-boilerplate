@@ -33,7 +33,13 @@ html {
     @if value-of($container-min-width) > 0 {
       min-width: $container-min-width * 1px;
       @if $legacy-ie <= 7 {
-        *width: expression(this.offsetWidth < #{$container-min-width} ? "#{$container-min-width * 1px}" : "auto");
+        *width: expression(
+          this.offsetWidth <
+            #{$container-min-width}
+            ?
+            "#{$container-min-width * 1px}":
+            "auto"
+        );
         *overflow: hidden;
       }
     }
@@ -46,7 +52,9 @@ html {
       /* autoprefixer: off */
       _background-attachment: fixed;
       _background-image: url(about:blank);
-      _filter: expression(document.execCommand("BackgroundImageCache", false, true));
+      _filter: expression(
+        document.execcommand("BackgroundImageCache", false, true)
+      );
     }
   }
 }
@@ -97,7 +105,8 @@ menu {
 
 figcaption,
 figure,
-main { /* 1 */
+main {
+  /* 1 */
   display: block;
 }
 
@@ -326,7 +335,7 @@ textarea {
   // https://github.com/twbs/bootstrap/issues/11586.
   // -webkit-appearance: none;
 
-/**
+  /**
  * 1. Correct the odd appearance in Chrome and Safari.
  * 2. Correct the outline style in Safari.
  */
@@ -394,13 +403,12 @@ h6 {
   }
 }
 
-
 // Horizontal rules
 hr {
   margin-top: $root-font-size * 1;
   margin-bottom: $root-font-size * 1;
   border: 0;
-  border-top: 1px solid rgba(0, 0, 0, .1);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   height: 0; // Correct the height in Firefox.
   overflow: visible; // Add visible overflow in Edge and IE.
 }
@@ -456,10 +464,9 @@ hr {
 
   dd {
     margin-left: 0; // Undo browser default
-    margin-bottom: $root-font-size * .5;
+    margin-bottom: $root-font-size * 0.5;
   }
 }
-
 
 @include component(address) {
   margin-bottom: $root-font-size;
@@ -488,7 +495,13 @@ hr {
     display: inline-block;
     vertical-align: baseline;
     background-color: #ddd;
-    background-image: linear-gradient(#e6e6e6, #e6e6e6, #eeeeee 20%, #cccccc 45%, #cccccc 55%);
+    background-image: linear-gradient(
+      #e6e6e6,
+      #e6e6e6,
+      #eee 20%,
+      #ccc 45%,
+      #ccc 55%
+    );
 
     // polyfill
     .meter-bar {
@@ -498,17 +511,35 @@ hr {
 
       &.meter-optimum-value {
         background-color: #ad7;
-        background-image: linear-gradient(#ad7, #ad7, #cea 20%, #7a3 45%, #7a3 55%);
+        background-image: linear-gradient(
+          #ad7,
+          #ad7,
+          #cea 20%,
+          #7a3 45%,
+          #7a3 55%
+        );
       }
 
       &.meter-sub-optimum-value {
         background-color: #fe7;
-        background-image: linear-gradient(#fe7, #fe7, #ffc 20%, #db3 45%, #db3 55%);
+        background-image: linear-gradient(
+          #fe7,
+          #fe7,
+          #ffc 20%,
+          #db3 45%,
+          #db3 55%
+        );
       }
 
       &.meter-sub-sub-optimum-value {
         background-color: #f77;
-        background-image: linear-gradient(#f77, #f77, #fcc 20%, #d44 45%, #d44 55%);
+        background-image: linear-gradient(
+          #f77,
+          #f77,
+          #fcc 20%,
+          #d44 45%,
+          #d44 55%
+        );
       }
     }
   }
@@ -578,23 +609,23 @@ hr {
   }
 
   caption {
-    padding-top: $root-font-size * .75;
-    padding-bottom: $root-font-size * .75;
+    padding-top: $root-font-size * 0.75;
+    padding-bottom: $root-font-size * 0.75;
   }
 }
 
 @include component(label) {
   // Allow labels to use `margin` for spacing.
   display: inline-block;
-  margin-bottom: $root-font-size * .5;
+  margin-bottom: $root-font-size * 0.5;
 }
 
 @if component-required(fieldset) {
   fieldset {
     // normalize.css < v6.0.0
-    border: 1px solid #c0c0c0;
-    margin: 0 2px;
-    padding: 0.35em 0.625em 0.75em;
+    // border: 1px solid #c0c0c0;
+    // margin: 0 2px;
+    // padding: 0.35em 0.625em 0.75em;
 
     // Chrome and Firefox set a `min-width: min-content;` on fieldsets,
     // so we reset that to ensure it behaves more like a standard block element.
@@ -618,7 +649,7 @@ hr {
     // display: block;
     // width: 100%;
     padding: 0;
-    margin-bottom: $root-font-size * .5;
+    margin-bottom: $root-font-size * 0.5;
     font-size: 150%;
     border: 0; // 1
     //white-space: normal; // 2
@@ -630,7 +661,7 @@ hr {
 }
 
 @include component(mark) {
-  padding: $root-font-size * .2;
+  padding: $root-font-size * 0.2;
   background-color: #fcf8e3;
 }
 
@@ -638,20 +669,16 @@ hr {
   display: inline-block;
 }
 
-$mono-space-selector: (
-  code,
-  pre,
-  samp,
-  );
+$mono-space-selector: (code, pre, samp);
 @if component-required(kbd) {
   $selector: append($mono-space-selector, kbd, comma);
 }
 
 @include component(kbd) {
   font-size: 90%;
-  padding: ($root-font-size * .2) ($root-font-size * .4);
+  padding: ($root-font-size * 0.2) ($root-font-size * 0.4);
   color: #fff;
-  border-radius: $root-font-size * .25;
+  border-radius: $root-font-size * 0.25;
   background-color: #333;
 
   kbd {
@@ -669,9 +696,9 @@ $mono-space-selector: (
 
   code {
     font-size: 90%;
-    padding: ($root-font-size * .2) ($root-font-size * .4);
+    padding: ($root-font-size * 0.2) ($root-font-size * 0.4);
     color: #bd4147;
-    border-radius: $root-font-size * .25;
+    border-radius: $root-font-size * 0.25;
     background-color: #f7f7f9;
   }
 
@@ -682,6 +709,7 @@ $mono-space-selector: (
     // Remove browser default top margin
     // Reset browser default of `1em` to use `rem`s
     @extend %margin-bottom;
+
     overflow: auto;
 
     // Account for some code outputs that place code tags in pre tags

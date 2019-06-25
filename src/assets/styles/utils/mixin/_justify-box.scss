@@ -1,4 +1,7 @@
-@mixin justify-box($children-selector: "& > *", $shim-selector: if($legacy-ie <= 7, "& .shim", "&::after")) {
+@mixin justify-box(
+  $children-selector: "& > *",
+  $shim-selector: if($legacy-ie <= 7, "& .shim", "&::after")
+) {
   text-align: justify;
   font-size: 0;
 
@@ -11,7 +14,6 @@
     width: 100%;
   }
 
-
   #{unquote($children-selector)} {
     display: inline-block;
     vertical-align: top;
@@ -20,6 +22,7 @@
       @if $legacy-ie < 9 {
         font-size: value-of($base-font-size) / 100 * $root-font-size;
       }
+
       font-size: value-of($base-font-size) / 100 * 1rem;
     } @else {
       font-size: $base-font-size;

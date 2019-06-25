@@ -1,8 +1,12 @@
 // arrow
 
-$arrow-default-size: .5em !default;
+$arrow-default-size: 0.5em !default;
 
-@mixin arrow($direction: right, $size: $arrow-default-size, $border-width: 1px) {
+@mixin arrow(
+  $direction: right,
+  $size: $arrow-default-size,
+  $border-width: 1px
+) {
   $direction: nth(get-directions($direction), 1);
   $pseudo-element: after;
   @if ($direction == left) {
@@ -22,19 +26,35 @@ $arrow-default-size: .5em !default;
   }
 }
 
-@mixin _arrow($direction: right, $size: $arrow-default-size, $border-width: 1px) {
+@mixin _arrow(
+  $direction: right,
+  $size: $arrow-default-size,
+  $border-width: 1px
+) {
   $direction: nth(get-directions($direction), 1);
   $degs: (
     right: 45deg,
     bottom: 45deg + 90deg,
     left: 45deg + 180deg,
-    top: 45deg + 90deg + 180deg
+    top: 45deg + 90deg + 180deg,
   );
   $translates: (
-    right: (-25%, 0),
-    bottom: (0, -25%),
-    left: (25%, 0),
-    top: (0, 25%),
+    right: (
+      -25%,
+      0,
+    ),
+    bottom: (
+      0,
+      -25%,
+    ),
+    left: (
+      25%,
+      0,
+    ),
+    top: (
+      0,
+      25%,
+    ),
   );
   $deg: map-get($degs, $direction);
   $translate: map-get($translates, $direction);
@@ -42,8 +62,9 @@ $arrow-default-size: .5em !default;
   @if is-pseudo-element(#{&}) {
     content: "";
   }
+
   display: inline-block;
-  vertical-align: $size * .325;
+  vertical-align: $size * 0.325;
   width: $size;
   height: $size;
   border: $border-width solid;

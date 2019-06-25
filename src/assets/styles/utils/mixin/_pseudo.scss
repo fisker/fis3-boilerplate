@@ -28,7 +28,10 @@
       "&:-moz-meter-sub-sub-optimum::-moz-meter-bar",
     ),
     disabled: if($legacy-ie <= 8, ("&:disabled", "&[disabled]"), ("&:disabled")),
-    read-only: ("&:read-only", "&[readonly]"),
+    read-only: (
+      "&:read-only",
+      "&[readonly]",
+    ),
   );
 
   $selector-list: map-get($psedu-selecters, $selector);

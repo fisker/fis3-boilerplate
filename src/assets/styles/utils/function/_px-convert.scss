@@ -7,7 +7,7 @@
   @return px-convert($scale, "px", $values...);
 }
 
-@function px-convert($scale:1, $defaut-unit: "px", $values...) {
+@function px-convert($scale: 1, $defaut-unit: "px", $values...) {
   $result: ();
   $separator: list-separator($values);
 

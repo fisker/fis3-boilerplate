@@ -5,12 +5,12 @@
   $tab-selector: "&-tab",
   $contents-selector: "&-contents",
   $content-selector: "&-content"
-  ) {
-  #{$input-selector}{
+) {
+  #{$input-selector} {
     @include hide-check();
   }
 
-  #{$tab-selector}{
+  #{$tab-selector} {
     cursor: pointer;
   }
 
@@ -23,8 +23,16 @@
   @for $index from 1 through $tab-count {
     $current-tab-selector: "#{$input-selector}:nth-of-type(#{$index}):checked ~ #{$tabs-selector} > #{$tab-selector}:nth-child(#{$index})";
     $current-content-selector: "#{$input-selector}:nth-of-type(#{$index}):checked ~ #{$contents-selector} > #{$content-selector}:nth-child(#{$index})";
-    $current-tab-selectors: append($current-tab-selectors, $current-tab-selector, comma);
-    $current-content-selectors: append($current-content-selectors, $current-content-selector, comma);
+    $current-tab-selectors: append(
+      $current-tab-selectors,
+      $current-tab-selector,
+      comma
+    );
+    $current-content-selectors: append(
+      $current-content-selectors,
+      $current-content-selector,
+      comma
+    );
   }
 
   #{$current-tab-selectors} {
@@ -35,5 +43,4 @@
   #{$current-content-selectors} {
     display: block;
   }
-
 }

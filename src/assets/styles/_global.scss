@@ -30,6 +30,7 @@ $container-min-width: 1000;
 $container-max-width: 1200;
 $container-padding: 15px;
 
+/* prettier-ignore */
 $reboot-mods: (
   "::selection": true,
   ul: true,
@@ -57,9 +58,9 @@ $reboot-mods: (
 
 $z-index: (
   // nav,
-  // header,
-  dialog,
-  loading,
+    // header,
+    dialog,
+  loading
 );
 
 @import "utils/utils";

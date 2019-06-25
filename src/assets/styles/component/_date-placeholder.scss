@@ -3,7 +3,6 @@
 [type="month"],
 [type="time"],
 [type="week"] {
-
   &[placeholder] {
     &::before {
       content: attr(placeholder);

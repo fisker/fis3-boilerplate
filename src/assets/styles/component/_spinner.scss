@@ -8,12 +8,7 @@ $name-space: u;
   $arc-time: 1333ms;
   $arc-start-rot: 216;
   $PI: 3.1415926;
-  $colors: (
-    #008744,
-    #0057e7,
-    #d62d20,
-    #ffa700,
-    );
+  $colors: (#008744, #0057e7, #d62d20, #ffa700);
   $colors-length: length($colors);
 
   display: inline-block;
@@ -32,12 +27,14 @@ $name-space: u;
     width: 100%;
     animation-name: rotate;
     animation-timing-function: linear;
-    animation-duration: (360 * $arc-time / ($arc-start-rot + (360 - $arc-size) ));
+    animation-duration: (
+      360 * $arc-time / ($arc-start-rot + (360 - $arc-size))
+    );
 
-    @keyframes rotate{
-     100% {
-      transform: rotate(360deg);
-     }
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
     }
   }
 
@@ -52,19 +49,19 @@ $name-space: u;
     stroke-width: $stroke-width;
     stroke-miterlimit: 10;
     animation-name: fillunfill;
-    animation-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     animation-duration: $arc-time;
 
     @keyframes fillunfill {
-     0% {
-      stroke-dashoffset: 2 * $radius * $PI * $arc-size / 360 - 0.1;
-     }
-     50% {
-      stroke-dashoffset: 0;
-     }
-     100% {
-      stroke-dashoffset: -(2 * $radius * $PI * $arc-size / 360 - 0.5);
-     }
+      0% {
+        stroke-dashoffset: 2 * $radius * $PI * $arc-size / 360 - 0.1;
+      }
+      50% {
+        stroke-dashoffset: 0;
+      }
+      100% {
+        stroke-dashoffset: -(2 * $radius * $PI * $arc-size / 360 - 0.5);
+      }
     }
   }
 

@@ -13,43 +13,48 @@ $base-line-height: 1.5 !default;
 $base-font-family-system: (
   system-ui,
   -apple-system,
-  BlinkMacSystemFont,
-  ) !default;
+  BlinkMacSystemFont
+) !default;
 $base-font-family-en: (
   "Segoe UI",
   Roboto,
   Ubuntu,
   "Helvetica Neue",
   Helvetica,
-  Arial,
-  ) !default;
+  Arial
+) !default;
 $base-font-family-cn: (
   "PingFang SC",
   "Hiragino Sans GB",
   "Microsoft YaHei",
   "Lantinghei SC",
   "WenQuanYi Micro Hei",
-  "Source Han Sans SC",
-  ) !default;
+  "Source Han Sans SC"
+) !default;
 $base-font-family-emoji: (
-  "Apple Color Emoji", // iOS & OS X 10.7
-  "Segoe UI Emoji", // Windows 7
-  "Noto Color Emoji", // Android & Linux
-  "Android Emoji", // Linux
-  "EmojiOne Mozilla",
+  "Apple Color Emoji",
+  // iOS & OS X 10.7
+    "Segoe UI Emoji",
+  // Windows 7
+    "Noto Color Emoji",
+  // Android & Linux
+    "Android Emoji",
+  // Linux
+    "EmojiOne Mozilla",
   "Segoe UI Symbol",
-  EmojiSymbols,
-  ) !default;
+  EmojiSymbols
+) !default;
 $base-font-family-monospace: (
   "Roboto Mono",
   "Source Code Pro",
   Consolas,
   Menlo,
   Monaco,
-  "Courier New",
-  ) !default;
+  "Courier New"
+) !default;
 
-$base-font-family: $base-font-family-system, $base-font-family-en, $base-font-family-cn !default;
+$base-font-family: $base-font-family-system, $base-font-family-en,
+  $base-font-family-cn !default;
 $input-border-color: #a9a9a9 !default;
 $input-bg-disabled: #ebebe4 !default;
 $input-color-disabled: #545454 !default;
@@ -79,16 +84,16 @@ $container-padding: 15px !default;
 
 $grid-breakpoints: (
   // Extra small screen / phone
-  xs: 0,
+    xs: 0,
   // Small screen / phone
-  sm: 544px,
+    sm: 544px,
   // Medium screen / tablet
-  md: 768px,
+    md: 768px,
   // Large screen / desktop
-  lg: 992px,
+    lg: 992px,
   // Extra large screen / wide desktop
-  xl: 1200px,
-  ) !default;
+    xl: 1200px
+) !default;
 
 $base-font-family: $base-font-family, sans-serif, $base-font-family-emoji;
 $font-family-monospace: $base-font-family-monospace, monospace;

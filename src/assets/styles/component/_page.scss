@@ -5,6 +5,7 @@
 
   &__main {
     @include scrollable();
+
     flex: 1;
   }
 }
@@ -43,17 +44,11 @@
   }
 
   &__header {
-    box-shadow:
-      0 1px 1px 0 rgba(#000, .1),
-      0 2px 2px 1px rgba(#000, .05)
-      ;
-    }
+    box-shadow: 0 1px 1px 0 rgba(#000, 0.1), 0 2px 2px 1px rgba(#000, 0.05);
+  }
 
   &__footer {
-    box-shadow:
-      0 -1px 1px 0 rgba(#000, .1),
-      0 -2px 2px 1px rgba(#000, .05)
-      ;
+    box-shadow: 0 -1px 1px 0 rgba(#000, 0.1), 0 -2px 2px 1px rgba(#000, 0.05);
   }
 
   &_flex {

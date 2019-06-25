@@ -48,11 +48,11 @@
   @include plus(1rem, 1px);
 
   &::before {
-    transform: translate(0, .5px) rotate(45deg);
+    transform: translate(0, 0.5px) rotate(45deg);
   }
 
   &::after {
-    transform:  translate(-0.5px, 0) rotate(45deg);
+    transform: translate(-0.5px, 0) rotate(45deg);
   }
 }
 

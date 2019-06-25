@@ -7,7 +7,7 @@
   @return rem-convert($scale, "px", $values...);
 }
 
-@function rem-convert($scale:1, $defaut-unit: "px", $values...) {
+@function rem-convert($scale: 1, $defaut-unit: "px", $values...) {
   $result: ();
   $separator: list-separator($values);
 

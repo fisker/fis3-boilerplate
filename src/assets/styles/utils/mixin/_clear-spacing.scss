@@ -6,7 +6,7 @@
   // display: flex;
   // flex-flow: row wrap;
   // align-content: flex-start;
-  word-spacing: -.43em;
+  word-spacing: -0.43em;
   @if $legacy-ie < 8 {
     *word-spacing: normal;
     *font-size: 0;

@@ -9,7 +9,7 @@
 
   @if $exponent > 0 {
     @for $i from 1 through $exponent {
-     $value: $value * $number;
+      $value: $value * $number;
     }
   } @else if $exponent < 0 {
     @for $i from 1 through -$exponent {
@@ -64,5 +64,6 @@
     $ten-exp: $ten-exp + 1;
   }
 
-  @return summation(ln-maclaurin, $value / pow(10, $ten-exp), 1, 100) + $ten-exp * $ln-ten;
+  @return summation(ln-maclaurin, $value / pow(10, $ten-exp), 1, 100) + $ten-exp *
+    $ln-ten;
 }

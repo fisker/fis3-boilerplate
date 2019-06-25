@@ -19,7 +19,7 @@
     placeholder,
     marker,
     spelling-error,
-    grammar-error,
+    grammar-error
   );
   @return not not index($pseudo-elements, $selector);
 }

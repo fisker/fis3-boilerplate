@@ -1,9 +1,8 @@
 $name-space: u;
 
 .#{$name-space}-check {
-  $focus-shadow:
-    inset 0 1px 1px rgba(0,0,0,.075),
-    0 0 8px rgba(102,175,233,.6);
+  $focus-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(102, 175, 233, 0.6);
 
   $element-indicator: #{&}__indicator;
   $element-input: #{&}__native-control;
@@ -12,7 +11,8 @@ $name-space: u;
 
   margin-bottom: 0;
 
-  &__label {}
+  &__label {
+  }
 
   &__indicator {
     display: inline-block;
@@ -23,13 +23,13 @@ $name-space: u;
     padding: 2px;
     border-radius: 2px;
     transition-property: border, box-shadow;
-    vertical-align: -.25em;
+    vertical-align: -0.25em;
 
     &,
     &::before,
     &::after {
-      transition-duration: .28s;
-      transition-timing-function: cubic-bezier(.4,0,.2,1);
+      transition-duration: 0.28s;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     &::after {
@@ -81,7 +81,7 @@ $name-space: u;
       &::after {
         position: relative;
         height: 50%;
-        border-width: 0 0 .1em .1em;
+        border-width: 0 0 0.1em 0.1em;
         border-style: solid;
         border-color: transparent;
         transform: translateY(25%) rotate(-45deg);
@@ -166,23 +166,19 @@ $name-space: u;
   &_switch {
     #{$element-indicator} {
       &::after {
-        box-shadow:
-          0 2px 2px 0 rgba(0,0,0,.14),
-          0 3px 1px -2px rgba(0,0,0,.2),
-          0 1px 5px 0 rgba(0,0,0,.12);
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+          0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
       }
     }
 
     #{$element-input}:checked ~ #{$element-indicator} {
       &::before {
-        opacity: .5;
+        opacity: 0.5;
       }
 
       &::after {
-        box-shadow:
-          0 3px 4px 0 rgba(0,0,0,.14),
-          0 3px 3px -2px rgba(0,0,0,.2),
-          0 1px 8px 0 rgba(0,0,0,.12);
+        box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14),
+          0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
       }
     }
 

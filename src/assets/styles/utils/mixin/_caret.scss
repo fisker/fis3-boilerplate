@@ -11,6 +11,7 @@ $caret-default-size: 0.3em !default;
 
   &::#{$pseudo-element} {
     @include _caret($direction, $size);
+
     display: inline-block;
     width: 0;
     height: 0;
@@ -22,9 +23,9 @@ $caret-default-size: 0.3em !default;
     }
 
     @if ($direction == left or $direction == right) {
-      vertical-align: $size * .35;
+      vertical-align: $size * 0.35;
     } @else {
-      vertical-align: $size * .85;
+      vertical-align: $size * 0.85;
     }
   }
 }

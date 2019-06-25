@@ -52,7 +52,7 @@
 // 1. Restore the coloring undone by defining the text shadow (opinionated).
 @include component(unquote("::selection")) {
   background-color: #b3d4fc; // 1
-  color: #000000; // 1
+  color: #000; // 1
   text-shadow: none;
 }
 
@@ -89,7 +89,7 @@ input,
 label,
 select,
 summary,
-textarea  {
+textarea {
   touch-action: manipulation;
 }
 
@@ -123,8 +123,8 @@ button,
   // cursor: ew-resize;
 
   @at-root {
-    // [disabled]#{&}
-    :disabled#{&} {
+    // &[disabled]
+    &:disabled {
       cursor: default;
     }
   }

@@ -9,7 +9,7 @@
 
 /// @alias element
 @mixin e($element) {
-  @include element($element)  {
+  @include element($element) {
     @content;
   }
 }

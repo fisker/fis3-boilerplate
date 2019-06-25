@@ -16,28 +16,30 @@
   @return (
     width: $width,
     height: $height,
-    ratio: ($height / $width),
+    ratio: (
+      $height / $width,
+    )
   );
 }
 
 @mixin aspect-ratio($args...) {
-  $ratio: map-get(calcSize($args), ratio);
+  $ratio: map-get(calcsize($args), ratio);
 
   &::before {
-    content: '';
+    content: "";
     padding-top: ($ratio * 100%);
     float: left;
   }
 
   &::after {
-    content: '';
+    content: "";
     display: block;
     clear: left;
   }
 }
 
 @mixin aspect-ratio-padding($args...) {
-  $ratio: map-get(calcSize($args), ratio);
+  $ratio: map-get(calcsize($args), ratio);
 
   &::before {
     content: "";
@@ -47,11 +49,13 @@
 }
 
 @mixin aspect-ratio-svg($args...) {
-  $size: calcSize($args);
+  $size: calcsize($args);
   $width: map-get($size, width);
   $height: map-get($size, height);
 
   &::before {
-    content: svg-url('<svg viewBox="0 0 #{$width} #{$height}" xmlns="http://www.w3.org/2000/svg"></svg>');
+    content: svg-url(
+      '<svg viewBox="0 0 #{$width} #{$height}" xmlns="http://www.w3.org/2000/svg"></svg>'
+    );
   }
 }
