@@ -1,5 +1,7 @@
 module.exports = {
   root: true,
   extends: ['@fisker'],
-  rules: {},
+  rules: {
+    'import/no-unresolved': 'off',
+  },
 }

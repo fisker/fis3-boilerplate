@@ -1,9 +1,10 @@
 const config = require('../../../project.config')
+
 const {project} = config
 const {build} = config
-const env = require('./env.js')
-const codeStyle = require('../../code-style/index.js')
-const pkg = require('../../../package.json')
+const environment = require('./env.js')
+const codeStyle = require('../../code-style')
+const package_ = require('../../../package.json')
 
 function toArray(data) {
   data = data || []
@@ -26,16 +27,16 @@ if (project.legacyIe < 9 && project.flexibleRem) {
   console.warn('rem unit might not work with ie < 9.')
 }
 
-if (env.production) {
-  delete env.engine
-  delete env.computer
-  delete env.user
+if (environment.production) {
+  delete environment.engine
+  delete environment.computer
+  delete environment.user
 }
 
 module.exports = Object.freeze({
-  env,
+  env: environment,
   project,
   build,
   codeStyle,
-  package: pkg,
+  package: package_,
 })

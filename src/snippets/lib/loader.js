@@ -1,13 +1,14 @@
 const path = require('path')
 const dependencies = require('../../_config/dependencies.json')
 const projectConfig = require('../../../project.config.js')
+
 const VENDOR_DIR = path
   .relative(projectConfig.build.src, projectConfig.build.vendors)
   .replace(/\\/g, '/')
 
 const {
   project,
-  env,
+  env: environment,
   createScript,
   createLink,
   conditionHTML,
@@ -22,16 +23,17 @@ function getPackageEntry(options = {}, ...rest) {
 
   options = Object.assign({}, options, ...rest)
 
-  const {pkg} = dependencies[options.name]
-  const {version, name} = pkg
+  const {pkg: package_} = dependencies[options.name]
+  const {version, name} = package_
 
-  let file = options.file || pkg.file || ''
+  let file = options.file || package_.file || ''
 
   if (!file) {
     if (options.type === 'style') {
-      file = pkg.style
+      file = package_.style
     } else {
-      file = pkg.unpkg || pkg.jsdelivr || pkg.browser || pkg.main
+      file =
+        package_.unpkg || package_.jsdelivr || package_.browser || package_.main
     }
   }
 
@@ -46,14 +48,14 @@ function getPackageEntry(options = {}, ...rest) {
 
 const loader = {
   default: getPackageEntry,
-  dd_belatedpng(pkg) {
+  dd_belatedpng(package_) {
     if (project.device === 'mobile' || project.legacyIe > 6) {
       return ''
     }
 
     const script = getPackageEntry({
-      ...pkg,
-      min: env.production,
+      ...package_,
+      min: environment.production,
     })
 
     return conditionHTML(
@@ -62,9 +64,9 @@ const loader = {
       80 - 6
     )
   },
-  jquery(pkg) {
+  jquery(package_) {
     const opt = {
-      min: env.production,
+      min: environment.production,
     }
 
     if (project.device !== 'mobile' && project.legacyIe <= 8) {
@@ -74,15 +76,15 @@ const loader = {
       ].join('\n')
     }
 
-    return getPackageEntry(pkg, opt)
+    return getPackageEntry(package_, opt)
   },
-  html5shiv(pkg) {
+  html5shiv(package_) {
     if (project.device === 'mobile' || project.legacyIe >= 9) {
       return ''
     }
     const script = getPackageEntry({
-      ...pkg,
-      min: env.production,
+      ...package_,
+      min: environment.production,
     })
     return conditionHTML(script, '< 9', 80 - 6)
   },

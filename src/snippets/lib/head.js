@@ -1,4 +1,4 @@
-const {_, project, env} = require('./common.js')
+const {_, project, env: environment} = require('./common.js')
 
 const scripts = require('./scripts.js')
 const styles = require('./styles.js')
@@ -77,8 +77,8 @@ function head(config = {}) {
   html.push(meta('robots', config.robots || project.robots))
 
   if (project.brandColor) {
-    html.push(meta('theme-color', env.brandColor))
-    html.push(meta('msapplication-navbutton-color', env.brandColor))
+    html.push(meta('theme-color', environment.brandColor))
+    html.push(meta('msapplication-navbutton-color', environment.brandColor))
   }
 
   const viewport =

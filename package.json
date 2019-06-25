@@ -1,6 +1,7 @@
 {
   "name": "fis3-boilerplate",
   "private": true,
+  "engine": ">=8.16.0",
   "scripts": {
     "install-deps": "yarn && node \"./scripts/install-dependencies.js\"",
     "lint": "run-p lint:*",

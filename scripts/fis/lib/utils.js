@@ -2,9 +2,10 @@ const {fis} = global
 const _ = fis.util
 const pluginConfig = require('./plugin-config.js')
 const pluginTypes = require('./plugin-types.js')
+
 const PLUGIN_PROP = '__plugin'
 
-const fileExts = {}
+const fileExtensions = {}
 
 function toArray(s) {
   return s.split ? s.split(',') : Array.from(s)
@@ -78,40 +79,41 @@ function parsePlugin(pluginName) {
   )
 }
 
-let htmlLikeExt = ['html']
+let htmlLikeExtension = ['html']
 
-function setHtmlLikeExt(arr) {
-  htmlLikeExt = htmlLikeExt.concat(arr || {})
+function setHtmlLikeExtension(array) {
+  htmlLikeExtension = htmlLikeExtension.concat(array || {})
 }
 
-function getExtsReg(ext, inline) {
-  let exts = []
+function getExtensionsReg(extension, inline) {
+  let extensions = []
   let prefix = ''
 
-  if (ext.split && fileExts[ext]) {
-    exts = toArray(fileExts[ext])
-    exts.unshift(ext)
+  if (extension.split && fileExtensions[extension]) {
+    extensions = toArray(fileExtensions[extension])
+    extensions.unshift(extension)
   } else {
-    exts = toArray(ext)
+    extensions = toArray(extension)
   }
-  exts = exts.length === 1 ? exts : `{${exts.join(',')}}`
+  extensions =
+    extensions.length === 1 ? extensions : `{${extensions.join(',')}}`
   if (inline === true) {
-    prefix = `*.{${htmlLikeExt.join(',')}}:`
+    prefix = `*.{${htmlLikeExtension.join(',')}}:`
   } else if (inline === false) {
     prefix = '*.'
   } else {
-    prefix = `{*.{${htmlLikeExt.join(',')}}:,*.}`
+    prefix = `{*.{${htmlLikeExtension.join(',')}}:,*.}`
   }
-  return prefix + exts
+  return prefix + extensions
 }
 
 module.exports = {
-  fileExts,
+  fileExts: fileExtensions,
   toArray,
   getPlugin,
   pluginToProperties,
   getPluginOptions,
   parsePlugin,
-  getExtsReg,
-  setHtmlLikeExt,
+  getExtsReg: getExtensionsReg,
+  setHtmlLikeExt: setHtmlLikeExtension,
 }

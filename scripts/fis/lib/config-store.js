@@ -1,5 +1,6 @@
 const path = require('path')
 const fs = require('fs')
+
 const STORE_LOCATION = path.join(process.cwd(), 'src/_config/')
 const _ = global.fis.util
 const config = require('./config.js')
@@ -22,9 +23,9 @@ function prettyJSONStringify(data) {
 }
 
 function addFinalNewLine(parser) {
-  return function addFinalNewLine(...args) {
+  return function addFinalNewLine(...arguments_) {
     return (
-      parser.apply(this, args) +
+      parser.apply(this, arguments_) +
       (codeStyle.insertFinalNewline ? codeStyle.endOfLine : '')
     )
   }
@@ -35,13 +36,13 @@ function jsParser(data) {
   return `let config = ${prettyJSONStringify(data)}${semi}`
 }
 
-function increseIndent(str, level) {
+function increseIndent(string, level) {
   level = level || 1
-  const indentStr = codeStyle.indent.repeat(level)
-  return str
+  const indentString = codeStyle.indent.repeat(level)
+  return string
     .split('\n')
     .map(function(s, line) {
-      return line && s ? indentStr + s : s
+      return line && s ? indentString + s : s
     })
     .join('\n')
 }
@@ -56,10 +57,10 @@ function type(x) {
 }
 
 const reColor = (function() {
-  function getFunctionalStringRe(func, args) {
-    return `${func}\\(${args
-      .map(function(arg) {
-        return `\\s*${arg}\\s*`
+  function getFunctionalStringRe(func, arguments_) {
+    return `${func}\\(${arguments_
+      .map(function(argument) {
+        return `\\s*${argument}\\s*`
       })
       .join(',')}\\)`
   }
@@ -139,7 +140,7 @@ function cssPreprossorParser(lang) {
       }
 
       function toMapString(values) {
-        if (!values.length) {
+        if (values.length === 0) {
           return '()'
         }
 
@@ -148,17 +149,17 @@ function cssPreprossorParser(lang) {
         )
       }
 
-      function scssArrayToMap(arr, indent) {
-        const values = arr.map(function(value) {
+      function scssArrayToMap(array, indent) {
+        const values = array.map(function(value) {
           return `${codeStyle.indent + scssValue(value, indent + 1)}`
         })
         return toMapString(values)
       }
 
-      function scssObjectToMap(obj, indent) {
-        const values = Object.keys(obj).map(function(key) {
+      function scssObjectToMap(object, indent) {
+        const values = Object.keys(object).map(function(key) {
           return `${codeStyle.indent +
-            quoteKey(key)}: ${scssValue(obj[key], indent + 1)}`
+            quoteKey(key)}: ${scssValue(object[key], indent + 1)}`
         })
         return toMapString(values)
       }
@@ -190,7 +191,7 @@ function store(config) {
   Object.keys(parsers).forEach(function(lang) {
     const file = path.join(STORE_LOCATION, `_config.${lang}`)
     let parser = parsers[lang] || JSON.stringify
-    if (!/json$/.test(lang)) {
+    if (!lang.endsWith('json')) {
       parser = addFinalNewLine(parser)
     }
 

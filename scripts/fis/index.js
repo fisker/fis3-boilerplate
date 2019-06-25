@@ -143,7 +143,7 @@ if (config.build.relative) {
 }
 
 preProcessors.forEach(function(data) {
-  const exts = utils.toArray(data.ext)
+  const extensions = utils.toArray(data.ext)
   let processor = {
     rExt: `.${data.type}`,
   }
@@ -152,8 +152,8 @@ preProcessors.forEach(function(data) {
   const plugins = ['parser', 'lint']
 
   utils.fileExts[data.type] = utils.fileExts[data.type] || []
-  utils.fileExts[data.type] = utils.fileExts[data.type].concat(exts)
-  fis.match(utils.getExtsReg(exts), processor)
+  utils.fileExts[data.type] = utils.fileExts[data.type].concat(extensions)
+  fis.match(utils.getExtsReg(extensions), processor)
 
   processor = {}
   plugins.forEach(function(pluginType) {
@@ -162,7 +162,7 @@ preProcessors.forEach(function(data) {
     }
   })
 
-  fis.match(utils.getExtsReg(exts), processor)
+  fis.match(utils.getExtsReg(extensions), processor)
 })
 
 standardProcessors.forEach(function(data) {

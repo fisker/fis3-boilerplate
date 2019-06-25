@@ -1,6 +1,6 @@
-const config = require('./fis/lib/config.js')
 const {writeFileSync} = require('fs')
 const {join} = require('path')
+const config = require('./fis/lib/config.js')
 
 const {project} = config
 

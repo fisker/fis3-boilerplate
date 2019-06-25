@@ -1,14 +1,19 @@
-const {project, env, build} = require('../../../scripts/fis/lib/config.js')
+const {
+  project,
+  env: environment,
+  build,
+} = require('../../../scripts/fis/lib/config.js')
+
 const {lodash = {}} =
   (global.fis && global.fis.require('parser', 'lodash-template')) || {}
 const _ = lodash
 
-function createScript(src) {
-  return `<script src="${_.escape(src)}"></script>`
+function createScript(source) {
+  return `<script src="${_.escape(source)}"></script>`
 }
 
-function createLink(src) {
-  return `<link href="${_.escape(src)}" rel="stylesheet">`
+function createLink(source) {
+  return `<link href="${_.escape(source)}" rel="stylesheet">`
 }
 
 const conditionHTML = (CONDITION_OP =>
@@ -34,11 +39,11 @@ const conditionHTML = (CONDITION_OP =>
       }
     }
 
-    const arr = [conditionStart, html, conditionEnd].filter(Boolean)
+    const array = [conditionStart, html, conditionEnd].filter(Boolean)
 
-    const totalLength = arr.reduce((acc, current) => acc + current.length, 0)
+    const totalLength = array.reduce((acc, current) => acc + current.length, 0)
 
-    html = arr.join(totalLength > length ? '\n' : '')
+    html = array.join(totalLength > length ? '\n' : '')
 
     return html
   })({
@@ -67,7 +72,7 @@ function parsePackage(file) {
 
 module.exports = {
   project,
-  env,
+  env: environment,
   build,
   lodash,
   createScript,

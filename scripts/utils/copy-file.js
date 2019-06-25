@@ -1,9 +1,9 @@
 const fs = require('fs')
 const path = require('path')
 
-function mkdir(dir, options) {
+function mkdir(directory, options) {
   try {
-    const stat = fs.statSync(dir)
+    const stat = fs.statSync(directory)
 
     if (stat.isDirectory()) {
       return true
@@ -11,19 +11,19 @@ function mkdir(dir, options) {
   } catch (_) {}
 
   try {
-    fs.mkdirSync(dir, options)
+    fs.mkdirSync(directory, options)
   } catch (_) {}
 }
 
-function mkdirP(dir, options) {
+function mkdirP(directory, options) {
   try {
-    return fs.mkdirSync(dir, options)
+    return fs.mkdirSync(directory, options)
   } catch (_) {}
 
-  const arr = path.normalize(dir).split(path.sep)
-  let current = arr.shift()
+  const array = path.normalize(directory).split(path.sep)
+  let current = array.shift()
 
-  for (const seg of arr) {
+  for (const seg of array) {
     current = path.join(current, seg)
     mkdir(current, options)
   }

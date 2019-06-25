@@ -1,6 +1,7 @@
 const config = require('./config.js')
 const ejsHelpers = require('../../ejs-helpers.js')
-const {env} = config
+
+const {env: environment} = config
 const {project} = config
 const {build} = config
 
@@ -14,10 +15,10 @@ function getPluginConfig() {
     // outFile: '',
     outputStyle: 'expanded', // options: nested, expanded, compact, compressed
     precision: 8, // default: 5
-    sourceComments: !env.production,
+    sourceComments: !environment.production,
     sourceMap: false,
     sourceMapContents: true,
-    sourceMapEmbed: !env.production,
+    sourceMapEmbed: !environment.production,
     // sourceMapRoot: ''
   }
 
@@ -29,10 +30,10 @@ function getPluginConfig() {
       reserved: ['exports', 'module', 'require', 'define'],
     },
     compress: {
-      drop_console: env.production,
+      drop_console: environment.production,
     },
     ie8: project.legacyIe <= 8,
-    sourceMap: build.sourceMap || !env.production,
+    sourceMap: build.sourceMap || !environment.production,
   }
 
   const cleanCSSConfig = {
@@ -40,7 +41,7 @@ function getPluginConfig() {
       project.legacyIe < 7
         ? 'ie7,+properties.iePrefixHack'
         : `ie${project.legacyIe}`,
-    sourceMap: build.sourceMap || !env.production,
+    sourceMap: build.sourceMap || !environment.production,
   }
 
   return {
@@ -70,11 +71,11 @@ function getPluginConfig() {
       blacklist: ['regenerator'],
       optional: ['asyncToGenerator'],
       stage: 3,
-      sourceMaps: !env.production,
+      sourceMaps: !environment.production,
     },
     'fis-parser-babel-6.x': {
       presets: ['env', 'react'],
-      sourceMaps: !env.production,
+      sourceMaps: !environment.production,
     },
     'fis3-parser-pug': {
       pretty: '  ',
@@ -129,7 +130,7 @@ function getPluginConfig() {
       options: {
         outputFunctionName: 'echo',
         // rmWhitespace: true,
-        debug: !env.production,
+        debug: !environment.production,
       },
     },
     'fis3-parser-lodash-template': {

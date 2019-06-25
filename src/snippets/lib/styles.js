@@ -8,15 +8,15 @@ function loadStyles(styles) {
   return _.uniq(styles || [])
     .filter(Boolean)
     .map(parsePackage)
-    .map(function(mod) {
-      if (mod.type === 'file') {
-        return createLink(mod.file)
+    .map(function(module_) {
+      if (module_.type === 'file') {
+        return createLink(module_.file)
       }
 
-      const modLoader = loader[mod] || loader.default
+      const moduleLoader = loader[module_] || loader.default
 
-      return modLoader({
-        ...mod,
+      return moduleLoader({
+        ...module_,
         type: 'style',
       })
     })

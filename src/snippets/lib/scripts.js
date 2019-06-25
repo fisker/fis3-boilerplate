@@ -8,15 +8,15 @@ function loadScripts(scripts) {
   return _.uniq(scripts)
     .filter(Boolean)
     .map(parsePackage)
-    .map(function(mod) {
-      if (mod.type === 'file') {
-        return createScript(mod.file)
+    .map(function(module_) {
+      if (module_.type === 'file') {
+        return createScript(module_.file)
       }
 
-      const modLoader = loader[mod.name] || loader.default
+      const moduleLoader = loader[module_.name] || loader.default
 
-      return modLoader({
-        ...mod,
+      return moduleLoader({
+        ...module_,
         type: 'script',
       })
     })

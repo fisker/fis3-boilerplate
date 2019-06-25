@@ -2,14 +2,16 @@ const fs = require('fs')
 const path = require('path')
 const flatDeep = require('./flat-deep')
 
-function getFiles(dir) {
-  const stat = fs.statSync(dir)
+function getFiles(directory) {
+  const stat = fs.statSync(directory)
 
   if (stat.isFile()) {
-    return [dir]
+    return [directory]
   }
 
-  const files = fs.readdirSync(dir).map(file => getFiles(path.join(dir, file)))
+  const files = fs
+    .readdirSync(directory)
+    .map(file => getFiles(path.join(directory, file)))
 
   return flatDeep(files)
 }

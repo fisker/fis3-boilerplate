@@ -1,4 +1,3 @@
-/* eslint-disable global-require */
 module.exports = {
   htmlStartTag: require('./lib/html-start-tag.js'),
   htmlEndTag: require('./lib/html-end-tag.js'),

@@ -2,13 +2,13 @@ const path = require('path')
 const getPackageFiles = require('./get-package-files')
 
 function getDependencyInfo({name, version}) {
-  const pkgLoc = require.resolve(`${name}/package.json`)
-  const pkg = require(pkgLoc)
-  const dir = path.dirname(pkgLoc)
+  const packageLocation = require.resolve(`${name}/package.json`)
+  const package_ = require(packageLocation)
+  const directory = path.dirname(packageLocation)
   const files = getPackageFiles(
     {
-      pkg,
-      dir,
+      pkg: package_,
+      dir: directory,
     },
     true
   )
@@ -16,15 +16,15 @@ function getDependencyInfo({name, version}) {
   return {
     name,
     version,
-    pkg,
-    dir,
+    pkg: package_,
+    dir: directory,
     files,
   }
 }
 
-function getDependencies(dir) {
-  const pkg = require('../../package.json')
-  const {dependencies = {}} = pkg
+function getDependencies(directory) {
+  const package_ = require('../../package.json')
+  const {dependencies = {}} = package_
   const names = Object.keys(dependencies).sort()
 
   return names

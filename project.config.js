@@ -1,5 +1,6 @@
 const path = require('path')
 const CONSTANTS = require('./scripts/constants')
+
 const resolvePath = path.join.bind(path, __dirname)
 
 // 项目名称

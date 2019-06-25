@@ -1,14 +1,14 @@
 const {_, project, conditionHTML} = require('./common.js')
 
-const commonAttrs = {
+const commonAttributes = {
   lang: project.lang,
 }
 
-function renderHTMLTag(attrs, version) {
-  let classNames = attrs.class.slice()
+function renderHTMLTag(attributes, version) {
+  let classNames = attributes.class.slice()
 
   if (version) {
-    for (let ver = 9; ver > version; ver--) {
+    for (let ver = 9; ver > version; ver -= 1) {
       classNames.push(`lt-ie${ver}`)
     }
     classNames.push(`ie${version}`)
@@ -16,54 +16,57 @@ function renderHTMLTag(attrs, version) {
 
   classNames = classNames.filter(Boolean)
 
-  const attrStr = Object.keys(attrs)
+  const attributeString = Object.keys(attributes)
     .sort()
-    .map(function(attr) {
-      const value = attr === 'class' ? classNames.join(' ') : attrs[attr]
+    .map(function(attribute) {
+      const value =
+        attribute === 'class' ? classNames.join(' ') : attributes[attribute]
       if (value) {
-        return `${attr}="${_.escape(value)}"`
+        return `${attribute}="${_.escape(value)}"`
       }
+
+      return ''
     })
     .filter(Boolean)
     .join(' ')
 
-  const html = `<html${attrStr ? ` ${attrStr}` : ''}>`
+  const html = `<html${attributeString ? ` ${attributeString}` : ''}>`
 
   return conditionHTML(html, version)
 }
 
-function htmlStartTag(attrs) {
-  attrs = attrs || {}
-  if (typeof attrs === 'string' || Array.isArray(attrs)) {
-    attrs = {
-      class: attrs,
+function htmlStartTag(attributes) {
+  attributes = attributes || {}
+  if (typeof attributes === 'string' || Array.isArray(attributes)) {
+    attributes = {
+      class: attributes,
     }
   }
 
-  attrs.class = attrs.class || []
+  attributes.class = attributes.class || []
 
-  if (!Array.isArray(attrs.class)) {
-    attrs.class = attrs.class.split(' ')
+  if (!Array.isArray(attributes.class)) {
+    attributes.class = attributes.class.split(' ')
   }
 
-  attrs = {...commonAttrs, ...attrs}
+  attributes = {...commonAttributes, ...attributes}
 
   const html = []
 
   if (project.device !== 'mobile' && project.legacyIe < 9) {
     if (project.legacyIe < 7) {
-      html.push(renderHTMLTag(attrs, 6))
+      html.push(renderHTMLTag(attributes, 6))
     }
     if (project.legacyIe < 8) {
-      html.push(renderHTMLTag(attrs, 7))
+      html.push(renderHTMLTag(attributes, 7))
     }
     if (project.legacyIe < 9) {
-      html.push(renderHTMLTag(attrs, 8))
+      html.push(renderHTMLTag(attributes, 8))
     }
 
-    html.push(conditionHTML(renderHTMLTag(attrs), '>=9'))
+    html.push(conditionHTML(renderHTMLTag(attributes), '>=9'))
   } else {
-    html.push(renderHTMLTag(attrs))
+    html.push(renderHTMLTag(attributes))
   }
 
   return html.join('\n')

@@ -3,7 +3,7 @@ const path = require('path')
 const flatDeep = require('../utils/flat-deep')
 const getFiles = require('../utils/get-files')
 
-function getPackageFiles({pkg, dir}, relative = false) {
+function getPackageFiles({pkg: package_, dir: directory}, relative = false) {
   // let {files = []} = pkg
 
   // const isGlob = files.join('').includes('*')
@@ -25,10 +25,10 @@ function getPackageFiles({pkg, dir}, relative = false) {
   //   files = flatDeep(files)
   // }
 
-  let files = getFiles(dir)
+  let files = getFiles(directory)
 
   if (relative) {
-    files = files.map(file => path.relative(dir, file))
+    files = files.map(file => path.relative(directory, file))
   }
 
   return files

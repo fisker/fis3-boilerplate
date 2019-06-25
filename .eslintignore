@@ -3,3 +3,4 @@
 src/**/_*.js
 node_modules/**
 dist/**
+**/.eslintrc.js

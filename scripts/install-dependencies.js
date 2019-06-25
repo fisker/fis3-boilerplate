@@ -13,13 +13,15 @@ const CACHE_FILE = path.join(
 
 const dependencies = getDependencies()
 const files = flatDeep(
-  dependencies.map(({pkg, dir, files}) =>
+  dependencies.map(({pkg: package_, dir: directory, files}) =>
     files.map(file => ({
-      source: path.join(dir, file),
-      target: path.join(VENDOR_DIR, pkg.name, pkg.version, file),
+      source: path.join(directory, file),
+      target: path.join(VENDOR_DIR, package_.name, package_.version, file),
     }))
   )
-).filter(({source}) => !['.eslintrc', '.eslintrc.json'].includes(path.basename(source)))
+).filter(
+  ({source}) => !['.eslintrc', '.eslintrc.json'].includes(path.basename(source))
+)
 
 for (const {source, target} of files) {
   copyFile(source, target)
