@@ -2,15 +2,25 @@
   "name": "fis3-boilerplate",
   "private": true,
   "scripts": {
-    "install-deps": "yarn && node ./scripts/install-dependencies.js"
+    "install-deps": "yarn && node ./scripts/install-dependencies.js",
+    "lint": "run-p lint:*",
+    "lint:eslint": "eslint **/*.{js,mjs,vue}",
+    "lint:prettier": "prettier **/*.{css,html,js,json,less,md,scss,ts,vue,yaml,yml} --check",
+    "lint:stylelint": "stylelint **/*.{css,scss,less}",
+    "format": "run-p format:*",
+    "format:eslint": "yarn lint:eslint --fix",
+    "format:prettier": "prettier **/*.{css,html,js,json,less,md,scss,ts,vue,yaml,yml} --write",
+    "format:stylelint": "yarn lint:stylelint --fix"
   },
   "dependencies": {
-    "dd_belatedpng": "^1.0.2",
-    "html5shiv": "^3.7.3",
-    "jquery": "^3.3.1",
-    "jquery-v1": "npm:jquery@^1.12.4",
-    "jquery-v2": "npm:jquery@^2.2.4",
-    "normalize.css": "^8.0.1"
+    "dd_belatedpng": "1.0.2",
+    "html5shiv": "3.7.3",
+    "jquery": "3.4.1",
+    "jquery-v1": "npm:jquery@1.12.4",
+    "jquery-v2": "npm:jquery@2.2.4",
+    "normalize.css": "8.0.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@fisker/prettier-config": "^1.0.17"
+  }
 }

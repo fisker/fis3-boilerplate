@@ -2,31 +2,37 @@
 # yarn lockfile v1
 
 
-dd_belatedpng@^1.0.2:
-  version "1.0.2"
-  resolved "http://registry.npm.taobao.org/dd_belatedpng/download/dd_belatedpng-1.0.2.tgz#913779f1591f1d1a352d37802341b1a01f38ffe7"
+"@fisker/prettier-config@^1.0.17":
+  version "1.0.17"
+  resolved "https://registry.npm.taobao.org/@fisker/prettier-config/download/@fisker/prettier-config-1.0.17.tgz#1980baacb4627294859bbf60063e1796411e98c6"
+  integrity sha1-GYC6rLRicpSFm79gBj4XlkEemMY=
 
-html5shiv@^3.7.3:
+dd_belatedpng@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npm.taobao.org/dd_belatedpng/download/dd_belatedpng-1.0.2.tgz#913779f1591f1d1a352d37802341b1a01f38ffe7"
+  integrity sha1-kTd58VkfHRo1LTeAI0GxoB84/+c=
+
+html5shiv@3.7.3:
   version "3.7.3"
-  resolved "http://registry.npm.taobao.org/html5shiv/download/html5shiv-3.7.3.tgz#d78a84a367bcb9a710100d57802c387b084631d2"
+  resolved "https://registry.npm.taobao.org/html5shiv/download/html5shiv-3.7.3.tgz#d78a84a367bcb9a710100d57802c387b084631d2"
   integrity sha1-14qEo2e8uacQEA1XgCw4ewhGMdI=
 
-"jquery-v1@npm:jquery@^1.12.4":
+"jquery-v1@npm:jquery@1.12.4":
   version "1.12.4"
-  resolved "http://registry.npm.taobao.org/jquery/download/jquery-1.12.4.tgz#01e1dfba290fe73deba77ceeacb0f9ba2fec9e0c"
+  resolved "https://registry.npm.taobao.org/jquery/download/jquery-1.12.4.tgz#01e1dfba290fe73deba77ceeacb0f9ba2fec9e0c"
   integrity sha1-AeHfuikP5z3rp3zurLD5ui/sngw=
 
-"jquery-v2@npm:jquery@^2.2.4":
+"jquery-v2@npm:jquery@2.2.4":
   version "2.2.4"
-  resolved "http://registry.npm.taobao.org/jquery/download/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
+  resolved "https://registry.npm.taobao.org/jquery/download/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
   integrity sha1-LInWiJterFIqfuoywUUhVZxsvwI=
 
-jquery@^3.3.1:
-  version "3.3.1"
-  resolved "http://registry.npm.taobao.org/jquery/download/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
-  integrity sha1-lYzinoHJeQ8xvneS311NlfxX+8o=
+jquery@3.4.1:
+  version "3.4.1"
+  resolved "https://registry.npm.taobao.org/jquery/download/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
+  integrity sha1-cU8fjZ3eS9+lV2S6N+8hRjDYDvI=
 
-normalize.css@^8.0.1:
+normalize.css@8.0.1:
   version "8.0.1"
-  resolved "http://registry.npm.taobao.org/normalize.css/download/normalize.css-8.0.1.tgz#9b98a208738b9cc2634caacbc42d131c97487bf3"
+  resolved "https://registry.npm.taobao.org/normalize.css/download/normalize.css-8.0.1.tgz#9b98a208738b9cc2634caacbc42d131c97487bf3"
   integrity sha1-m5iiCHOLnMJjTKrLxC0THJdIe/M=
