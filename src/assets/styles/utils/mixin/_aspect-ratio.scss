@@ -1,4 +1,4 @@
-@function calcSize($args) {
+@function calc-size($args) {
   $len: length($args);
   $width: 1;
   $height: 1;
@@ -23,7 +23,7 @@
 }
 
 @mixin aspect-ratio($args...) {
-  $ratio: map-get(calcsize($args), ratio);
+  $ratio: map-get(calc-size($args), ratio);
 
   &::before {
     content: "";
@@ -39,7 +39,7 @@
 }
 
 @mixin aspect-ratio-padding($args...) {
-  $ratio: map-get(calcsize($args), ratio);
+  $ratio: map-get(calc-size($args), ratio);
 
   &::before {
     content: "";
@@ -49,7 +49,7 @@
 }
 
 @mixin aspect-ratio-svg($args...) {
-  $size: calcsize($args);
+  $size: calc-size($args);
   $width: map-get($size, width);
   $height: map-get($size, height);
 

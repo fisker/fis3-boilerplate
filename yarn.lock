@@ -148,10 +148,10 @@
   resolved "https://registry.npm.taobao.org/@fisker/prettier-config/download/@fisker/prettier-config-1.0.17.tgz#1980baacb4627294859bbf60063e1796411e98c6"
   integrity sha1-GYC6rLRicpSFm79gBj4XlkEemMY=
 
-"@fisker/stylelint-config@1.1.3":
-  version "1.1.3"
-  resolved "https://registry.npm.taobao.org/@fisker/stylelint-config/download/@fisker/stylelint-config-1.1.3.tgz#99a90189464608414c3a35e9c1df5cf24c7f542d"
-  integrity sha1-makBiUZGCEFMOjXpwd9c8kx/VC0=
+"@fisker/stylelint-config@1.1.4":
+  version "1.1.4"
+  resolved "https://registry.npm.taobao.org/@fisker/stylelint-config/download/@fisker/stylelint-config-1.1.4.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40fisker%2Fstylelint-config%2Fdownload%2F%40fisker%2Fstylelint-config-1.1.4.tgz#e8edb1f7e90038c04023649ccdd175cd7a7cd2f9"
+  integrity sha1-6O2x9+kAOMBAI2SczdF1zXp80vk=
   dependencies:
     stylelint-config-prettier "5.2.0"
     stylelint-config-recommended-scss "3.3.0"

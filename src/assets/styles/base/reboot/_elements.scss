@@ -53,7 +53,7 @@ html {
       _background-attachment: fixed;
       _background-image: url(about:blank);
       _filter: expression(
-        document.execcommand("BackgroundImageCache", false, true)
+        document.execCommand("BackgroundImageCache", false, true)
       );
     }
   }

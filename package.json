@@ -1,7 +1,9 @@
 {
   "name": "fis3-boilerplate",
   "private": true,
-  "engine": ">=8.16.0",
+  "engines": {
+    "node": ">=8.16.0"
+  },
   "scripts": {
     "install-deps": "yarn && node \"./scripts/install-dependencies.js\"",
     "lint": "run-p lint:*",
@@ -25,7 +27,7 @@
     "@fisker/eslint-config": "1.2.3",
     "@fisker/eslint-config-legacy": "1.2.3",
     "@fisker/prettier-config": "1.0.17",
-    "@fisker/stylelint-config": "1.1.3",
+    "@fisker/stylelint-config": "1.1.4",
     "eslint": "6.0.1",
     "prettier": "1.18.2",
     "stylelint": "10.1.0"

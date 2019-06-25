@@ -7,4 +7,11 @@
  *
  */
 
-module.exports = require('@fisker/prettier-config')
+module.exports = require('@fisker/prettier-config').extend({
+  overrides: {
+    files: 'src/**/*.{js,html}',
+    options: {
+      trailingComma: 'none',
+    },
+  },
+})

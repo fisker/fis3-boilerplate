@@ -8,7 +8,7 @@ $(function() {
       el.wrap(
         $('<div class="page__fixed-dummy">').css({
           height: el.outerHeight(),
-          zIndex: el.css('zIndex')
+          zIndex: el.css('zIndex'),
         })
       )
     }

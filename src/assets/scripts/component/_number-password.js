@@ -12,7 +12,7 @@ function initNumberPassword() {
   input.attr({
     type: 'tel',
     maxlength: maxlength,
-    autocomplete: 'off'
+    autocomplete: 'off',
   })
   var displaySpan = $('<span class="' + DISPLAY_CLASS + '">').appendTo(
     container[0]
@@ -25,7 +25,7 @@ function initNumberPassword() {
   digitSpans = $(digitSpans.join('')).appendTo(displaySpan[0])
   if (maxlength && maxlength !== 6) {
     digitSpans.css({
-      width: (1 / maxlength) * 100 + '%'
+      width: (1 / maxlength) * 100 + '%',
     })
   }
 
