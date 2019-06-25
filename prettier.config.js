@@ -8,10 +8,23 @@
  */
 
 module.exports = require('@fisker/prettier-config').extend({
-  overrides: {
-    files: 'src/**/*.{js,html}',
-    options: {
-      trailingComma: 'none',
+  overrides: [
+    {
+      files: 'src/**/*.{js,html}',
+      options: {
+        trailingComma: 'none',
+      },
     },
-  },
+    {
+      files: [
+        'src/**/*.eslintrc.js',
+        'src/mock/**/*.js',
+        'src/snippets/lib/**/*.js',
+        'src/snippets/*.js',
+      ],
+      options: {
+        trailingComma: 'es5',
+      },
+    },
+  ],
 })

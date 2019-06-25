@@ -18,7 +18,7 @@ function initRangeInput() {
     .on('input', function() {
       var percentage = ((min + input.val()) / (max - min)) * 100
       indicate.css({
-        width: percentage + '%',
+        width: percentage + '%'
       })
     })
     .trigger('input')
