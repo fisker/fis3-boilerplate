@@ -1,8 +1,5 @@
 module.exports = {
   root: true,
-  extends: ['@fisker/legacy'],
+  extends: ['@fisker'],
   rules: {},
-  globals: {
-    __inline: true,
-  },
 }

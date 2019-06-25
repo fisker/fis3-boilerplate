@@ -19,7 +19,7 @@ const files = flatDeep(
       target: path.join(VENDOR_DIR, pkg.name, pkg.version, file),
     }))
   )
-)
+).filter(({source}) => !['.eslintrc', '.eslintrc.json'].includes(path.basename(source)))
 
 for (const {source, target} of files) {
   copyFile(source, target)
