@@ -54,7 +54,7 @@ $base-font-family-monospace: (
 ) !default;
 
 $base-font-family: $base-font-family-system, $base-font-family-en,
-  $base-font-family-cn !default;
+  $base-font-family-cn, sans-serif, $base-font-family-emoji !default;
 $input-border-color: #a9a9a9 !default;
 $input-bg-disabled: #ebebe4 !default;
 $input-color-disabled: #545454 !default;
@@ -95,7 +95,6 @@ $grid-breakpoints: (
     xl: 1200px
 ) !default;
 
-$base-font-family: $base-font-family, sans-serif, $base-font-family-emoji;
 $font-family-monospace: $base-font-family-monospace, monospace;
 $inline-mark: "?__inline";
 $sprite-mark: "?__sprite";
