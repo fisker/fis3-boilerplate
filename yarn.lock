@@ -143,10 +143,10 @@
     eslint-plugin-promise "4.1.1"
     eslint-plugin-unicorn "9.1.1"
 
-"@fisker/prettier-config@1.0.17":
-  version "1.0.17"
-  resolved "https://registry.npm.taobao.org/@fisker/prettier-config/download/@fisker/prettier-config-1.0.17.tgz#1980baacb4627294859bbf60063e1796411e98c6"
-  integrity sha1-GYC6rLRicpSFm79gBj4XlkEemMY=
+"@fisker/prettier-config@1.0.24":
+  version "1.0.24"
+  resolved "https://registry.yarnpkg.com/@fisker/prettier-config/-/prettier-config-1.0.24.tgz#fd3b472a24c6ac161137365a20e5812b081f29d5"
+  integrity sha512-3+VEajzXhl8vL8lun3kPshUZILZIzigADoMMxvW0W1OdEEs2QPB7oEAd6QiP5o7D/XCMtCV5CeIKqx1uftJegQ==
 
 "@fisker/stylelint-config@1.1.4":
   version "1.1.4"
