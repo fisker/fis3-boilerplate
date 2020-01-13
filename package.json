@@ -13,7 +13,9 @@
     "format": "run-p format:*",
     "format:eslint": "yarn lint:eslint --fix",
     "format:prettier": "prettier \"**/*.{css,html,js,json,less,md,scss,ts,vue,yaml,yml}\" --write",
-    "format:stylelint": "yarn lint:stylelint --fix"
+    "format:stylelint": "yarn lint:stylelint --fix",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "dependencies": {
     "dd_belatedpng": "1.0.3",
@@ -21,7 +23,8 @@
     "jquery": "3.4.1",
     "jquery-v1": "npm:jquery@1.12.4",
     "jquery-v2": "npm:jquery@2.2.4",
-    "normalize.css": "8.0.1"
+    "normalize.css": "8.0.1",
+    "snyk": "^1.278.1"
   },
   "devDependencies": {
     "@fisker/eslint-config": "1.6.0",
@@ -31,5 +34,6 @@
     "eslint": "6.0.1",
     "prettier": "1.19.1",
     "stylelint": "10.1.0"
-  }
+  },
+  "snyk": true
 }
