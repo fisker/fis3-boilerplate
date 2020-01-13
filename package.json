@@ -16,7 +16,7 @@
     "format:stylelint": "yarn lint:stylelint --fix"
   },
   "dependencies": {
-    "dd_belatedpng": "1.0.2",
+    "dd_belatedpng": "1.0.3",
     "html5shiv": "3.7.3",
     "jquery": "3.4.1",
     "jquery-v1": "npm:jquery@1.12.4",
