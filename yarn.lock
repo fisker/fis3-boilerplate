@@ -631,10 +631,10 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
-dd_belatedpng@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npm.taobao.org/dd_belatedpng/download/dd_belatedpng-1.0.2.tgz#913779f1591f1d1a352d37802341b1a01f38ffe7"
-  integrity sha1-kTd58VkfHRo1LTeAI0GxoB84/+c=
+dd_belatedpng@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/dd_belatedpng/-/dd_belatedpng-1.0.3.tgz#4e311be2f8cb3774c83060ecfc20845cf3aa3f90"
+  integrity sha1-TjEb4vjLN3TIMGDs/CCEXPOqP5A=
 
 debug@^2.2.0, debug@^2.3.3, debug@^2.6.8, debug@^2.6.9:
   version "2.6.9"
