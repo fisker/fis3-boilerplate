@@ -478,10 +478,10 @@
     eslint-plugin-promise "4.1.1"
     eslint-plugin-unicorn "9.1.1"
 
-"@fisker/prettier-config@1.0.24":
-  version "1.0.24"
-  resolved "https://registry.yarnpkg.com/@fisker/prettier-config/-/prettier-config-1.0.24.tgz#fd3b472a24c6ac161137365a20e5812b081f29d5"
-  integrity sha512-3+VEajzXhl8vL8lun3kPshUZILZIzigADoMMxvW0W1OdEEs2QPB7oEAd6QiP5o7D/XCMtCV5CeIKqx1uftJegQ==
+"@fisker/prettier-config@1.0.26":
+  version "1.0.26"
+  resolved "https://registry.yarnpkg.com/@fisker/prettier-config/-/prettier-config-1.0.26.tgz#c8d172c80defd9c0240b39c172c343694d858d55"
+  integrity sha512-Cpkp8rGkq4Qg61q8VLICuR9QsH+53/wPNtCs5s06FcATBrLsPQskyKiVwRpaKlGBDXKl3t/nVQzTpZyQ1YT8vg==
 
 "@fisker/stylelint-config@1.1.4":
   version "1.1.4"
