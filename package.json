@@ -26,7 +26,7 @@
   "devDependencies": {
     "@fisker/eslint-config": "1.6.6",
     "@fisker/eslint-config-legacy": "1.2.3",
-    "@fisker/prettier-config": "1.0.28",
+    "@fisker/prettier-config": "1.0.29",
     "@fisker/stylelint-config": "1.2.2",
     "eslint": "6.0.1",
     "prettier": "1.19.1",
