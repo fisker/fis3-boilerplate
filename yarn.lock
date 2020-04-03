@@ -227,10 +227,10 @@
     eslint-config-airbnb-base "13.1.0"
     eslint-plugin-es "1.4.0"
 
-"@fisker/eslint-config@1.6.8":
-  version "1.6.8"
-  resolved "https://registry.yarnpkg.com/@fisker/eslint-config/-/eslint-config-1.6.8.tgz#795ca2f35e0197d9717234c61baddeeab09eabbb"
-  integrity sha512-wN2q9/IJFXwQXaEIbtrDzJE0cWKpm8R2Dye8A5nW3oGiHsJmGfiXlnIH9PDSkg4P5eWpyqqigY6zMRrkkL2GcQ==
+"@fisker/eslint-config@1.6.9":
+  version "1.6.9"
+  resolved "https://registry.yarnpkg.com/@fisker/eslint-config/-/eslint-config-1.6.9.tgz#8f6fff8fb9f123f8830b9f67a02f1d0d24c664a2"
+  integrity sha512-kycaASxRPQ9THT08cNlbmMhmQ3+THylVZflx06xTDQQl0nHLExEBsejP0CV8JeYBSRu9cPWxFfuBttAt/hIwew==
   dependencies:
     babel-eslint "10.1.0"
     eslint-config-airbnb-base "14.0.0"
@@ -242,7 +242,7 @@
     eslint-plugin-node "11.0.0"
     eslint-plugin-prettier "3.1.2"
     eslint-plugin-promise "4.2.1"
-    eslint-plugin-unicorn "17.0.1"
+    eslint-plugin-unicorn "17.2.0"
 
 "@fisker/eslint-config@^1.2.3":
   version "1.2.3"
@@ -1061,10 +1061,10 @@ eslint-plugin-promise@4.2.1:
   resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-4.2.1.tgz#845fd8b2260ad8f82564c1222fce44ad71d9418a"
   integrity sha512-VoM09vT7bfA7D+upt+FjeBO5eHIJQBUWki1aPvB+vbNiHS3+oGIJGIeyBtKQTME6UPXXy3vV07OL1tHd3ANuDw==
 
-eslint-plugin-unicorn@17.0.1:
-  version "17.0.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-17.0.1.tgz#4ac87b39abd5df19e970282c6d01a0406fd1cce8"
-  integrity sha512-50PXADghwZxRUJ3xOTfWFAsrbPkryrslludMABWExICGheRrYiBQMldeeZpFQU6u1d4pB87zY31cQA/Ut8GIRQ==
+eslint-plugin-unicorn@17.2.0:
+  version "17.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-17.2.0.tgz#8f147ba24d417dc5de948c7df7d006108a37a540"
+  integrity sha512-0kYjrywf0kQxevFz571KrDfYMIRZ5Kq6dDgPU1EEBFeC181r+fAaPatBScWX+/hisKJ4+eCRFebxTeVylsSYmw==
   dependencies:
     ci-info "^2.0.0"
     clean-regexp "^1.0.0"
