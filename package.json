@@ -24,7 +24,7 @@
     "normalize.css": "8.0.1"
   },
   "devDependencies": {
-    "@fisker/eslint-config": "1.6.9",
+    "@fisker/eslint-config": "1.7.0",
     "@fisker/eslint-config-legacy": "1.2.3",
     "@fisker/prettier-config": "1.0.30",
     "@fisker/stylelint-config": "1.2.4",

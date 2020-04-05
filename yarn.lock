@@ -227,13 +227,13 @@
     eslint-config-airbnb-base "13.1.0"
     eslint-plugin-es "1.4.0"
 
-"@fisker/eslint-config@1.6.9":
-  version "1.6.9"
-  resolved "https://registry.yarnpkg.com/@fisker/eslint-config/-/eslint-config-1.6.9.tgz#8f6fff8fb9f123f8830b9f67a02f1d0d24c664a2"
-  integrity sha512-kycaASxRPQ9THT08cNlbmMhmQ3+THylVZflx06xTDQQl0nHLExEBsejP0CV8JeYBSRu9cPWxFfuBttAt/hIwew==
+"@fisker/eslint-config@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@fisker/eslint-config/-/eslint-config-1.7.0.tgz#2a5aa5a0a275a7c9616d34aacd79f26893b4fceb"
+  integrity sha512-QE65CFlgrxToPcAihanBTpfcYSjz7N9vnET0BpYi+WWQuB7xARkmJIUF2qO2W9KAhakvOmUMvh9kumulmO+66A==
   dependencies:
     babel-eslint "10.1.0"
-    eslint-config-airbnb-base "14.0.0"
+    eslint-config-airbnb-base "14.1.0"
     eslint-config-prettier "6.10.0"
     eslint-plugin-es "3.0.0"
     eslint-plugin-eslint-comments "3.1.2"
@@ -652,7 +652,7 @@ concat-map@0.0.1:
   resolved "https://registry.npm.taobao.org/concat-map/download/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   integrity sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=
 
-confusing-browser-globals@^1.0.7:
+confusing-browser-globals@^1.0.9:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/confusing-browser-globals/-/confusing-browser-globals-1.0.9.tgz#72bc13b483c0276801681871d4898516f8f54fdd"
   integrity sha512-KbS1Y0jMtyPgIxjO7ZzMAuUpAKMt1SzCL9fsrKsX6b0zJPTaT0SiSPmewwVZg9UAO83HVIlEhZF84LIjZ0lmAw==
@@ -893,14 +893,14 @@ eslint-config-airbnb-base@13.1.0:
     object.assign "^4.1.0"
     object.entries "^1.0.4"
 
-eslint-config-airbnb-base@14.0.0:
-  version "14.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-airbnb-base/-/eslint-config-airbnb-base-14.0.0.tgz#8a7bcb9643d13c55df4dd7444f138bf4efa61e17"
-  integrity sha512-2IDHobw97upExLmsebhtfoD3NAKhV4H0CJWP3Uprd/uk+cHuWYOczPVxQ8PxLFUAw7o3Th1RAU8u1DoUpr+cMA==
+eslint-config-airbnb-base@14.1.0:
+  version "14.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-airbnb-base/-/eslint-config-airbnb-base-14.1.0.tgz#2ba4592dd6843258221d9bff2b6831bd77c874e4"
+  integrity sha512-+XCcfGyCnbzOnktDVhwsCAx+9DmrzEmuwxyHUJpw+kqBVT744OUBrB09khgFKlK1lshVww6qXGsYPZpavoNjJw==
   dependencies:
-    confusing-browser-globals "^1.0.7"
+    confusing-browser-globals "^1.0.9"
     object.assign "^4.1.0"
-    object.entries "^1.1.0"
+    object.entries "^1.1.1"
 
 eslint-config-prettier@5.0.0:
   version "5.0.0"
@@ -2161,7 +2161,7 @@ object.entries@^1.0.4:
     function-bind "^1.1.1"
     has "^1.0.3"
 
-object.entries@^1.1.0:
+object.entries@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/object.entries/-/object.entries-1.1.1.tgz#ee1cf04153de02bb093fec33683900f57ce5399b"
   integrity sha512-ilqR7BgdyZetJutmDPfXCDffGa0/Yzl2ivVNpbx/g4UeWrCdRnFDUBrKJGLhGieRHDATnyZXWBeCb29k9CJysQ==
