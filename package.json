@@ -18,7 +18,7 @@
   "dependencies": {
     "dd_belatedpng": "1.0.3",
     "html5shiv": "3.7.3",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "jquery-v1": "npm:jquery@1.12.4",
     "jquery-v2": "npm:jquery@2.2.4",
     "normalize.css": "8.0.1"
