@@ -65,25 +65,25 @@ function initNumberInput() {
     btnIncrease.prop('disabled', isMuted || currentValue >= max)
   }
 
-  btnDecrease.on('click', function() {
+  btnDecrease.on('click', function () {
     if (increaseValue(-step)) {
       input.trigger('change')
     }
   })
 
-  btnIncrease.on('click', function() {
+  btnIncrease.on('click', function () {
     if (increaseValue(step)) {
       input.trigger('change')
     }
   })
 
   input
-    .on('change', function() {
+    .on('change', function () {
       increaseValue()
     })
     .trigger('change')
 }
 
-$(function() {
+$(function () {
   $(NUMBER_INPUT_SELECTOR).each(initNumberInput)
 })

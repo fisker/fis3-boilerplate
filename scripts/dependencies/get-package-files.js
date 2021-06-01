@@ -28,7 +28,7 @@ function getPackageFiles({pkg: package_, dir: directory}, relative = false) {
   let files = getFiles(directory)
 
   if (relative) {
-    files = files.map(file => path.relative(directory, file))
+    files = files.map((file) => path.relative(directory, file))
   }
 
   return files

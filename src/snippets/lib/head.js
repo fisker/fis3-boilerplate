@@ -7,25 +7,23 @@ function meta(name, content) {
   if (typeof name === 'object') {
     const data = name
     return `<meta ${Object.keys(data)
-      .map(function(key) {
+      .map(function (key) {
         return `${_.escape(key)}="${_.escape(data[key])}"`
       })
       .join(' ')}>`
   }
 
-  if (name === 'robots') {
-    if (typeof content === 'object') {
-      content = Object.keys(content).map(key =>
-        content[key] ? key : `no${key}`
-      )
-    }
+  if (name === 'robots' && typeof content === 'object') {
+    content = Object.keys(content).map((key) =>
+      content[key] ? key : `no${key}`
+    )
   }
 
   if (Array.isArray(content)) {
     content = content.join(',')
   } else if (typeof content === 'object') {
     content = Object.keys(content)
-      .map(function(key) {
+      .map(function (key) {
         return `${key}=${content[key]}`
       })
       .join(',')
@@ -48,37 +46,37 @@ function head(config = {}) {
       meta({
         'http-equiv': 'X-UA-Compatible',
         content: 'IE=edge,chrome=1',
-      })
+      }),
+      meta('renderer', 'webkit'),
+      meta('force-rendering', 'webkit')
     )
-    html.push(meta('renderer', 'webkit'))
-    html.push(meta('force-rendering', 'webkit'))
   }
 
   if (project.device !== 'desktop') {
-    html.push(meta('mobile-web-app-capable', 'yes'))
-    html.push(meta('apple-touch-fullscreen', 'yes'))
-    html.push(meta('apple-mobile-web-app-capable', 'yes'))
+    html.push(
+      meta('mobile-web-app-capable', 'yes'),
+      meta('apple-touch-fullscreen', 'yes'),
+      meta('apple-mobile-web-app-capable', 'yes')
+    )
   }
 
   html.push(
     meta({
       name: 'google',
       value: 'notranslate',
-    })
-  )
-
-  html.push(
+    }),
     meta({
       'http-equiv': 'Cache-Control',
       content: 'no-siteapp',
-    })
+    }),
+    meta('robots', config.robots || project.robots)
   )
 
-  html.push(meta('robots', config.robots || project.robots))
-
   if (project.brandColor) {
-    html.push(meta('theme-color', environment.brandColor))
-    html.push(meta('msapplication-navbutton-color', environment.brandColor))
+    html.push(
+      meta('theme-color', environment.brandColor),
+      meta('msapplication-navbutton-color', environment.brandColor)
+    )
   }
 
   const viewport =
@@ -107,20 +105,22 @@ function head(config = {}) {
         email: 'no',
         address: 'no',
         date: 'no',
-      })
+      }),
+      meta('msapplication-tap-highlight', 'no')
     )
-    html.push(meta('msapplication-tap-highlight', 'no'))
   }
 
-  html = html.concat(scripts(config.scripts))
+  html = [...html, scripts(config.scripts)]
 
   if ('title' in config) {
-    html.push(`<title>${_.escape(config.title || '')}</title>`)
-    html.push(meta('keywords', config.keywords || ''))
-    html.push(meta('description', config.description || ''))
+    html.push(
+      `<title>${_.escape(config.title || '')}</title>`,
+      meta('keywords', config.keywords || ''),
+      meta('description', config.description || '')
+    )
   }
 
-  html = html.concat(styles(config.styles))
+  html = [...html, styles(config.styles)]
 
   return html.filter(Boolean).join('\n')
 }

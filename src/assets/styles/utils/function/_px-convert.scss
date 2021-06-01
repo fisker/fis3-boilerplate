@@ -1,9 +1,11 @@
+@use "sass:math";
+
 @function rem-px($values...) {
   @return px-convert(1, "rem", $values...);
 }
 
 @function design-px($values...) {
-  $scale: 320 / $design-width;
+  $scale: math.div(320, $design-width);
   @return px-convert($scale, "px", $values...);
 }
 
@@ -18,7 +20,7 @@
         $value: add-unit($value, $defaut-unit);
       }
       @if unit($value) == "rem" {
-        $value: $value * $root-font-size / 1rem;
+        $value: math.div($value * $root-font-size, 1rem);
       }
       $item: $value * $scale;
       $item: round($item);

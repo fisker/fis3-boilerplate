@@ -4,7 +4,7 @@
 function script(files) {
   files = Array.isArray(files) ? files : [files]
   return files
-    .map(function(file) {
+    .map(function (file) {
       return `<script src="${file}"></script>`
     })
     .join('\n')
@@ -13,7 +13,7 @@ function script(files) {
 function style(files) {
   files = Array.isArray(files) ? files : [files]
   return files
-    .map(function(file) {
+    .map(function (file) {
       return `<link href="${file}" rel="stylesheet">`
     })
     .join('\n')

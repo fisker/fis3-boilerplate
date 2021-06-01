@@ -14,7 +14,7 @@ const CACHE_FILE = path.join(
 const dependencies = getDependencies()
 const files = flatDeep(
   dependencies.map(({pkg: package_, dir: directory, files}) =>
-    files.map(file => ({
+    files.map((file) => ({
       source: path.join(directory, file),
       target: path.join(VENDOR_DIR, package_.name, package_.version, file),
     }))
@@ -28,7 +28,8 @@ for (const {source, target} of files) {
 }
 
 const cache = dependencies.reduce(
-  (acc, current) => Object.assign(acc, {[current.name]: current}),
+  (accumulator, current) =>
+    Object.assign(accumulator, {[current.name]: current}),
   {}
 )
 

@@ -8,7 +8,7 @@ function loadScripts(scripts) {
   return _.uniq(scripts)
     .filter(Boolean)
     .map(parsePackage)
-    .map(function(module_) {
+    .map(function (module_) {
       if (module_.type === 'file') {
         return createScript(module_.file)
       }

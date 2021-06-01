@@ -30,7 +30,7 @@ module.exports = {
   ARCHIVE_TYPE_GZ: 'tar.gz',
   TIMESTAMP: new Date()
     .toJSON()
-    .replace(/[-:]/g, '')
+    .replace(/[:-]/g, '')
     .replace('T', '-')
     .slice(2, 15),
   DEVICE_MULTI: 'multi-device',

@@ -28,7 +28,7 @@ function getDependencies(directory) {
   const names = Object.keys(dependencies).sort()
 
   return names
-    .map(name => ({name, version: dependencies[name]}))
+    .map((name) => ({name, version: dependencies[name]}))
     .map(getDependencyInfo)
 }
 

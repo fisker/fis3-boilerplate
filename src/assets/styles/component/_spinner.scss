@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $name-space: u;
 
 .#{$name-space}-spinner {
@@ -27,8 +29,9 @@ $name-space: u;
     width: 100%;
     animation-name: rotate;
     animation-timing-function: linear;
-    animation-duration: (
-      360 * $arc-time / ($arc-start-rot + (360 - $arc-size))
+    animation-duration: math.div(
+      360 * $arc-time,
+      $arc-start-rot + (360 - $arc-size)
     );
 
     @keyframes rotate {
@@ -43,8 +46,8 @@ $name-space: u;
     stroke: currentcolor;
     height: 100%;
     width: 100%;
-    stroke-dasharray: (2 * $radius * $PI * $arc-size / 360);
-    stroke-dashoffset: (2 * $radius * $PI * $arc-size / 360);
+    stroke-dasharray: math.div(2 * $radius * $PI * $arc-size, 360);
+    stroke-dashoffset: math.div(2 * $radius * $PI * $arc-size, 360);
     stroke-linecap: round;
     stroke-width: $stroke-width;
     stroke-miterlimit: 10;
@@ -54,7 +57,7 @@ $name-space: u;
 
     @keyframes fillunfill {
       0% {
-        stroke-dashoffset: 2 * $radius * $PI * $arc-size / 360 - 0.1;
+        stroke-dashoffset: math.div(2 * $radius * $PI * $arc-size, 360) - 0.1;
       }
       50% {
         stroke-dashoffset: 0;
@@ -72,7 +75,7 @@ $name-space: u;
 
     @keyframes colors {
       @for $index from 1 through $colors-length {
-        #{percentage(($index - 1) / ($colors-length - 1))} {
+        #{percentage(math.div($index - 1, $colors-length - 1))} {
           color: nth($colors, $index);
         }
       }

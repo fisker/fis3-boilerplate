@@ -121,12 +121,10 @@ function getPluginConfig() {
     },
     'fis3-postprocessor-prettier': {},
     'fis3-parser-ejs': {
-      data: Object.assign(
-        {
-          _: ejsHelpers,
-        },
-        config
-      ),
+      data: {
+        _: ejsHelpers,
+        ...config,
+      },
       options: {
         outputFunctionName: 'echo',
         // rmWhitespace: true,

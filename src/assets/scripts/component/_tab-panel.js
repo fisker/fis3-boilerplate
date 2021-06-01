@@ -7,7 +7,7 @@ var TAB_PANEL_TAB_SELECTOR = '.u-tab-panel__tab'
 
 function initTabPanel() {
   var container = $(this)
-  container.on('click', TAB_PANEL_TAB_SELECTOR, function() {
+  container.on('click', TAB_PANEL_TAB_SELECTOR, function () {
     $(this)
       .addClass(TAB_PANEL_CURRENT_CLASS)
       .siblings()
@@ -20,6 +20,6 @@ function initTabPanel() {
   }
 }
 
-$(function() {
+$(function () {
   $(TAB_PANEL_SELECTOR).each(initTabPanel)
 })

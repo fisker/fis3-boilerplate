@@ -8,7 +8,7 @@ function loadStyles(styles) {
   return _.uniq(styles || [])
     .filter(Boolean)
     .map(parsePackage)
-    .map(function(module_) {
+    .map(function (module_) {
       if (module_.type === 'file') {
         return createLink(module_.file)
       }

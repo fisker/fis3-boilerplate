@@ -8,7 +8,7 @@ const PLUGIN_PROP = '__plugin'
 const fileExtensions = {}
 
 function toArray(s) {
-  return s.split ? s.split(',') : Array.from(s)
+  return s.split ? s.split(',') : [...s]
 }
 
 function getPlugin(pluginNames) {
@@ -21,12 +21,12 @@ function getPlugin(pluginNames) {
     return null
   }
 
-  _.forEach(toArray(pluginNames), function(pluginName) {
+  for (const pluginName of toArray(pluginNames)) {
     let plugin
     let shortPluginName
 
     if (!pluginName) {
-      return
+      continue
     }
     if (pluginName[PLUGIN_PROP]) {
       plugin = pluginName
@@ -35,14 +35,14 @@ function getPlugin(pluginNames) {
       plugin = fis.plugin(shortPluginName, getPluginOptions(pluginName))
     }
     plugins.push(plugin)
-  })
+  }
 
   return plugins.length === 1 ? plugins[0] : plugins
 }
 
 function pluginToProperties(pluginNames) {
   const properties = {}
-  _.forEach(toArray(pluginNames), function(pluginName) {
+  for (const pluginName of toArray(pluginNames)) {
     const {type} = parsePlugin(pluginName)
     const plugin = getPlugin(pluginName)
     if (properties[type]) {
@@ -53,7 +53,7 @@ function pluginToProperties(pluginNames) {
     } else {
       properties[type] = plugin
     }
-  })
+  }
   return properties
 }
 
@@ -82,14 +82,17 @@ function parsePlugin(pluginName) {
 let htmlLikeExtension = ['html']
 
 function setHtmlLikeExtension(array) {
-  htmlLikeExtension = htmlLikeExtension.concat(array || {})
+  htmlLikeExtension = [
+    ...htmlLikeExtension,
+    ...(Array.isArray(array) ? array : [{}]),
+  ]
 }
 
 function getExtensionsReg(extension, inline) {
   let extensions = []
   let prefix = ''
 
-  if (extension.split && fileExtensions[extension]) {
+  if (typeof extension === 'string' && fileExtensions[extension]) {
     extensions = toArray(fileExtensions[extension])
     extensions.unshift(extension)
   } else {

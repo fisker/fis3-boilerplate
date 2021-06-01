@@ -1,7 +1,7 @@
 /* eslint-disable strict */
 /* global $: true */
 
-var ratio = (function() {
+var ratio = (function () {
   var devicePixelRatio = window.devicePixelRatio || 1
   var context = document.createElement('canvas').getContext('2d')
   var backingStoreRatio =

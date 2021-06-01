@@ -1,7 +1,9 @@
 function flatDeep(array) {
   return array.reduce(
-    (acc, current) =>
-      acc.concat(Array.isArray(current) ? flatDeep(current) : [current]),
+    (accumulator, current) => [
+      ...accumulator,
+      ...(Array.isArray(current) ? flatDeep(current) : [current]),
+    ],
     []
   )
 }

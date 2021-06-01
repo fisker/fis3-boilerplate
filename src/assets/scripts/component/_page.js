@@ -1,8 +1,8 @@
 /* eslint-disable strict */
 /* global $: true */
 
-$(function() {
-  $('.page__header, .page__footer').each(function() {
+$(function () {
+  $('.page__header, .page__footer').each(function () {
     var el = $(this)
     if (el.css('position') === 'fixed') {
       el.wrap(

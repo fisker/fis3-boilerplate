@@ -23,7 +23,7 @@ function codeStyleGetter(lang) {
   lang = lang || '_'
   let codeStyle = cache[lang]
   if (!codeStyle) {
-    codeStyle = Object.assign({}, codeStyleForLang[lang], editorConfig)
+    codeStyle = {...codeStyleForLang[lang], ...editorConfig}
 
     cache[lang] = codeStyle
   }

@@ -15,7 +15,7 @@ const PROJECT_NAME = (() => {
   try {
     return require('./package.json').name
   } catch {
-    return __dirname.split(/[\\/]/).pop()
+    return __dirname.split(/[/\\]/).pop()
   }
 })()
 
