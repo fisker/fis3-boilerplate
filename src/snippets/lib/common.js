@@ -16,14 +16,14 @@ function createLink(source) {
   return `<link href="${_.escape(source)}" rel="stylesheet">`
 }
 
-const conditionHTML = (CONDITION_OP =>
+const conditionHTML = ((CONDITION_OP) =>
   function conditionHTML(html, condition = '', length = 80) {
     condition = String(condition).trim()
 
     let conditionStart = ''
     let conditionEnd = ''
 
-    const match = condition.match(/([<>=]{0,2})\s*(\d)/)
+    const match = condition.match(/([<=>]{0,2})\s*(\d)/)
 
     if (match) {
       const op = CONDITION_OP[match[1]]
@@ -41,7 +41,10 @@ const conditionHTML = (CONDITION_OP =>
 
     const array = [conditionStart, html, conditionEnd].filter(Boolean)
 
-    const totalLength = array.reduce((acc, current) => acc + current.length, 0)
+    const totalLength = array.reduce(
+      (accumulator, current) => accumulator + current.length,
+      0
+    )
 
     html = array.join(totalLength > length ? '\n' : '')
 

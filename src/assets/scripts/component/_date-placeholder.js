@@ -11,14 +11,14 @@ function supportPlaceholder() {
   var placeholder = el.attr('placeholder')
   if (placeholder) {
     el.data('placeholder', placeholder)
-      .on('change blur', function() {
+      .on('change blur', function () {
         if (el.val()) {
           el.removeAttr('placeholder')
         } else {
           el.attr('placeholder', el.data('placeholder'))
         }
       })
-      .on('focus', function() {
+      .on('focus', function () {
         el.removeAttr('placeholder')
       })
       .trigger('blur')
@@ -27,8 +27,8 @@ function supportPlaceholder() {
   }
 }
 
-$(function() {
-  var selector = $.map(inputTypes, function(type) {
+$(function () {
+  var selector = $.map(inputTypes, function (type) {
     return '[type="' + type + '"]'
   }).join(',')
   $(selector).each(supportPlaceholder)

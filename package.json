@@ -5,7 +5,6 @@
     "node": ">=8.16.0"
   },
   "scripts": {
-    "install-deps": "yarn && node \"./scripts/install-dependencies.js\"",
     "lint": "run-p lint:*",
     "lint:eslint": "eslint \"**/*.{js,mjs,vue}\"",
     "lint:prettier": "prettier \"**/*.{css,html,js,json,less,md,scss,ts,vue,yaml,yml}\" --check",
@@ -13,23 +12,26 @@
     "format": "run-p format:*",
     "format:eslint": "yarn lint:eslint --fix",
     "format:prettier": "prettier \"**/*.{css,html,js,json,less,md,scss,ts,vue,yaml,yml}\" --write",
-    "format:stylelint": "yarn lint:stylelint --fix"
+    "format:stylelint": "yarn lint:stylelint --fix",
+    "prepare": "node \"./scripts/install-dependencies.js\""
   },
   "dependencies": {
     "dd_belatedpng": "1.0.3",
     "html5shiv": "3.7.3",
-    "jquery": "3.5.0",
+    "jquery": "3.6.0",
     "jquery-v1": "npm:jquery@1.12.4",
     "jquery-v2": "npm:jquery@2.2.4",
     "normalize.css": "8.0.1"
   },
   "devDependencies": {
-    "@fisker/eslint-config": "1.6.9",
-    "@fisker/eslint-config-legacy": "1.2.3",
-    "@fisker/prettier-config": "1.0.30",
-    "@fisker/stylelint-config": "1.2.4",
-    "eslint": "6.0.1",
-    "prettier": "1.19.1",
-    "stylelint": "13.0.0"
+    "@babel/preset-env": "7.14.4",
+    "@fisker/eslint-config": "6.0.1",
+    "@fisker/eslint-config-legacy": "5.0.8",
+    "@fisker/prettier-config": "4.0.4",
+    "@fisker/stylelint-config": "2.3.5",
+    "eslint": "7.27.0",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.3.0",
+    "stylelint": "13.13.1"
   }
 }

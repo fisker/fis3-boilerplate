@@ -8,17 +8,17 @@ function mkdir(directory, options) {
     if (stat.isDirectory()) {
       return true
     }
-  } catch (_) {}
+  } catch {}
 
   try {
     fs.mkdirSync(directory, options)
-  } catch (_) {}
+  } catch {}
 }
 
 function mkdirP(directory, options) {
   try {
     return fs.mkdirSync(directory, options)
-  } catch (_) {}
+  } catch {}
 
   const array = path.normalize(directory).split(path.sep)
   let current = array.shift()

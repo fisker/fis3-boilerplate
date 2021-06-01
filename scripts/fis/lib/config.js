@@ -11,7 +11,7 @@ function toArray(data) {
   if (!Array.isArray(data)) {
     data = String(data).split(',')
   }
-  return data.map(keyword => String(keyword).trim()).filter(Boolean)
+  return data.map((keyword) => String(keyword).trim()).filter(Boolean)
 }
 
 if (project.legacyIe < 9 && project.device === 'mobile') {

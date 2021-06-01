@@ -1,5 +1,5 @@
 const {writeFileSync} = require('fs')
-const {join} = require('path')
+const path = require('path')
 const config = require('./fis/lib/config.js')
 
 const {project} = config
@@ -28,6 +28,6 @@ const browserslist = [
 ]
 
 writeFileSync(
-  join(__dirname, '../.browserslistrc'),
+  path.join(__dirname, '../.browserslistrc'),
   ['# AUTO GENERATED FILE, DO NOT EDIT #', ...browserslist].join('\n')
 )

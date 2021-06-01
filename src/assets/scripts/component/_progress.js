@@ -29,12 +29,12 @@ function setProgressValue(progress, value) {
   progressBar.css('width', (value / max) * 100 + '%')
 }
 
-$.fn.progressValue = $.fn.progressVal = function(value) {
-  return $(this).each(function() {
+$.fn.progressValue = $.fn.progressVal = function (value) {
+  return $(this).each(function () {
     setProgressValue(this, value)
   })
 }
 
-$(function() {
+$(function () {
   $('progress').each(initProgress)
 })

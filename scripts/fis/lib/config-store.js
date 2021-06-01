@@ -11,8 +11,11 @@ const {codeStyle} = config
 function map(collection, iteratee) {
   return _.reduce(
     collection,
-    function(acc, current, key, collection) {
-      return acc.concat([iteratee.call(collection, current, key, collection)])
+    function (accumulator, current, key, collection) {
+      return [
+        ...accumulator,
+        iteratee.call(collection, current, key, collection),
+      ]
     },
     []
   )
@@ -41,7 +44,7 @@ function increseIndent(string, level) {
   const indentString = codeStyle.indent.repeat(level)
   return string
     .split('\n')
-    .map(function(s, line) {
+    .map(function (s, line) {
       return line && s ? indentString + s : s
     })
     .join('\n')
@@ -50,16 +53,13 @@ function increseIndent(string, level) {
 const {toString} = Object.prototype
 
 function type(x) {
-  return toString
-    .call(x)
-    .slice(8, -1)
-    .toLowerCase()
+  return toString.call(x).slice(8, -1).toLowerCase()
 }
 
-const reColor = (function() {
-  function getFunctionalStringRe(func, arguments_) {
-    return `${func}\\(${arguments_
-      .map(function(argument) {
+const reColor = (function () {
+  function getFunctionalStringRe(function_, arguments_) {
+    return `${function_}\\(${arguments_
+      .map(function (argument) {
         return `\\s*${argument}\\s*`
       })
       .join(',')}\\)`
@@ -107,7 +107,7 @@ function cssPreprossorParser(lang) {
 
   function quoteKey(key) {
     key = String(key)
-    if (/[.\-:]/.test(key)) {
+    if (/[.:-]/.test(key)) {
       return JSON.stringify(key)
     }
 
@@ -115,13 +115,13 @@ function cssPreprossorParser(lang) {
   }
 
   const valueParser = {
-    scss: (function() {
+    scss: (function () {
       function scssValue(value, indent) {
         indent = indent || 0
         switch (type(value)) {
           case 'map':
           case 'set':
-            return scssValue(Array.from(value), indent)
+            return scssValue([...value], indent)
           case 'undefined':
             return 'null'
           case 'object':
@@ -150,16 +150,17 @@ function cssPreprossorParser(lang) {
       }
 
       function scssArrayToMap(array, indent) {
-        const values = array.map(function(value) {
+        const values = array.map(function (value) {
           return `${codeStyle.indent + scssValue(value, indent + 1)}`
         })
         return toMapString(values)
       }
 
       function scssObjectToMap(object, indent) {
-        const values = Object.keys(object).map(function(key) {
-          return `${codeStyle.indent +
-            quoteKey(key)}: ${scssValue(object[key], indent + 1)}`
+        const values = Object.keys(object).map(function (key) {
+          return `${
+            codeStyle.indent + quoteKey(key)
+          }: ${scssValue(object[key], indent + 1)}`
         })
         return toMapString(values)
       }
@@ -171,7 +172,7 @@ function cssPreprossorParser(lang) {
   const prefix = VAR_PREFIX[lang]
   const parser = valueParser[lang]
 
-  return function(data) {
+  return function (data) {
     return `$config: ${parser(data)};`
   }
 }
@@ -188,7 +189,7 @@ const parsers = {
 }
 
 function store(config) {
-  Object.keys(parsers).forEach(function(lang) {
+  for (const lang of Object.keys(parsers)) {
     const file = path.join(STORE_LOCATION, `_config.${lang}`)
     let parser = parsers[lang] || JSON.stringify
     if (!lang.endsWith('json')) {
@@ -198,7 +199,7 @@ function store(config) {
     // try {
     fs.writeFileSync(file, parser(config), codeStyle.charset)
     // } catch (err) {}
-  })
+  }
 }
 
 _.mkdir(STORE_LOCATION)

@@ -15,7 +15,7 @@ function initRangeInput() {
   var min = +input.attr('min') || 0
   var max = +input.attr('max') || 1
   input
-    .on('input', function() {
+    .on('input', function () {
       var percentage = ((min + input.val()) / (max - min)) * 100
       indicate.css({
         width: percentage + '%'
@@ -24,6 +24,6 @@ function initRangeInput() {
     .trigger('input')
 }
 
-$(function() {
+$(function () {
   $('.u-range-input').each(initRangeInput)
 })

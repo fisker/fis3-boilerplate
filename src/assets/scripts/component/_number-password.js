@@ -29,18 +29,18 @@ function initNumberPassword() {
     })
   }
 
-  input.on('input', function() {
+  input.on('input', function () {
     var value = this.value
     digitSpans
       .slice(value.length)
       .removeClass(HAS_VALUE_CLASS)
-      .each(function(index) {
+      .each(function (index) {
         $(this).empty()
       })
     digitSpans
       .slice(0, value.length)
       .addClass(HAS_VALUE_CLASS)
-      .each(function(index) {
+      .each(function (index) {
         $(this).text(value[index])
       })
   })
@@ -50,7 +50,7 @@ function initNumberPassword() {
   // digitSpans.removeClass(HAS_VALUE_CLASS);
   // });
 
-  input.on('focus input', function() {
+  input.on('focus input', function () {
     digitSpans.removeClass('u-number-password__digit_current')
     digitSpans
       .eq(input.val().length)
@@ -58,6 +58,6 @@ function initNumberPassword() {
   })
 }
 
-$(function() {
+$(function () {
   $('.u-number-password').each(initNumberPassword)
 })

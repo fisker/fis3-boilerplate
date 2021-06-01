@@ -5,11 +5,11 @@ const commonAttributes = {
 }
 
 function renderHTMLTag(attributes, version) {
-  let classNames = attributes.class.slice()
+  let classNames = [...attributes.class]
 
   if (version) {
-    for (let ver = 9; ver > version; ver -= 1) {
-      classNames.push(`lt-ie${ver}`)
+    for (let version_ = 9; version_ > version; version_ -= 1) {
+      classNames.push(`lt-ie${version_}`)
     }
     classNames.push(`ie${version}`)
   }
@@ -18,7 +18,7 @@ function renderHTMLTag(attributes, version) {
 
   const attributeString = Object.keys(attributes)
     .sort()
-    .map(function(attribute) {
+    .map(function (attribute) {
       const value =
         attribute === 'class' ? classNames.join(' ') : attributes[attribute]
       if (value) {

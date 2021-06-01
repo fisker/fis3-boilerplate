@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @mixin justify-box(
   $children-selector: "& > *",
   $shim-selector: if($legacy-ie <= 7, "& .shim", "&::after")
@@ -20,10 +22,10 @@
 
     @if unit($base-font-size) == "%" {
       @if $legacy-ie < 9 {
-        font-size: value-of($base-font-size) / 100 * $root-font-size;
+        font-size: math.div(value-of($base-font-size), 100) * $root-font-size;
       }
 
-      font-size: value-of($base-font-size) / 100 * 1rem;
+      font-size: math.div(value-of($base-font-size), 100) * 1rem;
     } @else {
       font-size: $base-font-size;
     }

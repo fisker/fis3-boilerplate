@@ -54,8 +54,8 @@ const preProcessors = [
 
 utils.setHtmlLikeExt(
   preProcessors
-    .filter(config => config.type === 'html')
-    .map(config => config.ext)
+    .filter((config) => config.type === 'html')
+    .map((config) => config.ext)
 )
 
 const standardProcessors = [
@@ -65,9 +65,10 @@ const standardProcessors = [
     preprocessor:
       config.project.legacyIe <= 8 ? 'fis3-preprocessor-cssgrace' : null,
     optimizer: config.build.optimize.css ? 'fis3-optimizer-cleancss' : null,
-    postprocessor: ['fis3-postprocessor-postcss-with-rc'].concat(
-      config.build.optimize.css ? [] : ['fis3-postprocessor-prettier']
-    ),
+    postprocessor: [
+      'fis3-postprocessor-postcss-with-rc',
+      ...(config.build.optimize.css ? [] : ['fis3-postprocessor-prettier']),
+    ],
     useSprite: true,
   },
   {
@@ -110,12 +111,12 @@ if (config.build.ignore.global) {
 }
 
 // release ignored file
-config.build.ignore.release.forEach(function(glob) {
+for (const glob of config.build.ignore.release) {
   fis.match(glob, {
     release: `/${config.build.temp}/$0`,
     relative: '/',
   })
-})
+}
 fis.match('_**.{scss,sass}', {
   release: false,
 })
@@ -127,11 +128,11 @@ if (config.env.production) {
   fis.match('*', {
     useHash: true,
   })
-  config.build.hash.except.forEach(function(glob) {
+  for (const glob of config.build.hash.except) {
     fis.match(glob, {
       useHash: false,
     })
-  })
+  }
 }
 
 // relative
@@ -142,7 +143,7 @@ if (config.build.relative) {
   })
 }
 
-preProcessors.forEach(function(data) {
+for (const data of preProcessors) {
   const extensions = utils.toArray(data.ext)
   let processor = {
     rExt: `.${data.type}`,
@@ -152,20 +153,20 @@ preProcessors.forEach(function(data) {
   const plugins = ['parser', 'lint']
 
   utils.fileExts[data.type] = utils.fileExts[data.type] || []
-  utils.fileExts[data.type] = utils.fileExts[data.type].concat(extensions)
+  utils.fileExts[data.type] = [...utils.fileExts[data.type], ...extensions]
   fis.match(utils.getExtsReg(extensions), processor)
 
   processor = {}
-  plugins.forEach(function(pluginType) {
+  for (const pluginType of plugins) {
     if (data[pluginType]) {
       processor[pluginType] = utils.getPlugin(data[pluginType])
     }
-  })
+  }
 
   fis.match(utils.getExtsReg(extensions), processor)
-})
+}
 
-standardProcessors.forEach(function(data) {
+for (const data of standardProcessors) {
   const processor = {}
 
   // lint can't used on preProcessor
@@ -176,46 +177,46 @@ standardProcessors.forEach(function(data) {
     })
   }
 
-  ;['useSprite'].forEach(function(type) {
+  for (const type of ['useSprite']) {
     if (type in data) {
       processor[type] = data[type]
     }
-  })
+  }
 
   // plugins
-  ;['preprocessor', 'optimizer', 'postprocessor'].forEach(function(type) {
+  for (const type of ['preprocessor', 'optimizer', 'postprocessor']) {
     if (data[type]) {
       processor[type] = utils.getPlugin(data[type])
     }
-  })
+  }
 
   fis.match(utils.getExtsReg(data.type), processor)
-})
-;['optimizer', 'lint', 'postprocessor'].forEach(function(type) {
-  ;(config.build.ignore[type] || []).forEach(function(reg) {
+}
+for (const type of ['optimizer', 'lint', 'postprocessor']) {
+  for (const reg of config.build.ignore[type] || []) {
     const settings = {}
     settings[type] = null
     fis.match(reg, settings)
-  })
-})
-;['html', 'js'].forEach(function(type) {
+  }
+}
+for (const type of ['html', 'js']) {
   const standardProcessor = standardProcessors.find(
-    processor => processor.type === type
+    (processor) => processor.type === type
   )
   const config = {
     rExt: `.${type}`,
     release: '/$1',
   }
   // plugins
-  ;['preprocessor', 'optimizer', 'postprocessor'].forEach(function(type) {
+  for (const type of ['preprocessor', 'optimizer', 'postprocessor']) {
     config[type] = standardProcessor[type]
       ? utils.getPlugin(standardProcessor[type])
       : null
-  })
+  }
 
   // process.exit(1)
   fis.match(`(**.${type}).{ejs,jst}`, config)
-})
+}
 
 // snippets should not release
 fis.match('/snippets/**', {
@@ -237,14 +238,14 @@ fis.match('_*.html', {
 })
 
 // minify-inline-script
-config.build.minifyInlineScript.forEach(function(re) {
+for (const re of config.build.minifyInlineScript) {
   fis.match(re, {
     release: `/${config.build.temp}/$0`,
     relative: '/',
     optimizer: utils.getPlugin('fis3-optimizer-terser'),
     postprocessor: null,
   })
-})
+}
 
 // font/*.svg should not be compressed
 // if (config.build.optimize.SVG) {
@@ -256,7 +257,7 @@ config.build.minifyInlineScript.forEach(function(re) {
 fis.match('::package', utils.pluginToProperties('fis-spriter-csssprites'))
 
 // do noting to vendors
-config.build.ignore.vendors.forEach(function(preg) {
+for (const preg of config.build.ignore.vendors) {
   // http://fis.baidu.com/fis3/docs/build.html#%E5%8D%95%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E6%B5%81%E7%A8%8B
   fis.match(preg, {
     lint: null,
@@ -268,7 +269,7 @@ config.build.ignore.vendors.forEach(function(preg) {
     useHash: false,
     useSprite: false,
   })
-})
+}
 
 if (config.env.production) {
   fis.match('**', utils.pluginToProperties('fis3-deploy-local-deliver'))

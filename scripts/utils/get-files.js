@@ -11,7 +11,7 @@ function getFiles(directory) {
 
   const files = fs
     .readdirSync(directory)
-    .map(file => getFiles(path.join(directory, file)))
+    .map((file) => getFiles(path.join(directory, file)))
 
   return flatDeep(files)
 }

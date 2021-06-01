@@ -1,9 +1,11 @@
+@use "sass:math";
+
 @function px-rem($values...) {
   @return rem-convert(1, "px", $values...);
 }
 
 @function design-rem($values...) {
-  $scale: 320 / $design-width;
+  $scale: math.div(320, $design-width);
   @return rem-convert($scale, "px", $values...);
 }
 
@@ -18,7 +20,7 @@
         $value: add-unit($value, $defaut-unit);
       }
       @if unit($value) == "px" {
-        $value: $value / $root-font-size * 1rem;
+        $value: math.div($value, $root-font-size) * 1rem;
       }
       $item: $value * $scale;
     } @else if type-of($value) == "list" {
