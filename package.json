@@ -30,6 +30,6 @@
     "@fisker/stylelint-config": "1.2.4",
     "eslint": "6.0.1",
     "prettier": "1.19.1",
-    "stylelint": "13.0.0"
+    "stylelint": "15.10.1"
   }
 }
